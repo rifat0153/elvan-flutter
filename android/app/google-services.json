@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "233739049238",
+    "project_id": "elvan-71cfb",
+    "storage_bucket": "elvan-71cfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233739049238:android:fac19ab6c4456ef1d99837",
+        "android_client_info": {
+          "package_name": "com.example.elvan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233739049238-dia0tgcnjovaaeeuuq1blmmogapu378b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPFCtsFOzwGsvIsnBo5CQRBLulbQppoic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233739049238-dia0tgcnjovaaeeuuq1blmmogapu378b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "233739049238-0e57rd744anbu87mh2at2ta7uh89t4ad.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fivedtech.elvan"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233739049238:android:9ffae9336c0961f5d99837",
+        "android_client_info": {
+          "package_name": "com.fivedtech.elvan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233739049238-dia0tgcnjovaaeeuuq1blmmogapu378b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPFCtsFOzwGsvIsnBo5CQRBLulbQppoic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233739049238-dia0tgcnjovaaeeuuq1blmmogapu378b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "233739049238-0e57rd744anbu87mh2at2ta7uh89t4ad.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fivedtech.elvan"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
