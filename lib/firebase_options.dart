@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAPFCtsFOzwGsvIsnBo5CQRBLulbQppoic',
-    appId: '1:233739049238:android:9ffae9336c0961f5d99837',
+    appId: '1:233739049238:android:fac19ab6c4456ef1d99837',
     messagingSenderId: '233739049238',
     projectId: 'elvan-71cfb',
     storageBucket: 'elvan-71cfb.appspot.com',
@@ -70,7 +70,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '233739049238',
     projectId: 'elvan-71cfb',
     storageBucket: 'elvan-71cfb.appspot.com',
-    iosClientId: '233739049238-0e57rd744anbu87mh2at2ta7uh89t4ad.apps.googleusercontent.com',
+    iosClientId: '233739049238-aag2d39ujin885h78dk3soj3timppv52.apps.googleusercontent.com',
     iosBundleId: 'com.example.elvan',
   );
 }

@@ -26,6 +26,7 @@ if (flutterVersionName == null) {
 //     flutterTargetSdkVersion = 33
 // }
 def flutterTargetSdkVersion = 33
+def flutterMinimunSdkVersion = 21
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -54,7 +55,7 @@ android {
         applicationId "com.example.elvan"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion flutterMinimunSdkVersion
         targetSdkVersion flutterTargetSdkVersion
         // targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()

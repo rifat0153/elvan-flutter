@@ -1,0 +1,21 @@
+@freezed
+class News with _$News {
+  @JsonSerializable(explicitToJson: true)
+  const factory News({
+    String? id,
+    @JsonKey(name: 'news_excerpt', fromJson: stringFromJsonTrimmed) String? newsExcerpt,
+    @JsonKey(name: 'news_content') String? newsContent,
+    @JsonKey(fromJson: stringFromJsonTrimmed) String? category,
+    @Default([]) List<Author> author,
+    String? relatednewsids,
+    String? newstype,
+    String? publishdatetime,
+    String? updatedatatime,
+    String? created,
+    String? updated,
+    String? url,
+    @Default([]) List<NewsImage> images,
+  }) = _News;
+
+  factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
+}
