@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:elvan/features/food/screens/food_detail.dart';
 import 'package:elvan/features/food/screens/food_list.dart';
 import 'package:elvan/navigation/root_navigator.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'food_navigator.g.dart';
+
+@Riverpod(keepAlive: true)
+GlobalKey<NavigatorState> foodNavigatorKey(FoodNavigatorKeyRef ref) => GlobalKey<NavigatorState>();
 
 class FoodNavigatorWrapper extends StatelessWidget {
   const FoodNavigatorWrapper({super.key});
@@ -22,24 +29,26 @@ class FoodNavigatorWrapper extends StatelessWidget {
   }
 }
 
-class FoodNavigator extends StatefulWidget {
+class FoodNavigator extends ConsumerStatefulWidget {
   const FoodNavigator({super.key, required this.foodPageRoute});
 
   final String foodPageRoute;
 
   @override
-  State<FoodNavigator> createState() => _FoodNavigatorState();
+  ConsumerState<FoodNavigator> createState() => _FoodNavigatorState();
 }
 
-class _FoodNavigatorState extends State<FoodNavigator> {
-  final _navigatorKey = GlobalKey<NavigatorState>();
+class _FoodNavigatorState extends ConsumerState<FoodNavigator> {
+  // final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
+    final navigatorKey = ref.read(foodNavigatorKeyProvider);
+
     return Scaffold(
       appBar: _buildFlowAppBar(),
       body: Navigator(
-        key: _navigatorKey,
+        key: navigatorKey,
         initialRoute: routeFoodListPage,
         onGenerateRoute: onGenerateFoodRoute,
       ),
@@ -57,7 +66,9 @@ class _FoodNavigatorState extends State<FoodNavigator> {
   }
 
   void _exitSetup() {
-    Navigator.of(context).pop();
+    final navigatorKey = ref.read(foodNavigatorKeyProvider);
+
+    navigatorKey.currentState?.pop();
   }
 }
 

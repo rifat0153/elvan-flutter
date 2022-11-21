@@ -3,12 +3,21 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan/core/models/food/food_item.dart';
 
-abstract class IFoodRemoteDataSource {
+abstract class FoodDataSource {
+  // Stream<FoodItem> getFoodsStream();
   Stream<List<FoodItem>> getFoodsStream();
 }
 
-class FoodRemoteDataSource implements IFoodRemoteDataSource {
+class FoodRemoteDataSource implements FoodDataSource {
   final db = FirebaseFirestore.instance;
+
+  Stream<int> str() async* {
+    // The keyword `async*` means a "generator function" that generates a stream
+    List<int> a = [1, 2, 3, 4, 5];
+    for (var e in a) {
+      if (e > 2) yield e;
+    }
+  }
 
   @override
   Stream<List<FoodItem>> getFoodsStream() async* {

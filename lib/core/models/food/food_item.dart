@@ -15,6 +15,7 @@ class FoodItem with _$FoodItem {
   const factory FoodItem({
     String? id,
     String? title,
+    // @JsonKey(name: 'no_of_items', fromJson: ,toJson:  ) String? noOfItems,
     String? category,
     String? description,
     double? price,
@@ -24,3 +25,4 @@ class FoodItem with _$FoodItem {
 
   factory FoodItem.fromJson(Map<String, dynamic> json) => _$FoodItemFromJson(json);
 }
+

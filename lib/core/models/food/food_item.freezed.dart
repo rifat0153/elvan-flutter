@@ -21,7 +21,8 @@ FoodItem _$FoodItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FoodItem {
   String? get id => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
+  String? get title =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'no_of_items', fromJson: ,toJson:  ) String? noOfItems,
   String? get category => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   double? get price => throw _privateConstructorUsedError;
@@ -192,6 +193,7 @@ class _$_FoodItem implements _FoodItem {
   final String? id;
   @override
   final String? title;
+// @JsonKey(name: 'no_of_items', fromJson: ,toJson:  ) String? noOfItems,
   @override
   final String? category;
   @override
@@ -261,7 +263,7 @@ abstract class _FoodItem implements FoodItem {
   String? get id;
   @override
   String? get title;
-  @override
+  @override // @JsonKey(name: 'no_of_items', fromJson: ,toJson:  ) String? noOfItems,
   String? get category;
   @override
   String? get description;
