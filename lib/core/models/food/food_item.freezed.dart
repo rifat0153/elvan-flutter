@@ -25,6 +25,7 @@ mixin _$FoodItem {
       throw _privateConstructorUsedError; // @JsonKey(name: 'no_of_items', fromJson: ,toJson:  ) String? noOfItems,
   String? get category => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  List<String> get ingredients => throw _privateConstructorUsedError;
   double? get price => throw _privateConstructorUsedError;
   double? get discount => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $FoodItemCopyWith<$Res> {
       String? title,
       String? category,
       String? description,
+      List<String> ingredients,
       double? price,
       double? discount,
       String? imageUrl});
@@ -67,6 +69,7 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
     Object? title = freezed,
     Object? category = freezed,
     Object? description = freezed,
+    Object? ingredients = null,
     Object? price = freezed,
     Object? discount = freezed,
     Object? imageUrl = freezed,
@@ -88,6 +91,10 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      ingredients: null == ingredients
+          ? _value.ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -116,6 +123,7 @@ abstract class _$$_FoodItemCopyWith<$Res> implements $FoodItemCopyWith<$Res> {
       String? title,
       String? category,
       String? description,
+      List<String> ingredients,
       double? price,
       double? discount,
       String? imageUrl});
@@ -136,6 +144,7 @@ class __$$_FoodItemCopyWithImpl<$Res>
     Object? title = freezed,
     Object? category = freezed,
     Object? description = freezed,
+    Object? ingredients = null,
     Object? price = freezed,
     Object? discount = freezed,
     Object? imageUrl = freezed,
@@ -157,6 +166,10 @@ class __$$_FoodItemCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      ingredients: null == ingredients
+          ? _value._ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -182,9 +195,11 @@ class _$_FoodItem implements _FoodItem {
       this.title,
       this.category,
       this.description,
+      final List<String> ingredients = const [],
       this.price,
       this.discount,
-      this.imageUrl});
+      this.imageUrl})
+      : _ingredients = ingredients;
 
   factory _$_FoodItem.fromJson(Map<String, dynamic> json) =>
       _$$_FoodItemFromJson(json);
@@ -198,6 +213,14 @@ class _$_FoodItem implements _FoodItem {
   final String? category;
   @override
   final String? description;
+  final List<String> _ingredients;
+  @override
+  @JsonKey()
+  List<String> get ingredients {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredients);
+  }
+
   @override
   final double? price;
   @override
@@ -207,7 +230,7 @@ class _$_FoodItem implements _FoodItem {
 
   @override
   String toString() {
-    return 'FoodItem(id: $id, title: $title, category: $category, description: $description, price: $price, discount: $discount, imageUrl: $imageUrl)';
+    return 'FoodItem(id: $id, title: $title, category: $category, description: $description, ingredients: $ingredients, price: $price, discount: $discount, imageUrl: $imageUrl)';
   }
 
   @override
@@ -221,6 +244,8 @@ class _$_FoodItem implements _FoodItem {
                 other.category == category) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._ingredients, _ingredients) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
@@ -231,7 +256,15 @@ class _$_FoodItem implements _FoodItem {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, title, category, description, price, discount, imageUrl);
+      runtimeType,
+      id,
+      title,
+      category,
+      description,
+      const DeepCollectionEquality().hash(_ingredients),
+      price,
+      discount,
+      imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -253,6 +286,7 @@ abstract class _FoodItem implements FoodItem {
       final String? title,
       final String? category,
       final String? description,
+      final List<String> ingredients,
       final double? price,
       final double? discount,
       final String? imageUrl}) = _$_FoodItem;
@@ -267,6 +301,8 @@ abstract class _FoodItem implements FoodItem {
   String? get category;
   @override
   String? get description;
+  @override
+  List<String> get ingredients;
   @override
   double? get price;
   @override

@@ -30,7 +30,8 @@ class _FoodListScreenState extends ConsumerState<FoodListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final foodItemsStream = ref.watch(foodItemStreamOld.stream);
+    // final foodItemsStream = ref.watch(foodItemStreamOld.stream);
+    final foodItemsStream = ref.watch(foodItemStreamProvider);
     // final Stream<List<FoodItem>> foodItemsStream = ref.watch(foodItemStreamProvider);
     // final List<FoodItem> foodList = ref.watch(foodItemListProvider);
 

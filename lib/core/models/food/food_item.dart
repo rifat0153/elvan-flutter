@@ -9,7 +9,7 @@ FoodItem foodItemFromJson(String str) => FoodItem.fromJson(json.decode(str));
 
 String foodItemToJson(FoodItem data) => json.encode(data.toJson());
 
-@freezed
+@Freezed()
 class FoodItem with _$FoodItem {
   @JsonSerializable(explicitToJson: true)
   const factory FoodItem({
@@ -18,6 +18,7 @@ class FoodItem with _$FoodItem {
     // @JsonKey(name: 'no_of_items', fromJson: ,toJson:  ) String? noOfItems,
     String? category,
     String? description,
+    @Default([]) List<String> ingredients,
     double? price,
     double? discount,
     String? imageUrl,

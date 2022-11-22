@@ -36,42 +36,42 @@ class FoodListNotifier2 extends _$FoodListNotifier2 {
 }
 
 //  State notifier
-class FoodListNotifier extends StateNotifier<List<FoodItem>> {
-  final FoodDataSource foodDataSource;
-  FoodListNotifier(this.foodDataSource) : super([]);
+// class FoodListNotifier extends StateNotifier<List<FoodItem>> {
+//   final FoodDataSource foodDataSource;
+//   FoodListNotifier(this.foodDataSource) : super([]);
 
-  Future<void> getFoods() async {
-    state = const [
-      FoodItem(
-        id: '1',
-        title: 'Food 1',
-        description: 'Food 1 description',
-        price: 1.0,
-        imageUrl: 'https://picsum.photos/200/300',
-      )
-    ];
+//   Future<void> getFoods() async {
+//     state = const [
+//       FoodItem(
+//         id: '1',
+//         title: 'Food 1',
+//         description: 'Food 1 description',
+//         price: 1.0,
+//         imageUrl: 'https://picsum.photos/200/300',
+//       )
+//     ];
 
-    final foodItem = state[0];
+//     final foodItem = state[0];
 
-    state = [foodItem.copyWith(price: 10)];
-  }
-}
+//     state = [foodItem.copyWith(title: 'Food 1 Updated')];
+//   }
+// }
 
-final foodListProvider = StateNotifierProvider.autoDispose.family<FoodListNotifier, List<FoodItem>, int>((
-  ref,
-  page,
-) {
-  final foodApi = ref.watch(foodDataSourceProvider);
+// final foodListProvider = StateNotifierProvider.autoDispose.family<FoodListNotifier, List<FoodItem>, int>((
+//   ref,
+//   page,
+// ) {
+//   final foodApi = ref.watch(foodDataSourceProvider);
 
-  return FoodListNotifier(
-    foodApi,
-  );
-});
+//   return FoodListNotifier(
+//     foodApi,
+//   );
+// });
 
-@riverpod
-FoodDataSource food2DataSournce(Food2DataSournceRef ref) {
-  return FoodRemoteDataSource();
-}
+// @riverpod
+// FoodDataSource food2DataSournce(Food2DataSournceRef ref) {
+//   return FoodRemoteDataSource();
+// }
 
 @Riverpod()
 Stream<List<FoodItem>> foodItemStream(FoodItemStreamRef ref) async* {

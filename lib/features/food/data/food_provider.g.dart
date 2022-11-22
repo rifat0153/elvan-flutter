@@ -58,17 +58,6 @@ final foodDataSourceProvider = AutoDisposeProvider<FoodDataSource>(
       : $foodDataSourceHash,
 );
 typedef FoodDataSourceRef = AutoDisposeProviderRef<FoodDataSource>;
-String $food2DataSournceHash() => r'ada8f7ad09ef4d768bed3ee8acffb2655db936cf';
-
-/// See also [food2DataSournce].
-final food2DataSournceProvider = AutoDisposeProvider<FoodDataSource>(
-  food2DataSournce,
-  name: r'food2DataSournceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : $food2DataSournceHash,
-);
-typedef Food2DataSournceRef = AutoDisposeProviderRef<FoodDataSource>;
 String $foodItemStreamHash() => r'c77c21f36a8afe0ae66781b6f68824329029ea56';
 
 /// See also [foodItemStream].

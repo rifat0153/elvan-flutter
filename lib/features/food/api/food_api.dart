@@ -20,28 +20,39 @@ class FoodRemoteDataSource implements FoodDataSource {
   }
 
   @override
-  Stream<List<FoodItem>> getFoodsStream() async* {
-    StreamController<List<FoodItem>> streamController = StreamController();
+  Stream<List<FoodItem>> getFoodsStream() {
 
     final docsRef = db.collection("foodItems").withConverter(
           fromFirestore: (snapshot, _) => FoodItem.fromJson(snapshot.data()!),
           toFirestore: (foodItem, _) => foodItem.toJson(),
         );
 
-    docsRef.snapshots().listen(
-          (event) {
-            final foodItems = event.docs.map((e) => e.data()).toList();
+   return docsRef.snapshots().map((event) => event.docs.map((e) => e.data()).toList());
 
-            print('foodItems: $foodItems');
-            streamController.add(foodItems);
-          },
-          onError: (error) => print("Listen failed: $error"),
-          onDone: () {
-            print("Listen done");
-            streamController.close();
-          },
-        );
-
-    yield* streamController.stream;
   }
+
+  // @override
+  // Stream<List<FoodItem>> getFoodsStream() async* {
+  //   StreamController<List<FoodItem>> streamController = StreamController();
+
+  //   final docsRef = db.collection("foodItems").withConverter(
+  //         fromFirestore: (snapshot, _) => FoodItem.fromJson(snapshot.data()!),
+  //         toFirestore: (foodItem, _) => foodItem.toJson(),
+  //       );
+
+  //   docsRef.snapshots().listen(
+  //         (event) {
+  //           final foodItems = event.docs.map((e) => e.data()).toList();
+
+  //           streamController.add(foodItems);
+  //         },
+  //         onError: (error) => print("Listen failed: $error"),
+  //         onDone: () {
+  //           print("Listen done");
+  //           streamController.close();
+  //         },
+  //       );
+
+  //   yield* streamController.stream;
+  // }
 }
