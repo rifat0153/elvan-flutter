@@ -1,9 +1,9 @@
 import 'package:elvan/navigation/food_navigator.dart';
 import 'package:flutter/material.dart';
 
-import 'package:elvan/features/cart/screens/cart_screen.dart';
-import 'package:elvan/features/favorite/screens/favorite_screen.dart';
-import 'package:elvan/features/home/screens/home_screen.dart';
+import 'package:elvan/features/cart/views/cart_screen.dart';
+import 'package:elvan/features/favorite/views/favorite_screen.dart';
+import 'package:elvan/features/home/views/home_screen.dart';
 
 const routeHome = '/';
 const routeCart = '/cart';

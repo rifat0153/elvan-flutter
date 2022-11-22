@@ -1,8 +1,7 @@
 import 'package:elvan/core/models/food/food_item.dart';
-import 'package:elvan/features/food/data/food_provider.dart';
-import 'package:elvan/features/food/screens/food_detail.dart';
+import 'package:elvan/features/food/state/food_provider.dart';
+import 'package:elvan/features/food/views/food_detail.dart';
 import 'package:elvan/navigation/food_navigator.dart';
-import 'package:elvan/features/food/api/food_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

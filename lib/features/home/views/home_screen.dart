@@ -1,6 +1,6 @@
-import 'package:elvan/features/cart/screens/cart_screen.dart';
-import 'package:elvan/features/favorite/screens/favorite_screen.dart';
-import 'package:elvan/features/food/screens/food_detail.dart';
+import 'package:elvan/features/cart/views/cart_screen.dart';
+import 'package:elvan/features/favorite/views/favorite_screen.dart';
+import 'package:elvan/features/food/views/food_detail.dart';
 import 'package:elvan/navigation/food_navigator.dart';
 import 'package:elvan/navigation/root_navigator.dart';
 import 'package:flutter/material.dart';

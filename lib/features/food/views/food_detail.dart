@@ -1,4 +1,4 @@
-import 'package:elvan/features/food/screens/food_list.dart';
+import 'package:elvan/features/food/views/food_list.dart';
 import 'package:elvan/navigation/food_navigator.dart';
 import 'package:elvan/navigation/root_navigator.dart';
 import 'package:flutter/material.dart';
