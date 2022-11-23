@@ -29,10 +29,8 @@ class _FoodListScreenState extends ConsumerState<FoodListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final foodItemsStream = ref.watch(foodItemStreamOld.stream);
-    final foodItemsStream = ref.watch(foodItemStreamProvider);
-    // final Stream<List<FoodItem>> foodItemsStream = ref.watch(foodItemStreamProvider);
-    // final List<FoodItem> foodList = ref.watch(foodItemListProvider);
+    final foodItemsStream = ref.watch(foodItemStreamOld);
+    // final foodItemsStream = ref.watch(foodItemStreamProvider);
 
     return Scaffold(
       body: Center(
@@ -44,24 +42,34 @@ class _FoodListScreenState extends ConsumerState<FoodListScreen> {
               child: const Text('Navigate to Food Detail'),
             ),
             // Text(foodList.length.toString()),
-            Text(foodItemsStream.toString()),
-            StreamBuilder<List<FoodItem>>(
-              stream: foodItemsStream,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  // return Text(snapshot.data?.length.toString() ?? '0');
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return Text(snapshot.data![index].title ?? '');
-                    },
-                  );
-                } else {
-                  return const Text('Loading...');
-                }
-              },
-            ),
+            // Text(foodItemsStream.toString()),
+            foodItemsStream.when(
+                data: (data) => ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        return Text(data[index].title ?? '');
+                      },
+                    ),
+                error: ((error, stackTrace) => Text(error.toString())),
+                loading: () => const CircularProgressIndicator()),
+            // StreamBuilder<List<FoodItem>>(
+            //   stream: foodItemsStream,
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasData) {
+            //       // return Text(snapshot.data?.length.toString() ?? '0');
+            //       return ListView.builder(
+            //         shrinkWrap: true,
+            //         itemCount: snapshot.data!.length,
+            //         itemBuilder: (context, index) {
+            //           return Text(snapshot.data![index].title ?? '');
+            //         },
+            //       );
+            //     } else {
+            //       return const Text('Loading...');
+            //     }
+            //   },
+            // ),
           ],
         ),
       ),

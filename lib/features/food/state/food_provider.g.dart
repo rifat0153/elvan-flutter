@@ -29,6 +29,25 @@ class _SystemHash {
   }
 }
 
+String $FoodListFutureHash() => r'd82bcc83df4cc736a5c6e459ec2c2569598642c4';
+
+/// See also [FoodListFuture].
+final foodListFutureProvider =
+    AutoDisposeAsyncNotifierProvider<FoodListFuture, List<FoodItem>>(
+  FoodListFuture.new,
+  name: r'foodListFutureProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $FoodListFutureHash,
+);
+typedef FoodListFutureRef = AutoDisposeAsyncNotifierProviderRef<List<FoodItem>>;
+
+abstract class _$FoodListFuture
+    extends AutoDisposeAsyncNotifier<List<FoodItem>> {
+  @override
+  FutureOr<List<FoodItem>> build();
+}
+
 String $FoodListNotifier2Hash() => r'e94bf4bd720c31471115bfa3eb7d9601f9897535';
 
 /// See also [FoodListNotifier2].
@@ -58,14 +77,14 @@ final foodDataSourceProvider = AutoDisposeProvider<FoodDataSource>(
       : $foodDataSourceHash,
 );
 typedef FoodDataSourceRef = AutoDisposeProviderRef<FoodDataSource>;
-String $foodItemStreamHash() => r'c77c21f36a8afe0ae66781b6f68824329029ea56';
+String $foodItemStreamHash() => r'8618ec3efe46db2d551d693d0927112a9e971f05';
 
 /// See also [foodItemStream].
-final foodItemStreamProvider = AutoDisposeProvider<Stream<List<FoodItem>>>(
+final foodItemStreamProvider = AutoDisposeProvider<dynamic>(
   foodItemStream,
   name: r'foodItemStreamProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : $foodItemStreamHash,
 );
-typedef FoodItemStreamRef = AutoDisposeProviderRef<Stream<List<FoodItem>>>;
+typedef FoodItemStreamRef = AutoDisposeProviderRef<dynamic>;

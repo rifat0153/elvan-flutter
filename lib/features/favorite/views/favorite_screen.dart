@@ -1,31 +1,19 @@
+import 'package:elvan/features/food/state/food_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class FavoriteScreen extends StatefulWidget {
+class FavoriteScreen extends HookConsumerWidget {
   const FavoriteScreen({super.key});
 
   @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final foodList = ref.watch(foodListFutureProvider);
 
-class _FavoriteScreenState extends State<FavoriteScreen> {
-  int count = 0;
-
-  @override
-  Widget build(BuildContext context) {
     return Container(
       child: Center(
         child: Column(
           children: [
             const Text('FavoriteScreen'),
-            Text('Count is $count'),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  count++;
-                });
-              },
-              child: const Text('Increment'),
-            ),
           ],
         ),
       ),
