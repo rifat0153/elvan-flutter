@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:elvan/core/models/food/food_item.dart';
 import 'package:elvan/features/food/api/food_api.dart';
+import 'package:elvan/features/food/models/food_item/food_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

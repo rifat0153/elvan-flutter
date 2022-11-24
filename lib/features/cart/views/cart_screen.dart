@@ -1,6 +1,6 @@
-import 'package:elvan/features/food/state/food_provider.dart';
+import 'package:elvan/features/food/providers/food_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});

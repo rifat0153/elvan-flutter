@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elvan/core/models/food/food_item.dart';
+import 'package:elvan/features/food/models/food_item/food_item.dart';
 
 abstract class FoodDataSource {
   // Stream<FoodItem> getFoodsStream();
