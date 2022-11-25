@@ -1,18 +1,13 @@
 import 'dart:async';
-import 'dart:developer';
 
-import 'package:elvan/features/auth/api/auth_repository.dart';
+import 'package:elvan/features/auth/repository/auth_repository.dart';
 import 'package:elvan/features/auth/models/auth_state.dart';
+import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_providers.g.dart';
-
-@riverpod
-FirebaseAuth firebaseAuth(FirebaseAuthRef ref) {
-  return FirebaseAuth.instance;
-}
 
 @riverpod
 AuthRepository authRepository(AuthRepositoryRef ref) {
@@ -21,9 +16,9 @@ AuthRepository authRepository(AuthRepositoryRef ref) {
 
 @riverpod
 User? currentUser(CurrentUserRef ref) {
-  final authState = ref.watch(authStateNotifierProvider);
+  final firebaseAuth = ref.watch(firebaseAuthProvider);
 
-  return authState.maybeWhen(orElse: () => null, loggedIn: (user) => user);
+  return firebaseAuth.currentUser;
 }
 
 @riverpod
@@ -41,25 +36,17 @@ final authStateChangesProvider = StreamProvider.autoDispose<User?>(
 class AuthStateNotifier extends _$AuthStateNotifier {
   late final AuthRepository _authRepository;
 
-  late final StreamSubscription _authStateChangesSubscription;
-
   @override
   AuthState build() {
     _authRepository = ref.read(authRepositoryProvider);
 
-    _authStateChangesSubscription = ref.watch(authStateChangesProvider.stream).listen(
-      (user) {
-        log('message: authStateChangesProvider.stream.listen user: $user');
-        state = const AuthState.loading();
-        if (user == null) {
-          state = const AuthState.signedOut();
-        } else {
-          state = AuthState.loggedIn(user: user);
-        }
-      },
-    );
+    final currentUser = ref.read(currentUserProvider);
 
-    return const AuthState.signedOut();
+    if (currentUser == null) {
+      return const AuthState.signedOut();
+    } else {
+      return AuthState.loggedIn(user: currentUser);
+    }
   }
 
   Future<void> signInAnyonymously() async {
@@ -68,6 +55,8 @@ class AuthStateNotifier extends _$AuthStateNotifier {
     try {
       final user = await _authRepository.signInAnyonymously();
       state = AuthState.loggedIn(user: user!);
+    } on FirebaseAuthException catch (e) {
+      state = AuthState.error(e.message);
     } catch (e) {
       state = AuthState.error(e.toString());
     }

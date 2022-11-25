@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:elvan/features/food/api/food_api.dart';
+import 'package:elvan/features/food/repository/food_repository.dart';
 import 'package:elvan/features/food/models/food_item/food_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -8,7 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'food_provider.g.dart';
 
 @Riverpod()
-FoodDataSource foodDataSource(FoodDataSourceRef ref) => FoodRemoteDataSource();
+FoodRepository foodDataSource(FoodDataSourceRef ref) => FoodRemoteDataSource();
 
 final provider = Provider(((ref) => FoodRemoteDataSource()));
 

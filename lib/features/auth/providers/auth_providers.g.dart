@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $AuthStateNotifierHash() => r'1e23b50bb50c429e50b0e4970bdb44ba1ccd4f87';
+String $AuthStateNotifierHash() => r'008b3d90a63a4e7a93c55613a4e737280cd02f3a';
 
 /// See also [AuthStateNotifier].
 final authStateNotifierProvider =
@@ -47,16 +47,6 @@ abstract class _$AuthStateNotifier extends AutoDisposeNotifier<AuthState> {
   AuthState build();
 }
 
-String $firebaseAuthHash() => r'7791bf70ce0f01bf991a53a76abc915478673c0b';
-
-/// See also [firebaseAuth].
-final firebaseAuthProvider = AutoDisposeProvider<FirebaseAuth>(
-  firebaseAuth,
-  name: r'firebaseAuthProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $firebaseAuthHash,
-);
-typedef FirebaseAuthRef = AutoDisposeProviderRef<FirebaseAuth>;
 String $authRepositoryHash() => r'25ddc1e8793131d82095be4bba5875b118dca5bc';
 
 /// See also [authRepository].
@@ -68,7 +58,7 @@ final authRepositoryProvider = AutoDisposeProvider<AuthRepository>(
       : $authRepositoryHash,
 );
 typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
-String $currentUserHash() => r'13b6b9f1ea26eb29308e31365a2e2c520e75d670';
+String $currentUserHash() => r'3204792bdb64a6f5b9dbc9872fb38dcd609ee93f';
 
 /// See also [currentUser].
 final currentUserProvider = AutoDisposeProvider<User?>(

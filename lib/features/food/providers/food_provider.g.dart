@@ -66,17 +66,17 @@ abstract class _$FoodListNotifier2 extends AutoDisposeNotifier<List<FoodItem>> {
   List<FoodItem> build();
 }
 
-String $foodDataSourceHash() => r'06968e3bc9d577aea340f17dfc57d470fba0fb0a';
+String $foodDataSourceHash() => r'bf5de76457972a8c29a20395e02b43f5c0e1efa1';
 
 /// See also [foodDataSource].
-final foodDataSourceProvider = AutoDisposeProvider<FoodDataSource>(
+final foodDataSourceProvider = AutoDisposeProvider<FoodRepository>(
   foodDataSource,
   name: r'foodDataSourceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : $foodDataSourceHash,
 );
-typedef FoodDataSourceRef = AutoDisposeProviderRef<FoodDataSource>;
+typedef FoodDataSourceRef = AutoDisposeProviderRef<FoodRepository>;
 String $foodItemStreamHash() => r'8618ec3efe46db2d551d693d0927112a9e971f05';
 
 /// See also [foodItemStream].

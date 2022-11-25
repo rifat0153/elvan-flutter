@@ -1,4 +1,4 @@
-import 'package:elvan/features/auth/state/auth_providers.dart';
+import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -18,7 +18,7 @@ class AuthView extends HookConsumerWidget {
                   Text('Welcome ${user}'),
                   ElevatedButton(
                     onPressed: () {
-                      ref.read(authRepositoryProvider).signOut();
+                      ref.read(authStateNotifierProvider.notifier).signOut();
                     },
                     child: const Text('Sign out'),
                   ),
@@ -28,7 +28,7 @@ class AuthView extends HookConsumerWidget {
             signedOut: () {
               return ElevatedButton(
                 onPressed: () {
-                  ref.read(authRepositoryProvider).signInAnyonymously();
+                  ref.read(authStateNotifierProvider.notifier).signInAnyonymously();
                 },
                 child: const Text('Please sign in'),
               );
