@@ -21,12 +21,12 @@ FoodItem _$FoodItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FoodItem {
   String? get id => throw _privateConstructorUsedError;
-  String? get title =>
-      throw _privateConstructorUsedError; // @JsonKey(name: 'no_of_items', fromJson: ,toJson:  ) String? noOfItems,
+  String get title => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
   String? get category => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   List<String> get ingredients => throw _privateConstructorUsedError;
-  double? get price => throw _privateConstructorUsedError;
+  List<String> get allergens => throw _privateConstructorUsedError;
   double? get discount => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
@@ -43,11 +43,12 @@ abstract class $FoodItemCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String? title,
+      String title,
+      double price,
       String? category,
       String? description,
       List<String> ingredients,
-      double? price,
+      List<String> allergens,
       double? discount,
       String? imageUrl});
 }
@@ -66,11 +67,12 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = freezed,
+    Object? title = null,
+    Object? price = null,
     Object? category = freezed,
     Object? description = freezed,
     Object? ingredients = null,
-    Object? price = freezed,
+    Object? allergens = null,
     Object? discount = freezed,
     Object? imageUrl = freezed,
   }) {
@@ -79,10 +81,14 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: freezed == title
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -95,10 +101,10 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+      allergens: null == allergens
+          ? _value.allergens
+          : allergens // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       discount: freezed == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
@@ -120,11 +126,12 @@ abstract class _$$_FoodItemCopyWith<$Res> implements $FoodItemCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String? title,
+      String title,
+      double price,
       String? category,
       String? description,
       List<String> ingredients,
-      double? price,
+      List<String> allergens,
       double? discount,
       String? imageUrl});
 }
@@ -141,11 +148,12 @@ class __$$_FoodItemCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = freezed,
+    Object? title = null,
+    Object? price = null,
     Object? category = freezed,
     Object? description = freezed,
     Object? ingredients = null,
-    Object? price = freezed,
+    Object? allergens = null,
     Object? discount = freezed,
     Object? imageUrl = freezed,
   }) {
@@ -154,10 +162,14 @@ class __$$_FoodItemCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: freezed == title
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -170,10 +182,10 @@ class __$$_FoodItemCopyWithImpl<$Res>
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+      allergens: null == allergens
+          ? _value._allergens
+          : allergens // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       discount: freezed == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
@@ -192,14 +204,16 @@ class __$$_FoodItemCopyWithImpl<$Res>
 class _$_FoodItem implements _FoodItem {
   const _$_FoodItem(
       {this.id,
-      this.title,
+      required this.title,
+      required this.price,
       this.category,
       this.description,
       final List<String> ingredients = const [],
-      this.price,
+      final List<String> allergens = const [],
       this.discount,
       this.imageUrl})
-      : _ingredients = ingredients;
+      : _ingredients = ingredients,
+        _allergens = allergens;
 
   factory _$_FoodItem.fromJson(Map<String, dynamic> json) =>
       _$$_FoodItemFromJson(json);
@@ -207,8 +221,9 @@ class _$_FoodItem implements _FoodItem {
   @override
   final String? id;
   @override
-  final String? title;
-// @JsonKey(name: 'no_of_items', fromJson: ,toJson:  ) String? noOfItems,
+  final String title;
+  @override
+  final double price;
   @override
   final String? category;
   @override
@@ -221,8 +236,14 @@ class _$_FoodItem implements _FoodItem {
     return EqualUnmodifiableListView(_ingredients);
   }
 
+  final List<String> _allergens;
   @override
-  final double? price;
+  @JsonKey()
+  List<String> get allergens {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_allergens);
+  }
+
   @override
   final double? discount;
   @override
@@ -230,7 +251,7 @@ class _$_FoodItem implements _FoodItem {
 
   @override
   String toString() {
-    return 'FoodItem(id: $id, title: $title, category: $category, description: $description, ingredients: $ingredients, price: $price, discount: $discount, imageUrl: $imageUrl)';
+    return 'FoodItem(id: $id, title: $title, price: $price, category: $category, description: $description, ingredients: $ingredients, allergens: $allergens, discount: $discount, imageUrl: $imageUrl)';
   }
 
   @override
@@ -240,13 +261,15 @@ class _$_FoodItem implements _FoodItem {
             other is _$_FoodItem &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.price, price) || other.price == price) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
-            (identical(other.price, price) || other.price == price) &&
+            const DeepCollectionEquality()
+                .equals(other._allergens, _allergens) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -259,10 +282,11 @@ class _$_FoodItem implements _FoodItem {
       runtimeType,
       id,
       title,
+      price,
       category,
       description,
       const DeepCollectionEquality().hash(_ingredients),
-      price,
+      const DeepCollectionEquality().hash(_allergens),
       discount,
       imageUrl);
 
@@ -283,11 +307,12 @@ class _$_FoodItem implements _FoodItem {
 abstract class _FoodItem implements FoodItem {
   const factory _FoodItem(
       {final String? id,
-      final String? title,
+      required final String title,
+      required final double price,
       final String? category,
       final String? description,
       final List<String> ingredients,
-      final double? price,
+      final List<String> allergens,
       final double? discount,
       final String? imageUrl}) = _$_FoodItem;
 
@@ -296,15 +321,17 @@ abstract class _FoodItem implements FoodItem {
   @override
   String? get id;
   @override
-  String? get title;
-  @override // @JsonKey(name: 'no_of_items', fromJson: ,toJson:  ) String? noOfItems,
+  String get title;
+  @override
+  double get price;
+  @override
   String? get category;
   @override
   String? get description;
   @override
   List<String> get ingredients;
   @override
-  double? get price;
+  List<String> get allergens;
   @override
   double? get discount;
   @override

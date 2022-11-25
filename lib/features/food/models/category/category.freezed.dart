@@ -24,6 +24,10 @@ mixin _$Category {
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson)
+  Timestamp? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +40,13 @@ abstract class $CategoryCopyWith<$Res> {
   factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
-  $Res call({String? id, String? title, String? description, String? imageUrl});
+  $Res call(
+      {String? id,
+      String? title,
+      String? description,
+      String? imageUrl,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -56,6 +66,7 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
     Object? title = freezed,
     Object? description = freezed,
     Object? imageUrl = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -74,6 +85,10 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp?,
     ) as $Val);
   }
 }
@@ -85,7 +100,13 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
       __$$_CategoryCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? title, String? description, String? imageUrl});
+  $Res call(
+      {String? id,
+      String? title,
+      String? description,
+      String? imageUrl,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -103,6 +124,7 @@ class __$$_CategoryCopyWithImpl<$Res>
     Object? title = freezed,
     Object? description = freezed,
     Object? imageUrl = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_$_Category(
       id: freezed == id
@@ -121,6 +143,10 @@ class __$$_CategoryCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp?,
     ));
   }
 }
@@ -128,7 +154,13 @@ class __$$_CategoryCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Category implements _Category {
-  const _$_Category({this.id, this.title, this.description, this.imageUrl});
+  const _$_Category(
+      {this.id,
+      this.title,
+      this.description,
+      this.imageUrl,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          this.createdAt});
 
   factory _$_Category.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryFromJson(json);
@@ -141,10 +173,15 @@ class _$_Category implements _Category {
   final String? description;
   @override
   final String? imageUrl;
+  @override
+  @JsonKey(
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson)
+  final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'Category(id: $id, title: $title, description: $description, imageUrl: $imageUrl)';
+    return 'Category(id: $id, title: $title, description: $description, imageUrl: $imageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -157,13 +194,15 @@ class _$_Category implements _Category {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+                other.imageUrl == imageUrl) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, description, imageUrl);
+      Object.hash(runtimeType, id, title, description, imageUrl, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +223,9 @@ abstract class _Category implements Category {
       {final String? id,
       final String? title,
       final String? description,
-      final String? imageUrl}) = _$_Category;
+      final String? imageUrl,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          final Timestamp? createdAt}) = _$_Category;
 
   factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
 
@@ -196,6 +237,11 @@ abstract class _Category implements Category {
   String? get description;
   @override
   String? get imageUrl;
+  @override
+  @JsonKey(
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson)
+  Timestamp? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryCopyWith<_$_Category> get copyWith =>
