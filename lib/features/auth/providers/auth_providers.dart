@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:elvan/features/auth/repository/auth_repository.dart';
 import 'package:elvan/features/auth/models/auth_state.dart';
@@ -34,12 +35,8 @@ final authStateChangesProvider = StreamProvider.autoDispose<User?>(
 
 @riverpod
 class AuthStateNotifier extends _$AuthStateNotifier {
-  late final AuthRepository _authRepository;
-
   @override
   AuthState build() {
-    _authRepository = ref.read(authRepositoryProvider);
-
     final currentUser = ref.read(currentUserProvider);
 
     if (currentUser == null) {
@@ -53,11 +50,13 @@ class AuthStateNotifier extends _$AuthStateNotifier {
     state = const AuthState.loading();
 
     try {
-      final user = await _authRepository.signInAnyonymously();
+      final user = await ref.read(authRepositoryProvider).signInAnyonymously();
       state = AuthState.loggedIn(user: user!);
     } on FirebaseAuthException catch (e) {
+      log('signInAnyonymously: $e');
       state = AuthState.error(e.message);
     } catch (e) {
+      log('signInAnyonymously: $e');
       state = AuthState.error(e.toString());
     }
   }
@@ -66,7 +65,7 @@ class AuthStateNotifier extends _$AuthStateNotifier {
     state = const AuthState.loading();
 
     try {
-      await _authRepository.signOut();
+      await ref.read(authRepositoryProvider).signOut();
       state = const AuthState.signedOut();
     } catch (e) {
       state = AuthState.error(e.toString());
