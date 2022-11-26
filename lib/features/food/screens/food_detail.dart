@@ -1,11 +1,10 @@
-import 'package:elvan/features/food/views/food_list.dart';
-import 'package:elvan/navigation/food_navigator.dart';
-import 'package:elvan/navigation/root_navigator.dart';
+import 'package:elvan/features/food/screens/food_list.dart';
+import 'package:elvan/navigation/provider/food_navigator_key.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class FoooDetailScreen extends ConsumerWidget {
-  const FoooDetailScreen({super.key});
+class FoooDetailView extends HookConsumerWidget {
+  const FoooDetailView({super.key});
 
   _onTap(WidgetRef ref) {
     final foodNavigatorKey = ref.read(foodNavigatorKeyProvider);

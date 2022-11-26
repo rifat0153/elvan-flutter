@@ -1,18 +1,16 @@
-import 'package:elvan/features/cart/views/cart_screen.dart';
-import 'package:elvan/features/favorite/views/favorite_screen.dart';
-import 'package:elvan/features/food/views/food_detail.dart';
-import 'package:elvan/navigation/food_navigator.dart';
-import 'package:elvan/navigation/root_navigator.dart';
+import 'package:elvan/features/cart/screens/cart_screen.dart';
+import 'package:elvan/features/favorite/screens/favorite_screen.dart';
+import 'package:elvan/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class TabScreen extends StatefulWidget {
+  const TabScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TabScreen> createState() => _TabScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TabScreenState extends State<TabScreen> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -22,8 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   static const List<Widget> _pages = [
-    FoodNavigator(foodPageRoute: routeFoodListPage),
-    // FoodNavigatorWrapper(),
+    HomeScreen(),
     FavoriteScreen(),
     CartScreen(),
   ];

@@ -1,54 +1,22 @@
+import 'package:elvan/navigation/provider/food_navigator_key.dart';
 import 'package:flutter/material.dart';
 
-import 'package:elvan/features/food/views/food_detail.dart';
-import 'package:elvan/features/food/views/food_list.dart';
+import 'package:elvan/features/food/screens/food_detail.dart';
+import 'package:elvan/features/food/screens/food_list.dart';
 import 'package:elvan/navigation/root_navigator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'food_navigator.g.dart';
-
-// making a PR
-
-@Riverpod(keepAlive: true)
-GlobalKey<NavigatorState> foodNavigatorKey(FoodNavigatorKeyRef ref) => GlobalKey<NavigatorState>();
-
-class FoodNavigatorWrapper extends StatelessWidget {
-  const FoodNavigatorWrapper({super.key});
-
-  void _onTap(BuildContext context) {
-    Navigator.of(context).pushNamed(routeFoodStart);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: ElevatedButton(
-        onPressed: () => _onTap(context),
-        child: const Text('Navigate to FoodList'),
-      ),
-    );
-  }
-}
-
-class FoodNavigator extends ConsumerStatefulWidget {
+class FoodNavigator extends HookConsumerWidget {
   const FoodNavigator({super.key, required this.foodPageRoute});
 
   final String foodPageRoute;
 
   @override
-  ConsumerState<FoodNavigator> createState() => _FoodNavigatorState();
-}
-
-class _FoodNavigatorState extends ConsumerState<FoodNavigator> {
-  // final _navigatorKey = GlobalKey<NavigatorState>();
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final navigatorKey = ref.read(foodNavigatorKeyProvider);
 
     return Scaffold(
-      appBar: _buildFlowAppBar(),
+      appBar: _buildFoodAppBar(ref),
       body: Navigator(
         key: navigatorKey,
         initialRoute: routeFoodListPage,
@@ -57,17 +25,17 @@ class _FoodNavigatorState extends ConsumerState<FoodNavigator> {
     );
   }
 
-  PreferredSizeWidget _buildFlowAppBar() {
+  PreferredSizeWidget _buildFoodAppBar(WidgetRef ref) {
     return AppBar(
       leading: IconButton(
-        onPressed: _exitSetup,
+        onPressed: () => _exitFoodNavigator(ref),
         icon: const Icon(Icons.chevron_left),
       ),
       title: const Text('Food Appbar'),
     );
   }
 
-  void _exitSetup() {
+  void _exitFoodNavigator(WidgetRef ref) {
     final navigatorKey = ref.read(foodNavigatorKeyProvider);
 
     navigatorKey.currentState?.pop();
@@ -82,7 +50,7 @@ Route onGenerateFoodRoute(RouteSettings settings) {
       page = const FoodListScreen();
       break;
     case routeFoodDetailPage:
-      page = const FoooDetailScreen();
+      page = const FoooDetailView();
       break;
     default:
       throw Exception('Unknown route: ${settings.name}');

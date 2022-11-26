@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:elvan/features/auth/constants/constants.dart';
+import 'package:elvan/features/auth/models/elvan_user.dart';
 import 'package:elvan/features/auth/repository/auth_repository.dart';
 import 'package:elvan/features/auth/models/auth_state.dart';
 import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
@@ -32,6 +34,29 @@ String? currentUserId(CurrentUserIdRef ref) {
 final authStateChangesProvider = StreamProvider.autoDispose<User?>(
   (ref) => ref.watch(firebaseAuthProvider).authStateChanges(),
 );
+
+@riverpod
+Future<ElvanUser?> elvanUser(ElvanUserRef ref) async {
+  final user = ref.watch(currentUserProvider);
+
+  if (user == null) {
+    return null;
+  }
+
+  final elvanUser = await ref
+      .watch(firebaseFirestoreProvider)
+      .collection(
+        Constants.firebaseElvanUserCollectionName,
+      )
+      .withConverter(
+        fromFirestore: (snapshot, _) => ElvanUser.fromJson(snapshot.data()!),
+        toFirestore: (elvanUser, _) => elvanUser.toJson(),
+      )
+      .doc(user.uid)
+      .get();
+
+  return elvanUser.data();
+}
 
 @riverpod
 class AuthStateNotifier extends _$AuthStateNotifier {
