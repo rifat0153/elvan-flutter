@@ -1,3 +1,4 @@
+import 'package:elvan/features/food/providers/food_list_provider.dart';
 import 'package:elvan/features/food/providers/food_provider.dart';
 import 'package:elvan/features/food/views/food_detail.dart';
 import 'package:elvan/navigation/food_navigator.dart';

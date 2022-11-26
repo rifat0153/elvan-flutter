@@ -12,8 +12,8 @@ _$_Cart _$$_CartFromJson(Map<String, dynamic> json) => _$_Cart(
               ?.map((e) => FoodItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      total: (json['total'] as num).toDouble(),
-      subTotal: (json['subTotal'] as num).toDouble(),
+      total: (json['total'] as num?)?.toDouble() ?? 0,
+      subTotal: (json['subTotal'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$_CartToJson(_$_Cart instance) => <String, dynamic>{

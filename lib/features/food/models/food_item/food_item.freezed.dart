@@ -23,12 +23,17 @@ mixin _$FoodItem {
   String? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
+  double? get discount => throw _privateConstructorUsedError;
   String? get category => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   List<String> get ingredients => throw _privateConstructorUsedError;
   List<String> get allergens => throw _privateConstructorUsedError;
-  double? get discount => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
+  @JsonKey(
+      name: 'created_at',
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson)
+  Timestamp? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,12 +50,14 @@ abstract class $FoodItemCopyWith<$Res> {
       {String? id,
       String title,
       double price,
+      double? discount,
       String? category,
       String? description,
+      String? imageUrl,
       List<String> ingredients,
       List<String> allergens,
-      double? discount,
-      String? imageUrl});
+      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -69,12 +76,13 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
     Object? id = freezed,
     Object? title = null,
     Object? price = null,
+    Object? discount = freezed,
     Object? category = freezed,
     Object? description = freezed,
+    Object? imageUrl = freezed,
     Object? ingredients = null,
     Object? allergens = null,
-    Object? discount = freezed,
-    Object? imageUrl = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -89,6 +97,10 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as double?,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -96,6 +108,10 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       ingredients: null == ingredients
           ? _value.ingredients
@@ -105,14 +121,10 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
           ? _value.allergens
           : allergens // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      discount: freezed == discount
-          ? _value.discount
-          : discount // ignore: cast_nullable_to_non_nullable
-              as double?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp?,
     ) as $Val);
   }
 }
@@ -128,12 +140,14 @@ abstract class _$$_FoodItemCopyWith<$Res> implements $FoodItemCopyWith<$Res> {
       {String? id,
       String title,
       double price,
+      double? discount,
       String? category,
       String? description,
+      String? imageUrl,
       List<String> ingredients,
       List<String> allergens,
-      double? discount,
-      String? imageUrl});
+      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -150,12 +164,13 @@ class __$$_FoodItemCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = null,
     Object? price = null,
+    Object? discount = freezed,
     Object? category = freezed,
     Object? description = freezed,
+    Object? imageUrl = freezed,
     Object? ingredients = null,
     Object? allergens = null,
-    Object? discount = freezed,
-    Object? imageUrl = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_$_FoodItem(
       id: freezed == id
@@ -170,6 +185,10 @@ class __$$_FoodItemCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as double?,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -177,6 +196,10 @@ class __$$_FoodItemCopyWithImpl<$Res>
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       ingredients: null == ingredients
           ? _value._ingredients
@@ -186,14 +209,10 @@ class __$$_FoodItemCopyWithImpl<$Res>
           ? _value._allergens
           : allergens // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      discount: freezed == discount
-          ? _value.discount
-          : discount // ignore: cast_nullable_to_non_nullable
-              as double?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp?,
     ));
   }
 }
@@ -206,12 +225,14 @@ class _$_FoodItem implements _FoodItem {
       {this.id,
       required this.title,
       required this.price,
+      this.discount,
       this.category,
       this.description,
+      this.imageUrl,
       final List<String> ingredients = const [],
       final List<String> allergens = const [],
-      this.discount,
-      this.imageUrl})
+      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          this.createdAt})
       : _ingredients = ingredients,
         _allergens = allergens;
 
@@ -225,9 +246,13 @@ class _$_FoodItem implements _FoodItem {
   @override
   final double price;
   @override
+  final double? discount;
+  @override
   final String? category;
   @override
   final String? description;
+  @override
+  final String? imageUrl;
   final List<String> _ingredients;
   @override
   @JsonKey()
@@ -245,13 +270,15 @@ class _$_FoodItem implements _FoodItem {
   }
 
   @override
-  final double? discount;
-  @override
-  final String? imageUrl;
+  @JsonKey(
+      name: 'created_at',
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson)
+  final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'FoodItem(id: $id, title: $title, price: $price, category: $category, description: $description, ingredients: $ingredients, allergens: $allergens, discount: $discount, imageUrl: $imageUrl)';
+    return 'FoodItem(id: $id, title: $title, price: $price, discount: $discount, category: $category, description: $description, imageUrl: $imageUrl, ingredients: $ingredients, allergens: $allergens, createdAt: $createdAt)';
   }
 
   @override
@@ -262,18 +289,20 @@ class _$_FoodItem implements _FoodItem {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
             const DeepCollectionEquality()
                 .equals(other._allergens, _allergens) &&
-            (identical(other.discount, discount) ||
-                other.discount == discount) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
@@ -283,12 +312,13 @@ class _$_FoodItem implements _FoodItem {
       id,
       title,
       price,
+      discount,
       category,
       description,
+      imageUrl,
       const DeepCollectionEquality().hash(_ingredients),
       const DeepCollectionEquality().hash(_allergens),
-      discount,
-      imageUrl);
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -309,12 +339,14 @@ abstract class _FoodItem implements FoodItem {
       {final String? id,
       required final String title,
       required final double price,
+      final double? discount,
       final String? category,
       final String? description,
+      final String? imageUrl,
       final List<String> ingredients,
       final List<String> allergens,
-      final double? discount,
-      final String? imageUrl}) = _$_FoodItem;
+      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          final Timestamp? createdAt}) = _$_FoodItem;
 
   factory _FoodItem.fromJson(Map<String, dynamic> json) = _$_FoodItem.fromJson;
 
@@ -325,17 +357,23 @@ abstract class _FoodItem implements FoodItem {
   @override
   double get price;
   @override
+  double? get discount;
+  @override
   String? get category;
   @override
   String? get description;
+  @override
+  String? get imageUrl;
   @override
   List<String> get ingredients;
   @override
   List<String> get allergens;
   @override
-  double? get discount;
-  @override
-  String? get imageUrl;
+  @JsonKey(
+      name: 'created_at',
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson)
+  Timestamp? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_FoodItemCopyWith<_$_FoodItem> get copyWith =>

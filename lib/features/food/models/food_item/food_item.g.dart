@@ -10,8 +10,10 @@ _$_FoodItem _$$_FoodItemFromJson(Map<String, dynamic> json) => _$_FoodItem(
       id: json['id'] as String?,
       title: json['title'] as String,
       price: (json['price'] as num).toDouble(),
+      discount: (json['discount'] as num?)?.toDouble(),
       category: json['category'] as String?,
       description: json['description'] as String?,
+      imageUrl: json['imageUrl'] as String?,
       ingredients: (json['ingredients'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -20,8 +22,8 @@ _$_FoodItem _$$_FoodItemFromJson(Map<String, dynamic> json) => _$_FoodItem(
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      discount: (json['discount'] as num?)?.toDouble(),
-      imageUrl: json['imageUrl'] as String?,
+      createdAt: TimestampConverter.timestampFromJson(
+          json['created_at'] as Timestamp?),
     );
 
 Map<String, dynamic> _$$_FoodItemToJson(_$_FoodItem instance) =>
@@ -29,10 +31,11 @@ Map<String, dynamic> _$$_FoodItemToJson(_$_FoodItem instance) =>
       'id': instance.id,
       'title': instance.title,
       'price': instance.price,
+      'discount': instance.discount,
       'category': instance.category,
       'description': instance.description,
+      'imageUrl': instance.imageUrl,
       'ingredients': instance.ingredients,
       'allergens': instance.allergens,
-      'discount': instance.discount,
-      'imageUrl': instance.imageUrl,
+      'created_at': TimestampConverter.timestampToJson(instance.createdAt),
     };

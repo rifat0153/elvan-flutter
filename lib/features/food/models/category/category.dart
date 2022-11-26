@@ -11,8 +11,10 @@ class Category with _$Category {
     String? id,
     String? title,
     String? description,
-    String? imageUrl,
+    @JsonKey(name: 'image_url')
+        String? imageUrl,
     @JsonKey(
+      name: 'created_at',
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson,
     )

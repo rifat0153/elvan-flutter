@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan/extensions/timestamp/timestamp_json_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'food_item.freezed.dart';
@@ -15,12 +17,20 @@ class FoodItem with _$FoodItem {
     String? id,
     required String title,
     required double price,
+    double? discount,
     String? category,
     String? description,
-    @Default([]) List<String> ingredients,
-    @Default([]) List<String> allergens,
-    double? discount,
     String? imageUrl,
+    @Default([])
+        List<String> ingredients,
+    @Default([])
+        List<String> allergens,
+    @JsonKey(
+      name: 'created_at',
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson,
+    )
+        Timestamp? createdAt,
   }) = _FoodItem;
 
   factory FoodItem.fromJson(Map<String, dynamic> json) => _$FoodItemFromJson(json);

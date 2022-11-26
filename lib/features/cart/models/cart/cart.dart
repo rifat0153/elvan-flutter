@@ -1,8 +1,37 @@
+import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/food/models/food_item/food_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'cart.freezed.dart';
 part 'cart.g.dart';
+
+final cartProvider = Provider<Cart?>((ref) {
+  final user = ref.read(currentUserProvider);
+
+  if (user == null) {
+    return null;
+  }
+
+  return Cart(userId: user.uid);
+});
+
+final cartStateProvider = Provider<CartState>((ref) {
+  final cart = ref.watch(cartProvider);
+
+  if (cart == null) {
+    return const CartState.empty();
+  }
+
+  return CartState.notEmpty(cart);
+});
+
+@freezed
+class CartState with _$CartState {
+  const factory CartState.empty() = _CartState_Empty;
+  const factory CartState.notEmpty(Cart cart) = _CartState_NotEmpty;
+  const factory CartState.error([String? msg]) = _CartState_Error;
+}
 
 @freezed
 class Cart with _$Cart {
@@ -12,13 +41,13 @@ class Cart with _$Cart {
   const factory Cart({
     required String userId,
     @Default([]) List<FoodItem> foodItems,
-    required double total,
-    required double subTotal,
+    @Default(0) double total,
+    @Default(0) double subTotal,
   }) = _Cart;
 
   bool get isEmpty => foodItems.isEmpty;
 
-  double getTotalBeforeDiscound() {
+  double getTotalBeforeDiscount() {
     double total = 0;
     for (var foodItem in foodItems) {
       total += foodItem.price;

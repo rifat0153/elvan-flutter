@@ -10,9 +10,9 @@ _$_Category _$$_CategoryFromJson(Map<String, dynamic> json) => _$_Category(
       id: json['id'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
-      imageUrl: json['imageUrl'] as String?,
-      createdAt:
-          TimestampConverter.timestampFromJson(json['createdAt'] as Timestamp?),
+      imageUrl: json['image_url'] as String?,
+      createdAt: TimestampConverter.timestampFromJson(
+          json['created_at'] as Timestamp?),
     );
 
 Map<String, dynamic> _$$_CategoryToJson(_$_Category instance) =>
@@ -20,6 +20,6 @@ Map<String, dynamic> _$$_CategoryToJson(_$_Category instance) =>
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
-      'imageUrl': instance.imageUrl,
-      'createdAt': TimestampConverter.timestampToJson(instance.createdAt),
+      'image_url': instance.imageUrl,
+      'created_at': TimestampConverter.timestampToJson(instance.createdAt),
     };

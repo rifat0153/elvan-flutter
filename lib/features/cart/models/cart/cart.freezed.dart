@@ -14,6 +14,468 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+/// @nodoc
+mixin _$CartState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(Cart cart) notEmpty,
+    required TResult Function(String? msg) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(Cart cart)? notEmpty,
+    TResult? Function(String? msg)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(Cart cart)? notEmpty,
+    TResult Function(String? msg)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CartState_Empty value) empty,
+    required TResult Function(_CartState_NotEmpty value) notEmpty,
+    required TResult Function(_CartState_Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CartState_Empty value)? empty,
+    TResult? Function(_CartState_NotEmpty value)? notEmpty,
+    TResult? Function(_CartState_Error value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CartState_Empty value)? empty,
+    TResult Function(_CartState_NotEmpty value)? notEmpty,
+    TResult Function(_CartState_Error value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CartStateCopyWith<$Res> {
+  factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
+      _$CartStateCopyWithImpl<$Res, CartState>;
+}
+
+/// @nodoc
+class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
+    implements $CartStateCopyWith<$Res> {
+  _$CartStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_CartState_EmptyCopyWith<$Res> {
+  factory _$$_CartState_EmptyCopyWith(
+          _$_CartState_Empty value, $Res Function(_$_CartState_Empty) then) =
+      __$$_CartState_EmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CartState_EmptyCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$_CartState_Empty>
+    implements _$$_CartState_EmptyCopyWith<$Res> {
+  __$$_CartState_EmptyCopyWithImpl(
+      _$_CartState_Empty _value, $Res Function(_$_CartState_Empty) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_CartState_Empty implements _CartState_Empty {
+  const _$_CartState_Empty();
+
+  @override
+  String toString() {
+    return 'CartState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CartState_Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(Cart cart) notEmpty,
+    required TResult Function(String? msg) error,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(Cart cart)? notEmpty,
+    TResult? Function(String? msg)? error,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(Cart cart)? notEmpty,
+    TResult Function(String? msg)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CartState_Empty value) empty,
+    required TResult Function(_CartState_NotEmpty value) notEmpty,
+    required TResult Function(_CartState_Error value) error,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CartState_Empty value)? empty,
+    TResult? Function(_CartState_NotEmpty value)? notEmpty,
+    TResult? Function(_CartState_Error value)? error,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CartState_Empty value)? empty,
+    TResult Function(_CartState_NotEmpty value)? notEmpty,
+    TResult Function(_CartState_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CartState_Empty implements CartState {
+  const factory _CartState_Empty() = _$_CartState_Empty;
+}
+
+/// @nodoc
+abstract class _$$_CartState_NotEmptyCopyWith<$Res> {
+  factory _$$_CartState_NotEmptyCopyWith(_$_CartState_NotEmpty value,
+          $Res Function(_$_CartState_NotEmpty) then) =
+      __$$_CartState_NotEmptyCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Cart cart});
+
+  $CartCopyWith<$Res> get cart;
+}
+
+/// @nodoc
+class __$$_CartState_NotEmptyCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$_CartState_NotEmpty>
+    implements _$$_CartState_NotEmptyCopyWith<$Res> {
+  __$$_CartState_NotEmptyCopyWithImpl(
+      _$_CartState_NotEmpty _value, $Res Function(_$_CartState_NotEmpty) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cart = null,
+  }) {
+    return _then(_$_CartState_NotEmpty(
+      null == cart
+          ? _value.cart
+          : cart // ignore: cast_nullable_to_non_nullable
+              as Cart,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CartCopyWith<$Res> get cart {
+    return $CartCopyWith<$Res>(_value.cart, (value) {
+      return _then(_value.copyWith(cart: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_CartState_NotEmpty implements _CartState_NotEmpty {
+  const _$_CartState_NotEmpty(this.cart);
+
+  @override
+  final Cart cart;
+
+  @override
+  String toString() {
+    return 'CartState.notEmpty(cart: $cart)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CartState_NotEmpty &&
+            (identical(other.cart, cart) || other.cart == cart));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, cart);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CartState_NotEmptyCopyWith<_$_CartState_NotEmpty> get copyWith =>
+      __$$_CartState_NotEmptyCopyWithImpl<_$_CartState_NotEmpty>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(Cart cart) notEmpty,
+    required TResult Function(String? msg) error,
+  }) {
+    return notEmpty(cart);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(Cart cart)? notEmpty,
+    TResult? Function(String? msg)? error,
+  }) {
+    return notEmpty?.call(cart);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(Cart cart)? notEmpty,
+    TResult Function(String? msg)? error,
+    required TResult orElse(),
+  }) {
+    if (notEmpty != null) {
+      return notEmpty(cart);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CartState_Empty value) empty,
+    required TResult Function(_CartState_NotEmpty value) notEmpty,
+    required TResult Function(_CartState_Error value) error,
+  }) {
+    return notEmpty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CartState_Empty value)? empty,
+    TResult? Function(_CartState_NotEmpty value)? notEmpty,
+    TResult? Function(_CartState_Error value)? error,
+  }) {
+    return notEmpty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CartState_Empty value)? empty,
+    TResult Function(_CartState_NotEmpty value)? notEmpty,
+    TResult Function(_CartState_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (notEmpty != null) {
+      return notEmpty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CartState_NotEmpty implements CartState {
+  const factory _CartState_NotEmpty(final Cart cart) = _$_CartState_NotEmpty;
+
+  Cart get cart;
+  @JsonKey(ignore: true)
+  _$$_CartState_NotEmptyCopyWith<_$_CartState_NotEmpty> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CartState_ErrorCopyWith<$Res> {
+  factory _$$_CartState_ErrorCopyWith(
+          _$_CartState_Error value, $Res Function(_$_CartState_Error) then) =
+      __$$_CartState_ErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? msg});
+}
+
+/// @nodoc
+class __$$_CartState_ErrorCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$_CartState_Error>
+    implements _$$_CartState_ErrorCopyWith<$Res> {
+  __$$_CartState_ErrorCopyWithImpl(
+      _$_CartState_Error _value, $Res Function(_$_CartState_Error) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? msg = freezed,
+  }) {
+    return _then(_$_CartState_Error(
+      freezed == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CartState_Error implements _CartState_Error {
+  const _$_CartState_Error([this.msg]);
+
+  @override
+  final String? msg;
+
+  @override
+  String toString() {
+    return 'CartState.error(msg: $msg)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CartState_Error &&
+            (identical(other.msg, msg) || other.msg == msg));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, msg);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CartState_ErrorCopyWith<_$_CartState_Error> get copyWith =>
+      __$$_CartState_ErrorCopyWithImpl<_$_CartState_Error>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(Cart cart) notEmpty,
+    required TResult Function(String? msg) error,
+  }) {
+    return error(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(Cart cart)? notEmpty,
+    TResult? Function(String? msg)? error,
+  }) {
+    return error?.call(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(Cart cart)? notEmpty,
+    TResult Function(String? msg)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(msg);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CartState_Empty value) empty,
+    required TResult Function(_CartState_NotEmpty value) notEmpty,
+    required TResult Function(_CartState_Error value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CartState_Empty value)? empty,
+    TResult? Function(_CartState_NotEmpty value)? notEmpty,
+    TResult? Function(_CartState_Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CartState_Empty value)? empty,
+    TResult Function(_CartState_NotEmpty value)? notEmpty,
+    TResult Function(_CartState_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CartState_Error implements CartState {
+  const factory _CartState_Error([final String? msg]) = _$_CartState_Error;
+
+  String? get msg;
+  @JsonKey(ignore: true)
+  _$$_CartState_ErrorCopyWith<_$_CartState_Error> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 Cart _$CartFromJson(Map<String, dynamic> json) {
   return _Cart.fromJson(json);
 }
@@ -130,8 +592,8 @@ class _$_Cart extends _Cart {
   const _$_Cart(
       {required this.userId,
       final List<FoodItem> foodItems = const [],
-      required this.total,
-      required this.subTotal})
+      this.total = 0,
+      this.subTotal = 0})
       : _foodItems = foodItems,
         super._();
 
@@ -148,8 +610,10 @@ class _$_Cart extends _Cart {
   }
 
   @override
+  @JsonKey()
   final double total;
   @override
+  @JsonKey()
   final double subTotal;
 
   @override
@@ -193,8 +657,8 @@ abstract class _Cart extends Cart {
   const factory _Cart(
       {required final String userId,
       final List<FoodItem> foodItems,
-      required final double total,
-      required final double subTotal}) = _$_Cart;
+      final double total,
+      final double subTotal}) = _$_Cart;
   const _Cart._() : super._();
 
   factory _Cart.fromJson(Map<String, dynamic> json) = _$_Cart.fromJson;
