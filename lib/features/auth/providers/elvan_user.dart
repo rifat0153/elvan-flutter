@@ -19,7 +19,7 @@ class ElvanUserNotifer extends _$ElvanUserNotifer {
     final elvanUser = await ref
         .watch(firebaseFirestoreProvider)
         .collection(
-          Constants.FirebaseElvanUserCollectionName,
+          Constants.firebaseElvanUserCollectionName,
         )
         .withConverter(
           fromFirestore: (snapshot, _) => ElvanUser.fromJson(snapshot.data()!),

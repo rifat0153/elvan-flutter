@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $ElvanUserNotiferHash() => r'c95c75a02e2421084bcafbdf580b4c691efa7b7d';
+String $ElvanUserNotiferHash() => r'dce169a7f458c804f15fb928c97ec38b2db49267';
 
 /// See also [ElvanUserNotifer].
 final elvanUserNotiferProvider =
