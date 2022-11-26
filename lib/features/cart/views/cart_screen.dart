@@ -19,7 +19,13 @@ class CartScreen extends ConsumerWidget {
       child: Column(
         children: [
           categories.when(
-            data: (value) => Text(value.firstOrNull?.title ?? 'No data'),
+            data: (categoryList) => Column(
+              children: categoryList
+                  .map(
+                    (e) => Text(e.title ?? 'No data'),
+                  )
+                  .toList(),
+            ),
             loading: () => const Text('Loading'),
             error: (error, stack) => ElevatedButton(
               onPressed: () {

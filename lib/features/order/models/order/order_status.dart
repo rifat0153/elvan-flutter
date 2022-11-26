@@ -3,8 +3,10 @@ import 'package:collection/collection.dart';
 enum OrderStatus {
   pending('pending'),
   accepted('accepted'),
-  rejected('rejected'),
+  processing('processing'),
+  done('done'),
   delivered('delivered'),
+  rejected('rejected'),
   cancelled('cancelled'),
   unknown('unknown');
 

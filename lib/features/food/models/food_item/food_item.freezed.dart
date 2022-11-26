@@ -27,8 +27,13 @@ mixin _$FoodItem {
   String? get category => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
   List<String> get ingredients => throw _privateConstructorUsedError;
   List<String> get allergens => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson)
+  dynamic get timeToPrepareInMinutes => throw _privateConstructorUsedError;
   @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
@@ -53,8 +58,11 @@ abstract class $FoodItemCopyWith<$Res> {
       String? category,
       String? description,
       String? imageUrl,
+      int quantity,
       List<String> ingredients,
       List<String> allergens,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          dynamic timeToPrepareInMinutes,
       @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           Timestamp? createdAt});
 }
@@ -79,8 +87,10 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
     Object? category = freezed,
     Object? description = freezed,
     Object? imageUrl = freezed,
+    Object? quantity = null,
     Object? ingredients = null,
     Object? allergens = null,
+    Object? timeToPrepareInMinutes = null,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -112,6 +122,10 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -120,6 +134,10 @@ class _$FoodItemCopyWithImpl<$Res, $Val extends FoodItem>
           ? _value.allergens
           : allergens // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      timeToPrepareInMinutes: null == timeToPrepareInMinutes
+          ? _value.timeToPrepareInMinutes
+          : timeToPrepareInMinutes // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -143,8 +161,11 @@ abstract class _$$_FoodItemCopyWith<$Res> implements $FoodItemCopyWith<$Res> {
       String? category,
       String? description,
       String? imageUrl,
+      int quantity,
       List<String> ingredients,
       List<String> allergens,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          dynamic timeToPrepareInMinutes,
       @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           Timestamp? createdAt});
 }
@@ -167,8 +188,10 @@ class __$$_FoodItemCopyWithImpl<$Res>
     Object? category = freezed,
     Object? description = freezed,
     Object? imageUrl = freezed,
+    Object? quantity = null,
     Object? ingredients = null,
     Object? allergens = null,
+    Object? timeToPrepareInMinutes = null,
     Object? createdAt = freezed,
   }) {
     return _then(_$_FoodItem(
@@ -200,6 +223,10 @@ class __$$_FoodItemCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -208,6 +235,9 @@ class __$$_FoodItemCopyWithImpl<$Res>
           ? _value._allergens
           : allergens // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      timeToPrepareInMinutes: null == timeToPrepareInMinutes
+          ? _value.timeToPrepareInMinutes
+          : timeToPrepareInMinutes,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -228,8 +258,11 @@ class _$_FoodItem implements _FoodItem {
       this.category,
       this.description,
       this.imageUrl,
+      this.quantity = 0,
       final List<String> ingredients = const [],
       final List<String> allergens = const [],
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          this.timeToPrepareInMinutes,
       @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           this.createdAt})
       : _ingredients = ingredients,
@@ -252,6 +285,9 @@ class _$_FoodItem implements _FoodItem {
   final String? description;
   @override
   final String? imageUrl;
+  @override
+  @JsonKey()
+  final int quantity;
   final List<String> _ingredients;
   @override
   @JsonKey()
@@ -272,11 +308,16 @@ class _$_FoodItem implements _FoodItem {
   @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
+  final dynamic timeToPrepareInMinutes;
+  @override
+  @JsonKey(
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson)
   final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'FoodItem(id: $id, title: $title, price: $price, discount: $discount, category: $category, description: $description, imageUrl: $imageUrl, ingredients: $ingredients, allergens: $allergens, createdAt: $createdAt)';
+    return 'FoodItem(id: $id, title: $title, price: $price, discount: $discount, category: $category, description: $description, imageUrl: $imageUrl, quantity: $quantity, ingredients: $ingredients, allergens: $allergens, timeToPrepareInMinutes: $timeToPrepareInMinutes, createdAt: $createdAt)';
   }
 
   @override
@@ -295,10 +336,14 @@ class _$_FoodItem implements _FoodItem {
                 other.description == description) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
             const DeepCollectionEquality()
                 .equals(other._allergens, _allergens) &&
+            const DeepCollectionEquality()
+                .equals(other.timeToPrepareInMinutes, timeToPrepareInMinutes) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -314,8 +359,10 @@ class _$_FoodItem implements _FoodItem {
       category,
       description,
       imageUrl,
+      quantity,
       const DeepCollectionEquality().hash(_ingredients),
       const DeepCollectionEquality().hash(_allergens),
+      const DeepCollectionEquality().hash(timeToPrepareInMinutes),
       createdAt);
 
   @JsonKey(ignore: true)
@@ -341,8 +388,11 @@ abstract class _FoodItem implements FoodItem {
       final String? category,
       final String? description,
       final String? imageUrl,
+      final int quantity,
       final List<String> ingredients,
       final List<String> allergens,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+          final dynamic timeToPrepareInMinutes,
       @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           final Timestamp? createdAt}) = _$_FoodItem;
 
@@ -363,9 +413,16 @@ abstract class _FoodItem implements FoodItem {
   @override
   String? get imageUrl;
   @override
+  int get quantity;
+  @override
   List<String> get ingredients;
   @override
   List<String> get allergens;
+  @override
+  @JsonKey(
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson)
+  dynamic get timeToPrepareInMinutes;
   @override
   @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,

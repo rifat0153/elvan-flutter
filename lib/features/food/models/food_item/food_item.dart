@@ -21,10 +21,17 @@ class FoodItem with _$FoodItem {
     String? category,
     String? description,
     String? imageUrl,
+    @Default(0)
+        int quantity,
     @Default([])
         List<String> ingredients,
     @Default([])
         List<String> allergens,
+    @JsonKey(
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson,
+    )
+        timeToPrepareInMinutes,
     @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson,

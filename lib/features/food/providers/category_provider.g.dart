@@ -30,7 +30,7 @@ class _SystemHash {
 }
 
 String $CategoryListNotifierHash() =>
-    r'12d0ab68ea7200f6622c0bed5a85dc42dee6e37c';
+    r'c7814202c93e715c15cf0c492ef5204ed5f64a47';
 
 /// See also [CategoryListNotifier].
 final categoryListNotifierProvider =

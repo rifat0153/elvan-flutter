@@ -9,6 +9,7 @@ part 'elvan_user.g.dart';
 class ElvanUser with _$ElvanUser {
   const factory ElvanUser({
     String? id,
+    String? uid,
     String? name,
     String? email,
     String? imageUrl,

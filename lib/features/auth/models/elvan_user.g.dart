@@ -8,6 +8,7 @@ part of 'elvan_user.dart';
 
 _$_ElvanUser _$$_ElvanUserFromJson(Map<String, dynamic> json) => _$_ElvanUser(
       id: json['id'] as String?,
+      uid: json['uid'] as String?,
       name: json['name'] as String?,
       email: json['email'] as String?,
       imageUrl: json['imageUrl'] as String?,
@@ -27,6 +28,7 @@ _$_ElvanUser _$$_ElvanUserFromJson(Map<String, dynamic> json) => _$_ElvanUser(
 Map<String, dynamic> _$$_ElvanUserToJson(_$_ElvanUser instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'uid': instance.uid,
       'name': instance.name,
       'email': instance.email,
       'imageUrl': instance.imageUrl,

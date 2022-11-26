@@ -21,6 +21,7 @@ ElvanUser _$ElvanUserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ElvanUser {
   String? get id => throw _privateConstructorUsedError;
+  String? get uid => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
@@ -51,6 +52,7 @@ abstract class $ElvanUserCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
+      String? uid,
       String? name,
       String? email,
       String? imageUrl,
@@ -81,6 +83,7 @@ class _$ElvanUserCopyWithImpl<$Res, $Val extends ElvanUser>
   @override
   $Res call({
     Object? id = freezed,
+    Object? uid = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? imageUrl = freezed,
@@ -99,6 +102,10 @@ class _$ElvanUserCopyWithImpl<$Res, $Val extends ElvanUser>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       name: freezed == name
           ? _value.name
@@ -165,6 +172,7 @@ abstract class _$$_ElvanUserCopyWith<$Res> implements $ElvanUserCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
+      String? uid,
       String? name,
       String? email,
       String? imageUrl,
@@ -193,6 +201,7 @@ class __$$_ElvanUserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? uid = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? imageUrl = freezed,
@@ -211,6 +220,10 @@ class __$$_ElvanUserCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       name: freezed == name
           ? _value.name
@@ -273,6 +286,7 @@ class __$$_ElvanUserCopyWithImpl<$Res>
 class _$_ElvanUser implements _ElvanUser {
   const _$_ElvanUser(
       {this.id,
+      this.uid,
       this.name,
       this.email,
       this.imageUrl,
@@ -293,6 +307,8 @@ class _$_ElvanUser implements _ElvanUser {
 
   @override
   final String? id;
+  @override
+  final String? uid;
   @override
   final String? name;
   @override
@@ -331,7 +347,7 @@ class _$_ElvanUser implements _ElvanUser {
 
   @override
   String toString() {
-    return 'ElvanUser(id: $id, name: $name, email: $email, imageUrl: $imageUrl, phone: $phone, address: $address, role: $role, totalSpent: $totalSpent, totalOrders: $totalOrders, totalOrdersCancelled: $totalOrdersCancelled, totalOrdersDelivered: $totalOrdersDelivered, totalOrdersPending: $totalOrdersPending, totalOrdersRejected: $totalOrdersRejected, createdAt: $createdAt)';
+    return 'ElvanUser(id: $id, uid: $uid, name: $name, email: $email, imageUrl: $imageUrl, phone: $phone, address: $address, role: $role, totalSpent: $totalSpent, totalOrders: $totalOrders, totalOrdersCancelled: $totalOrdersCancelled, totalOrdersDelivered: $totalOrdersDelivered, totalOrdersPending: $totalOrdersPending, totalOrdersRejected: $totalOrdersRejected, createdAt: $createdAt)';
   }
 
   @override
@@ -340,6 +356,7 @@ class _$_ElvanUser implements _ElvanUser {
         (other.runtimeType == runtimeType &&
             other is _$_ElvanUser &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -368,6 +385,7 @@ class _$_ElvanUser implements _ElvanUser {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      uid,
       name,
       email,
       imageUrl,
@@ -399,6 +417,7 @@ class _$_ElvanUser implements _ElvanUser {
 abstract class _ElvanUser implements ElvanUser {
   const factory _ElvanUser(
       {final String? id,
+      final String? uid,
       final String? name,
       final String? email,
       final String? imageUrl,
@@ -419,6 +438,8 @@ abstract class _ElvanUser implements ElvanUser {
 
   @override
   String? get id;
+  @override
+  String? get uid;
   @override
   String? get name;
   @override
