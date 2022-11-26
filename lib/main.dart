@@ -1,3 +1,4 @@
+import 'package:elvan/navigation/provider/root_navigator_key.dart';
 import 'package:elvan/navigation/root_navigator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,18 +17,18 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: 'Elvan',
       theme: ThemeData(
         primarySwatch: Colors.pink,
         useMaterial3: true,
       ),
+      navigatorKey: ref.watch(rootNavigatorKeyProvider),
       initialRoute: routeHome,
       onGenerateRoute: ongenerateRootRoute,
       debugShowCheckedModeBanner: false,

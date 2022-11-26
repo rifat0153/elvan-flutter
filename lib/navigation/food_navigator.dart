@@ -1,8 +1,8 @@
 import 'package:elvan/navigation/provider/food_navigator_key.dart';
 import 'package:flutter/material.dart';
 
-import 'package:elvan/features/food/screens/food_detail.dart';
-import 'package:elvan/features/food/screens/food_list.dart';
+import 'package:elvan/features/food/screens/food_detail_screen.dart';
+import 'package:elvan/features/food/screens/food_list_screen.dart';
 import 'package:elvan/navigation/root_navigator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,7 +20,7 @@ class FoodNavigator extends HookConsumerWidget {
       body: Navigator(
         key: navigatorKey,
         initialRoute: routeFoodListPage,
-        onGenerateRoute: onGenerateFoodRoute,
+        onGenerateRoute: _onGenerateFoodRoute,
       ),
     );
   }
@@ -36,13 +36,13 @@ class FoodNavigator extends HookConsumerWidget {
   }
 
   void _exitFoodNavigator(WidgetRef ref) {
-    final navigatorKey = ref.read(foodNavigatorKeyProvider);
+    final navigatorKeyNotifier = ref.read(foodNavigatorKeyProvider.notifier);
 
-    navigatorKey.currentState?.pop();
+    navigatorKeyNotifier.goBack();
   }
 }
 
-Route onGenerateFoodRoute(RouteSettings settings) {
+Route _onGenerateFoodRoute(RouteSettings settings) {
   late Widget page;
 
   switch (settings.name) {
@@ -50,7 +50,7 @@ Route onGenerateFoodRoute(RouteSettings settings) {
       page = const FoodListScreen();
       break;
     case routeFoodDetailPage:
-      page = const FoooDetailView();
+      page = const FoooDetailScreen();
       break;
     default:
       throw Exception('Unknown route: ${settings.name}');

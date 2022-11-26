@@ -1,21 +1,14 @@
-import 'package:elvan/features/food/screens/food_list.dart';
 import 'package:elvan/navigation/provider/food_navigator_key.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class FoooDetailView extends HookConsumerWidget {
-  const FoooDetailView({super.key});
+class FoooDetailScreen extends HookConsumerWidget {
+  const FoooDetailScreen({super.key});
 
   _onTap(WidgetRef ref) {
-    final foodNavigatorKey = ref.read(foodNavigatorKeyProvider);
+    final foodNavigatorKeyNotifier = ref.read(foodNavigatorKeyProvider.notifier);
 
-    // foodNavigatorKey.currentState?.pushNamed(routeFoodListPage);
-    foodNavigatorKey.currentState?.pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => const FoodListScreen(),
-        transitionDuration: const Duration(seconds: 0),
-      ),
-    );
+    foodNavigatorKeyNotifier.navigateToFoodList();
   }
 
   @override
