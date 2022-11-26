@@ -30,7 +30,6 @@ mixin _$FoodItem {
   List<String> get ingredients => throw _privateConstructorUsedError;
   List<String> get allergens => throw _privateConstructorUsedError;
   @JsonKey(
-      name: 'created_at',
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
   Timestamp? get createdAt => throw _privateConstructorUsedError;
@@ -56,7 +55,7 @@ abstract class $FoodItemCopyWith<$Res> {
       String? imageUrl,
       List<String> ingredients,
       List<String> allergens,
-      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           Timestamp? createdAt});
 }
 
@@ -146,7 +145,7 @@ abstract class _$$_FoodItemCopyWith<$Res> implements $FoodItemCopyWith<$Res> {
       String? imageUrl,
       List<String> ingredients,
       List<String> allergens,
-      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           Timestamp? createdAt});
 }
 
@@ -231,7 +230,7 @@ class _$_FoodItem implements _FoodItem {
       this.imageUrl,
       final List<String> ingredients = const [],
       final List<String> allergens = const [],
-      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           this.createdAt})
       : _ingredients = ingredients,
         _allergens = allergens;
@@ -271,7 +270,6 @@ class _$_FoodItem implements _FoodItem {
 
   @override
   @JsonKey(
-      name: 'created_at',
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
   final Timestamp? createdAt;
@@ -345,7 +343,7 @@ abstract class _FoodItem implements FoodItem {
       final String? imageUrl,
       final List<String> ingredients,
       final List<String> allergens,
-      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           final Timestamp? createdAt}) = _$_FoodItem;
 
   factory _FoodItem.fromJson(Map<String, dynamic> json) = _$_FoodItem.fromJson;
@@ -370,7 +368,6 @@ abstract class _FoodItem implements FoodItem {
   List<String> get allergens;
   @override
   @JsonKey(
-      name: 'created_at',
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
   Timestamp? get createdAt;

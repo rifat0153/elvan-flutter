@@ -23,10 +23,8 @@ mixin _$Category {
   String? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image_url')
   String? get imageUrl => throw _privateConstructorUsedError;
   @JsonKey(
-      name: 'created_at',
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
   Timestamp? get createdAt => throw _privateConstructorUsedError;
@@ -46,9 +44,8 @@ abstract class $CategoryCopyWith<$Res> {
       {String? id,
       String? title,
       String? description,
-      @JsonKey(name: 'image_url')
-          String? imageUrl,
-      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+      String? imageUrl,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           Timestamp? createdAt});
 }
 
@@ -107,9 +104,8 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
       {String? id,
       String? title,
       String? description,
-      @JsonKey(name: 'image_url')
-          String? imageUrl,
-      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+      String? imageUrl,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           Timestamp? createdAt});
 }
 
@@ -162,9 +158,8 @@ class _$_Category implements _Category {
       {this.id,
       this.title,
       this.description,
-      @JsonKey(name: 'image_url')
-          this.imageUrl,
-      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+      this.imageUrl,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           this.createdAt});
 
   factory _$_Category.fromJson(Map<String, dynamic> json) =>
@@ -177,11 +172,9 @@ class _$_Category implements _Category {
   @override
   final String? description;
   @override
-  @JsonKey(name: 'image_url')
   final String? imageUrl;
   @override
   @JsonKey(
-      name: 'created_at',
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
   final Timestamp? createdAt;
@@ -230,9 +223,8 @@ abstract class _Category implements Category {
       {final String? id,
       final String? title,
       final String? description,
-      @JsonKey(name: 'image_url')
-          final String? imageUrl,
-      @JsonKey(name: 'created_at', fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
+      final String? imageUrl,
+      @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           final Timestamp? createdAt}) = _$_Category;
 
   factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
@@ -244,11 +236,9 @@ abstract class _Category implements Category {
   @override
   String? get description;
   @override
-  @JsonKey(name: 'image_url')
   String? get imageUrl;
   @override
   @JsonKey(
-      name: 'created_at',
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
   Timestamp? get createdAt;

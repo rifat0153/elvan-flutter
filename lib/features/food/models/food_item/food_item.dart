@@ -26,7 +26,6 @@ class FoodItem with _$FoodItem {
     @Default([])
         List<String> allergens,
     @JsonKey(
-      name: 'created_at',
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson,
     )

@@ -23,13 +23,14 @@ mixin _$Order {
   String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   List<FoodItem> get foodItems => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
   double get total => throw _privateConstructorUsedError;
   double get discount => throw _privateConstructorUsedError;
   double get subTotal => throw _privateConstructorUsedError;
-  List<String> get instructions => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: OrderStatus.fromJson, toJson: OrderStatus.toJson)
+  OrderStatus get status => throw _privateConstructorUsedError;
   String? get paymentMethod => throw _privateConstructorUsedError;
   String? get paymentStatus => throw _privateConstructorUsedError;
+  List<String> get instructions => throw _privateConstructorUsedError;
   @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
@@ -49,13 +50,14 @@ abstract class $OrderCopyWith<$Res> {
       {String id,
       String userId,
       List<FoodItem> foodItems,
-      String status,
       double total,
       double discount,
       double subTotal,
-      List<String> instructions,
+      @JsonKey(fromJson: OrderStatus.fromJson, toJson: OrderStatus.toJson)
+          OrderStatus status,
       String? paymentMethod,
       String? paymentStatus,
+      List<String> instructions,
       @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           Timestamp? createdAt});
 }
@@ -76,13 +78,13 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? id = null,
     Object? userId = null,
     Object? foodItems = null,
-    Object? status = null,
     Object? total = null,
     Object? discount = null,
     Object? subTotal = null,
-    Object? instructions = null,
+    Object? status = null,
     Object? paymentMethod = freezed,
     Object? paymentStatus = freezed,
+    Object? instructions = null,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -98,10 +100,6 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.foodItems
           : foodItems // ignore: cast_nullable_to_non_nullable
               as List<FoodItem>,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -114,10 +112,10 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.subTotal
           : subTotal // ignore: cast_nullable_to_non_nullable
               as double,
-      instructions: null == instructions
-          ? _value.instructions
-          : instructions // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as OrderStatus,
       paymentMethod: freezed == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
@@ -126,6 +124,10 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
               as String?,
+      instructions: null == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -144,13 +146,14 @@ abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
       {String id,
       String userId,
       List<FoodItem> foodItems,
-      String status,
       double total,
       double discount,
       double subTotal,
-      List<String> instructions,
+      @JsonKey(fromJson: OrderStatus.fromJson, toJson: OrderStatus.toJson)
+          OrderStatus status,
       String? paymentMethod,
       String? paymentStatus,
+      List<String> instructions,
       @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           Timestamp? createdAt});
 }
@@ -167,13 +170,13 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
     Object? id = null,
     Object? userId = null,
     Object? foodItems = null,
-    Object? status = null,
     Object? total = null,
     Object? discount = null,
     Object? subTotal = null,
-    Object? instructions = null,
+    Object? status = null,
     Object? paymentMethod = freezed,
     Object? paymentStatus = freezed,
+    Object? instructions = null,
     Object? createdAt = freezed,
   }) {
     return _then(_$_Order(
@@ -189,10 +192,6 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
           ? _value._foodItems
           : foodItems // ignore: cast_nullable_to_non_nullable
               as List<FoodItem>,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -205,10 +204,10 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
           ? _value.subTotal
           : subTotal // ignore: cast_nullable_to_non_nullable
               as double,
-      instructions: null == instructions
-          ? _value._instructions
-          : instructions // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as OrderStatus,
       paymentMethod: freezed == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
@@ -217,6 +216,10 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
               as String?,
+      instructions: null == instructions
+          ? _value._instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -233,13 +236,14 @@ class _$_Order implements _Order {
       {required this.id,
       required this.userId,
       required final List<FoodItem> foodItems,
-      required this.status,
       required this.total,
       required this.discount,
       required this.subTotal,
-      final List<String> instructions = const [],
+      @JsonKey(fromJson: OrderStatus.fromJson, toJson: OrderStatus.toJson)
+          required this.status,
       this.paymentMethod,
       this.paymentStatus,
+      final List<String> instructions = const [],
       @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           this.createdAt})
       : _foodItems = foodItems,
@@ -260,13 +264,18 @@ class _$_Order implements _Order {
   }
 
   @override
-  final String status;
-  @override
   final double total;
   @override
   final double discount;
   @override
   final double subTotal;
+  @override
+  @JsonKey(fromJson: OrderStatus.fromJson, toJson: OrderStatus.toJson)
+  final OrderStatus status;
+  @override
+  final String? paymentMethod;
+  @override
+  final String? paymentStatus;
   final List<String> _instructions;
   @override
   @JsonKey()
@@ -276,10 +285,6 @@ class _$_Order implements _Order {
   }
 
   @override
-  final String? paymentMethod;
-  @override
-  final String? paymentStatus;
-  @override
   @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson)
@@ -287,7 +292,7 @@ class _$_Order implements _Order {
 
   @override
   String toString() {
-    return 'Order(id: $id, userId: $userId, foodItems: $foodItems, status: $status, total: $total, discount: $discount, subTotal: $subTotal, instructions: $instructions, paymentMethod: $paymentMethod, paymentStatus: $paymentStatus, createdAt: $createdAt)';
+    return 'Order(id: $id, userId: $userId, foodItems: $foodItems, total: $total, discount: $discount, subTotal: $subTotal, status: $status, paymentMethod: $paymentMethod, paymentStatus: $paymentStatus, instructions: $instructions, createdAt: $createdAt)';
   }
 
   @override
@@ -299,18 +304,18 @@ class _$_Order implements _Order {
             (identical(other.userId, userId) || other.userId == userId) &&
             const DeepCollectionEquality()
                 .equals(other._foodItems, _foodItems) &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
             (identical(other.subTotal, subTotal) ||
                 other.subTotal == subTotal) &&
-            const DeepCollectionEquality()
-                .equals(other._instructions, _instructions) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.paymentMethod, paymentMethod) ||
                 other.paymentMethod == paymentMethod) &&
             (identical(other.paymentStatus, paymentStatus) ||
                 other.paymentStatus == paymentStatus) &&
+            const DeepCollectionEquality()
+                .equals(other._instructions, _instructions) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -322,13 +327,13 @@ class _$_Order implements _Order {
       id,
       userId,
       const DeepCollectionEquality().hash(_foodItems),
-      status,
       total,
       discount,
       subTotal,
-      const DeepCollectionEquality().hash(_instructions),
+      status,
       paymentMethod,
       paymentStatus,
+      const DeepCollectionEquality().hash(_instructions),
       createdAt);
 
   @JsonKey(ignore: true)
@@ -350,13 +355,14 @@ abstract class _Order implements Order {
       {required final String id,
       required final String userId,
       required final List<FoodItem> foodItems,
-      required final String status,
       required final double total,
       required final double discount,
       required final double subTotal,
-      final List<String> instructions,
+      @JsonKey(fromJson: OrderStatus.fromJson, toJson: OrderStatus.toJson)
+          required final OrderStatus status,
       final String? paymentMethod,
       final String? paymentStatus,
+      final List<String> instructions,
       @JsonKey(fromJson: TimestampConverter.timestampFromJson, toJson: TimestampConverter.timestampToJson)
           final Timestamp? createdAt}) = _$_Order;
 
@@ -369,19 +375,20 @@ abstract class _Order implements Order {
   @override
   List<FoodItem> get foodItems;
   @override
-  String get status;
-  @override
   double get total;
   @override
   double get discount;
   @override
   double get subTotal;
   @override
-  List<String> get instructions;
+  @JsonKey(fromJson: OrderStatus.fromJson, toJson: OrderStatus.toJson)
+  OrderStatus get status;
   @override
   String? get paymentMethod;
   @override
   String? get paymentStatus;
+  @override
+  List<String> get instructions;
   @override
   @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,

@@ -22,8 +22,8 @@ _$_FoodItem _$$_FoodItemFromJson(Map<String, dynamic> json) => _$_FoodItem(
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      createdAt: TimestampConverter.timestampFromJson(
-          json['created_at'] as Timestamp?),
+      createdAt:
+          TimestampConverter.timestampFromJson(json['createdAt'] as Timestamp?),
     );
 
 Map<String, dynamic> _$$_FoodItemToJson(_$_FoodItem instance) =>
@@ -37,5 +37,5 @@ Map<String, dynamic> _$$_FoodItemToJson(_$_FoodItem instance) =>
       'imageUrl': instance.imageUrl,
       'ingredients': instance.ingredients,
       'allergens': instance.allergens,
-      'created_at': TimestampConverter.timestampToJson(instance.createdAt),
+      'createdAt': TimestampConverter.timestampToJson(instance.createdAt),
     };
