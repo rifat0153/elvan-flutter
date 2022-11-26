@@ -1,5 +1,5 @@
-*.g.dart 
 *.freezed.dart
+*.g.dart 
 
 # Miscellaneous
 *.class

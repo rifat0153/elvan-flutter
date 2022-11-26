@@ -24,6 +24,8 @@ class FoodItem with _$FoodItem {
     @Default(0)
         int quantity,
     @Default([])
+        String tags,
+    @Default([])
         List<String> ingredients,
     @Default([])
         List<String> allergens,
