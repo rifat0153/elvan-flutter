@@ -1,11 +1,13 @@
+import 'package:elvan/features/auth/views/auth_view.dart';
 import 'package:elvan/navigation/food_navigator.dart';
 import 'package:flutter/material.dart';
 
-import 'package:elvan/features/cart/screens/cart_screen.dart';
-import 'package:elvan/features/favorite/screens/favorite_screen.dart';
-import 'package:elvan/features/home/screens/home_screen.dart';
+import 'package:elvan/features/cart/views/cart_screen.dart';
+import 'package:elvan/features/favorite/views/favorite_screen.dart';
+import 'package:elvan/features/home/views/home_screen.dart';
 
 const routeHome = '/';
+const routeAuth = '/auth';
 const routeCart = '/cart';
 const routeFavorite = '/favorite';
 
@@ -19,6 +21,8 @@ MaterialPageRoute ongenerateRootRoute(RouteSettings settings) {
 
   if (settings.name == routeHome) {
     page = const HomeScreen();
+  } else if (settings.name == routeAuth) {
+    page = const AuthView();
   } else if (settings.name == routeFavorite) {
     page = const FavoriteScreen();
   } else if (settings.name == routeCart) {

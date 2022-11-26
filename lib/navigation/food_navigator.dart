@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:elvan/features/food/screens/food_detail.dart';
-import 'package:elvan/features/food/screens/food_list.dart';
+import 'package:elvan/features/food/views/food_detail.dart';
+import 'package:elvan/features/food/views/food_list.dart';
 import 'package:elvan/navigation/root_navigator.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'food_navigator.g.dart';
