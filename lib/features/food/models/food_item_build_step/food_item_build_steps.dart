@@ -1,20 +1,23 @@
 import 'package:elvan/features/food/models/food_item_add_on/food_item_add_on.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'food_item_layer.freezed.dart';
-part 'food_item_layer.g.dart';
+part 'food_item_build_steps.freezed.dart';
+part 'food_item_build_steps.g.dart';
 
 @freezed
-class FoodItemLayer with _$FoodItemLayer {
+class FoodItemBuildStep with _$FoodItemBuildStep {
+  const FoodItemBuildStep._();
+
   @JsonSerializable(explicitToJson: true)
-  const factory FoodItemLayer({
+  const factory FoodItemBuildStep({
     required String title,
     @Default(false) bool isRequired,
     @Default(false) bool incluedInPrice,
     int? maxQuantity,
     int? minQuantity,
     @Default([]) List<FoodItemAddOn> addOns,
-  }) = _FoodItemLayer;
+    @Default([]) List<String> selectedAddOns,
+  }) = _FoodItemBuildSteps;
 
-  factory FoodItemLayer.fromJson(Map<String, dynamic> json) => _$FoodItemLayerFromJson(json);
+  factory FoodItemBuildStep.fromJson(Map<String, dynamic> json) => _$FoodItemBuildStepFromJson(json);
 }
