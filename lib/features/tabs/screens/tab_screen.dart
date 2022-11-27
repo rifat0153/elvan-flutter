@@ -31,6 +31,8 @@ class _TabScreenState extends State<TabScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

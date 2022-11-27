@@ -1,5 +1,6 @@
+import 'package:elvan/navigation/app_routes.dart';
 import 'package:elvan/navigation/provider/root_navigator_key.dart';
-import 'package:elvan/navigation/root_navigator.dart';
+import 'package:elvan/navigation/navigators/root_navigator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -29,7 +30,7 @@ class MyApp extends HookConsumerWidget {
         useMaterial3: true,
       ),
       navigatorKey: ref.watch(rootNavigatorKeyProvider),
-      initialRoute: routeHome,
+      initialRoute: AppRoute.routeHome,
       onGenerateRoute: ongenerateRootRoute,
       debugShowCheckedModeBanner: false,
     );
