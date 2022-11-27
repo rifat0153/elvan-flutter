@@ -17,7 +17,18 @@ class FoodItemBuildStep with _$FoodItemBuildStep {
     int? minQuantity,
     @Default([]) List<FoodItemAddOn> addOns,
     @Default([]) List<String> selectedAddOns,
+    @Default([]) List<String> addOnsOptions,
   }) = _FoodItemBuildSteps;
+
+  bool isValueValid() {
+    if (maxQuantity != null && selectedAddOns.length > maxQuantity!) {
+      return false;
+    }
+    if (minQuantity != null && selectedAddOns.length < minQuantity!) {
+      return false;
+    }
+    return true;
+  }
 
   factory FoodItemBuildStep.fromJson(Map<String, dynamic> json) => _$FoodItemBuildStepFromJson(json);
 }

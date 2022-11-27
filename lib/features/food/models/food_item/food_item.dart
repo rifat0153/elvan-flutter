@@ -29,7 +29,7 @@ class FoodItem with _$FoodItem {
     @Default([])
         List<String> ingredients,
     @Default([])
-        List<FoodItemBuildStep> buildStepsOverride,
+        List<FoodItemBuildStep> buildStepsOverrides,
     @Default([])
         List<String> allergens,
     @JsonKey(

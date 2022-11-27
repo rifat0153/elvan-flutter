@@ -1,4 +1,5 @@
 import 'package:elvan/features/auth/providers/auth_providers.dart';
+import 'package:elvan/features/cart/models/cart_item/cart_item.dart';
 import 'package:elvan/features/food/models/food_item/food_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -40,24 +41,24 @@ class Cart with _$Cart {
   @JsonSerializable(explicitToJson: true)
   const factory Cart({
     required String userId,
-    @Default([]) List<FoodItem> foodItems,
+    @Default([]) List<CartItem> cartItems,
     @Default(0) double total,
     @Default(0) double subTotal,
   }) = _Cart;
 
-  bool get isEmpty => foodItems.isEmpty;
+  bool get isEmpty => cartItems.isEmpty;
 
   double getTotalBeforeDiscount() {
     double total = 0;
-    for (var foodItem in foodItems) {
-      total += foodItem.price;
+    for (var cartItem in cartItems) {
+      total += cartItem.price;
     }
     return total;
   }
 
   double getTotalAfterDiscount() {
     double total = 0;
-    for (var foodItem in foodItems) {
+    for (var foodItem in cartItems) {
       total += foodItem.price;
       if (foodItem.discount != null) {
         total -= foodItem.discount!;
@@ -66,9 +67,51 @@ class Cart with _$Cart {
     return total;
   }
 
-  void addToCart(FoodItem foodItem) {
-    foodItems.add(foodItem);
+  void addToCart(CartItem cartItem) {
+    cartItems.add(cartItem);
   }
 
   factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
 }
+
+
+
+// @freezed
+// class Cart with _$Cart {
+//   const Cart._();
+
+//   @JsonSerializable(explicitToJson: true)
+//   const factory Cart({
+//     required String userId,
+//     @Default([]) List<FoodItem> foodItems,
+//     @Default(0) double total,
+//     @Default(0) double subTotal,
+//   }) = _Cart;
+
+//   bool get isEmpty => foodItems.isEmpty;
+
+//   double getTotalBeforeDiscount() {
+//     double total = 0;
+//     for (var foodItem in foodItems) {
+//       total += foodItem.price;
+//     }
+//     return total;
+//   }
+
+//   double getTotalAfterDiscount() {
+//     double total = 0;
+//     for (var foodItem in foodItems) {
+//       total += foodItem.price;
+//       if (foodItem.discount != null) {
+//         total -= foodItem.discount!;
+//       }
+//     }
+//     return total;
+//   }
+
+//   void addToCart(FoodItem foodItem) {
+//     foodItems.add(foodItem);
+//   }
+
+//   factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
+// }
