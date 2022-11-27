@@ -1,8 +1,8 @@
 import 'package:elvan/features/food/models/food_item_add_on/food_item_add_on.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'food_item_build_steps.freezed.dart';
-part 'food_item_build_steps.g.dart';
+part 'food_item_build_step.freezed.dart';
+part 'food_item_build_step.g.dart';
 
 @freezed
 class FoodItemBuildStep with _$FoodItemBuildStep {
