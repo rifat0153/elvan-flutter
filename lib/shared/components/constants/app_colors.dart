@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart' show immutable;
 class AppColors {
   const AppColors._();
 
-  static const primaryColor = 0xFFE91E63;
+  static const primaryColor = 0xFFE31640;
   static const primaryColorDark = 0xFFC2185B;
   static const primaryColorLight = 0xFFF8BBD0;
   static const accentColor = 0xFFFFC107;

@@ -1,6 +1,7 @@
 import 'package:elvan/features/cart/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/home/screens/home_screen.dart';
+import 'package:elvan/shared/components/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class TabScreen extends StatefulWidget {
@@ -29,6 +30,10 @@ class _TabScreenState extends State<TabScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(AppColors.primaryColor),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        unselectedItemColor: Colors.white,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const [
@@ -41,9 +46,13 @@ class _TabScreenState extends State<TabScreen> {
             label: 'Favorite',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_bag),
             label: 'Cart',
           ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.person),
+          //   label: 'Profile',
+          // ),
         ],
       ),
       body: SafeArea(child: _pages.elementAt(_selectedIndex)),
