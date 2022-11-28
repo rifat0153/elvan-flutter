@@ -1,6 +1,7 @@
 import 'package:elvan/features/cart/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/home/screens/home_screen.dart';
+import 'package:elvan/features/login/screens/login_screen.dart';
 import 'package:elvan/shared/components/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class _TabScreenState extends State<TabScreen> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      print(_selectedIndex);
     });
   }
 
@@ -24,38 +26,71 @@ class _TabScreenState extends State<TabScreen> {
     HomeScreen(),
     FavoriteScreen(),
     CartScreen(),
+    LoginScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(AppColors.primaryColor),
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: const Color(AppColors.primaryColor),
+        //fixedColor: Colors.green,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         unselectedItemColor: Colors.white,
+        selectedItemColor: const Color(AppColors.primaryColor),
         currentIndex: _selectedIndex,
-        backgroundColor: Color(AppColors.primaryColor),
         onTap: _onItemTapped,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Container(
+                width: 64,
+                height: 32,
+                decoration: BoxDecoration(
+                    color: _selectedIndex == 0
+                        ? Colors.white
+                        : const Color(AppColors.primaryColor),
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Icon(Icons.home)),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: Container(
+                width: 64,
+                height: 32,
+                decoration: BoxDecoration(
+                    color: _selectedIndex == 1
+                        ? Colors.white
+                        : const Color(AppColors.primaryColor),
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Icon(Icons.favorite)),
             label: 'Favorite',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
+            icon: Container(
+                width: 64,
+                height: 32,
+                decoration: BoxDecoration(
+                    color: _selectedIndex == 2
+                        ? Colors.white
+                        : const Color(AppColors.primaryColor),
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Icon(Icons.shopping_bag)),
             label: 'Cart',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.person),
-          //   label: 'Profile',
-          // ),
+          BottomNavigationBarItem(
+            icon: Container(
+                width: 64,
+                height: 32,
+                decoration: BoxDecoration(
+                    color: _selectedIndex == 3
+                        ? Colors.white
+                        : const Color(AppColors.primaryColor),
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Icon(Icons.favorite)),
+            label: 'Profile',
+          ),
         ],
       ),
       body: SafeArea(child: _pages.elementAt(_selectedIndex)),
