@@ -1,6 +1,7 @@
 import 'package:elvan/features/cart/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/home/screens/home_screen.dart';
+import 'package:elvan/shared/components/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class TabScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _TabScreenState extends State<TabScreen> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
+        backgroundColor: Color(AppColors.primaryColor),
         onTap: _onItemTapped,
         showSelectedLabels: false,
         showUnselectedLabels: false,

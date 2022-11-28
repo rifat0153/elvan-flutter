@@ -26,9 +26,9 @@ class MyApp extends HookConsumerWidget {
     return MaterialApp(
       title: 'Elvan',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
-        useMaterial3: true,
-      ),
+          primarySwatch: Colors.pink,
+          useMaterial3: true,
+          fontFamily: 'Poppins'),
       navigatorKey: ref.watch(rootNavigatorKeyProvider),
       initialRoute: AppRoute.routeHome,
       onGenerateRoute: ongenerateRootRoute,
