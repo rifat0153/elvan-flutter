@@ -15,7 +15,7 @@ class CartItem with _$CartItem {
     required FoodItem foodItem,
     required double price,
     required int quantity,
-    required List<FoodItemBuildStep> buildSteps,
+    required List<BuildStep> buildSteps,
     double? discount,
     @Default('') String instructions,
   }) = _CartItem;

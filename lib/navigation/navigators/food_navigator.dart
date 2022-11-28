@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:elvan/features/food/screens/food_detail_screen.dart';
 import 'package:elvan/features/food/screens/food_list_screen.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FoodNavigator extends HookConsumerWidget {
@@ -13,11 +14,21 @@ class FoodNavigator extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final createHeroRect = useCallback((Rect? begin, Rect? end) {
+      return MaterialRectArcTween(begin: begin, end: end);
+    }, []);
+
+    final heroControllerMemoized = useMemoized(
+      () => HeroController(createRectTween: createHeroRect),
+      [],
+    );
+
     final navigatorKey = ref.read(foodNavigatorKeyProvider);
 
     return Scaffold(
       appBar: _buildFoodAppBar(ref),
       body: Navigator(
+        observers: [heroControllerMemoized],
         key: navigatorKey,
         initialRoute: foodPageRoute,
         onGenerateRoute: _onGenerateFoodRoute,

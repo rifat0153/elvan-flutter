@@ -14,7 +14,7 @@ class Category with _$Category {
     String? description,
     String? imageUrl,
     @Default([])
-        List<FoodItemBuildStep> buildSteps,
+        List<BuildStep> buildSteps,
     @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson,

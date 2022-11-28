@@ -12,7 +12,7 @@ Future<List<Category>> categoryList(CategoryListRef ref) {
   });
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CategoryListNotifier extends _$CategoryListNotifier {
   @override
   FutureOr<List<Category>> build() async {

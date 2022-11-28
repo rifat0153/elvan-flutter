@@ -12,7 +12,7 @@ class RootNavigatorKey extends _$RootNavigatorKey {
   }
 
   void navigateToFoodList() {
-    state.currentState?.pushNamed(AppRoute.routePrefixFood);
+    state.currentState?.pushNamed('${AppRoute.routePrefixFood}${AppRoute.routeFoodListPage}');
   }
 
   void navigateToFoodDetail() {

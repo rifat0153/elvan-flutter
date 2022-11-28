@@ -1,5 +1,6 @@
 import 'package:elvan/features/food/screens/food_detail_screen.dart';
 import 'package:elvan/features/food/screens/food_list_screen.dart';
+import 'package:elvan/navigation/app_routes.dart';
 import 'package:elvan/navigation/provider/root_navigator_key.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -32,20 +33,22 @@ class FoodNavigatorKey extends _$FoodNavigatorKey {
   }
 
   void navigateToFoodList() {
-    state.currentState?.push(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => const FoodListScreen(),
-        transitionDuration: const Duration(seconds: 0),
-      ),
-    );
+    state.currentState?.pushNamed(AppRoute.routeFoodListPage);
+    // state.currentState?.push(
+    //   PageRouteBuilder(
+    //     pageBuilder: (context, animation1, animation2) => const FoodListScreen(),
+    //     transitionDuration: const Duration(seconds: 0),
+    //   ),
+    // );
   }
 
   void navigateToFoodDetail() {
-    state.currentState?.push(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => const FoooDetailScreen(),
-        transitionDuration: const Duration(seconds: 0),
-      ),
-    );
+    state.currentState?.pushNamed(AppRoute.routeFoodDetailPage);
+    // state.currentState?.push(
+    //   PageRouteBuilder(
+    //     pageBuilder: (context, animation1, animation2) => const FoooDetailScreen(),
+    //     transitionDuration: const Duration(seconds: 0),
+    //   ),
+    // );
   }
 }

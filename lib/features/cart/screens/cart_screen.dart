@@ -26,7 +26,7 @@ class CartScreen extends ConsumerWidget {
               onPressed: () {
                 ref.refresh(categoryListNotifierProvider);
               },
-              child: const Text('Error'),
+              child: Text('Error occured $error'),
             ),
           ),
         ],

@@ -29,14 +29,10 @@ class FoodItem with _$FoodItem {
     @Default([])
         List<String> ingredients,
     @Default([])
-        List<FoodItemBuildStep> buildStepsOverrides,
+        List<BuildStep> buildStepsOverrides,
     @Default([])
         List<String> allergens,
-    @JsonKey(
-      fromJson: TimestampConverter.timestampFromJson,
-      toJson: TimestampConverter.timestampToJson,
-    )
-        timeToPrepareInMinutes,
+    int? timeToPrepareInMinutes,
     @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson,

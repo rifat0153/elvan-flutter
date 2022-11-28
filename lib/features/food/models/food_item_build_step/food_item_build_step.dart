@@ -5,11 +5,11 @@ part 'food_item_build_step.freezed.dart';
 part 'food_item_build_step.g.dart';
 
 @freezed
-class FoodItemBuildStep with _$FoodItemBuildStep {
-  const FoodItemBuildStep._();
+class BuildStep with _$BuildStep {
+  const BuildStep._();
 
   @JsonSerializable(explicitToJson: true)
-  const factory FoodItemBuildStep({
+  const factory BuildStep({
     required String title,
     @Default(false) bool isRequired,
     @Default(false) bool incluedInPrice,
@@ -30,5 +30,5 @@ class FoodItemBuildStep with _$FoodItemBuildStep {
     return true;
   }
 
-  factory FoodItemBuildStep.fromJson(Map<String, dynamic> json) => _$FoodItemBuildStepFromJson(json);
+  factory BuildStep.fromJson(Map<String, dynamic> json) => _$BuildStepFromJson(json);
 }

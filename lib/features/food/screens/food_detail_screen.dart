@@ -14,15 +14,24 @@ class FoooDetailScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedFoodId = ref.watch(selectedFoodItemProvider);
-    // final selectedFoodId = 0;
+    final selectedFood = ref.watch(selectedFoodItemProvider);
 
     return Scaffold(
       body: Center(
         child: Column(
           children: [
+            Text('food id: ${selectedFood?.id}'),
+            Hero(
+              tag: selectedFood?.id ?? '',
+              child: Image.network(
+                selectedFood?.imageUrl ?? '',
+                height: 300,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
             const Text('Food Detail Screen'),
-            Text('selectedFoodId = $selectedFoodId'),
+            Text('selectedFoodId = $selectedFood'),
             ElevatedButton(
               onPressed: () => _onTap(ref),
               child: const Text('Navigate to Food List'),
