@@ -35,7 +35,10 @@ class _TabScreenState extends State<TabScreen> {
         showUnselectedLabels: false,
         unselectedItemColor: Colors.white,
         currentIndex: _selectedIndex,
+        backgroundColor: Color(AppColors.primaryColor),
         onTap: _onItemTapped,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

@@ -1,5 +1,4 @@
-import 'package:elvan/features/food/providers/food_provider.dart';
-import 'package:elvan/features/food/screens/food_detail_screen.dart';
+import 'package:elvan/features/food/providers/food_list/food_provider.dart';
 import 'package:elvan/navigation/provider/food_navigator_key.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -1,4 +1,4 @@
-import 'package:elvan/navigation/root_navigator.dart';
+import 'package:elvan/navigation/provider/root_navigator_key.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,14 +9,15 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'HomeView',
-            style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400, fontSize: 16, letterSpacing: 0.5),
-          ),
+          const Text('Home Screen'),
           ElevatedButton(
-            onPressed: () => Navigator.of(context).pushNamed(routeFoodStart),
+            onPressed: () => ref
+                .read(
+                  rootNavigatorKeyProvider.notifier,
+                )
+                .navigateToFoodDetail(),
             child: const Text('Navigate to Food Navigator'),
           ),
         ],
