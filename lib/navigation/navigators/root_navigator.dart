@@ -11,7 +11,7 @@ MaterialPageRoute ongenerateRootRoute(RouteSettings settings) {
   late Widget page;
 
   if (settings.name == AppRoute.routeHome) {
-    page = const TabScreen();
+    page = TabScreen();
   } else if (settings.name == AppRoute.routeAuth) {
     page = const AuthScreen();
   } else if (settings.name == AppRoute.routeFavorite) {

@@ -4,24 +4,9 @@ import 'package:elvan/features/home/screens/home_screen.dart';
 import 'package:elvan/features/login/screens/login_screen.dart';
 import 'package:elvan/shared/components/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class TabScreen extends StatefulWidget {
-  const TabScreen({super.key});
-
-  @override
-  State<TabScreen> createState() => _TabScreenState();
-}
-
-class _TabScreenState extends State<TabScreen> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      print(_selectedIndex);
-    });
-  }
-
+class TabScreen extends HookWidget {
   static const List<Widget> _pages = [
     HomeScreen(),
     FavoriteScreen(),
@@ -31,16 +16,21 @@ class _TabScreenState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _selectedIndex = useState(0);
+
+    void _onItemTapped(int index) {
+      _selectedIndex.value = index;
+    }
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color(AppColors.primaryColor),
-        //fixedColor: Colors.green,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         unselectedItemColor: Colors.white,
         selectedItemColor: const Color(AppColors.primaryColor),
-        currentIndex: _selectedIndex,
+        currentIndex: _selectedIndex.value,
         onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
@@ -48,7 +38,7 @@ class _TabScreenState extends State<TabScreen> {
                 width: 64,
                 height: 32,
                 decoration: BoxDecoration(
-                    color: _selectedIndex == 0
+                    color: _selectedIndex.value == 0
                         ? Colors.white
                         : const Color(AppColors.primaryColor),
                     borderRadius: BorderRadius.circular(20)),
@@ -60,7 +50,7 @@ class _TabScreenState extends State<TabScreen> {
                 width: 64,
                 height: 32,
                 decoration: BoxDecoration(
-                    color: _selectedIndex == 1
+                    color: _selectedIndex.value == 1
                         ? Colors.white
                         : const Color(AppColors.primaryColor),
                     borderRadius: BorderRadius.circular(20)),
@@ -72,7 +62,7 @@ class _TabScreenState extends State<TabScreen> {
                 width: 64,
                 height: 32,
                 decoration: BoxDecoration(
-                    color: _selectedIndex == 2
+                    color: _selectedIndex.value == 2
                         ? Colors.white
                         : const Color(AppColors.primaryColor),
                     borderRadius: BorderRadius.circular(20)),
@@ -84,16 +74,16 @@ class _TabScreenState extends State<TabScreen> {
                 width: 64,
                 height: 32,
                 decoration: BoxDecoration(
-                    color: _selectedIndex == 3
+                    color: _selectedIndex.value == 3
                         ? Colors.white
                         : const Color(AppColors.primaryColor),
                     borderRadius: BorderRadius.circular(20)),
-                child: const Icon(Icons.favorite)),
+                child: const Icon(Icons.person)),
             label: 'Profile',
           ),
         ],
       ),
-      body: SafeArea(child: _pages.elementAt(_selectedIndex)),
+      body: SafeArea(child: _pages.elementAt(_selectedIndex.value)),
     );
   }
 }
