@@ -1,6 +1,5 @@
 import 'package:elvan/features/food/providers/food_detail/selected_food_item_provider.dart';
 import 'package:elvan/features/food/providers/food_list/food_list_provider.dart';
-import 'package:elvan/navigation/provider/root_navigator_key.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -16,11 +15,7 @@ class HomeScreen extends HookConsumerWidget {
         children: [
           const Text('Home Screen'),
           ElevatedButton(
-            onPressed: () => ref
-                .read(
-                  rootNavigatorKeyProvider.notifier,
-                )
-                .navigateToFoodDetail(),
+            onPressed: () {},
             child: const Text('Navigate to Food Navigator: Detail'),
           ),
           foodList.when(
@@ -35,7 +30,6 @@ class HomeScreen extends HookConsumerWidget {
                     key: ValueKey(foodItem.id),
                     onTap: () {
                       ref.read(selectedFoodItemProvider.notifier).state = foodItem;
-                      ref.read(rootNavigatorKeyProvider.notifier).navigateToFoodDetail();
                     },
                     child: Column(
                       children: [

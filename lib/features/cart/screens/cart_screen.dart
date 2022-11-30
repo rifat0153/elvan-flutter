@@ -9,8 +9,8 @@ class CartScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final categories = ref.watch(categoryListNotifierProvider);
 
-    return Container(
-      child: Column(
+    return Scaffold(
+      body: Column(
         children: [
           const Text('CartScreen'),
           categories.when(

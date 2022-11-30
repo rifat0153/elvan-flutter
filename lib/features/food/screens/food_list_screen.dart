@@ -1,26 +1,15 @@
-import 'package:elvan/features/food/models/food_item/food_item.dart';
 import 'package:elvan/features/food/providers/food_detail/selected_food_item_provider.dart';
 import 'package:elvan/features/food/providers/food_list/food_list_provider.dart';
-import 'package:elvan/navigation/provider/food_navigator_key.dart';
-import 'package:elvan/navigation/provider/root_navigator_key.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'package:go_router/go_router.dart';
 
 class FoodListScreen extends HookConsumerWidget {
   const FoodListScreen({super.key});
 
   _onTap(BuildContext context, WidgetRef ref) {
-    final foodNavigatorNotifier = ref.read(foodNavigatorKeyProvider.notifier);
-
-    foodNavigatorNotifier.navigateToFoodDetail();
-  }
-
-  _navigateToFoodDetail(WidgetRef ref, FoodItem foodItem) {
-    ref.read(selectedFoodItemProvider.notifier).state = foodItem;
-
-    final foodNavigatorNotifier = ref.read(foodNavigatorKeyProvider.notifier);
-
-    foodNavigatorNotifier.navigateToFoodDetail();
+    context.go('/b/details');
   }
 
   @override
@@ -47,7 +36,8 @@ class FoodListScreen extends HookConsumerWidget {
                     key: ValueKey(foodItem.id),
                     onTap: () {
                       ref.read(selectedFoodItemProvider.notifier).state = foodItem;
-                      ref.read(foodNavigatorKeyProvider.notifier).navigateToFoodDetail();
+                      // ref.read(foodNavigatorKeyProvider.notifier).navigateToFoodDetail();
+                      context.go('/b/details');
                     },
                     child: Column(
                       children: [

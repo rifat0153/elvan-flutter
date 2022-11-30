@@ -1,15 +1,13 @@
 import 'package:elvan/features/food/providers/food_detail/selected_food_item_provider.dart';
-import 'package:elvan/navigation/provider/food_navigator_key.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class FoooDetailScreen extends HookConsumerWidget {
   const FoooDetailScreen({super.key});
 
-  _onTap(WidgetRef ref) {
-    final foodNavigatorKeyNotifier = ref.read(foodNavigatorKeyProvider.notifier);
-
-    foodNavigatorKeyNotifier.navigateToFoodList();
+  _onTap(WidgetRef ref, BuildContext context) {
+    context.go('/b');
   }
 
   @override
@@ -33,7 +31,7 @@ class FoooDetailScreen extends HookConsumerWidget {
             const Text('Food Detail Screen'),
             Text('selectedFoodId = $selectedFood'),
             ElevatedButton(
-              onPressed: () => _onTap(ref),
+              onPressed: () => _onTap(ref, context),
               child: const Text('Navigate to Food List'),
             ),
           ],
