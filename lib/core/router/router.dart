@@ -1,88 +1,121 @@
-import 'package:elvan/extensions/router/pages/go_router_tab_page.dart';
-import 'package:elvan/extensions/router/pages/home_page.dart';
-import 'package:elvan/extensions/router/pages/test_detail_page.dart';
-import 'package:elvan/extensions/router/pages/test_list_page.dart';
 import 'package:elvan/features/cart/screens/cart_screen.dart';
+import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/food/screens/food_list_screen.dart';
 import 'package:elvan/features/food/screens/food_detail_screen.dart';
+import 'package:elvan/features/home/screens/home_screen.dart';
+import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
+import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
+final GlobalKey<NavigatorState> _tabShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 final appRouterProvider = Provider(((ref) => goRouter));
+
+CustomTransitionPage buildPageWithDefaultTransition<T>({
+  required BuildContext context,
+  required GoRouterState state,
+  required Widget child,
+}) {
+  return CustomTransitionPage<T>(
+    key: state.pageKey,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) => child,
+  );
+}
 
 final GoRouter goRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   debugLogDiagnostics: true,
-  initialLocation: '/a',
+  initialLocation: '/tab',
+  redirect: (context, state) {
+    if (state.location == '/') {
+      return '/tab';
+    }
+    return null;
+  },
   routes: <RouteBase>[
-    /// Application shell
-    ShellRoute(
-      navigatorKey: _shellNavigatorKey,
-      builder: (BuildContext context, GoRouterState state, Widget child) {
-        return ScaffoldWithNavBar(child: child);
+    GoRoute(
+      path: '/tab',
+      pageBuilder: (context, state) => const MaterialPage<void>(child: Text('Tab')),
+      redirect: (context, state) {
+        if (state.location == '/tab') {
+          return '/tab/home';
+        }
+        return null;
       },
-      routes: <RouteBase>[
-        /// The first screen to display in the bottom navigation bar.
-        GoRoute(
-          path: '/a',
-          builder: (BuildContext context, GoRouterState state) {
-            return HomePage(key: state.pageKey);
+      routes: [
+        /// Application shell
+        ShellRoute(
+          navigatorKey: _tabShellNavigatorKey,
+          builder: (BuildContext context, GoRouterState state, Widget child) {
+            return TabScreen(child: child);
           },
           routes: <RouteBase>[
-            // The details screen to display stacked on the inner Navigator.
-            // This will cover screen A but not the application shell.
+            /// The first screen to display in the bottom navigation bar.
             GoRoute(
-              path: 'details',
-              builder: (BuildContext context, GoRouterState state) {
-                return TestListPage(key: state.pageKey);
+              path: 'home',
+              pageBuilder: (BuildContext context, GoRouterState state) {
+                return NoTransitionPage(key: state.pageKey, child: const HomeScreen());
               },
             ),
-          ],
-        ),
 
-        /// Displayed when the second item in the the bottom navigation bar is
-        /// selected.
-        GoRoute(
-          path: '/b',
-          builder: (BuildContext context, GoRouterState state) {
-            return FoodListScreen(key: state.pageKey);
-          },
-          routes: <RouteBase>[
-            /// Same as "/a/details", but displayed on the root Navigator by
-            /// specifying [parentNavigatorKey]. This will cover both screen B
-            /// and the application shell.
+            /// Displayed when the second item in the the bottom navigation bar is
+            /// selected.
             GoRoute(
-              path: 'details',
-              parentNavigatorKey: _rootNavigatorKey,
-              builder: (BuildContext context, GoRouterState state) {
-                return FoooDetailScreen(key: state.pageKey);
+              path: 'favorite',
+              pageBuilder: (BuildContext context, GoRouterState state) {
+                return NoTransitionPage(key: state.pageKey, child: const FavoriteScreen());
               },
             ),
-          ],
-        ),
 
-        /// The third screen to display in the bottom navigation bar.
-        GoRoute(
-          path: '/c',
-          builder: (BuildContext context, GoRouterState state) {
-            return CartScreen(key: state.pageKey);
-          },
-          routes: <RouteBase>[
-            // The details screen to display stacked on the inner Navigator.
-            // This will cover screen A but not the application shell.
+            /// The third screen to display in the bottom navigation bar.
             GoRoute(
-              path: 'details',
-              builder: (BuildContext context, GoRouterState state) {
-                return TestDetailPage(key: state.pageKey);
+              path: 'profile',
+              pageBuilder: (BuildContext context, GoRouterState state) {
+                return NoTransitionPage(key: state.pageKey, child: const ProfileScreen());
               },
             ),
           ],
         ),
       ],
+    ),
+
+    // Food Routes
+    GoRoute(
+      path: '/food',
+      pageBuilder: (context, state) => const MaterialPage<void>(child: Text('Food Navigator')),
+      redirect: (context, state) {
+        if (state.location == '/food') {
+          return '/food/list';
+        }
+        return null;
+      },
+      routes: [
+        GoRoute(
+          path: 'list',
+          builder: (BuildContext context, GoRouterState state) {
+            return FoodListScreen(key: state.pageKey);
+          },
+        ),
+        GoRoute(
+          path: ':id',
+          builder: (BuildContext context, GoRouterState state) {
+            return FooDDetailScreen(key: state.pageKey);
+          },
+        ),
+      ],
+    ),
+
+    // Cart Routes
+    GoRoute(
+      path: '/cart',
+      builder: (BuildContext context, GoRouterState state) {
+        return CartScreen(key: state.pageKey);
+      },
     ),
   ],
 );

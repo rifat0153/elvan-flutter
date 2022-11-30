@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class FoooDetailScreen extends HookConsumerWidget {
-  const FoooDetailScreen({super.key});
+class FooDDetailScreen extends HookConsumerWidget {
+  const FooDDetailScreen({super.key});
 
   _onTap(WidgetRef ref, BuildContext context) {
-    context.go('/b');
+    context.go('/food');
   }
 
   @override

@@ -1,5 +1,4 @@
 import 'package:elvan/core/router/router.dart';
-import 'package:elvan/extensions/router/go_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,22 +15,25 @@ void main() async {
   );
 
   runApp(
-    const ProviderScope(child: GoRouterApp()),
+    const ProviderScope(child: MyApp()),
   );
 }
 
-class GoRouterApp extends HookConsumerWidget {
-  const GoRouterApp({super.key});
+class MyApp extends HookConsumerWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
+    // final router = goRouter;
 
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      // routerDelegate: router.routerDelegate,
+      // routeInformationParser: router.routeInformationParser,
       routerConfig: router,
     );
   }

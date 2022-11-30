@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:elvan/shared/components/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -28,7 +30,7 @@ class TabScreen extends HookConsumerWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
+            label: 'Profile',
           ),
         ],
       ),
@@ -38,13 +40,16 @@ class TabScreen extends HookConsumerWidget {
 
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).location;
-    if (location.startsWith('/a')) {
+
+    log('sub location: $location');
+
+    if (location.startsWith('/tab/home')) {
       return 0;
     }
-    if (location.startsWith('/b')) {
+    if (location.startsWith('/tab/favorite')) {
       return 1;
     }
-    if (location.startsWith('/c')) {
+    if (location.startsWith('/tab/profile')) {
       return 2;
     }
     return 0;
@@ -53,13 +58,13 @@ class TabScreen extends HookConsumerWidget {
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:
-        GoRouter.of(context).go('/a');
+        GoRouter.of(context).go('/tab/home');
         break;
       case 1:
-        GoRouter.of(context).go('/b');
+        GoRouter.of(context).go('/tab/favorite');
         break;
       case 2:
-        GoRouter.of(context).go('/c');
+        GoRouter.of(context).go('/tab/profile');
         break;
     }
   }

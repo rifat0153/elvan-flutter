@@ -9,7 +9,7 @@ class FoodListScreen extends HookConsumerWidget {
   const FoodListScreen({super.key});
 
   _onTap(BuildContext context, WidgetRef ref) {
-    context.go('/b/details');
+    context.go('/tab/home');
   }
 
   @override
@@ -22,7 +22,7 @@ class FoodListScreen extends HookConsumerWidget {
           const Text('Food List Screen'),
           ElevatedButton(
             onPressed: () => _onTap(context, ref),
-            child: const Text('Navigate to Food Detail'),
+            child: const Text('Navigate to Home Tab'),
           ),
           foodList.when(
             data: (foodList) => SingleChildScrollView(
@@ -36,8 +36,7 @@ class FoodListScreen extends HookConsumerWidget {
                     key: ValueKey(foodItem.id),
                     onTap: () {
                       ref.read(selectedFoodItemProvider.notifier).state = foodItem;
-                      // ref.read(foodNavigatorKeyProvider.notifier).navigateToFoodDetail();
-                      context.go('/b/details');
+                      context.go('/food/detail');
                     },
                     child: Column(
                       children: [

@@ -1,6 +1,7 @@
 import 'package:elvan/features/food/providers/food_detail/selected_food_item_provider.dart';
 import 'package:elvan/features/food/providers/food_list/food_list_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends HookConsumerWidget {
@@ -9,8 +10,8 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final foodList = ref.watch(foodListProvider);
 
-    return Center(
-      child: Column(
+    return Scaffold(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text('Home Screen'),
@@ -30,6 +31,8 @@ class HomeScreen extends HookConsumerWidget {
                     key: ValueKey(foodItem.id),
                     onTap: () {
                       ref.read(selectedFoodItemProvider.notifier).state = foodItem;
+
+                      context.go('/food/detail');
                     },
                     child: Column(
                       children: [
