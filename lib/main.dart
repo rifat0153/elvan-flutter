@@ -15,6 +15,8 @@ void main() async {
       statusBarColor: Color(AppColors.primaryColor),
     ),
   );
+
+  //test
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
