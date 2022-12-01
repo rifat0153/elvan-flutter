@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:elvan/features/auth/constants/constants.dart';
-import 'package:elvan/features/auth/models/elvan_user.dart';
-import 'package:elvan/features/auth/repository/auth_repository.dart';
-import 'package:elvan/features/auth/models/auth_state.dart';
+import 'package:elvan/features/auth/data/repository/auth_repository.dart';
+import 'package:elvan/features/auth/domain/models/auth_state.dart';
+import 'package:elvan/features/auth/domain/models/elvan_user.dart';
 import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -44,7 +44,7 @@ Future<ElvanUser?> elvanUser(ElvanUserRef ref) async {
   }
 
   final elvanUser = await ref
-      .watch(firebaseFirestoreProvider)
+      .read(firebaseFirestoreProvider)
       .collection(
         Constants.firebaseElvanUserCollectionName,
       )

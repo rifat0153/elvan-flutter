@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elvan/extensions/timestamp/timestamp_json_converter.dart';
+import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
 import 'package:elvan/features/food/models/food_item_build_step/food_item_build_step.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

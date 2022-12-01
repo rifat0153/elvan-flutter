@@ -1,5 +1,5 @@
 import 'package:elvan/features/auth/constants/constants.dart';
-import 'package:elvan/features/auth/models/elvan_user.dart';
+import 'package:elvan/features/auth/domain/models/elvan_user.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

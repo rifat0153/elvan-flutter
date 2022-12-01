@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elvan/extensions/timestamp/timestamp_json_converter.dart';
+import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
 import 'package:elvan/features/food/models/food_item/food_item.dart';
 import 'package:elvan/features/order/models/order/order_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
