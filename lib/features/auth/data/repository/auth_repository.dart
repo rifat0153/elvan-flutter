@@ -1,33 +1,15 @@
-import 'dart:developer';
-
+import 'package:elvan/features/auth/data/dto/elvan_user_dto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthRepository {
-  const AuthRepository({
-    required this.firebaseAuth,
-  });
-
-  final FirebaseAuth firebaseAuth;
-
+abstract class AuthRepository {
   Future<User?> singInWithEmailAndPassword({
     required String email,
     required String password,
-  }) async {
-    final userCredential = await firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    return userCredential.user;
-  }
+  });
 
-  Future<User?> signInAnyonymously() async {
-    log('AuthRepository.signInAnyonymously()');
-    final userCredential = await firebaseAuth.signInAnonymously();
-    return userCredential.user;
-  }
+  Future<ElvanUserDto?> getElvanUser({required String userId});
 
-  Future<bool> signOut() async {
-    await firebaseAuth.signOut();
-    return true;
-  }
+  Future<User?> signInAnyonymously();
+
+  Future<bool> signOut();
 }

@@ -2,7 +2,7 @@ import 'package:elvan/features/cart/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/food/screens/food_list_screen.dart';
 import 'package:elvan/features/food/screens/food_detail_screen.dart';
-import 'package:elvan/features/home/screens/home_screen.dart';
+import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
 

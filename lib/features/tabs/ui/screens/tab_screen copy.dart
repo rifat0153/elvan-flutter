@@ -1,6 +1,6 @@
 import 'package:elvan/features/cart/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
-import 'package:elvan/features/home/screens/home_screen.dart';
+import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/shared/components/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
