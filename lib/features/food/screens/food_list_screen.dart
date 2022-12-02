@@ -1,5 +1,6 @@
 import 'package:elvan/features/food/providers/food_list/food_provider.dart';
 import 'package:elvan/navigation/provider/food_navigator_key.dart';
+import 'package:elvan/shared/components/appbars/secondary_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,6 +18,7 @@ class FoodListScreen extends HookConsumerWidget {
     final foodItemsStream = ref.watch(foodItemStreamOld);
 
     return Scaffold(
+      //  appBar: SecondaryAppbar(),
       body: Center(
         child: Column(
           children: [

@@ -1,6 +1,7 @@
 import 'package:elvan/features/home/sections/category_section.dart';
 import 'package:elvan/features/home/sections/recently_ordered_section.dart';
 import 'package:elvan/features/home/sections/top_picks_section.dart';
+import 'package:elvan/navigation/provider/food_navigator_key.dart';
 import 'package:elvan/navigation/provider/root_navigator_key.dart';
 import 'package:elvan/shared/components/appbars/main_appbar.dart';
 import 'package:elvan/shared/components/constants/app_colors.dart';
@@ -26,17 +27,16 @@ class HomeScreen extends HookConsumerWidget {
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                // const Text('Home Screen'),
-                // ElevatedButton(
-                //   onPressed: () => ref
-                //       .read(
-                //         rootNavigatorKeyProvider.notifier,
-                //       )
-                //       .navigateToFoodDetail(),
-                //   child: const Text('Navigate to Food Navigator'),
-                // ),
-                //
+              children: [
+                Text('Home Screen'),
+                ElevatedButton(
+                  onPressed: () => ref
+                      .read(
+                        rootNavigatorKeyProvider.notifier,
+                      )
+                      .navigateToFoodDetail(),
+                  child: const Text('Navigate to Food Navigator'),
+                ),
                 SizedBox(height: 42),
                 CategorySection(),
                 RecentlyOrderedSection(),
