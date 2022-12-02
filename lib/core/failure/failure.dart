@@ -15,6 +15,11 @@ class Failure with _$Failure {
     Object? error,
   }) = _Failure;
 
+  @override
+  String toString() {
+    return message ?? getErrorMessageFromExcetion();
+  }
+
   String getErrorMessageFromExcetion() {
     if (message != null) return message!;
 

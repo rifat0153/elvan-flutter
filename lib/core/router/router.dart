@@ -1,3 +1,4 @@
+import 'package:elvan/features/auth/ui/screens/auth_screen.dart';
 import 'package:elvan/features/cart/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/food/screens/food_list_screen.dart';
@@ -30,7 +31,8 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
 final GoRouter goRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   debugLogDiagnostics: true,
-  initialLocation: '/tab',
+  initialLocation: '/auth',
+  // initialLocation: '/tab',
   redirect: (context, state) {
     if (state.location == '/') {
       return '/tab';
@@ -82,6 +84,14 @@ final GoRouter goRouter = GoRouter(
           ],
         ),
       ],
+    ),
+
+    // Auth Routes
+    GoRoute(
+      path: '/auth',
+      builder: (BuildContext context, GoRouterState state) {
+        return AuthScreen(key: state.pageKey);
+      },
     ),
 
     // Food Routes

@@ -1,3 +1,4 @@
+import 'package:elvan/core/failure/failure.dart';
 import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository.dart';
 import 'package:elvan/features/auth/domain/models/elvan_user.dart';
@@ -25,6 +26,37 @@ class AuthUseCases {
     );
   }
 
+  Future<Result<ElvanUser>> signInWithEmailAndPasswordAndGetElvanUserUseCase({
+    required String email,
+    required String password,
+  }) async {
+    if (email.isEmpty || password.isEmpty) {
+      return const Result.error(Failure(message: 'Email or password is empty'));
+    }
+
+    final user = await authRepository.singInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    if (user == null) {
+      return const Result.error(
+        Failure(message: 'User is null'),
+      );
+    }
+
+    final elvanUser = await getUserUseCase(userId: user.uid);
+
+    return elvanUser.when(
+      data: (elvanUser) {
+        return Result.data(elvanUser);
+      },
+      error: (failure) {
+        return Result.error(failure);
+      },
+    );
+  }
+
   Future<User?> signInWithEmailAndPasswordUseCase({
     required String email,
     required String password,
@@ -33,6 +65,10 @@ class AuthUseCases {
       email: email,
       password: password,
     );
+  }
+
+  Stream<User?> getUserStreamUseCase() {
+    return authRepository.getUserStream();
   }
 
   Future<bool> signOutUseCase() async {

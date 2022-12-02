@@ -73,4 +73,9 @@ class AuthRepositoryImpl implements AuthRepository {
     await firebaseAuth.signOut();
     return true;
   }
+
+  @override
+  Stream<User?> getUserStream() {
+    return firebaseAuth.authStateChanges();
+  }
 }

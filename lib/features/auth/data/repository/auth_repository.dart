@@ -12,5 +12,7 @@ abstract class AuthRepository {
 
   Future<User?> signInAnyonymously();
 
+  Stream<User?> getUserStream();
+
   Future<bool> signOut();
 }
