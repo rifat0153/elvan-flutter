@@ -15,4 +15,10 @@ class AuthEvent with _$AuthEvent {
     required String email,
     required String password,
   }) = _AuthEvent_RegisterWithEmailAndPassword;
+
+  const factory AuthEvent.resetPassword({
+    required String email,
+  }) = _AuthEvent_ResetPassword;
+
+  const factory AuthEvent.goToRegisterScreen() = _AuthEvent_GoToRegisterScreen;
 }

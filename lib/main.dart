@@ -25,18 +25,17 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
-    // final router = goRouter;
 
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+        useMaterial3: true,
       ),
       // routerDelegate: router.routerDelegate,
       // routeInformationParser: router.routeInformationParser,
       routerConfig: router,
     );
   }
-
-  // }
 }
