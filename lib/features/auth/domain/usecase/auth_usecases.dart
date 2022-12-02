@@ -1,20 +1,28 @@
+import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository.dart';
 import 'package:elvan/features/auth/domain/models/elvan_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthUseCase {
+class AuthUseCases {
   final AuthRepository authRepository;
 
-  const AuthUseCase({
+  const AuthUseCases({
     required this.authRepository,
   });
 
-  Future<ElvanUser?> getElvanUserUseCase({required String userId}) async {
+  Future<Result<ElvanUser>> getUserUseCase({required String userId}) async {
     final user = await authRepository.getElvanUser(userId: userId);
 
-    if (user == null) return null;
-
-    return ElvanUser.fromDto(user);
+    return user.when(
+      data: (elvanUserDto) {
+        return Result.data(
+          ElvanUser.fromDto(elvanUserDto),
+        );
+      },
+      error: (failure) {
+        return Result.error(failure);
+      },
+    );
   }
 
   Future<User?> signInWithEmailAndPasswordUseCase({

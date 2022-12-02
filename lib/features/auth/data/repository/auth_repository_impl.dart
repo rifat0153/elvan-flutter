@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan/core/failure/failure.dart';
+import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/auth/constants/constants.dart';
 import 'package:elvan/features/auth/data/dto/elvan_user_dto.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository.dart';
@@ -16,19 +18,34 @@ class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth firebaseAuth;
 
   @override
-  Future<ElvanUserDto?> getElvanUser({required String userId}) async {
-    final user = await firebaseFirestore
-        .collection(
-          Constants.firebaseElvanUserCollectionName,
-        )
-        .withConverter(
-          fromFirestore: (snapshot, _) => ElvanUserDto.fromJson(snapshot.data()!),
-          toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
-        )
-        .doc(userId)
-        .get();
+  Future<Result<ElvanUserDto>> getElvanUser({required String userId}) async {
+    try {
+      final user = await firebaseFirestore
+          .collection(
+            Constants.firebaseElvanUserCollectionName,
+          )
+          .withConverter(
+            fromFirestore: (snapshot, _) => ElvanUserDto.fromJson(snapshot.data()!),
+            toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
+          )
+          .doc(userId)
+          .get();
 
-    return user.data();
+      if (user.exists) {
+        return Result.data(user.data()!);
+      } else {
+        return const Result.error(
+          Failure(message: 'User not found'),
+        );
+      }
+    } on Exception catch (e) {
+      return Result.error(
+        Failure(
+          error: e,
+          message: 'Error while getting user',
+        ),
+      );
+    }
   }
 
   @override

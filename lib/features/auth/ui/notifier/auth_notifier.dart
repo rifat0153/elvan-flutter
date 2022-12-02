@@ -1,4 +1,4 @@
-import 'package:elvan/features/auth/domain/usecase/auth_usecase.dart';
+import 'package:elvan/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/features/auth/ui/state/auth_screen_state.dart';
@@ -11,7 +11,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
     state = const AuthScreenState.loading();
     authUseCase = ref.read(authUseCaseProvider);
   }
-  late final AuthUseCase authUseCase;
+  late final AuthUseCases authUseCase;
 
   @override
   build() {

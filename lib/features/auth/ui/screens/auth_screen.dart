@@ -12,7 +12,6 @@ class AuthScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final textContrller = useTextEditingController();
     final authNotifier = ref.watch(authNotifierProvider.notifier);
 
     return state.when(
@@ -27,14 +26,6 @@ class AuthScreen extends HookConsumerWidget {
       authenticated: (elvanUser) => Center(child: Text('Authenticated: ${elvanUser.email}')),
       unAuthenticated: () => Center(child: Text('UnAuthenticated')),
       error: (message) => Center(child: Text('Error: $message')),
-    );
-
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: Text('AuthScreen'),
-        ),
-      ),
     );
   }
 }

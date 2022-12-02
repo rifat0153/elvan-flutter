@@ -1,6 +1,6 @@
 import 'package:elvan/features/auth/data/repository/auth_repository.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository_impl.dart';
-import 'package:elvan/features/auth/domain/usecase/auth_usecase.dart';
+import 'package:elvan/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,8 +15,8 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
 });
 
 @riverpod
-AuthUseCase authUseCase(AuthUseCaseRef ref) {
-  return AuthUseCase(
+AuthUseCases authUseCase(AuthUseCaseRef ref) {
+  return AuthUseCases(
     authRepository: ref.read(authRepositoryProvider),
   );
 }
