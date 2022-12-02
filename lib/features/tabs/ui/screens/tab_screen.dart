@@ -13,27 +13,52 @@ class TabScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _calculateSelectedIndex(context),
-        onTap: (int idx) => _onItemTapped(idx, context),
-        backgroundColor: const Color(AppColors.primaryColor),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+      bottomNavigationBar: NavigationBar(
+        height: 80,
+        // backgroundColor: const Color(AppColors.primaryColor),
+        // surfaceTintColor: Colors.black,
+        selectedIndex: _calculateSelectedIndex(context),
+        onDestinationSelected: (int idx) => _onItemTapped(idx, context),
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+        destinations: const [
+          NavigationDestination(
             label: 'Home',
+            icon: Icon(Icons.home),
+            selectedIcon: Icon(Icons.home),
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
+            label: 'Favorites',
             icon: Icon(Icons.favorite),
-            label: 'Favorite',
+            selectedIcon: Icon(Icons.favorite),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Profile',
+          NavigationDestination(
+            label: 'Settings',
+            icon: Icon(Icons.person),
+            selectedIcon: Icon(Icons.person),
           ),
         ],
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: _calculateSelectedIndex(context),
+      //   onTap: (int idx) => _onItemTapped(idx, context),
+      //   backgroundColor: const Color(AppColors.primaryColor),
+      //   showSelectedLabels: false,
+      //   showUnselectedLabels: false,
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.favorite),
+      //       label: 'Favorite',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.shopping_cart),
+      //       label: 'Profile',
+      //     ),
+      //   ],
+      // ),
       body: child,
     );
   }

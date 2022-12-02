@@ -33,7 +33,6 @@ class HomeScreen extends HookConsumerWidget {
                       ref.read(selectedFoodItemProvider.notifier).state = foodItem;
 
                       context.go('/food/${foodItem.id}');
-                      context.push('/food/${foodItem.id}');
                     },
                     child: Column(
                       children: [

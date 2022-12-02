@@ -1,38 +1,20 @@
-import 'package:elvan/features/cart/screens/cart_screen.dart';
-import 'package:elvan/features/favorite/screens/favorite_screen.dart';
-import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/shared/components/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TabScreen extends StatefulWidget {
-  const TabScreen({super.key});
+class TabScreen extends HookConsumerWidget {
+  const TabScreen({super.key, required this.child});
 
-  @override
-  State<TabScreen> createState() => _TabScreenState();
-}
-
-class _TabScreenState extends State<TabScreen> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  static const List<Widget> _pages = [
-    HomeScreen(),
-    FavoriteScreen(),
-    CartScreen(),
-  ];
+  final Widget child;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        backgroundColor: Color(AppColors.primaryColor),
-        onTap: _onItemTapped,
+        currentIndex: _calculateSelectedIndex(context),
+        onTap: (int idx) => _onItemTapped(idx, context),
+        backgroundColor: const Color(AppColors.primaryColor),
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const [
@@ -46,11 +28,40 @@ class _TabScreenState extends State<TabScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
+            label: 'Profile',
           ),
         ],
       ),
-      body: SafeArea(child: _pages.elementAt(_selectedIndex)),
+      body: child,
     );
+  }
+
+  static int _calculateSelectedIndex(BuildContext context) {
+    final String location = GoRouterState.of(context).location;
+
+    if (location.startsWith('/tab/home')) {
+      return 0;
+    }
+    if (location.startsWith('/tab/favorite')) {
+      return 1;
+    }
+    if (location.startsWith('/tab/profile')) {
+      return 2;
+    }
+    return 0;
+  }
+
+  void _onItemTapped(int index, BuildContext context) {
+    switch (index) {
+      case 0:
+        GoRouter.of(context).go('/tab/home');
+        break;
+      case 1:
+        GoRouter.of(context).go('/tab/favorite');
+        break;
+      case 2:
+        GoRouter.of(context).go('/tab/profile');
+        break;
+    }
   }
 }
