@@ -10,14 +10,17 @@ class AuthScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authNotifierProvider);
-    final authNotifier = ref.watch(authNotifierProvider.notifier);
+    final authNotifier = ref.read(authNotifierProvider.notifier);
+    final isAuthenticated = ref.read(
+      authNotifierProvider.notifier.select((v) => v.isAuthenticated),
+    );
 
     final emailTextController = useTextEditingController();
     final passwordTextController = useTextEditingController();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Auth'),
+        title: Text('Auth $isAuthenticated'),
       ),
       body: authState.when(
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -41,8 +44,10 @@ class AuthScreen extends HookConsumerWidget {
               onPressed: () {
                 authNotifier.onEvent(
                   AuthEvent.loginWithPasswordAndEmail(
-                    email: emailTextController.value.text,
-                    password: passwordTextController.value.text,
+                    email: 'elvan@gmail.com',
+                    password: '123456',
+                    // email: emailTextController.value.text,
+                    // password: passwordTextController.value.text,
                   ),
                 );
               },
@@ -50,17 +55,19 @@ class AuthScreen extends HookConsumerWidget {
             ),
           ],
         ),
-        authenticated: (elvanUser) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Authenticated: ${elvanUser.createdAt}'),
-            ElevatedButton(
-              onPressed: () {
-                authNotifier.onEvent(const AuthEvent.isLogginOut());
-              },
-              child: const Text('Logout'),
-            ),
-          ],
+        authenticated: (elvanUser) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Authenticated: ${elvanUser.email}'),
+              ElevatedButton(
+                onPressed: () {
+                  authNotifier.onEvent(const AuthEvent.logout());
+                },
+                child: const Text('Logout'),
+              ),
+            ],
+          ),
         ),
         error: (message) => Center(child: Text('Error: $message')),
       ),

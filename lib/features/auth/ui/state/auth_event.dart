@@ -9,7 +9,7 @@ class AuthEvent with _$AuthEvent {
     required String password,
   }) = _AuthEvent_IsLogginIn;
 
-  const factory AuthEvent.isLogginOut() = _AuthEvent_LogginOut;
+  const factory AuthEvent.logout() = _AuthEvent_LogginOut;
 
   const factory AuthEvent.registerWithEmailAndPassword({
     required String email,

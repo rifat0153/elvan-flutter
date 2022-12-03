@@ -24,7 +24,7 @@ class MyApp extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(appRouterProvider);
+    final router = ref.watch(goRouterProvider);
     // final router = goRouter;
 
     return MaterialApp.router(
