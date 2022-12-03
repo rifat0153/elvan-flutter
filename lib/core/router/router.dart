@@ -1,5 +1,6 @@
 import 'package:elvan/core/router/go_router_notifier.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
+import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/screens/auth_screen.dart';
 import 'package:elvan/features/cart/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
@@ -30,24 +31,32 @@ final goRouterProvider = Provider(
       refreshListenable: notifier,
       redirect: (context, state) {
         final authState = ref.read(authStateProvider);
-        final isAuthenticated = authState.valueOrNull != null;
+        final loggedIn = authState.valueOrNull != null;
 
-        debugPrint('New Route: ${state.location}');
+        // final authNotifier = ref.read(authNotifierProvider);
+        // final loggedIn = authNotifier.maybeWhen(authenticated: (elvanUser) => true, orElse: () => false);
 
-        final areWeLoggingIn = state.location == '/auth';
+        // if the user is not logged in, they need to login
+        final loggingIn = state.subloc == '/auth';
 
-        if (!isAuthenticated) {
-          return areWeLoggingIn ? null : '/auth';
-        }
+        // bundle the location the user is coming from into a query parameter
+        final fromp = state.subloc == '/' ? '' : '?from=${state.subloc}';
+        if (!loggedIn) return loggingIn ? null : '/auth$fromp';
 
-        if (areWeLoggingIn) {
-          return '/tab';
-        }
-        // if (areWeLoggingIn) return state.location;
+        // if the user is logged in, send them where they were going before (or
+        // home if they weren't going anywhere)
+        if (loggingIn) return state.queryParams['from'] ?? '/';
 
+        // no need to redirect at all
         return null;
       },
       routes: <RouteBase>[
+        // initial route
+        GoRoute(
+          path: '/',
+          redirect: (context, state) => '/tab',
+        ),
+
         // Tab Shell
         GoRoute(
           path: '/tab',
@@ -140,15 +149,3 @@ final goRouterProvider = Provider(
     );
   }),
 );
-
-CustomTransitionPage buildPageWithDefaultTransition<T>({
-  required BuildContext context,
-  required GoRouterState state,
-  required Widget child,
-}) {
-  return CustomTransitionPage<T>(
-    key: state.pageKey,
-    child: child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) => child,
-  );
-}

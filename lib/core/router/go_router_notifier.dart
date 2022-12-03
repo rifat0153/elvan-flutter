@@ -1,5 +1,4 @@
 import 'package:elvan/features/auth/providers/auth_providers.dart';
-import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
