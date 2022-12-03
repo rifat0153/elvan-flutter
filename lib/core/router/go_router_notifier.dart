@@ -1,3 +1,4 @@
+import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,8 +10,9 @@ final goRouterNotifierProvider = ChangeNotifierProvider<GoRouterNotifier>((ref) 
 class GoRouterNotifier extends ChangeNotifier {
   final Ref _ref;
   GoRouterNotifier(this._ref) {
-    _ref.listen(authNotifierProvider, (previous, next) {
+    _ref.listen(authStateProvider, (previous, next) {
       debugPrint('authNotifierProvider changed');
+
       notifyListeners();
     });
   }

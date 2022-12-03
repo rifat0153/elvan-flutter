@@ -105,11 +105,11 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       data: (elvanUser) {
         state = AuthScreenState.authenticated(elvanUser);
 
-        ref.read(goRouterNotifierProvider).isLoggedIn = true;
+        // ref.read(goRouterNotifierProvider).isLoggedIn = true;
       },
       error: (message) {
         state = AuthScreenState.error(message.toString());
-        ref.read(goRouterNotifierProvider).isLoggedIn = false;
+        // ref.read(goRouterNotifierProvider).isLoggedIn = false;
       },
     );
 

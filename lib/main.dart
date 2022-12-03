@@ -1,3 +1,4 @@
+import 'package:elvan/core/logger/state_logger.dart';
 import 'package:elvan/core/router/router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,10 @@ void main() async {
   );
 
   runApp(
-    const ProviderScope(child: MyApp()),
+    const ProviderScope(
+      observers: [StateLogger()],
+      child: MyApp(),
+    ),
   );
 }
 
@@ -25,7 +29,6 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
-    // final router = goRouter;
 
     return MaterialApp.router(
       title: 'Flutter Demo',

@@ -21,8 +21,7 @@ final goRouterProvider = Provider(
     ref,
   ) {
     final notifier = ref.read(goRouterNotifierProvider);
-    final isLoggedIn = notifier.isLoggedIn;
-    debugPrint('isAuthenticated in router provider: $isLoggedIn');
+    final authState = ref.watch(authStateProvider);
 
     return GoRouter(
       navigatorKey: _rootNavigatorKey,
@@ -31,6 +30,8 @@ final goRouterProvider = Provider(
       // initialLocation: '/tab',
       refreshListenable: notifier,
       redirect: (context, state) {
+        final isLoggedIn = authState.valueOrNull != null;
+
         // go to auth route if user is not authenticated
         if (state.location == '/auth' && isLoggedIn) {
           return '/tab';
@@ -48,7 +49,9 @@ final goRouterProvider = Provider(
         GoRoute(
           path: '/tab',
           pageBuilder: (context, state) => const MaterialPage<void>(child: Text('Tab')),
-          redirect: (context, state) {
+          redirect: (context, state) async {
+            await Future.delayed(const Duration(seconds: 1));
+
             if (state.location == '/tab') {
               return '/tab/home';
             }

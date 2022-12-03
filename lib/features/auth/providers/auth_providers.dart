@@ -5,6 +5,7 @@ import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_providers.g.dart';
@@ -29,6 +30,10 @@ AuthUseCases authUseCase(AuthUseCaseRef ref) {
     authRepository: ref.read(authRepositoryProvider),
   );
 }
+
+final authStateProvider = StreamProvider<User?>((ref) {
+  return ref.watch(firebaseAuthProvider).authStateChanges();
+});
 
 @riverpod
 User? currentUser(CurrentUserRef ref) {
