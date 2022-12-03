@@ -17,15 +17,3 @@ class GoRouterNotifier extends ChangeNotifier {
     });
   }
 }
-
-// class GoRouterNotifier extends ChangeNotifier {
-//   bool _isLoggedIn = false;
-//   bool get isLoggedIn => _isLoggedIn;
-
-//   set isLoggedIn(bool value) {
-//     _isLoggedIn = value;
-
-//     debugPrint('isLoggedIn in go notifier: $value');
-//     notifyListeners();
-//   }
-// }
