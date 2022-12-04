@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
+import 'package:elvan/features/food/data/dto/food_item_dto.dart';
 import 'package:elvan/features/food/models/build_step/build_step.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,6 +14,8 @@ String foodItemToJson(FoodItem data) => json.encode(data.toJson());
 
 @Freezed()
 class FoodItem with _$FoodItem {
+  const FoodItem._();
+
   @JsonSerializable(explicitToJson: true)
   const factory FoodItem({
     String? id,
@@ -39,6 +42,44 @@ class FoodItem with _$FoodItem {
     )
         Timestamp? createdAt,
   }) = _FoodItem;
+
+  factory FoodItem.fromDto(FoodItemDto foodItemDto) {
+    return FoodItem(
+      id: foodItemDto.id,
+      title: foodItemDto.title,
+      price: foodItemDto.price,
+      discount: foodItemDto.discount,
+      category: foodItemDto.category,
+      description: foodItemDto.description,
+      imageUrl: foodItemDto.imageUrl,
+      quantity: foodItemDto.quantity,
+      tags: foodItemDto.tags,
+      ingredients: foodItemDto.ingredients,
+      buildStepsOverrides: foodItemDto.buildStepsOverrides,
+      allergens: foodItemDto.allergens,
+      timeToPrepareInMinutes: foodItemDto.timeToPrepareInMinutes,
+      createdAt: foodItemDto.createdAt,
+    );
+  }
+
+  FoodItemDto toDto() {
+    return FoodItemDto(
+      id: id,
+      title: title,
+      price: price,
+      discount: discount,
+      category: category,
+      description: description,
+      imageUrl: imageUrl,
+      quantity: quantity,
+      tags: tags,
+      ingredients: ingredients,
+      buildStepsOverrides: buildStepsOverrides,
+      allergens: allergens,
+      timeToPrepareInMinutes: timeToPrepareInMinutes,
+      createdAt: createdAt,
+    );
+  }
 
   factory FoodItem.fromJson(Map<String, dynamic> json) => _$FoodItemFromJson(json);
 }

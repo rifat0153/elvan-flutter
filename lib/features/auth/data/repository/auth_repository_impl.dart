@@ -4,9 +4,18 @@ import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/auth/constants/constants.dart';
 import 'package:elvan/features/auth/data/dto/elvan_user_dto.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository.dart';
+import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/foundation.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+final authRepositoryProvider = Provider<AuthRepository>((ref) {
+  return AuthRepositoryImpl(
+    firebaseAuth: ref.watch(firebaseAuthProvider),
+    firebaseFirestore: ref.watch(firebaseFirestoreProvider),
+  );
+});
 
 class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl({
@@ -32,14 +41,14 @@ class AuthRepositoryImpl implements AuthRepository {
           .get();
 
       if (user.exists) {
-        return Result.data(user.data()!);
+        return Result.success(user.data()!);
       } else {
-        return const Result.error(
+        return const Result.failure(
           Failure(message: 'User not found'),
         );
       }
     } on Exception catch (e) {
-      return Result.error(
+      return Result.failure(
         Failure(
           error: e,
           message: 'Error while getting user',

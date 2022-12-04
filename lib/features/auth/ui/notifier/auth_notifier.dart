@@ -77,10 +77,10 @@ class AuthNotifier extends Notifier<AuthScreenState> {
     final result = await authUseCase.getUserUseCase(userId: userID);
 
     result.when(
-      data: (elvanUser) {
+      success: (elvanUser) {
         state = AuthScreenState.authenticated(elvanUser);
       },
-      error: (failure) {
+      failure: (failure) {
         state = const AuthScreenState.unAuthenticated();
       },
     );
@@ -102,12 +102,12 @@ class AuthNotifier extends Notifier<AuthScreenState> {
     );
 
     result.when(
-      data: (elvanUser) {
+      success: (elvanUser) {
         state = AuthScreenState.authenticated(elvanUser);
 
         // ref.read(goRouterNotifierProvider).isLoggedIn = true;
       },
-      error: (message) {
+      failure: (message) {
         state = AuthScreenState.error(message.toString());
         // ref.read(goRouterNotifierProvider).isLoggedIn = false;
       },

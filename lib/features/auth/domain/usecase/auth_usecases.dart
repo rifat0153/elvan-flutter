@@ -1,8 +1,19 @@
 import 'package:elvan/core/failure/failure.dart';
 import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository.dart';
+import 'package:elvan/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:elvan/features/auth/domain/models/elvan_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'auth_usecases.g.dart';
+
+@riverpod
+AuthUseCases authUseCase(AuthUseCaseRef ref) {
+  return AuthUseCases(
+    authRepository: ref.read(authRepositoryProvider),
+  );
+}
 
 class AuthUseCases {
   final AuthRepository authRepository;
@@ -15,13 +26,13 @@ class AuthUseCases {
     final user = await authRepository.getElvanUser(userId: userId);
 
     return user.when(
-      data: (elvanUserDto) {
-        return Result.data(
+      success: (elvanUserDto) {
+        return Result.success(
           ElvanUser.fromDto(elvanUserDto),
         );
       },
-      error: (failure) {
-        return Result.error(failure);
+      failure: (failure) {
+        return Result.failure(failure);
       },
     );
   }
@@ -31,7 +42,7 @@ class AuthUseCases {
     required String password,
   }) async {
     if (email.isEmpty || password.isEmpty) {
-      return const Result.error(Failure(message: 'Email or password is empty'));
+      return const Result.failure(Failure(message: 'Email or password is empty'));
     }
 
     final user = await authRepository.singInWithEmailAndPassword(
@@ -40,7 +51,7 @@ class AuthUseCases {
     );
 
     if (user == null) {
-      return const Result.error(
+      return const Result.failure(
         Failure(message: 'User is null'),
       );
     }
@@ -48,11 +59,11 @@ class AuthUseCases {
     final elvanUser = await getUserUseCase(userId: user.uid);
 
     return elvanUser.when(
-      data: (elvanUser) {
-        return Result.data(elvanUser);
+      success: (elvanUser) {
+        return Result.success(elvanUser);
       },
-      error: (failure) {
-        return Result.error(failure);
+      failure: (failure) {
+        return Result.failure(failure);
       },
     );
   }
