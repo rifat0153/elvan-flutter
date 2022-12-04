@@ -12,21 +12,22 @@ class BuildStep with _$BuildStep {
   const factory BuildStep({
     required String title,
     @Default(false) bool isRequired,
-    @Default(false) bool incluedInPrice,
+    @Default(0) int noOfItemIncludedInPrice,
     int? maxQuantity,
     int? minQuantity,
     @Default([]) List<AddOn> addOns,
     @Default([]) List<AddOn> selectedAddOns,
   }) = _FoodItemBuildSteps;
 
-  bool isValueValid() {
-    if (maxQuantity != null && selectedAddOns.length > maxQuantity!) {
-      return false;
+  double get price {
+    double price = 0;
+    for (int i = 0; i < selectedAddOns.length; i++) {
+      price += selectedAddOns[i].price;
     }
-    if (minQuantity != null && selectedAddOns.length < minQuantity!) {
-      return false;
-    }
-    return true;
+    // if (incluedInPrice) {
+    //   price += addOns.fold(0, (previousValue, element) => previousValue + element.price);
+    // }
+    return price;
   }
 
   factory BuildStep.fromJson(Map<String, dynamic> json) => _$BuildStepFromJson(json);
