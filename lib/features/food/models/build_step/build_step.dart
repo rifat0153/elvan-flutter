@@ -1,8 +1,8 @@
-import 'package:elvan/features/food/models/food_item_add_on/food_item_add_on.dart';
+import 'package:elvan/features/food/models/add_on/add_on.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'food_item_build_step.freezed.dart';
-part 'food_item_build_step.g.dart';
+part 'build_step.freezed.dart';
+part 'build_step.g.dart';
 
 @freezed
 class BuildStep with _$BuildStep {
@@ -15,9 +15,8 @@ class BuildStep with _$BuildStep {
     @Default(false) bool incluedInPrice,
     int? maxQuantity,
     int? minQuantity,
-    @Default([]) List<FoodItemAddOn> addOns,
-    @Default([]) List<String> selectedAddOns,
-    @Default([]) List<String> addOnsOptions,
+    @Default([]) List<AddOn> addOns,
+    @Default([]) List<AddOn> selectedAddOns,
   }) = _FoodItemBuildSteps;
 
   bool isValueValid() {
