@@ -3,6 +3,14 @@ import 'package:elvan/core/failure/failure.dart';
 import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/category/data/dto/category_dto.dart';
 import 'package:elvan/features/category/data/repository/category_repository.dart';
+import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+final categoryRepositoryProvider = Provider<CategoryRepository>((ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+
+  return CategoryRepositoryImpl(firebaseFirestore: firestore);
+});
 
 class CategoryRepositoryImpl implements CategoryRepository {
   final FirebaseFirestore firebaseFirestore;
@@ -11,7 +19,6 @@ class CategoryRepositoryImpl implements CategoryRepository {
 
   @override
   Future<Result<List<CategoryDto>>> getCategories() async {
-    
     try {
       final snapshot = await firebaseFirestore.collection('categories').get();
       final categories = snapshot.docs.map((doc) => CategoryDto.fromJson(doc.data())).toList();
@@ -19,6 +26,5 @@ class CategoryRepositoryImpl implements CategoryRepository {
     } catch (e) {
       return Result.failure(Failure(error: e));
     }
-
   }
 }

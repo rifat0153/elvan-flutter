@@ -1,9 +1,6 @@
 import 'dart:async';
 
-import 'package:elvan/core/router/go_router_notifier.dart';
-import 'package:elvan/core/router/router.dart';
 import 'package:elvan/features/auth/domain/usecase/auth_usecases.dart';
-import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/features/auth/ui/state/auth_screen_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,17 +36,12 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       authStateChangesSubscription.cancel();
     });
 
+    // return the initial state of the notifier
     return const AuthScreenState.unAuthenticated();
   }
 
   void handleUserStream(User? user) {
     debugPrint('Auth Stream: $user');
-
-    // if (user == null) {
-    //   state = const AuthScreenState.unAuthenticated();
-    // } else {
-    //   getElvanUserData(user.uid);
-    // }
   }
 
   void onEvent(AuthEvent event) {
@@ -86,13 +78,6 @@ class AuthNotifier extends Notifier<AuthScreenState> {
     );
   }
 
-  Future login(String email, String password) async {
-    final result = await authUseCase.signInWithEmailAndPasswordUseCase(
-      email: email,
-      password: password,
-    );
-  }
-
   Future loginAndGetUserData(String email, String password) async {
     state = const AuthScreenState.loading();
 
@@ -104,12 +89,9 @@ class AuthNotifier extends Notifier<AuthScreenState> {
     result.when(
       success: (elvanUser) {
         state = AuthScreenState.authenticated(elvanUser);
-
-        // ref.read(goRouterNotifierProvider).isLoggedIn = true;
       },
       failure: (message) {
         state = AuthScreenState.error(message.toString());
-        // ref.read(goRouterNotifierProvider).isLoggedIn = false;
       },
     );
 
