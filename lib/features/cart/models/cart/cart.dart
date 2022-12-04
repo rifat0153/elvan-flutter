@@ -1,6 +1,5 @@
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/cart/models/cart_item/cart_item.dart';
-import 'package:elvan/features/food/models/food_item/food_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

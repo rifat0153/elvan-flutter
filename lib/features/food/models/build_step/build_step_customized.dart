@@ -16,6 +16,24 @@ class BuildStepCustomized with _$BuildStepCustomized {
     @Default([]) List<SelectedAddOn> selectedAddOns,
   }) = _FoodItemBuildStepCustomizeds;
 
+  bool get isAddOnsSelected => selectedAddOns.isNotEmpty;
+  bool get areAddOnsSelectionValid => selectedAddOns.length >= buildStep.minSelectedAddOns;
+
+  bool addOnsConditionMet() {
+    return minAddOnsSelected() && !maxAddOnsSelected();
+  }
+
+  bool minAddOnsSelected() {
+    return selectedAddOns.length >= buildStep.minSelectedAddOns;
+  }
+
+  bool maxAddOnsSelected() {
+    if (buildStep.maxSelectedAddOns == null) {
+      return false;
+    }
+    return selectedAddOns.length >= buildStep.maxSelectedAddOns!;
+  }
+
   double get price {
     double price = 0;
 

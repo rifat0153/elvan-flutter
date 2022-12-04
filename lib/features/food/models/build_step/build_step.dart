@@ -13,22 +13,10 @@ class BuildStep with _$BuildStep {
     required String title,
     @Default(false) bool isRequired,
     @Default(0) int noOfItemIncludedInPrice,
-    int? maxQuantity,
-    int? minQuantity,
+    @Default(0) int minSelectedAddOns,
+    int? maxSelectedAddOns,
     @Default([]) List<AddOn> addOns,
-    @Default([]) List<AddOn> selectedAddOns,
   }) = _FoodItemBuildSteps;
-
-  double get price {
-    double price = 0;
-    for (int i = 0; i < selectedAddOns.length; i++) {
-      price += selectedAddOns[i].price;
-    }
-    // if (incluedInPrice) {
-    //   price += addOns.fold(0, (previousValue, element) => previousValue + element.price);
-    // }
-    return price;
-  }
 
   factory BuildStep.fromJson(Map<String, dynamic> json) => _$BuildStepFromJson(json);
 }
