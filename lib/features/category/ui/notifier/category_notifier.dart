@@ -3,6 +3,10 @@ import 'package:elvan/features/category/domain/category_usecase.dart';
 import 'package:elvan/features/food/models/category/category.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+final categoryNotifierProvider = NotifierProvider<CategoryNotifier, UiState<List<Category>>>(() {
+  return CategoryNotifier();
+});
+
 class CategoryNotifier extends Notifier<UiState<List<Category>>> {
   late final CategoryUseCase categoryUseCase;
 
@@ -11,6 +15,8 @@ class CategoryNotifier extends Notifier<UiState<List<Category>>> {
   @override
   build() {
     categoryUseCase = ref.read(categoryUseCaseProvider);
+
+    getCategory();
 
     return const UiState<List<Category>>.loading();
   }
