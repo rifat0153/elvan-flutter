@@ -1,4 +1,4 @@
-import 'package:elvan/features/food/models/food_item/food_item.dart';
+import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'selected_food_item_provider.g.dart';

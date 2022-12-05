@@ -1,5 +1,5 @@
-import 'package:elvan/features/food/providers/food_detail/selected_food_item_provider.dart';
-import 'package:elvan/features/food/providers/food_list/food_list_provider.dart';
+import 'package:elvan/features/food/ui/food_detail/selected_food_item_provider.dart';
+import 'package:elvan/features/food/ui/food_list/food_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

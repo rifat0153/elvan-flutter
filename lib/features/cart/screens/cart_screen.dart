@@ -1,4 +1,4 @@
-import 'package:elvan/features/food/providers/category/category_provider.dart';
+import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -7,7 +7,7 @@ class CartScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categories = ref.watch(categoryListNotifierProvider);
+    final categories = ref.watch(categoryNotifierProvider);
 
     return Scaffold(
       body: Column(
@@ -22,9 +22,9 @@ class CartScreen extends ConsumerWidget {
                   .toList(),
             ),
             loading: () => const Text('Loading'),
-            error: (error, stack) => ElevatedButton(
+            error: (error) => ElevatedButton(
               onPressed: () {
-                ref.refresh(categoryListNotifierProvider);
+                ref.invalidate(categoryNotifierProvider);
               },
               child: Text('Error occured $error'),
             ),

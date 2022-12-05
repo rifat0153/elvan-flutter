@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
+import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
 import 'package:elvan/features/food/data/dto/food_item_dto.dart';
-import 'package:elvan/features/food/models/build_step/build_step.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'food_item.freezed.dart';
@@ -55,7 +55,7 @@ class FoodItem with _$FoodItem {
       quantity: foodItemDto.quantity,
       tags: foodItemDto.tags,
       ingredients: foodItemDto.ingredients,
-      buildStepsOverrides: foodItemDto.buildStepsOverrides,
+      buildStepsOverrides: foodItemDto.buildStepsOverrides.map((e) => BuildStep.fromDto(e)).toList(),
       allergens: foodItemDto.allergens,
       timeToPrepareInMinutes: foodItemDto.timeToPrepareInMinutes,
       createdAt: foodItemDto.createdAt,
@@ -74,7 +74,7 @@ class FoodItem with _$FoodItem {
       quantity: quantity,
       tags: tags,
       ingredients: ingredients,
-      buildStepsOverrides: buildStepsOverrides,
+      buildStepsOverrides: buildStepsOverrides.map((e) => e.toDto()).toList(),
       allergens: allergens,
       timeToPrepareInMinutes: timeToPrepareInMinutes,
       createdAt: createdAt,

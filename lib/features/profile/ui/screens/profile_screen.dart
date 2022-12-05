@@ -1,7 +1,7 @@
 import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
+import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
-import 'package:elvan/features/food/models/category/category.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,7 +19,7 @@ class ProfileScreen extends HookConsumerWidget {
         child: Column(
           children: [
             Text('Category List: ${categoryList.data?.length}'),
-            for (final category in categoryList.data ?? [] as List<Category>)
+            for (final category in categoryList.data ?? <Category>[])
               for (final bs in category.buildSteps)
                 Text(
                   bs.title,

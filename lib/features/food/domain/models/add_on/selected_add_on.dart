@@ -1,4 +1,4 @@
-import 'package:elvan/features/food/models/add_on/add_on.dart';
+import 'package:elvan/features/food/domain/models/add_on/add_on.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'selected_add_on.freezed.dart';
@@ -10,7 +10,6 @@ class SelectedAddOn with _$SelectedAddOn {
 
   const factory SelectedAddOn({
     required AddOn addOn,
-    String? imageUrl,
     required DateTime createdAt,
     @Default(1) int quantity,
   }) = _SelectedAddOn;

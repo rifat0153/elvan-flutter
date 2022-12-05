@@ -1,6 +1,6 @@
 import 'package:elvan/core/ui_state/ui_state.dart';
 import 'package:elvan/features/category/domain/category_usecase.dart';
-import 'package:elvan/features/food/models/category/category.dart';
+import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 final categoryNotifierProvider = NotifierProvider<CategoryNotifier, UiState<List<Category>>>(() {

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
 import 'package:elvan/features/category/data/dto/category_dto.dart';
-import 'package:elvan/features/food/models/build_step/build_step.dart';
+import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'category.g.dart';
@@ -10,7 +10,7 @@ part 'category.freezed.dart';
 @Freezed()
 class Category with _$Category {
   const Category._();
-  
+
   @JsonSerializable(explicitToJson: true)
   const factory Category({
     String? id,

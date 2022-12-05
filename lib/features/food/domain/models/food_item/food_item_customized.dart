@@ -1,5 +1,5 @@
-import 'package:elvan/features/food/models/build_step/build_step_customized.dart';
-import 'package:elvan/features/food/models/food_item/food_item.dart';
+import 'package:elvan/features/category/domain/models/build_step/build_step_customized.dart';
+import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'food_item_customized.freezed.dart';
