@@ -45,12 +45,15 @@ dependencies:
   cloud_firestore: ^4.1.0
   firebase_storage: ^11.0.6
 
-  freezed_annotation: ^2.2.0
-  flutter_hooks: ^0.18.5+1
-  riverpod_annotation: ^1.0.6
+  # DI, State Mgmt, Hooks
   hooks_riverpod: ^2.1.1
+  riverpod_annotation: ^1.0.6
+  flutter_hooks: ^0.18.5+1
+
   go_router: ^5.2.0
   url_strategy: ^0.2.0
+
+  freezed_annotation: ^2.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,7 @@
 import 'package:elvan/features/food/ui/food_detail/selected_food_item_provider.dart';
 import 'package:elvan/features/food/ui/food_list/food_list_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +18,12 @@ class HomeScreen extends HookConsumerWidget {
           const Text('Home Screen'),
           ElevatedButton(
             onPressed: () {},
-            child: const Text('Navigate to Food Navigator: Detail'),
+            child: Text(
+              'Navigate to Food Navigator: Detail',
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    fontSize: 18.sp,
+                  ),
+            ),
           ),
           foodList.when(
             data: (foodList) => SingleChildScrollView(
