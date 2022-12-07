@@ -15,8 +15,8 @@ class TabScreen extends HookConsumerWidget {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
         height: 80,
-        // backgroundColor: const Color(AppColors.primaryColor),
-        // surfaceTintColor: Colors.black,
+        backgroundColor: const Color(AppColors.primaryColor),
+        surfaceTintColor: Colors.black,
         selectedIndex: _calculateSelectedIndex(context),
         onDestinationSelected: (int idx) => _onItemTapped(idx, context),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,

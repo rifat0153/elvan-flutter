@@ -37,11 +37,18 @@ class CategoryItemsCard extends StatelessWidget {
           const SizedBox(
             height: 15.5,
           ),
-          Text(categoryName,
-              style: Theme.of(context)
-                  .textTheme
-                  .labelSmall!
-                  .merge(UiConstants.poppinsLabelSmall11_16_05))
+          Text(
+            categoryName,
+            // style: Theme.of(context)
+            //     .textTheme
+            //     .labelSmall!
+            //     .merge(UiConstants.poppinsLabelSmall11_16_05),
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 11,
+                letterSpacing: 0.5,
+                color: Colors.white),
+          )
         ],
       ),
     );

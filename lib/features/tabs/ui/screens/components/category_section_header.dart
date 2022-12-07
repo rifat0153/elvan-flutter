@@ -13,17 +13,18 @@ class CategorySectionHeader extends StatelessWidget {
       children: const [
         Text(
           'Categories',
+          //   style: Theme.of(context).textTheme.headlineMedium,
           style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.w400,
-              color: Color(AppColors.primaryTextWhite)),
+              fontSize: 28, fontWeight: FontWeight.w400, color: Colors.white),
         ),
         Text(
-          'view all',
+          'View all',
+          // style: Theme.of(context).textTheme.labelMedium),
           style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: Color(AppColors.textGreyA7)),
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 0.5,
+          ),
         ),
       ],
     );

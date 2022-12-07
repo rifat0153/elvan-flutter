@@ -21,9 +21,10 @@ class RecentlyOrderedSectionHeader extends StatelessWidget {
         Text(
           'view all',
           style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: Color(AppColors.textGreyA7)),
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: Color(AppColors.textGreyA7),
+          ),
         ),
       ],
     );

@@ -11,4 +11,9 @@ class AppColors {
   static const primaryTextColor = 0xFF212121;
   static const secondaryTextColor = 0xFF757575;
   static const dividerColor = 0xFFBDBDBD;
+
+  static const primaryTextWhite = 0XFFffffff;
+  static const textGreyA7 = 0XFFA7A7A7;
+
+  static const cardColorGrey70 = 0XFF686868;
 }
