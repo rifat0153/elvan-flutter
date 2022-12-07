@@ -1,5 +1,6 @@
 import 'package:elvan/core/logger/state_logger.dart';
 import 'package:elvan/core/router/router.dart';
+import 'package:elvan/shared/components/layout/app_layout.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,18 +35,20 @@ class MyApp extends HookConsumerWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 780),
       splitScreenMode: true,
-      builder: (context, child) => MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.pink,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
-          useMaterial3: true,
-        ),
-        // routerDelegate: router.routerDelegate,
-        // routeInformationParser: router.routeInformationParser,
-        routerConfig: router,
-      ),
+      builder: (context, child) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.pink,
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+            useMaterial3: true,
+          ),
+          // routerDelegate: router.routerDelegate,
+          // routeInformationParser: router.routeInformationParser,
+          routerConfig: router,
+        );
+      },
     );
   }
 }

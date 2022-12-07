@@ -9,6 +9,7 @@ import 'package:elvan/features/food/ui/food_detail/screens/food_detail_screen.da
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
+import 'package:elvan/shared/components/layout/app_layout.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -72,7 +73,7 @@ final goRouterProvider = Provider(
             ShellRoute(
               navigatorKey: _tabShellNavigatorKey,
               builder: (BuildContext context, GoRouterState state, Widget child) {
-                return TabScreen(child: child);
+                return AppLayout(child: child);
               },
               routes: <RouteBase>[
                 /// The first screen to display in the bottom navigation bar.

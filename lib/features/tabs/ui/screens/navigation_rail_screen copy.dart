@@ -1,34 +1,44 @@
-import 'package:elvan/shared/components/constants/app_colors.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TabScreen extends HookConsumerWidget {
-  const TabScreen({super.key, required this.child});
+class NavigationRailScreen extends HookConsumerWidget {
+  const NavigationRailScreen({
+    super.key,
+    required this.onItemTapped,
+    required this.calculateSelectedIndex,
+    required this.child,
+  });
 
   final Widget child;
+  final Function(int) onItemTapped;
+  final Function(BuildContext) calculateSelectedIndex;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _calculateSelectedIndex(context),
-        onTap: (int idx) => _onItemTapped(idx, context),
-        backgroundColor: const Color(AppColors.primaryColor),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+      bottomNavigationBar: NavigationBar(
+        height: 80,
+        selectedIndex: _calculateSelectedIndex(context),
+        onDestinationSelected: (int idx) => _onItemTapped(idx, context),
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+        destinations: const [
+          NavigationDestination(
             label: 'Home',
+            icon: Icon(Icons.home),
+            selectedIcon: Icon(Icons.home),
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
+            label: 'Favorites',
             icon: Icon(Icons.favorite),
-            label: 'Favorite',
+            selectedIcon: Icon(Icons.favorite),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Profile',
+          NavigationDestination(
+            label: 'Settings',
+            icon: Icon(Icons.person),
+            selectedIcon: Icon(Icons.person),
           ),
         ],
       ),
@@ -38,6 +48,8 @@ class TabScreen extends HookConsumerWidget {
 
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).location;
+
+    log('sub location: $location');
 
     if (location.startsWith('/tab/home')) {
       return 0;
