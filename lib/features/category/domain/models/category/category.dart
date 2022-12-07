@@ -34,7 +34,7 @@ class Category with _$Category {
       title: categoryDto.title,
       description: categoryDto.description,
       imageUrl: categoryDto.imageUrl,
-      buildSteps: categoryDto.buildSteps,
+      buildSteps: categoryDto.buildSteps.map((e) => BuildStep.fromDto(e)).toList(),
       createdAt: categoryDto.createdAt,
     );
   }
@@ -44,7 +44,7 @@ class Category with _$Category {
         title: title,
         description: description,
         imageUrl: imageUrl,
-        buildSteps: buildSteps,
+        buildSteps: buildSteps.map((e) => e.toDto()).toList(),
         createdAt: createdAt,
       );
 }

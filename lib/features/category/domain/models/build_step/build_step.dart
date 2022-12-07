@@ -1,5 +1,5 @@
 import 'package:elvan/features/category/data/dto/build_step_dto.dart';
-import 'package:elvan/features/food/domain/models/add_on/add_on.dart';
+import 'package:elvan/features/category/domain/models/add_on/add_on.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'build_step.freezed.dart';
@@ -28,7 +28,7 @@ class BuildStep with _$BuildStep {
       noOfItemIncludedInPrice: foodItemBuildStepDto.noOfItemIncludedInPrice,
       minSelectedAddOns: foodItemBuildStepDto.minSelectedAddOns,
       maxSelectedAddOns: foodItemBuildStepDto.maxSelectedAddOns,
-      addOns: foodItemBuildStepDto.addOns,
+      addOns: foodItemBuildStepDto.addOns.map((e) => AddOn.fromDto(e)).toList(),
     );
   }
 
@@ -39,7 +39,7 @@ class BuildStep with _$BuildStep {
       noOfItemIncludedInPrice: noOfItemIncludedInPrice,
       minSelectedAddOns: minSelectedAddOns,
       maxSelectedAddOns: maxSelectedAddOns,
-      addOns: addOns,
+      addOns: addOns.map((e) => e.toDto()).toList(),
     );
   }
 }

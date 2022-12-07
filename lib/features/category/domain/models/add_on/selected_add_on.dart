@@ -1,4 +1,4 @@
-import 'package:elvan/features/food/domain/models/add_on/add_on.dart';
+import 'package:elvan/features/category/domain/models/add_on/add_on.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'selected_add_on.freezed.dart';

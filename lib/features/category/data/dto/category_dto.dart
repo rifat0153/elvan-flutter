@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
-import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
+import 'package:elvan/features/category/data/dto/build_step_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'category_dto.g.dart';
@@ -15,7 +15,7 @@ abstract class CategoryDto with _$CategoryDto {
     String? description,
     String? imageUrl,
     @Default([])
-        List<BuildStep> buildSteps,
+        List<BuildStepDto> buildSteps,
     @JsonKey(
       fromJson: TimestampConverter.timestampFromJson,
       toJson: TimestampConverter.timestampToJson,
