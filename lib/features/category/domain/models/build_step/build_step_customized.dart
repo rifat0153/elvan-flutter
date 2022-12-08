@@ -1,4 +1,4 @@
-import 'package:elvan/features/category/domain/models/add_on/selected_add_on.dart';
+import 'package:elvan/features/category/domain/models/add_on/add_on_customized.dart';
 import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,32 +12,32 @@ class BuildStepCustomized with _$BuildStepCustomized {
   @JsonSerializable(explicitToJson: true)
   const factory BuildStepCustomized({
     required BuildStep buildStep,
-    @Default([]) List<SelectedAddOn> selectedAddOns,
+    @Default([]) List<AddOnCustomized> addOnsCustomized,
   }) = _FoodItemBuildStepCustomizeds;
 
-  bool get isAddOnsSelected => selectedAddOns.isNotEmpty;
-  bool get areAddOnsSelectionValid => selectedAddOns.length >= buildStep.minSelectedAddOns;
+  bool get isAddOnsSelected => addOnsCustomized.isNotEmpty;
+  bool get areAddOnsSelectionValid => addOnsCustomized.length >= buildStep.minSelectedAddOns;
 
   bool addOnsConditionMet() {
     return minAddOnsSelected() && !maxAddOnsSelected();
   }
 
   bool minAddOnsSelected() {
-    return selectedAddOns.length >= buildStep.minSelectedAddOns;
+    return addOnsCustomized.length >= buildStep.minSelectedAddOns;
   }
 
   bool maxAddOnsSelected() {
     if (buildStep.maxSelectedAddOns == null) {
       return false;
     }
-    return selectedAddOns.length >= buildStep.maxSelectedAddOns!;
+    return addOnsCustomized.length >= buildStep.maxSelectedAddOns!;
   }
 
   double get price {
     double price = 0;
 
     // sort selectedAddOns by createdAt
-    final sortedAddOns = selectedAddOns;
+    final sortedAddOns = addOnsCustomized;
     sortedAddOns.sort((a, b) => a.createdAt.compareTo(b.createdAt));
 
     for (int i = 0; i < sortedAddOns.length; i++) {
@@ -48,6 +48,13 @@ class BuildStepCustomized with _$BuildStepCustomized {
       }
     }
     return price;
+  }
+
+  factory BuildStepCustomized.fromBuildStep(BuildStep buildStep) {
+    return BuildStepCustomized(
+      buildStep: buildStep,
+      addOnsCustomized: [],
+    );
   }
 
   factory BuildStepCustomized.fromJson(Map<String, dynamic> json) => _$BuildStepCustomizedFromJson(json);

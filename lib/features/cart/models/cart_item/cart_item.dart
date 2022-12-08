@@ -11,7 +11,7 @@ class CartItem with _$CartItem {
   @JsonSerializable(explicitToJson: true)
   const factory CartItem({
     required String id,
-    required FoodItemCustomized foodItem,
+    required FoodItemCustomized foodItemCustomized,
     required double price,
     required int quantity,
     double? discount,

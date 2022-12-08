@@ -1,3 +1,4 @@
+import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
 import 'package:elvan/features/category/domain/models/build_step/build_step_customized.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,19 +10,27 @@ part 'food_item_customized.g.dart';
 class FoodItemCustomized with _$FoodItemCustomized {
   const FoodItemCustomized._();
 
+  factory FoodItemCustomized.fromFoodAndBuildInfo(FoodItem foodItem, [List<BuildStep> buildSteps = const <BuildStep>[]]) {
+    return FoodItemCustomized._internal(
+      id: DateTime.now().toString(),
+      foodItem: foodItem,
+      buildStepsCustomized: buildSteps.map((e) => BuildStepCustomized.fromBuildStep(e)).toList(),
+    );
+  }
+
   @JsonSerializable(explicitToJson: true)
-  const factory FoodItemCustomized({
+  const factory FoodItemCustomized._internal({
     required String id,
     required FoodItem foodItem,
-    @Default([]) List<BuildStepCustomized> buildSteps,
+    required List<BuildStepCustomized> buildStepsCustomized,
   }) = _FoodItemCustomized;
 
   // get total price
   double get totalPrice {
     double price = foodItem.price;
 
-    for (int i = 0; i < buildSteps.length; i++) {
-      price += buildSteps[i].price;
+    for (int i = 0; i < buildStepsCustomized.length; i++) {
+      price += buildStepsCustomized[i].price;
     }
     return price;
   }
