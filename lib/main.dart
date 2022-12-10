@@ -1,3 +1,4 @@
+import 'package:elvan/core/constants/constants.dart';
 import 'package:elvan/core/logger/state_logger.dart';
 import 'package:elvan/core/router/router.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'firebase_options.dart';
 
@@ -14,6 +16,11 @@ void main() async {
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await Supabase.initialize(
+    url: Constants.url,
+    anonKey: Constants.anonKey,
   );
 
   runApp(

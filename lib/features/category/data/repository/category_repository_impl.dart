@@ -4,6 +4,7 @@ import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/category/data/dto/category_dto.dart';
 import 'package:elvan/features/category/data/repository/category_repository.dart';
 import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 final categoryRepositoryProvider = Provider<CategoryRepository>((ref) {
@@ -22,8 +23,13 @@ class CategoryRepositoryImpl implements CategoryRepository {
     try {
       final snapshot = await firebaseFirestore.collection('categories').get();
       final categories = snapshot.docs.map((doc) => CategoryDto.fromJson(doc.data())).toList();
+
+      debugPrint('categories: data ${categories.length}');
       return Result.success(categories);
-    } catch (e) {
+    } catch (e, st) {
+      debugPrint('categories: error $e');
+      debugPrint(st.toString());
+
       return Result.failure(Failure(error: e));
     }
   }

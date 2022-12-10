@@ -1,3 +1,5 @@
+import 'package:elvan/core/supabase/supbase_providers.dart';
+import 'package:elvan/features/category/ui/screens/category_list.dart';
 import 'package:elvan/features/food/ui/food_detail/selected_food_item_provider.dart';
 import 'package:elvan/features/food/ui/food_list/food_list_provider.dart';
 import 'package:flutter/material.dart';
@@ -11,20 +13,16 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final foodList = ref.watch(foodListProvider);
 
+    final supabase = ref.watch(supabaseClientProvider);
+
+    print('Home: Supabase -> ${supabase.supabaseKey}');
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text('Home Screen'),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              'Navigate to Food Navigator: Detail',
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                    fontSize: 18.sp,
-                  ),
-            ),
-          ),
+          const CategoryList(),
           foodList.when(
             data: (foodList) => SingleChildScrollView(
               child: ListView.builder(

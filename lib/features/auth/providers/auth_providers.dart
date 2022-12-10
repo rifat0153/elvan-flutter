@@ -7,6 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_providers.g.dart';
 
+// FirebaseAuth providers
 @Riverpod(keepAlive: true)
 bool isAuthenticated(IsAuthenticatedRef ref) {
   debugPrint('isAuthenticated provider called');
