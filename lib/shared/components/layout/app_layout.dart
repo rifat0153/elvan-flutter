@@ -4,44 +4,35 @@ import 'package:elvan/core/router/router.dart';
 import 'package:elvan/features/tabs/ui/screens/navigation_rail_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AppLayout extends HookConsumerWidget {
+class AppLayout extends StatefulWidget {
   const AppLayout({super.key, required this.child});
 
   final Widget child;
 
-  Future<bool> onWillPop(BuildContext context, WidgetRef ref) {
-    // final String location = GoRouterState.of(context).location;
-    // context.go('/');
+  @override
+  State<AppLayout> createState() => _AppLayoutState();
+}
 
-    final rootNavKey = ref.read(rootNavigatorKeyProvider);
-    final tabNavKey = ref.read(tabShellNavigatorKeyProvider);
-    tabNavKey.currentState?.pop();
-    rootNavKey.currentState?.pop();
-    rootNavKey.currentState?.pop();
-
-    return Future.value(true);
-  }
+class _AppLayoutState extends State<AppLayout> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         final width = constraints.maxWidth;
         final height = constraints.maxHeight;
 
-        return WillPopScope(
-          onWillPop: () => onWillPop(context, ref),
-          child: width > 500
-              ? NavigationRailScreen(
-                  child: child,
-                )
-              : TabScreen(
-                  child: child,
-                ),
-        );
+        return width > 500
+            ? NavigationRailScreen(
+                child: widget.child,
+              )
+            : TabScreen(
+                child: widget.child,
+              );
       },
     );
   }

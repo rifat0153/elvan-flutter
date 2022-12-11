@@ -44,69 +44,53 @@ final goRouterProvider = Provider(
         final loggingIn = state.subloc == '/auth';
 
         // bundle the location the user is coming from into a query parameter
-        final fromp = state.subloc == '/' ? '' : '?from=${state.subloc}';
+        final fromp = state.subloc == '/home' ? '' : '?from=${state.subloc}';
         if (!loggedIn) return loggingIn ? null : '/auth$fromp';
 
         // if the user is logged in, send them where they were going before (or
         // home if they weren't going anywhere)
-        if (loggingIn) return state.queryParams['from'] ?? '/';
+        if (loggingIn) return state.queryParams['from'] ?? '/home';
 
         // no need to redirect at all
         return null;
       },
       routes: <RouteBase>[
         // initial route
-        GoRoute(
-          path: '/',
-          redirect: (context, state) => '/tab',
-        ),
+        // GoRoute(
+        //   path: '/',
+        //   redirect: (context, state) => '/home',
+        // ),
 
-        // Tab Shell
-        GoRoute(
-          path: '/tab',
-          // builder: (context, state) => const Text('Tab'),
-          pageBuilder: (context, state) => const MaterialPage<void>(child: Text('Tab')),
-          redirect: (context, state) {
-            debugPrint('Tab redirect: ${state.location}');
-
-            if (state.location == '/tab') {
-              return '/tab/home';
-            }
-            return null;
+        /// Tab shell
+        ShellRoute(
+          navigatorKey: ref.read(tabShellNavigatorKeyProvider),
+          builder: (BuildContext context, GoRouterState state, Widget child) {
+            return AppLayout(child: child);
           },
-          routes: [
-            /// Application shell
-            ShellRoute(
-              navigatorKey: ref.read(tabShellNavigatorKeyProvider),
-              builder: (BuildContext context, GoRouterState state, Widget child) {
-                return AppLayout(child: child);
+          routes: <RouteBase>[
+            /// The first screen to display in the bottom navigation bar.
+            GoRoute(
+              path: '/home',
+              pageBuilder: (BuildContext context, GoRouterState state) {
+                return NoTransitionPage(key: state.pageKey, child: const HomeScreen());
               },
-              routes: <RouteBase>[
-                /// The first screen to display in the bottom navigation bar.
-                GoRoute(
-                  path: 'home',
-                  pageBuilder: (BuildContext context, GoRouterState state) {
-                    return NoTransitionPage(key: state.pageKey, child: const HomeScreen());
-                  },
-                ),
+            ),
 
-                /// Displayed when the second item in the the bottom navigation bar is
-                /// selected.
-                GoRoute(
-                  path: 'favorite',
-                  pageBuilder: (BuildContext context, GoRouterState state) {
-                    return NoTransitionPage(key: state.pageKey, child: const FavoriteScreen());
-                  },
-                ),
+            /// Displayed when the second item in the the bottom navigation bar is
+            /// selected.
+            GoRoute(
+              path: '/favorite',
+              pageBuilder: (BuildContext context, GoRouterState state) {
+                return NoTransitionPage(key: state.pageKey, child: const FavoriteScreen());
+              },
+            ),
 
-                /// The third screen to display in the bottom navigation bar.
-                GoRoute(
-                  path: 'profile',
-                  pageBuilder: (BuildContext context, GoRouterState state) {
-                    return NoTransitionPage(key: state.pageKey, child: const ProfileScreen());
-                  },
-                ),
-              ],
+            /// The third screen to display in the bottom navigation bar.
+            GoRoute(
+              path: '/profile',
+              pageBuilder: (BuildContext context, GoRouterState state) {
+                return NoTransitionPage(key: state.pageKey, child: const ProfileScreen());
+              },
             ),
           ],
         ),
