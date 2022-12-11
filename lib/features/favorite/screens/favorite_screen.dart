@@ -11,6 +11,31 @@ class FavoriteScreen extends HookConsumerWidget {
         child: Column(
           children: [
             const Text('FavoriteScreen'),
+            Flexible(
+              flex: 1,
+              child: Row(
+                children: [
+                  Container(
+                    color: Colors.red,
+                  ),
+                ],
+              ),
+            ),
+            Flexible(
+              flex: 3,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 100,
+                    width: 100,
+                    margin: const EdgeInsets.all(8),
+                    color: Colors.red,
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

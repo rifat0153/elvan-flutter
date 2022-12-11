@@ -1,6 +1,5 @@
 import 'package:elvan/core/router/go_router_notifier.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
-import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/screens/auth_screen.dart';
 import 'package:elvan/features/cart/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
@@ -8,15 +7,19 @@ import 'package:elvan/features/food/ui/food_list/screens/food_list_screen.dart';
 import 'package:elvan/features/food/ui/food_detail/screens/food_detail_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
-import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
 import 'package:elvan/shared/components/layout/app_layout.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> _tabShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
+final rootNavigatorKeyProvider = Provider<GlobalKey<NavigatorState>>((ref) {
+  return GlobalKey<NavigatorState>(debugLabel: 'root');
+});
+
+final tabShellNavigatorKeyProvider = Provider<GlobalKey<NavigatorState>>((ref) {
+  return GlobalKey<NavigatorState>(debugLabel: 'tab_shell');
+});
 
 final goRouterProvider = Provider(
   ((
@@ -25,7 +28,7 @@ final goRouterProvider = Provider(
     final notifier = ref.read(goRouterNotifierProvider);
 
     return GoRouter(
-      navigatorKey: _rootNavigatorKey,
+      navigatorKey: ref.read(rootNavigatorKeyProvider),
       debugLogDiagnostics: true,
       initialLocation: '/auth',
       // initialLocation: '/tab',
@@ -61,8 +64,11 @@ final goRouterProvider = Provider(
         // Tab Shell
         GoRoute(
           path: '/tab',
+          // builder: (context, state) => const Text('Tab'),
           pageBuilder: (context, state) => const MaterialPage<void>(child: Text('Tab')),
           redirect: (context, state) {
+            debugPrint('Tab redirect: ${state.location}');
+
             if (state.location == '/tab') {
               return '/tab/home';
             }
@@ -71,7 +77,7 @@ final goRouterProvider = Provider(
           routes: [
             /// Application shell
             ShellRoute(
-              navigatorKey: _tabShellNavigatorKey,
+              navigatorKey: ref.read(tabShellNavigatorKeyProvider),
               builder: (BuildContext context, GoRouterState state, Widget child) {
                 return AppLayout(child: child);
               },
