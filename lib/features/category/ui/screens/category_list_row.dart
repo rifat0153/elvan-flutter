@@ -9,6 +9,21 @@ class CategiryListRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(width: 10),
+          ...categories
+              .map(
+                (category) => CategoryCard(category: category),
+              )
+              .toList(),
+          const SizedBox(width: 10),
+        ],
+      ),
+    );
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: categories.length,

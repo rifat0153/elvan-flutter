@@ -1,3 +1,4 @@
+import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,16 +12,16 @@ class BaseCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(AppSize.radiusSM.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
-            blurRadius: 16.r,
-            offset: Offset(0, 4.r),
+            blurRadius: AppSize.radiusMD.r,
+            offset: Offset(0, AppSize.radiusSM.r),
           ),
         ],
       ),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppSize.paddingMD),
       child: child,
     );
   }

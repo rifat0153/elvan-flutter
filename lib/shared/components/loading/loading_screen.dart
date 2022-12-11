@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:elvan/shared/components/constants/strings.dart';
+import 'package:elvan/shared/constants/strings.dart';
 import 'package:elvan/shared/components/loading/loading_screen_controller.dart';
 import 'package:flutter/material.dart';
 

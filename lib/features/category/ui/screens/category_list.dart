@@ -12,14 +12,13 @@ class CategoryList extends HookConsumerWidget {
 
     final width = MediaQuery.of(context).size.width;
 
-    return Flexible(
-      child: SizedBox(
-        width: width,
-        child: uiState.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          data: (categories) => CategiryListRow(categories: categories),
-          error: (message) => Center(child: Text(message ?? 'An error occurred')),
-        ),
+    return SizedBox(
+      width: width,
+      height: 150,
+      child: uiState.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        data: (categories) => CategiryListRow(categories: categories),
+        error: (message) => Center(child: Text(message ?? 'An error occurred')),
       ),
     );
   }
