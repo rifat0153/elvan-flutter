@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CustomSliverList extends StatefulWidget {
@@ -16,28 +17,47 @@ class _CustomSliverListState extends State<CustomSliverList> {
   void initState() {
     super.initState();
 
-    final numLists = widget.nestedWidgetList.length;
+    calculateLists();
+  }
 
-    for (int i = 0; i < numLists; i++) {
-      final numberOfItemsPerList = widget.nestedWidgetList[i].length;
-      final innerList = <Widget>[];
-
-      for (int j = 0; j < numberOfItemsPerList; j++) {
-        innerList.add(widget.nestedWidgetList[i][j]);
-      }
-      innerLists.add(
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) => innerList[index],
-            childCount: numberOfItemsPerList,
-          ),
-        ),
-      );
-    }
+  Future calculateLists() async {
+    // innerLists = createSlivers(widget.nestedWidgetList);
+    innerLists = await compute(createSlivers, widget.nestedWidgetList);
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: innerLists);
+    return innerLists.isEmpty
+        ? const Text('Loading...')
+        : CustomScrollView(
+            primary: false,
+            slivers: innerLists,
+          );
   }
+}
+
+List<SliverList> createSlivers(List<List<Widget>> widgetList) {
+  List<SliverList> lists = [];
+
+  final numLists = widgetList.length;
+
+  for (int i = 0; i < numLists; i++) {
+    final numberOfItemsPerList = widgetList[i].length;
+    final innerList = <Widget>[];
+
+    for (int j = 0; j < numberOfItemsPerList; j++) {
+      innerList.add(widgetList[i][j]);
+    }
+    lists.add(
+      SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (BuildContext context, int index) => innerList[index],
+          childCount: numberOfItemsPerList,
+        ),
+      ),
+    );
+  }
+
+  return lists;
 }
