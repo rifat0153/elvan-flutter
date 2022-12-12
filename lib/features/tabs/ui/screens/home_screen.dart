@@ -2,6 +2,7 @@
 
 import 'package:elvan/core/custom_sliver_list/custom_sliver_list.dart';
 import 'package:elvan/features/category/ui/screens/category_list.dart';
+import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -11,6 +12,7 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: CustomSliverList(
+        key: const PageStorageKey('HomeScreen'),
         nestedWidgetList: [
           [
             Text(
@@ -25,7 +27,7 @@ class HomeScreen extends HookConsumerWidget {
           [const CategoryList()],
           [const CategoryList()],
           [const CategoryList()],
-          for (var i = 0; i < 100; i++)
+          for (var i = 0; i < 10; i++)
             [
               const CategoryList(),
             ],

@@ -24,13 +24,13 @@ class CategiryListRow extends StatelessWidget {
         ],
       ),
     );
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: categories.length,
-      itemBuilder: (context, index) {
-        final category = categories.elementAt(index);
-        return CategoryCard(category: category);
-      },
-    );
+    // return ListView.builder(
+    //   scrollDirection: Axis.horizontal,
+    //   itemCount: categories.length,
+    //   itemBuilder: (context, index) {
+    //     final category = categories.elementAt(index);
+    //     return CategoryCard(category: category);
+    //   },
+    // );
   }
 }

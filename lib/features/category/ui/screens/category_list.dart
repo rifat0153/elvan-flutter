@@ -14,7 +14,7 @@ class CategoryList extends HookConsumerWidget {
 
     return SizedBox(
       width: width,
-      height: 150,
+      // height: 150,
       child: uiState.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         data: (categories) => CategiryListRow(categories: categories),
