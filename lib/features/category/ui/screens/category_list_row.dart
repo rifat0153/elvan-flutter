@@ -1,5 +1,6 @@
 import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:elvan/features/category/ui/screens/category_card.dart';
+import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 
 class CategiryListRow extends StatelessWidget {
@@ -14,13 +15,13 @@ class CategiryListRow extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(width: 10),
+          const SizedBox(width: AppSize.paddingSM),
           ...categories
               .map(
                 (category) => CategoryCard(category: category),
               )
               .toList(),
-          const SizedBox(width: 10),
+          const SizedBox(width: AppSize.paddingSM)
         ],
       ),
     );

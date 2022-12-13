@@ -39,7 +39,7 @@ class MyApp extends HookConsumerWidget {
     final router = ref.watch(goRouterProvider);
 
     return ScreenUtilInit(
-      designSize: const Size(360, 780),
+      designSize: const Size(400, 1000),
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp.router(
