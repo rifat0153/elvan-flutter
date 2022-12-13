@@ -1,13 +1,20 @@
 import 'dart:developer';
 
+import 'package:elvan/features/favorite/screens/favorite_screen.dart';
+import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
+import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TabScreen extends StatefulWidget {
-  const TabScreen({super.key, required this.child});
+  const TabScreen({
+    super.key,
+    required this.child,
+    this.useStack = false,
+  });
 
   final Widget child;
+  final bool useStack;
 
   @override
   State<TabScreen> createState() => _TabScreenState();
@@ -62,7 +69,17 @@ class _TabScreenState extends State<TabScreen> with AutomaticKeepAliveClientMixi
           ),
         ],
       ),
-      body: widget.child,
+      // body: widget.child,
+      body: widget.useStack
+          ? IndexedStack(
+              index: TabScreen._calculateSelectedIndex(context),
+              children: const [
+                HomeScreen(),
+                FavoriteScreen(),
+                ProfileScreen(),
+              ],
+            )
+          : widget.child,
     );
   }
 

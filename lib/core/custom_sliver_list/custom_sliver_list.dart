@@ -2,9 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CustomSliverList extends StatefulWidget {
-  const CustomSliverList({super.key, required this.nestedWidgetList});
+  const CustomSliverList({
+    super.key,
+    required this.nestedWidgetList,
+    this.isPrimary = true,
+  });
 
   final List<List<Widget>> nestedWidgetList;
+  final bool isPrimary;
 
   @override
   State<CustomSliverList> createState() => _CustomSliverListState();
@@ -31,6 +36,7 @@ class _CustomSliverListState extends State<CustomSliverList> {
     return innerLists.isEmpty
         ? const Text('Loading...')
         : CustomScrollView(
+            key: widget.key,
             primary: false,
             slivers: innerLists,
           );

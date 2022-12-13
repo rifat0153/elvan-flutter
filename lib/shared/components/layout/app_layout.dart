@@ -22,6 +22,7 @@ class AppLayout extends StatelessWidget {
                   child: child,
                 )
               : TabScreen(
+                  useStack: true,
                   child: child,
                 ),
         );

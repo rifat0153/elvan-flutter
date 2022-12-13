@@ -28,10 +28,12 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Column(
+        key: const PageStorageKey('HomeScreen'),
         children: [
           Flexible(
             child: CustomSliverList(
-              key: const PageStorageKey('HomeScreen'),
+              isPrimary: true,
+              key: const PageStorageKey('HomeScreen_CustomSliverList'),
               nestedWidgetList: [
                 [
                   Text(
