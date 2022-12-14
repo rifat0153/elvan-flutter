@@ -2,6 +2,8 @@
 
 import 'package:elvan/core/custom_sliver_list/custom_sliver_list.dart';
 import 'package:elvan/features/category/ui/screens/category_list.dart';
+import 'package:elvan/shared/components/background/background_image_widget.dart';
+import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,8 +28,9 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      body: Column(
+    return BackgroundImageWidget(
+      imagePath: AppAsset.homeBackgroundPng,
+      child: Column(
         children: [
           Flexible(
             child: CustomSliverList(

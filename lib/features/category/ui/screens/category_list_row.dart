@@ -15,13 +15,14 @@ class CategiryListRow extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(width: AppSize.paddingSM),
-          ...categories
-              .map(
-                (category) => CategoryCard(category: category),
-              )
-              .toList(),
-          const SizedBox(width: AppSize.paddingSM)
+          const SizedBox(width: AppSize.paddingMD),
+          for (final category in categories) ...[
+            CategoryCard(category: category),
+            const SizedBox(
+              width: AppSize.paddingSM,
+            ),
+          ],
+          const SizedBox(width: AppSize.paddingMD),
         ],
       ),
     );
