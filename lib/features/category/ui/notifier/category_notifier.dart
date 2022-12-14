@@ -1,5 +1,5 @@
 import 'package:elvan/core/ui_state/ui_state.dart';
-import 'package:elvan/features/category/domain/category_usecase.dart';
+import 'package:elvan/features/category/domain/use_cases/category_usecase.dart';
 import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -23,6 +23,8 @@ class FoodItem with _$FoodItem {
     required double price,
     double? discount,
     String? category,
+    @Default(false)
+        bool isTopPick,
     String? description,
     String? imageUrl,
     @Default(0)
@@ -50,6 +52,7 @@ class FoodItem with _$FoodItem {
       price: foodItemDto.price,
       discount: foodItemDto.discount,
       category: foodItemDto.category,
+      isTopPick: foodItemDto.isTopPick,
       description: foodItemDto.description,
       imageUrl: foodItemDto.imageUrl,
       quantity: foodItemDto.quantity,
@@ -69,6 +72,7 @@ class FoodItem with _$FoodItem {
       price: price,
       discount: discount,
       category: category,
+      isTopPick: isTopPick,
       description: description,
       imageUrl: imageUrl,
       quantity: quantity,

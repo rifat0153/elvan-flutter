@@ -19,7 +19,7 @@ class CategiryListRow extends StatelessWidget {
           for (final category in categories) ...[
             CategoryCard(category: category),
             const SizedBox(
-              width: AppSize.paddingSM,
+              width: AppSize.paddingMD,
             ),
           ],
           const SizedBox(width: AppSize.paddingMD),

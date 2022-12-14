@@ -22,6 +22,8 @@ class FoodItemDto with _$FoodItemDto {
     String? category,
     String? description,
     String? imageUrl,
+    @Default(false)
+        bool isTopPick,
     @Default(0)
         int quantity,
     @Default([])

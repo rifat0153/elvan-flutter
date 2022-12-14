@@ -3,8 +3,8 @@ import 'package:elvan/features/category/ui/screens/category_list_row.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CategoryList extends HookConsumerWidget {
-  const CategoryList({super.key});
+class CategoryListWidget extends HookConsumerWidget {
+  const CategoryListWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

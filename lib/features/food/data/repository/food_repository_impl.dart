@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -36,6 +34,35 @@ class FoodRepositoryImpl implements FoodRepository {
                 (e) => e.data(),
               )
               .toList(),
+        );
+  }
+
+  @override
+  Future<List<FoodItemDto>> getFoods() {
+    return firebaseFirestore
+        .collection(Constants.foodItemsCollection)
+        .withConverter(
+          fromFirestore: (snapshot, _) => FoodItemDto.fromJson(snapshot.data()!),
+          toFirestore: (foodItemDto, _) => foodItemDto.toJson(),
+        )
+        .get()
+        .then(
+          (value) => value.docs.map((e) => e.data()).toList(),
+        );
+  }
+
+  @override
+  Future<List<FoodItemDto>> getTopPicks() {
+    return firebaseFirestore
+        .collection(Constants.foodItemsCollection)
+        .where('isTopPick', isEqualTo: true)
+        .withConverter(
+          fromFirestore: (snapshot, _) => FoodItemDto.fromJson(snapshot.data()!),
+          toFirestore: (foodItemDto, _) => foodItemDto.toJson(),
+        )
+        .get()
+        .then(
+          (value) => value.docs.map((e) => e.data()).toList(),
         );
   }
 }
