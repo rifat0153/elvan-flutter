@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:elvan/core/router/router.dart';
+import 'package:elvan/core/router/go_router.dart';
 import 'package:elvan/features/tabs/ui/screens/navigation_rail_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
 import 'package:flutter/material.dart';

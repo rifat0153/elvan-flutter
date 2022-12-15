@@ -10,16 +10,10 @@ class CategoryListWidget extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final uiState = ref.watch(categoryNotifierProvider);
 
-    final width = MediaQuery.of(context).size.width;
-
-    return SizedBox(
-      width: width,
-      // height: 150,
-      child: uiState.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        data: (categories) => CategiryListRow(categories: categories),
-        error: (message) => Center(child: Text(message ?? 'An error occurred')),
-      ),
+    return uiState.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      data: (categories) => CategiryListRow(categories: categories),
+      error: (message) => Center(child: Text(message ?? 'An error occurred')),
     );
   }
 }

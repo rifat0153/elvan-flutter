@@ -1,5 +1,6 @@
 import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:elvan/features/category/ui/screens/category_card.dart';
+import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 
@@ -10,29 +11,45 @@ class CategiryListRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(width: AppSize.paddingMD),
-          for (final category in categories) ...[
-            CategoryCard(category: category),
-            const SizedBox(
-              width: AppSize.paddingMD,
-            ),
-          ],
-          const SizedBox(width: AppSize.paddingMD),
-        ],
-      ),
+    return Column(
+      children: [
+        const SizedBox(height: AppSize.paddingMD),
+        _categoryTitle(context),
+        const SizedBox(height: AppSize.paddingMD),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(width: AppSize.paddingMD),
+              for (final category in categories) ...[
+                CategoryCard(category: category),
+                const SizedBox(
+                  width: AppSize.paddingMD,
+                ),
+              ],
+            ],
+          ),
+        ),
+      ],
     );
-    // return ListView.builder(
-    //   scrollDirection: Axis.horizontal,
-    //   itemCount: categories.length,
-    //   itemBuilder: (context, index) {
-    //     final category = categories.elementAt(index);
-    //     return CategoryCard(category: category);
-    //   },
-    // );
+  }
+
+  Widget _categoryTitle(BuildContext context) {
+    return Row(
+      children: [
+        const SizedBox(width: AppSize.paddingMD),
+        AppText(
+          'Categories',
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        const Spacer(),
+        AppText(
+          'View all',
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+        const SizedBox(width: AppSize.paddingMD),
+      ],
+    );
   }
 }

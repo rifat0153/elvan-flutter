@@ -1,3 +1,4 @@
+import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -6,19 +7,39 @@ class FavoriteScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ListView.builder(
-      key: const PageStorageKey('FavoriteScreen_ListView'),
-      scrollDirection: Axis.vertical,
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return Container(
-          height: 100,
-          width: 100,
-          margin: const EdgeInsets.all(8),
-          color: Colors.red,
-          child: Text('Item $index', style: const TextStyle(fontSize: 24)),
-        );
-      },
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => AppText(index.toString()),
+            childCount: 10,
+          ),
+        ),
+        //horizontal list
+        SliverToBoxAdapter(
+          child: Container(
+            height: 55,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return AppText(index.toString());
+                }),
+          ),
+        ),
+
+        // //grid list
+        SliverGrid(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 0,
+            crossAxisSpacing: 0,
+          ),
+          delegate: SliverChildListDelegate(
+            List.generate(10, (index) => AppText(index.toString())),
+          ),
+        )
+      ],
     );
   }
 }

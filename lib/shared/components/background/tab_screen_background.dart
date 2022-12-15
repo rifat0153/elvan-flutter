@@ -1,8 +1,8 @@
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter/material.dart';
 
-class BackgroundImageWidget extends StatelessWidget {
-  const BackgroundImageWidget({
+class TabScreenBackground extends StatelessWidget {
+  const TabScreenBackground({
     super.key,
     required this.child,
     required this.imagePath,

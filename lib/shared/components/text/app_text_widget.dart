@@ -1,5 +1,6 @@
 import 'package:elvan/shared/components/rich_text/base_text.dart';
 import 'package:elvan/shared/components/rich_text/link_text.dart';
+import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +13,11 @@ class AppText extends StatelessWidget {
   const AppText(
     this.text, {
     super.key,
-    this.color = Colors.black,
-    this.style,
+    this.color = AppColors.white,
+    this.style = const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.normal,
+    ),
     this.onTapped,
   });
 

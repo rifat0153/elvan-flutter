@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
+import 'package:elvan/shared/components/background/tab_screen_background.dart';
+import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -70,16 +72,19 @@ class _TabScreenState extends State<TabScreen> with AutomaticKeepAliveClientMixi
         ],
       ),
       // body: widget.child,
-      body: widget.useStack
-          ? IndexedStack(
-              index: TabScreen._calculateSelectedIndex(context),
-              children: const [
-                HomeScreen(),
-                FavoriteScreen(),
-                ProfileScreen(),
-              ],
-            )
-          : widget.child,
+      body: TabScreenBackground(
+        imagePath: AppAsset.homeBackgroundPng,
+        child: widget.useStack
+            ? IndexedStack(
+                index: TabScreen._calculateSelectedIndex(context),
+                children: const [
+                  HomeScreen(),
+                  FavoriteScreen(),
+                  ProfileScreen(),
+                ],
+              )
+            : widget.child,
+      ),
     );
   }
 
