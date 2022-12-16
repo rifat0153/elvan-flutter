@@ -10,8 +10,8 @@ class TopPicksWidget extends HookConsumerWidget {
     final topPicksState = ref.watch(topPicksNotifierProvider);
 
     return topPicksState.when(
-      data: (topPicks) => TopPicksGrid(foodItems: topPicks),
       loading: () => const Center(child: CircularProgressIndicator()),
+      data: (topPicks) => TopPicksGrid(foodItems: topPicks),
       error: (message) => Center(
         child: Text(message ?? 'Something went wrong'),
       ),

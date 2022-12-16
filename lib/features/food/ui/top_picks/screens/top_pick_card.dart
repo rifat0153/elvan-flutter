@@ -6,15 +6,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TopPickCard extends HookConsumerWidget {
   const TopPickCard({super.key, required this.foodItem});
-  
+
   final FoodItem foodItem;
-  
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return BaseCard(
       child: Stack(
-        children: const [
-          AppText('Top Pick Card'),
+        children: [
+          AppText(
+            foodItem.title,
+            color: Colors.black,
+          ),
         ],
       ),
     );

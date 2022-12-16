@@ -3,8 +3,19 @@
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     },
-    "categories": "Categories",
-    "@categories": {
+
+    "viewAll": "View all",
+    "@viewAll": {
+      "description": "View all items"
+    },
+
+    "categoriesListTitle": "Categories",
+    "@categoriesListTitle": {
       "description": "Categories Section Title"
+    },
+
+    "topPicksListTitle": "Top Picks",
+    "@topPicksListTitle": {
+      "description": "Top Picks Section Title"
     }
 }

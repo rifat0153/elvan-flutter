@@ -1,4 +1,6 @@
 {
     "helloWorld": "Hello World In Sweden",
-    "categories": "Kategorier"
+    "viewAll": "Visa alla",
+    "categoriesListTitle": "Kategorier",
+    "topPicksListTitle": "Toppval"
 }

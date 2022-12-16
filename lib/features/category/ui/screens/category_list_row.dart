@@ -42,12 +42,12 @@ class CategiryListRow extends StatelessWidget {
       children: [
         const SizedBox(width: AppSize.paddingMD),
         AppText(
-          AppLocalizations.of(context)!.categories,
+          AppLocalizations.of(context)!.categoriesListTitle,
           style: Theme.of(context).textTheme.headline6,
         ),
         const Spacer(),
         AppText(
-          'View all',
+          AppLocalizations.of(context)!.viewAll,
           style: Theme.of(context).textTheme.subtitle2,
         ),
         const SizedBox(width: AppSize.paddingMD),

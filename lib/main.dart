@@ -57,7 +57,7 @@ class MyApp extends HookConsumerWidget {
             Locale('en', ''), // English, no country code
             Locale('sv', ''), // Swedish, no country code
           ],
-          // locale: const Locale('sv', ''),
+          locale: const Locale('sv', ''),
           title: 'Flutter Demo',
           theme: ThemeData(
             primarySwatch: Colors.pink,
