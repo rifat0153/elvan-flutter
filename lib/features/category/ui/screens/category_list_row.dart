@@ -4,6 +4,8 @@ import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class CategiryListRow extends StatelessWidget {
   const CategiryListRow({super.key, required this.categories});
 
@@ -40,7 +42,7 @@ class CategiryListRow extends StatelessWidget {
       children: [
         const SizedBox(width: AppSize.paddingMD),
         AppText(
-          'Categories',
+          AppLocalizations.of(context)!.categories,
           style: Theme.of(context).textTheme.headline6,
         ),
         const Spacer(),

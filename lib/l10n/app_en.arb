@@ -1,0 +1,10 @@
+{
+    "helloWorld": "Hello World!",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    },
+    "categories": "Categories",
+    "@categories": {
+      "description": "Categories Section Title"
+    }
+}
