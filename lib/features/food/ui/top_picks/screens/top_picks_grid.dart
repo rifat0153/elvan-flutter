@@ -5,6 +5,7 @@ import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/top_picks/screens/top_pick_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 class TopPicksGrid extends StatelessWidget {
   const TopPicksGrid({super.key, required this.foodItems});
@@ -17,21 +18,26 @@ class TopPicksGrid extends StatelessWidget {
       children: [
         const SizedBox(height: AppSize.paddingMD),
         _topPicksTitle(context),
-        GridView.builder(
+        Padding(
           padding: const EdgeInsets.all(AppSize.paddingMD),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.7,
-            crossAxisSpacing: AppSize.paddingMD,
-            mainAxisSpacing: AppSize.paddingMD,
+          child: LayoutGrid(
+            columnSizes: [
+              1.fr,
+              1.fr,
+            ],
+            rowSizes: const [
+              auto,
+              auto,
+            ],
+            columnGap: AppSize.paddingMD,
+            rowGap: AppSize.paddingXL,
+            children: [
+              for (final foodItem in foodItems)
+                TopPickCard(
+                  foodItem: foodItem,
+                ),
+            ],
           ),
-          shrinkWrap: true,
-          itemCount: foodItems.length,
-          itemBuilder: (context, index) {
-            final foodItem = foodItems.elementAt(index);
-
-            return TopPickCard(foodItem: foodItem);
-          },
         ),
       ],
     );

@@ -47,11 +47,16 @@ dependencies:
   riverpod_annotation: ^1.0.6
   flutter_hooks: ^0.18.5+1
 
+  # routing
   go_router: ^5.2.0
   url_strategy: ^0.2.0
 
-  cached_network_image: ^3.2.2
+  # screen responsive size and grid layout
   flutter_screenutil: ^5.6.0
+  flutter_layout_grid: ^2.0.1
+
+  # images
+  cached_network_image: ^3.2.2
   flutter_svg: ^1.1.6
 
   freezed_annotation: ^2.2.0
