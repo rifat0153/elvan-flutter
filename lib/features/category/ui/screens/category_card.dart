@@ -16,15 +16,7 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseCard(
-      // height: 140.h,
       width: 120.w,
-      decoration: BoxDecoration(
-        color: AppColors.gray_70,
-        borderRadius: BorderRadius.circular(AppSize.radiusMD.r / 1.5),
-        boxShadow: const [
-          AppShadows.shadow1,
-        ],
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

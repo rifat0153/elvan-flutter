@@ -18,20 +18,21 @@ class TopPicksGrid extends StatelessWidget {
         const SizedBox(height: AppSize.paddingMD),
         _topPicksTitle(context),
         GridView.builder(
-            padding: const EdgeInsets.all(AppSize.paddingMD),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1,
-              crossAxisSpacing: AppSize.paddingSM,
-              mainAxisSpacing: AppSize.paddingSM,
-            ),
-            shrinkWrap: true,
-            itemCount: foodItems.length,
-            itemBuilder: (context, index) {
-              final foodItem = foodItems.elementAt(index);
+          padding: const EdgeInsets.all(AppSize.paddingMD),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1,
+            crossAxisSpacing: AppSize.paddingSM,
+            mainAxisSpacing: AppSize.paddingSM,
+          ),
+          shrinkWrap: true,
+          itemCount: foodItems.length,
+          itemBuilder: (context, index) {
+            final foodItem = foodItems.elementAt(index);
 
-              return TopPickCard(foodItem: foodItem);
-            }),
+            return TopPickCard(foodItem: foodItem);
+          },
+        ),
       ],
     );
   }

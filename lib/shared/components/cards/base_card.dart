@@ -1,3 +1,5 @@
+import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan/shared/constants/app_shadows.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,11 +11,13 @@ class BaseCard extends StatelessWidget {
     this.height,
     this.width,
     this.decoration,
+    this.padding,
   }) : super(key: key);
 
   final Widget child;
   final double? height;
   final double? width;
+  final EdgeInsetsGeometry? padding;
   final BoxDecoration? decoration;
 
   @override
@@ -23,17 +27,13 @@ class BaseCard extends StatelessWidget {
       width: width,
       decoration: decoration ??
           BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(AppSize.radiusSM.r),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: AppSize.radiusMD.r,
-                offset: Offset(0, AppSize.radiusSM.r),
-              ),
+            color: AppColors.gray_70,
+            borderRadius: BorderRadius.circular(AppSize.radiusMD.r / 1.5),
+            boxShadow: const [
+              AppShadows.shadow1,
             ],
           ),
-      padding: const EdgeInsets.all(AppSize.paddingSM),
+      padding: padding ?? const EdgeInsets.all(AppSize.paddingSM),
       child: child,
     );
   }
