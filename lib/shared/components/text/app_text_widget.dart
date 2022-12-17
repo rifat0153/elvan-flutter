@@ -9,6 +9,7 @@ class AppText extends StatelessWidget {
   final TextStyle? style;
   final Color color;
   final GestureTapCallback? onTapped;
+  final int? maxLines;
 
   const AppText(
     this.text, {
@@ -19,11 +20,13 @@ class AppText extends StatelessWidget {
       fontWeight: FontWeight.normal,
     ),
     this.onTapped,
+    this.maxLines,
   });
 
   @override
   Widget build(BuildContext context) {
     return RichText(
+      maxLines: maxLines,
       text: TextSpan(children: [
         TextSpan(
           text: text,

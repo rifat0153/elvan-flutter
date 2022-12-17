@@ -17,8 +17,6 @@ class FavoriteButton extends HookWidget {
     const buttonInitialSize = 24.0;
     const buttonFinalSize = 32.0;
 
-    final isFavorite = useState(false);
-
     final controller = useAnimationController(
       duration: const Duration(milliseconds: 500),
     );
@@ -49,8 +47,8 @@ class FavoriteButton extends HookWidget {
     ).animate(controller);
 
     final Animation<Color?> colorTween = ColorTween(
-      begin: isFavorite.value ? AppColors.primaryRed : AppColors.white,
-      end: isFavorite.value ? AppColors.white : AppColors.primaryRed,
+      begin: isFavorite ? AppColors.primaryRed : AppColors.white,
+      end: isFavorite ? AppColors.white : AppColors.primaryRed,
     ).animate(controller);
 
     useListenable(controller);
@@ -61,8 +59,6 @@ class FavoriteButton extends HookWidget {
       icon: const Icon(Icons.favorite),
       onPressed: () {
         if (controller.isAnimating) return;
-
-        isFavorite.value = !isFavorite.value;
 
         controller.reset();
         controller.forward();

@@ -25,6 +25,7 @@ class BaseCard extends StatelessWidget {
     return Container(
       height: height,
       width: width,
+      clipBehavior: Clip.antiAlias,
       decoration: decoration ??
           BoxDecoration(
             color: AppColors.gray_70,

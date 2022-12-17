@@ -21,9 +21,9 @@ class TopPicksGrid extends StatelessWidget {
           padding: const EdgeInsets.all(AppSize.paddingMD),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 1,
-            crossAxisSpacing: AppSize.paddingSM,
-            mainAxisSpacing: AppSize.paddingSM,
+            childAspectRatio: 0.7,
+            crossAxisSpacing: AppSize.paddingMD,
+            mainAxisSpacing: AppSize.paddingMD,
           ),
           shrinkWrap: true,
           itemCount: foodItems.length,
