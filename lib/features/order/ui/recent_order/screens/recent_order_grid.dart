@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
-import 'package:elvan/features/food/ui/top_picks/screens/top_pick_card.dart';
+import 'package:elvan/features/order/domain/models/order.dart';
+import 'package:elvan/features/order/ui/recent_order/screens/recent_order_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
-class TopPicksGrid extends StatelessWidget {
-  const TopPicksGrid({super.key, required this.foodItems});
+class RecentOrdersGrid extends StatelessWidget {
+  const RecentOrdersGrid({super.key, required this.orders});
 
-  final Iterable<FoodItem> foodItems;
+  final Iterable<Order> orders;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: AppSize.paddingMD),
-        _topPicksTitle(context),
+        // const SizedBox(height: AppSize.paddingMD),
+        _recentOrdersTitle(context),
         Padding(
           padding: const EdgeInsets.all(AppSize.paddingMD),
           child: LayoutGrid(
@@ -28,14 +28,14 @@ class TopPicksGrid extends StatelessWidget {
             // TODO: Add rowSizes to make the grid responsive
             rowSizes: const [
               auto,
-              // auto,
+              auto,
             ],
             columnGap: AppSize.paddingMD,
             rowGap: AppSize.paddingXL,
             children: [
-              for (final foodItem in foodItems)
-                TopPickCard(
-                  foodItem: foodItem,
+              for (final order in orders)
+                RecentOrderCard(
+                  order: order,
                 ),
             ],
           ),
@@ -44,12 +44,12 @@ class TopPicksGrid extends StatelessWidget {
     );
   }
 
-  Widget _topPicksTitle(BuildContext context) {
+  Widget _recentOrdersTitle(BuildContext context) {
     return Row(
       children: [
         const SizedBox(width: AppSize.paddingMD),
         AppText(
-          AppLocalizations.of(context)!.topPicksListTitle,
+          AppLocalizations.of(context)!.recentOrdersListTitle,
           style: Theme.of(context).textTheme.headline6,
         ),
         const Spacer(),

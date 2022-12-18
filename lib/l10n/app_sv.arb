@@ -2,5 +2,6 @@
     "helloWorld": "Hello World In Sweden",
     "viewAll": "Visa alla",
     "categoriesListTitle": "Kategorier",
-    "topPicksListTitle": "Toppval"
+    "topPicksListTitle": "Toppval",
+    "recentOrdersListTitle": "Nylagda beställningar"
 }

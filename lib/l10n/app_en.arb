@@ -17,5 +17,10 @@
     "topPicksListTitle": "Top Picks",
     "@topPicksListTitle": {
       "description": "Top Picks Section Title"
+    },
+
+    "recentOrdersListTitle": "Recent orders",
+    "@recentOrdersListTitle": {
+      "description": "Recent Rrders Section Title"
     }
 }
