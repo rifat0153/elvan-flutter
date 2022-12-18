@@ -1,5 +1,6 @@
-import 'package:elvan/features/category/domain/models/add_on/add_on_customized.dart';
 import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
+import 'package:elvan/features/order/data/dto/build_step_customized_dto.dart';
+import 'package:elvan/features/order/domain/models/add_on_customized.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'build_step_customized.freezed.dart';
@@ -13,7 +14,7 @@ class BuildStepCustomized with _$BuildStepCustomized {
   const factory BuildStepCustomized({
     required BuildStep buildStep,
     @Default([]) List<AddOnCustomized> addOnsCustomized,
-  }) = _FoodItemBuildStepCustomizeds;
+  }) = _FoodItemBuildStepCustomized;
 
   bool get isAddOnsSelected => addOnsCustomized.isNotEmpty;
   bool get areAddOnsSelectionValid => addOnsCustomized.length >= buildStep.minSelectedAddOns;
@@ -58,4 +59,15 @@ class BuildStepCustomized with _$BuildStepCustomized {
   }
 
   factory BuildStepCustomized.fromJson(Map<String, dynamic> json) => _$BuildStepCustomizedFromJson(json);
+
+  factory BuildStepCustomized.fromDto(BuildStepCustomizedDto dto) {
+    return BuildStepCustomized(
+      buildStep: dto.buildStep,
+      addOnsCustomized: dto.addOnsCustomized
+          .map(
+            (e) => AddOnCustomized.fromDto(e),
+          )
+          .toList(),
+    );
+  }
 }

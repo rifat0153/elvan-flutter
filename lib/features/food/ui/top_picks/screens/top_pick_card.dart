@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/shared/components/buttons/favorite_button.dart';
 import 'package:elvan/shared/components/cards/base_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TopPickCard extends HookConsumerWidget {
   const TopPickCard({super.key, required this.foodItem});
@@ -57,9 +58,9 @@ class TopPickCard extends HookConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
               child: AppText(
-                foodItem.ingredients.toString(),
+                foodItem.description ?? '',
                 style: Theme.of(context).textTheme.subtitle2,
-                maxLines: 1,
+                maxLines: 3,
               ),
             ),
             const Spacer(),

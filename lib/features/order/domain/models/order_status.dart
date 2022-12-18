@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:elvan/features/order/data/dto/order_status_dto.dart';
 
 enum OrderStatus {
   pending('pending'),
@@ -13,8 +14,8 @@ enum OrderStatus {
   const OrderStatus(this.status);
   final String status;
 
-  static OrderStatus fromJson(String status) {
-    final val = OrderStatus.values.firstWhereOrNull((e) => e.status == status);
+  static OrderStatus fromDto(OrderStatusDto status) {
+    final val = OrderStatus.values.firstWhereOrNull((e) => e.status == status.status);
     return val ?? OrderStatus.unknown;
   }
 

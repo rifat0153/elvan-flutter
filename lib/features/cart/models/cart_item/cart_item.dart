@@ -1,4 +1,4 @@
-import 'package:elvan/features/food/domain/models/food_item/food_item_customized.dart';
+import 'package:elvan/features/order/domain/models/food_item_customized.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_item.freezed.dart';

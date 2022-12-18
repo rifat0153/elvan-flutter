@@ -1,27 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
-import 'package:elvan/features/food/domain/models/food_item/food_item_customized.dart';
-import 'package:elvan/features/order/models/order/order_status.dart';
+import 'package:elvan/features/order/data/dto/food_item_customized_dto.dart';
+import 'package:elvan/features/order/data/dto/order_status_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'order.freezed.dart';
-part 'order.g.dart';
+import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
+
+part 'order_dto.freezed.dart';
+part 'order_dto.g.dart';
 
 @freezed
-class Order with _$Order {
+class OrderDto with _$OrderDto {
   @JsonSerializable(explicitToJson: true)
-  const factory Order({
+  const factory OrderDto({
     required String id,
     required String userId,
-    required List<FoodItemCustomized> foodItems,
+    required List<FoodItemCustomizedDto> foodItems,
     required double total,
     required double discount,
     required double subTotal,
     @JsonKey(
-      fromJson: OrderStatus.fromJson,
-      toJson: OrderStatus.toJson,
+      fromJson: OrderStatusDto.fromJson,
+      toJson: OrderStatusDto.toJson,
     )
-        required OrderStatus status,
+        required OrderStatusDto status,
     String? paymentMethod,
     String? paymentStatus,
     @Default([])
@@ -33,5 +34,5 @@ class Order with _$Order {
         Timestamp? createdAt,
   }) = _Order;
 
-  factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
+  factory OrderDto.fromJson(Map<String, dynamic> json) => _$OrderDtoFromJson(json);
 }
