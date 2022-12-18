@@ -39,7 +39,6 @@ class BuildStepCustomized with _$BuildStepCustomized {
 
     // sort selectedAddOns by createdAt
     final sortedAddOns = addOnsCustomized;
-    sortedAddOns.sort((a, b) => a.createdAt.compareTo(b.createdAt));
 
     for (int i = 0; i < sortedAddOns.length; i++) {
       // dont include addOns that are not included in price

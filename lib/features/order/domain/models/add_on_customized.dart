@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
 import 'package:elvan/features/category/domain/models/add_on/add_on.dart';
 import 'package:elvan/features/order/data/dto/add_on_customized_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,9 +13,15 @@ class AddOnCustomized with _$AddOnCustomized {
 
   const factory AddOnCustomized({
     required AddOn addOn,
-    @Default(false) bool isSelected,
-    @Default(1) int quantity,
-    required DateTime createdAt,
+    @Default(false)
+        bool isSelected,
+    @Default(1)
+        int quantity,
+    @JsonKey(
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson,
+    )
+        Timestamp? createdAt,
   }) = _AddOnCustomized;
 
   // get price
@@ -25,7 +33,7 @@ class AddOnCustomized with _$AddOnCustomized {
     return AddOnCustomized(
       addOn: addOn,
       isSelected: false,
-      createdAt: DateTime.now(),
+      createdAt: Timestamp.now(),
       quantity: 1,
     );
   }

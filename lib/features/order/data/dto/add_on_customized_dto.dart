@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
 import 'package:elvan/features/category/domain/models/add_on/add_on.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,9 +12,15 @@ class AddOnCustomizedDto with _$AddOnCustomizedDto {
 
   const factory AddOnCustomizedDto({
     required AddOn addOn,
-    @Default(false) bool isSelected,
-    required DateTime createdAt,
-    @Default(1) int quantity,
+    @Default(false)
+        bool isSelected,
+    @JsonKey(
+      fromJson: TimestampConverter.timestampFromJson,
+      toJson: TimestampConverter.timestampToJson,
+    )
+        Timestamp? createdAt,
+    @Default(1)
+        int quantity,
   }) = _AddOnCustomized;
 
   factory AddOnCustomizedDto.fromJson(Map<String, dynamic> json) => _$AddOnCustomizedDtoFromJson(json);

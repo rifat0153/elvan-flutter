@@ -12,7 +12,7 @@ class CartItemDto with _$CartItemDto {
   @JsonSerializable(explicitToJson: true)
   const factory CartItemDto({
     required String id,
-    FoodItemCustomizedDto? foodItemCustomized,
+    required FoodItemCustomizedDto foodItemCustomized,
     required double price,
     required int quantity,
     double? discount,
