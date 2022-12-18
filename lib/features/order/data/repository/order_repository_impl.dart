@@ -1,7 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan/features/order/data/dto/order_dto.dart';
+import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'order_repository.dart';
+
+final orderRepositoryProvider = Provider<OrderRepository>((ref) {
+  final firebaseFirestore = ref.watch(firebaseFirestoreProvider);
+
+  return OrderRepositoryImpl(firebaseFirestore);
+});
 
 class OrderRepositoryImpl implements OrderRepository {
   final FirebaseFirestore firebaseFirestore;
@@ -21,20 +30,19 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<List<OrderDto>> getOrders(String userId, {int limit = 10}) {
-    return firebaseFirestore
+  Future<List<OrderDto>> getOrders(String userId, {int limit = 10}) async {
+    final orders = await firebaseFirestore
         .collection('orders')
         .where(
           'userId',
           isEqualTo: userId,
         )
-        .get()
-        .then(
-          (value) => value.docs
-              .map(
-                (e) => OrderDto.fromJson(e.data()),
-              )
-              .toList(),
-        );
+        .get();
+
+    final orderDtos = orders.docs.map((e) => OrderDto.fromJson(e.data())).toList();
+
+    debugPrint('orders length: ${orderDtos.length}');
+
+    return orderDtos;
   }
 }

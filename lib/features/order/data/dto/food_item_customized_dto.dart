@@ -12,7 +12,7 @@ class FoodItemCustomizedDto with _$FoodItemCustomizedDto {
   @JsonSerializable(explicitToJson: true)
   const factory FoodItemCustomizedDto({
     required String id,
-    required FoodItem foodItem,
+    required FoodItem foodItemCustomized,
     required List<BuildStepCustomizedDto> buildStepsCustomized,
   }) = _FoodItemCustomizedDto;
 

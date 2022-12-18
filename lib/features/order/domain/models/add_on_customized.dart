@@ -12,8 +12,8 @@ class AddOnCustomized with _$AddOnCustomized {
   const factory AddOnCustomized({
     required AddOn addOn,
     @Default(false) bool isSelected,
-    required DateTime createdAt,
     @Default(1) int quantity,
+    required DateTime createdAt,
   }) = _AddOnCustomized;
 
   // get price

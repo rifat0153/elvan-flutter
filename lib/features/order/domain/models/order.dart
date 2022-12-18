@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
 import 'package:elvan/features/order/data/dto/order_dto.dart';
 import 'package:elvan/features/order/data/dto/order_status_dto.dart';
-import 'package:elvan/features/order/domain/models/food_item_customized.dart';
 import 'package:elvan/features/order/domain/models/order_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -16,7 +16,7 @@ class Order with _$Order {
   const factory Order({
     required String id,
     required String userId,
-    required List<FoodItemCustomized> foodItems,
+    required List<CartItem> items,
     required double total,
     required double discount,
     required double subTotal,
@@ -41,9 +41,7 @@ class Order with _$Order {
   factory Order.fromDto(OrderDto orderDto) => Order(
         id: orderDto.id,
         userId: orderDto.userId,
-        foodItems: orderDto.foodItems
-            .map((e) => FoodItemCustomized.fromDto(e))
-            .toList(),
+        items: orderDto.items.map((e) => CartItem.fromDto(e)).toList(),
         total: orderDto.total,
         discount: orderDto.discount,
         subTotal: orderDto.subTotal,

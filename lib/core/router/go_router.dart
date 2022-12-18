@@ -1,7 +1,7 @@
 import 'package:elvan/core/router/go_router_notifier.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/auth/ui/screens/auth_screen.dart';
-import 'package:elvan/features/cart/screens/cart_screen.dart';
+import 'package:elvan/features/cart/ui/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/food/ui/food_list/screens/food_list_screen.dart';
 import 'package:elvan/features/food/ui/food_detail/screens/food_detail_screen.dart';

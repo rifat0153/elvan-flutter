@@ -38,10 +38,12 @@ class FoodItemCustomized with _$FoodItemCustomized {
 
   factory FoodItemCustomized.fromJson(Map<String, dynamic> json) => _$FoodItemCustomizedFromJson(json);
 
-  factory FoodItemCustomized.fromDto(FoodItemCustomizedDto dto) {
+  factory FoodItemCustomized.fromDto(FoodItemCustomizedDto? dto) {
+    if (dto == null) throw Exception('FoodItemCustomizedDto is null');
+
     return FoodItemCustomized._internal(
       id: dto.id,
-      foodItem: dto.foodItem,
+      foodItem: dto.foodItemCustomized,
       buildStepsCustomized: dto.buildStepsCustomized
           .map(
             (e) => BuildStepCustomized.fromDto(e),

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan/features/cart/data/dto/cart_item_dto.dart';
 import 'package:elvan/features/order/data/dto/food_item_customized_dto.dart';
 import 'package:elvan/features/order/data/dto/order_status_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -14,10 +15,12 @@ class OrderDto with _$OrderDto {
   const factory OrderDto({
     required String id,
     required String userId,
-    required List<FoodItemCustomizedDto> foodItems,
+    @Default([])
+        List<CartItemDto> items,
     required double total,
-    required double discount,
     required double subTotal,
+    @Default(0)
+        double discount,
     @JsonKey(
       fromJson: OrderStatusDto.fromJson,
       toJson: OrderStatusDto.toJson,
