@@ -10,6 +10,7 @@ class AppText extends StatelessWidget {
   final Color color;
   final GestureTapCallback? onTapped;
   final int? maxLines;
+  final TextAlign? textAlign;
 
   const AppText(
     this.text, {
@@ -21,6 +22,7 @@ class AppText extends StatelessWidget {
     ),
     this.onTapped,
     this.maxLines,
+    this.textAlign,
   });
 
   @override
@@ -28,6 +30,7 @@ class AppText extends StatelessWidget {
     return RichText(
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
+      textAlign: textAlign ?? TextAlign.start,
       text: TextSpan(children: [
         TextSpan(
           text: text,

@@ -18,6 +18,7 @@ class FavoriteScreen extends HookConsumerWidget {
         //horizontal list
         SliverToBoxAdapter(
           child: Container(
+            color: Colors.blue.shade200,
             height: 55,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,

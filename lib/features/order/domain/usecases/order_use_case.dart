@@ -19,7 +19,6 @@ class OrderUseCase {
   Future<Result<List<Order>>> getRecentOrders(String userId, {limit = 10}) async {
     try {
       final orderDtos = await _orderRepository.getOrders(userId, limit: limit);
-
       final orders = orderDtos.map((e) => Order.fromDto(e)).toList();
 
       return Result.success(orders);
