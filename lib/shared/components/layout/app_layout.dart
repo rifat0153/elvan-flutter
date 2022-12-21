@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:elvan/core/router/go_router.dart';
 import 'package:elvan/features/tabs/ui/screens/navigation_rail_screen.dart';
+import 'package:elvan/features/tabs/ui/screens/tab_screen%20copy.dart';
 import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class AppLayout extends StatelessWidget {
               ? NavigationRailScreen(
                   child: child,
                 )
-              : TabScreen(
+              : TabScreenCopy(
                   useStack: true,
                   child: child,
                 ),

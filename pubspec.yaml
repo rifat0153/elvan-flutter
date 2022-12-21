@@ -60,6 +60,7 @@ dependencies:
   flutter_svg: ^1.1.6
 
   freezed_annotation: ^2.2.0
+  beamer: ^1.5.3
 
 dev_dependencies:
   flutter_test:

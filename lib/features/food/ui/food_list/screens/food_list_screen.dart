@@ -1,8 +1,8 @@
+import 'package:beamer/beamer.dart';
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FoodListScreen extends HookConsumerWidget {
@@ -24,7 +24,7 @@ class FoodListScreen extends HookConsumerWidget {
               ),
               onPressed: () {
                 print('Go to Back');
-                context.pop();
+                context.beamBack();
               },
             ),
           ],

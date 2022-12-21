@@ -1,3 +1,6 @@
+import 'package:beamer/beamer.dart';
+import 'package:elvan/core/beamer/beamer_delegate.dart';
+import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,7 +42,7 @@ class MyApp extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(goRouterProvider);
+    final routerDelegate = ref.watch(beamerDelegateProvider);
 
     return ScreenUtilInit(
       designSize: const Size(400, 1000),
@@ -47,6 +50,12 @@ class MyApp extends HookConsumerWidget {
       builder: (context, child) {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
+          title: 'Elvan',
+          routerDelegate: routerDelegate,
+          routeInformationParser: BeamerParser(),
+          backButtonDispatcher: BeamerBackButtonDispatcher(
+            delegate: routerDelegate,
+          ),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -58,15 +67,11 @@ class MyApp extends HookConsumerWidget {
             Locale('sv', ''), // Swedish, no country code
           ],
           locale: const Locale('sv', ''),
-          title: 'Elvan',
           theme: ThemeData(
             primarySwatch: Colors.pink,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
             useMaterial3: true,
           ),
-          // routerDelegate: router.routerDelegate,
-          // routeInformationParser: router.routeInformationParser,
-          routerConfig: router,
         );
       },
     );
