@@ -22,9 +22,8 @@ class CategoryCard extends HookConsumerWidget {
     return GestureDetector(
       onTap: () {
         print('Clicked Category Card');
-        ref.read(rootNavigatorKeyProvider).currentState?.pushNamed('/food');
-        // GoRouter.of(context).push('/food');
-        // context.go('/food');
+
+        context.go('/food/list');
       },
       child: BaseCard(
         width: 120.w,

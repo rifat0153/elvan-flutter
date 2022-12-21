@@ -48,7 +48,7 @@ dependencies:
   flutter_hooks: ^0.18.5+1
 
   # routing
-  go_router: ^5.2.0
+  go_router: ^6.0.0
   url_strategy: ^0.2.0
 
   # screen responsive size and grid layout
