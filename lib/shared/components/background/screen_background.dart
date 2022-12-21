@@ -1,22 +1,22 @@
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter/material.dart';
 
-class TabScreenBackground extends StatelessWidget {
-  const TabScreenBackground({
+class ScreenBackground extends StatelessWidget {
+  const ScreenBackground({
     super.key,
-    required this.child,
     required this.imagePath,
+    required this.child,
   });
 
-  final Widget child;
   final String? imagePath;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(AppAsset.homeBackgroundPng),
+          image: AssetImage(imagePath ?? AppAsset.homeBackgroundPng),
           fit: BoxFit.cover,
         ),
       ),

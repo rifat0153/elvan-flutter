@@ -5,16 +5,40 @@ import 'package:elvan/features/food/data/repository/food_repository_impl.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final getTopPicksUseCaseProvider = Provider<TopPicksUseCase>((ref) {
+final foodUseCaseProvider = Provider<FoodUseCase>((ref) {
   final foodRepository = ref.watch(foodRepositoryProvider);
 
-  return TopPicksUseCase(foodRepository: foodRepository);
+  return FoodUseCase(foodRepository: foodRepository);
 });
 
-class TopPicksUseCase {
+class FoodUseCase {
   final FoodRepository foodRepository;
 
-  TopPicksUseCase({required this.foodRepository});
+  FoodUseCase({required this.foodRepository});
+
+  Future<Result<List<FoodItem>>> getFoodList({
+    List<String> selectedCategories = const [],
+  }) async {
+    try {
+      final foodDtos = await foodRepository.getFoodList();
+
+      final foodList = foodDtos
+          .map(
+            (e) => FoodItem.fromDto(e),
+          )
+          .toList();
+
+      final filteredFoodList = foodList
+          .where(
+            (e) => selectedCategories.isEmpty ? true : selectedCategories.contains(e.category),
+          )
+          .toList();
+
+      return Result.success(filteredFoodList);
+    } catch (e) {
+      return Result.failure(Failure(message: e.toString(), error: e));
+    }
+  }
 
   Future<Result<List<FoodItem>>> getTopPicks() async {
     try {

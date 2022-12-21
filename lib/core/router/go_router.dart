@@ -106,7 +106,7 @@ final goRouterProvider = Provider(
         // Food Routes
         GoRoute(
           path: '/food',
-          pageBuilder: (context, state) => const MaterialPage<void>(child: Text('Food Navigator')),
+          // pageBuilder: (context, state) => const MaterialPage<void>(child: Text('Food Navigator')),
           redirect: (context, state) {
             if (state.location == '/food') {
               return '/food/list';

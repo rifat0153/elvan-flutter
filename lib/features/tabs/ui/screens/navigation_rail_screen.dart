@@ -47,13 +47,13 @@ class NavigationRailScreen extends HookConsumerWidget {
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).location;
 
-    if (location.startsWith('/tab/home')) {
+    if (location.startsWith('/home')) {
       return 0;
     }
-    if (location.startsWith('/tab/favorite')) {
+    if (location.startsWith('/favorite')) {
       return 1;
     }
-    if (location.startsWith('/tab/profile')) {
+    if (location.startsWith('/profile')) {
       return 2;
     }
     return 0;
@@ -62,13 +62,13 @@ class NavigationRailScreen extends HookConsumerWidget {
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:
-        GoRouter.of(context).go('/tab/home');
+        GoRouter.of(context).go('/home');
         break;
       case 1:
-        GoRouter.of(context).go('/tab/favorite');
+        GoRouter.of(context).go('/favorite');
         break;
       case 2:
-        GoRouter.of(context).go('/tab/profile');
+        GoRouter.of(context).go('/profile');
         break;
     }
   }

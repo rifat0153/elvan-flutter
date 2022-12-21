@@ -38,7 +38,7 @@ class FoodRepositoryImpl implements FoodRepository {
   }
 
   @override
-  Future<List<FoodItemDto>> getFoods() {
+  Future<List<FoodItemDto>> getFoodList() {
     return firebaseFirestore
         .collection(Constants.foodItemsCollection)
         .withConverter(
