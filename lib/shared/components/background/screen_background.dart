@@ -6,14 +6,17 @@ class ScreenBackground extends StatelessWidget {
     super.key,
     required this.imagePath,
     required this.child,
+    this.width,
   });
 
   final String? imagePath;
   final Widget child;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(imagePath ?? AppAsset.homeBackgroundPng),
