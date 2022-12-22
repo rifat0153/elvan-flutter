@@ -11,6 +11,7 @@ import 'package:elvan/shared/constants/app_shadows.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CategoryCard extends HookConsumerWidget {
@@ -24,17 +25,11 @@ class CategoryCard extends HookConsumerWidget {
       onTap: () {
         print('Clicked Category Card');
 
-        // ref.read(beamerDelegateProvider).navigatorKey.currentState!.pushNamed('/food');
+        // context.beamTo(FoodLocations(
+        //   ref.read(beamerDelegateProvider).currentConfiguration!,
+        // ));
 
-        context.beamTo(FoodLocations(
-          ref.read(beamerDelegateProvider).currentConfiguration!,
-        ));
-
-        // Beamer.of(context).update(
-        //   configuration: const RouteInformation(
-        //     location: '/food',
-        //   ),
-        // );
+        context.goNamed('food_list');
       },
       child: BaseCard(
         width: 120.w,

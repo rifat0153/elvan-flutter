@@ -43,6 +43,7 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final routerDelegate = ref.watch(beamerDelegateProvider);
+    final goRouter = ref.watch(goRouterProvider);
 
     return ScreenUtilInit(
       designSize: const Size(400, 1000),
@@ -51,11 +52,14 @@ class MyApp extends HookConsumerWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: 'Elvan',
-          routerDelegate: routerDelegate,
-          routeInformationParser: BeamerParser(),
-          backButtonDispatcher: BeamerBackButtonDispatcher(
-            delegate: routerDelegate,
-          ),
+          // routeInformationParser: goRouter.routeInformationParser,
+          // routerDelegate: goRouter.routerDelegate,
+          routerConfig: goRouter,
+          // routerDelegate: routerDelegate,
+          // routeInformationParser: BeamerParser(),
+          // backButtonDispatcher: BeamerBackButtonDispatcher(
+          //   delegate: routerDelegate,
+          // ),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

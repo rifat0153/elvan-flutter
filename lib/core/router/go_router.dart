@@ -25,7 +25,7 @@ final goRouterProvider = Provider(
   ((
     ref,
   ) {
-    final notifier = ref.read(goRouterNotifierProvider);
+    final notifier = ref.watch(goRouterNotifierProvider);
 
     return GoRouter(
       navigatorKey: ref.read(rootNavigatorKeyProvider),
@@ -55,41 +55,50 @@ final goRouterProvider = Provider(
         return null;
       },
       routes: <RouteBase>[
-        // initial route
-        // GoRoute(
-        //   path: '/',
-        //   redirect: (context, state) => '/home',
-        // ),
-
-        /// Tab shell
+        GoRoute(
+          path: '/',
+          redirect: (context, state) => '/auth',
+        ),
         ShellRoute(
           navigatorKey: ref.read(tabShellNavigatorKeyProvider),
           builder: (BuildContext context, GoRouterState state, Widget child) {
             return AppLayout(child: child);
           },
           routes: <RouteBase>[
-            /// The first screen to display in the bottom navigation bar.
             GoRoute(
               path: '/home',
-              pageBuilder: (BuildContext context, GoRouterState state) {
-                return NoTransitionPage(key: state.pageKey, child: const HomeScreen());
+              builder: (BuildContext context, GoRouterState state) {
+                return HomeScreen(key: state.pageKey);
               },
+              routes: [
+                GoRoute(
+                  parentNavigatorKey: ref.read(rootNavigatorKeyProvider),
+                  path: 'food',
+                  name: 'food_list',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return FoodListScreen(key: state.pageKey);
+                  },
+                ),
+                GoRoute(
+                  parentNavigatorKey: ref.read(rootNavigatorKeyProvider),
+                  path: 'food/:id',
+                  name: 'food_detail',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return FooDDetailScreen(key: state.pageKey);
+                  },
+                ),
+              ],
             ),
-
-            /// Displayed when the second item in the the bottom navigation bar is
-            /// selected.
             GoRoute(
               path: '/favorite',
-              pageBuilder: (BuildContext context, GoRouterState state) {
-                return NoTransitionPage(key: state.pageKey, child: const FavoriteScreen());
+              builder: (BuildContext context, GoRouterState state) {
+                return FavoriteScreen(key: state.pageKey);
               },
             ),
-
-            /// The third screen to display in the bottom navigation bar.
             GoRoute(
               path: '/profile',
-              pageBuilder: (BuildContext context, GoRouterState state) {
-                return NoTransitionPage(key: state.pageKey, child: const ProfileScreen());
+              builder: (BuildContext context, GoRouterState state) {
+                return ProfileScreen(key: state.pageKey);
               },
             ),
           ],
@@ -104,30 +113,6 @@ final goRouterProvider = Provider(
         ),
 
         // Food Routes
-        GoRoute(
-          path: '/food',
-          // pageBuilder: (context, state) => const MaterialPage<void>(child: Text('Food Navigator')),
-          redirect: (context, state) {
-            if (state.location == '/food') {
-              return '/food/list';
-            }
-            return null;
-          },
-          routes: [
-            GoRoute(
-              path: 'list',
-              builder: (BuildContext context, GoRouterState state) {
-                return FoodListScreen(key: state.pageKey);
-              },
-            ),
-            GoRoute(
-              path: ':id',
-              builder: (BuildContext context, GoRouterState state) {
-                return FooDDetailScreen(key: state.pageKey);
-              },
-            ),
-          ],
-        ),
 
         // Cart Routes
         GoRoute(
