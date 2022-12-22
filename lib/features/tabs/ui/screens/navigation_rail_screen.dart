@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NavigationRailScreen extends HookConsumerWidget {
@@ -45,7 +44,7 @@ class NavigationRailScreen extends HookConsumerWidget {
   }
 
   static int _calculateSelectedIndex(BuildContext context) {
-    final String location = GoRouterState.of(context).location;
+    final String location = '';
 
     if (location.startsWith('/home')) {
       return 0;
@@ -62,13 +61,10 @@ class NavigationRailScreen extends HookConsumerWidget {
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:
-        GoRouter.of(context).go('/home');
         break;
       case 1:
-        GoRouter.of(context).go('/favorite');
         break;
       case 2:
-        GoRouter.of(context).go('/profile');
         break;
     }
   }

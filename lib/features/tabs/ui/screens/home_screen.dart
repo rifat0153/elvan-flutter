@@ -26,6 +26,18 @@ class HomeScreen extends HookConsumerWidget {
         SliverToBoxAdapter(
           child: TopPicksWidget(),
         ),
+        SliverToBoxAdapter(
+          child: TopPicksWidget(),
+        ),
+        SliverToBoxAdapter(
+          child: TopPicksWidget(),
+        ),
+        SliverToBoxAdapter(
+          child: TopPicksWidget(),
+        ),
+        SliverToBoxAdapter(
+          child: TopPicksWidget(),
+        ),
       ],
     );
   }

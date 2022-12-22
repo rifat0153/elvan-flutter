@@ -1,37 +1,25 @@
-import 'package:elvan/features/food/ui/food_detail/selected_food_item_provider.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:elvan/core/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class FooDDetailScreen extends HookConsumerWidget {
   const FooDDetailScreen({super.key});
 
-  _onTap(WidgetRef ref, BuildContext context) {
-    context.go('/food');
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedFood = ref.watch(selectedFoodItemProvider);
-
     return Scaffold(
-      body: Center(
+      body: SizedBox(
+        width: double.infinity,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('food id: ${selectedFood?.id}'),
-            Hero(
-              tag: selectedFood?.id ?? '',
-              child: Image.network(
-                selectedFood?.imageUrl ?? '',
-                height: 300,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
             const Text('Food Detail Screen'),
-            Text('selectedFoodId = $selectedFood'),
             ElevatedButton(
-              onPressed: () => _onTap(ref, context),
+              onPressed: () {
+                context.navigateTo(const FoodListRoute());
+                // context.pushRoute(const FoodListRoute());
+              },
               child: const Text('Navigate to Food List'),
             ),
           ],

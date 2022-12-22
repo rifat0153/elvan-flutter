@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart' show immutable;
 
 @immutable
-class AppRoute {
-  const AppRoute._();
+class RouteConstants {
+  const RouteConstants._();
 
   static const routeHome = '/';
   static const routeAuth = '/auth';

@@ -1,9 +1,9 @@
-import 'package:beamer/beamer.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:elvan/core/router/app_router.gr.dart';
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FoodListScreen extends HookConsumerWidget {
@@ -25,7 +25,9 @@ class FoodListScreen extends HookConsumerWidget {
               ),
               onPressed: () {
                 print('Go to detail');
-                context.pushNamed('food_detail', params: {'id': '1'});
+
+                context.navigateTo(const FooDDetailRoute());
+                // context.pushRoute(const FooDDetailRoute());
               },
             ),
             ElevatedButton(
@@ -35,8 +37,7 @@ class FoodListScreen extends HookConsumerWidget {
               ),
               onPressed: () {
                 print('Go to Back');
-                // context.beamBack();
-                context.pop();
+                context.popRoute();
               },
             ),
           ],

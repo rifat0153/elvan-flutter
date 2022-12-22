@@ -1,17 +1,13 @@
-import 'package:beamer/beamer.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elvan/core/beamer/beamer_delegate.dart';
-import 'package:elvan/core/beamer/locations/food_locations.dart';
-import 'package:elvan/core/router/go_router.dart';
+import 'package:elvan/core/router/app_router.gr.dart';
 import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:elvan/shared/components/cards/base_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
-import 'package:elvan/shared/constants/app_shadows.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CategoryCard extends HookConsumerWidget {
@@ -22,14 +18,11 @@ class CategoryCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: () {
         print('Clicked Category Card');
 
-        // context.beamTo(FoodLocations(
-        //   ref.read(beamerDelegateProvider).currentConfiguration!,
-        // ));
-
-        context.goNamed('food_list');
+        context.pushRoute(const FoodRouter());
       },
       child: BaseCard(
         width: 120.w,
