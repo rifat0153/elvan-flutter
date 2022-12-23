@@ -23,6 +23,8 @@ final authStateProvider = StreamProvider<User?>((ref) {
 User? currentUser(CurrentUserRef ref) {
   final firebaseAuth = ref.watch(firebaseAuthProvider);
 
+  print('currentUser: ${firebaseAuth.currentUser}');
+
   return firebaseAuth.currentUser;
 }
 

@@ -1,4 +1,10 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:elvan/core/logger/colored_print_log.dart';
+import 'package:elvan/core/router/app_router.dart';
 import 'package:elvan/core/router/app_router.gr.dart';
+import 'package:elvan/features/auth/providers/auth_providers.dart';
+import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
+import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -9,7 +15,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:elvan/core/constants/constants.dart';
-import 'package:elvan/core/logger/state_logger.dart';
+import 'package:elvan/core/logger/riverpod_state_logger.dart';
 
 import 'firebase_options.dart';
 
@@ -37,10 +43,48 @@ void main() async {
 class MyApp extends HookConsumerWidget {
   MyApp({super.key});
 
-  final _appRouter = AppRouter();
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(authStateProvider, (_, next) {
+      debugPrint('currentUserProvider listen:  next: ${next.value?.uid}');
+
+      debugPrint('OnChange: -> Root key -> ${ref.read(appRouterProvider).key}');
+      debugPrint('OnChange: ->  Curr key -> ${ref.read(appRouterProvider).current.key}');
+
+      debugPrint('OnChange: -> Current router path -> ${ref.read(appRouterProvider).current.path}');
+
+      final currrentPath = ref.read(appRouterProvider).current.path;
+      logWarning('OnChange: Auth State Changed -> curr path -> $currrentPath');
+
+      if (next.value != null) {
+        debugPrint('OnChange: BottomTabRoute');
+
+        if (currrentPath == '') {
+          logInfo('OnChange: Tab -----> Push');
+          ref.read(appRouterProvider).push(const BottomTabRoute());
+        } else {
+          logInfo('OnChange: Tab -----> ReplaceAll');
+          ref.read(appRouterProvider).replaceAll([const BottomTabRoute()]);
+        }
+      } else {
+        logInfo('OnChange: Auth -----> ReplaceAll');
+        final stack = ref.read(appRouterProvider).canNavigateBack;
+        logInfo('OnChange: Auth -----> stack: $stack');
+
+        ref.read(appRouterProvider).replaceAll([const AuthRouter()]);
+      }
+    });
+
+    final appRouter = ref.watch(appRouterProvider);
+    final currentUser = ref.watch(currentUserProvider);
+    final loggedIn = currentUser != null;
+
+    final authState = ref.watch(authNotifierProvider.notifier);
+    // final appRouter = AppRouter();
+
+    print('isAuthenticated loggedIn -> in MYAPP  -> : ${authState.isAuthenticated}');
+    print('loggedIn -> in MYAPP -> : $loggedIn');
+
     return ScreenUtilInit(
       designSize: const Size(400, 1000),
       splitScreenMode: true,
@@ -48,8 +92,19 @@ class MyApp extends HookConsumerWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: 'Elvan',
-          routerDelegate: _appRouter.delegate(),
-          routeInformationParser: _appRouter.defaultRouteParser(),
+          // routerDelegate: AutoRouterDelegate.declarative(
+          //   appRouter,
+          //   routes: (_) => [
+          //     // if the user is logged in, they may proceed to the main App
+          //     if (loggedIn)
+          //       const BottomTabRoute()
+          //     // if they are not logged in, bring them to the Login page
+          //     else
+          //       const AuthRouter(),
+          //   ],
+          // ),
+          routerDelegate: appRouter.delegate(),
+          routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

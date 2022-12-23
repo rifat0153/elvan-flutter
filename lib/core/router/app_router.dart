@@ -1,20 +1,42 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
+import 'package:elvan/core/router/app_router.gr.dart';
+import 'package:elvan/core/router/not_found_screen.dart';
+import 'package:elvan/core/router/route_guards.dart';
+import 'package:elvan/features/auth/providers/auth_providers.dart';
+import 'package:elvan/features/auth/ui/screens/auth_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/food/ui/food_detail/screens/food_detail_screen.dart';
 import 'package:elvan/features/food/ui/food_list/screens/food_list_screen.dart';
 import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
+  final user = ref.read(currentUserProvider);
+  final isLoggedIn = user != null;
+
+  print('appRouterProvider: isLoggedIn: $isLoggedIn');
+
+  return AppRouter(
+    authGuard: AuthGuard(isLoggedIn),
+  );
+});
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Screen,Route',
   routes: <AutoRoute>[
     RedirectRoute(path: "/", redirectTo: '/tabs'),
     AutoRoute(
-      // initial: true,
+      path: "/auth",
+      name: "AuthRouter",
+      page: AuthScreen,
+    ),
+    AutoRoute(
       path: "/tabs",
-      name: "TabsRouter",
+      // name: "TabsRouter",
+      guards: [AuthGuard],
       page: BottomTabScreen,
       children: [
         // create home, profile and favorites routes
@@ -50,6 +72,10 @@ import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
         ),
       ],
     ),
+    AutoRoute(
+      path: "*",
+      page: NotFoundScreen,
+    )
   ],
 )
 class $AppRouter {}

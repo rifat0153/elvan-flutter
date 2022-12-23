@@ -41,7 +41,11 @@ class AuthNotifier extends Notifier<AuthScreenState> {
   }
 
   void handleUserStream(User? user) {
-    debugPrint('Auth Stream: $user');
+    debugPrint('Auth Stream: ${user?.uid}');
+
+    if (user != null) {
+      getElvanUserData(user.uid);
+    }
   }
 
   void onEvent(AuthEvent event) {

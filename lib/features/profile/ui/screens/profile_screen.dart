@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:elvan/core/router/app_router.gr.dart';
 import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/features/category/domain/models/category/category.dart';
