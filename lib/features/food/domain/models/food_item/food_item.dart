@@ -27,6 +27,8 @@ class FoodItem with _$FoodItem {
         bool isTopPick,
     String? description,
     String? imageUrl,
+    @Default(false)
+        bool isFavorite,
     @Default(0)
         int quantity,
     @Default([])

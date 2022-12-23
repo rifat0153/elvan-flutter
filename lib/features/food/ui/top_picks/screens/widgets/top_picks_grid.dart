@@ -1,15 +1,14 @@
-import 'package:elvan/features/food/ui/top_picks/screens/top_pick_card_old.dart';
+import 'package:elvan/features/food/ui/top_picks/screens/widgets/top_pick_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
-import 'package:elvan/features/food/ui/top_picks/screens/top_pick_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
-class TopPicksGridOld extends StatelessWidget {
-  const TopPicksGridOld({super.key, required this.foodItems});
+class TopPicksGrid extends StatelessWidget {
+  const TopPicksGrid({super.key, required this.foodItems});
 
   final Iterable<FoodItem> foodItems;
 
@@ -19,6 +18,25 @@ class TopPicksGridOld extends StatelessWidget {
       children: [
         const SizedBox(height: AppSize.paddingMD),
         _topPicksTitle(context),
+        Padding(
+          padding: const EdgeInsets.all(AppSize.paddingMD),
+          child: LayoutGrid(
+            columnSizes: [
+              1.fr,
+              1.fr,
+            ],
+            // rowSizes: [auto],
+            rowSizes: List.generate(((foodItems.length - 1) ~/ 2 + 1), (index) => auto).toList(),
+            columnGap: AppSize.paddingMD,
+            rowGap: AppSize.paddingMD,
+            children: [
+              for (final foodItem in foodItems)
+                TopPickCard(
+                  foodItem: foodItem,
+                ),
+            ],
+          ),
+        ),
       ],
     );
   }

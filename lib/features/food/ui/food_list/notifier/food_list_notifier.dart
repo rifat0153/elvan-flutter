@@ -1,4 +1,3 @@
-import 'package:elvan/core/ui_state/ui_state.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/domain/use_case/food_use_case.dart';
 import 'package:elvan/features/food/ui/food_list/notifier/selected_category_notifier.dart';
@@ -7,22 +6,27 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'food_list_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
-class FoodListNotifier extends _$FoodListNotifier {
+class FoodByCategoryNotifier extends _$FoodByCategoryNotifier {
   @override
-  FutureOr<UiState<List<FoodItem>>> build() {
+  FutureOr<Map<String, List<FoodItem>>> build() async {
     final selectedCategory = ref.watch(selectedCategoriesNotifierProvider.notifier);
-
     final usecase = ref.read(foodUseCaseProvider);
 
-    return usecase
-        .getFoodList(
-          selectedCategories: selectedCategory.categories,
-        )
-        .then(
-          (result) => result.when(
-            success: (list) => UiState.data(list),
-            failure: (e) => UiState.error(e.message),
-          ),
-        );
+    return usecase.getFoodCategoryMap(
+      selectedCategories: selectedCategory.categories,
+    );
+  }
+}
+
+@Riverpod(keepAlive: true)
+class FoodListNotifier extends _$FoodListNotifier {
+  @override
+  FutureOr<List<FoodItem>> build() async {
+    final selectedCategory = ref.watch(selectedCategoriesNotifierProvider.notifier);
+    final usecase = ref.read(foodUseCaseProvider);
+
+    return usecase.getFoodList(
+      selectedCategories: selectedCategory.categories,
+    );
   }
 }
