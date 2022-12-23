@@ -1,5 +1,9 @@
 *.freezed.dart
 *.g.dart 
+*.gr.dart 
+
+# q: how to ignore that are already commited?
+# a: https://stackoverflow.com/questions/1274057/how-to-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitignore
 
 # Miscellaneous
 *.class
