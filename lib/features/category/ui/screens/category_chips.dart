@@ -1,37 +1,46 @@
-// import 'package:elvan/features/category/ui/notifier/category_notifier%20copy.dart';
-// import 'package:elvan/features/food/ui/food_list/notifier/selected_category_notifier.dart';
-// import 'package:flutter/material.dart';
-// import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:collection/collection.dart';
+import 'package:elvan/features/category/ui/screens/widgets/category_chip.dart';
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// class CategoryChips extends HookConsumerWidget {
-//   const CategoryChips({super.key});
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final categoriesState = ref.watch(categoryNotifierProvider);
+import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
+import 'package:elvan/features/category/ui/notifier/selected_category_notifier.dart';
+import 'package:elvan/shared/components/chips/elvan_chip.dart';
+import 'package:elvan/shared/constants/app_size.dart';
 
-//     return categoriesState.when(
-//       data: (categories) => SizedBox(
-//         width: MediaQuery.of(context).size.width,
-//         child: Row(
-//           children: [
-//             for (final category in categories)
-//               Padding(
-//                 padding: const EdgeInsets.only(right: 8.0),
-//                 child: ChoiceChip(
-//                   label: Text(category.name),
-//                   selected: ref.watch(selectedCategoryNotifierProvider).state ==
-//                       category,
-//                   onSelected: (selected) {
-//                     ref.read(selectedCategoryNotifierProvider).state =
-//                         selected ? category : null;
-//                   },
-//                 ),
-//               ),
-//           ],
-//         ),
-//       ),
-//       loading: () => const Center(child: CircularProgressIndicator()),
-//       error: (error) => Text(error.toString()),
-//     );
-//   }
-// }
+class CategoryChips extends HookConsumerWidget {
+  const CategoryChips({super.key});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final categoriesState = ref.watch(categoryNotifierProvider);
+    final selectedCategories = ref.watch(selectedCategoriesNotifierProvider.notifier);
+
+    return categoriesState.when(
+      data: (categories) {
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: categories
+                .mapIndexed(
+                  (i, category) => Padding(
+                    padding: EdgeInsets.only(
+                      right: AppSize.paddingSM,
+                      left: i == 0 ? AppSize.paddingMD : 0,
+                    ),
+                    child: CategoryChip(
+                      label: category.title,
+                      isSelected: selectedCategories.contains(
+                        category,
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, st) => Text(error.toString()),
+    );
+  }
+}

@@ -1,3 +1,5 @@
+import 'package:elvan/features/category/ui/notifier/selected_category_notifier.dart';
+import 'package:elvan/features/category/ui/screens/category_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,7 +16,8 @@ class FoodListScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final foodListMapAsync = ref.watch(foodByCategoryNotifierProvider);
+    // final foodListMapAsync = ref.watch(foodByCategoryNotifierProvider);
+    final foodListFilteredAsync = ref.watch(foodListFilteredMapProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -22,10 +25,28 @@ class FoodListScreen extends HookConsumerWidget {
           imagePath: AppAsset.homeBackgroundPng,
           width: 1.sw,
           height: 1.sh,
-          child: foodListMapAsync.when(
+          child: foodListFilteredAsync.when(
             data: (foodMap) {
               return CustomScrollView(
                 slivers: [
+                  const SliverToBoxAdapter(
+                    child: SizedBox(height: AppSize.paddingMD),
+                  ),
+                  SliverToBoxAdapter(
+                    child: AppText(
+                      ref
+                          .read(selectedCategoriesNotifierProvider.notifier)
+                          .categories
+                          .map(
+                            (e) => e,
+                          )
+                          .toString(),
+                    ),
+                  ),
+                  // category chips
+                  const SliverToBoxAdapter(
+                    child: CategoryChips(),
+                  ),
                   for (final foodEntry in foodMap.entries) ...[
                     SliverToBoxAdapter(
                       child: Padding(
@@ -49,33 +70,3 @@ class FoodListScreen extends HookConsumerWidget {
     );
   }
 }
-
-
-
-// Column(
-//           children: [
-//             const AppText('Food List Screen'),
-//             ElevatedButton(
-//               child: const AppText(
-//                 'Go to Detail',
-//                 color: Colors.black,
-//               ),
-//               onPressed: () {
-//                 print('Go to detail');
-
-//                 context.navigateTo(const FooDDetailRoute());
-//                 // context.pushRoute(const FooDDetailRoute());
-//               },
-//             ),
-//             ElevatedButton(
-//               child: const AppText(
-//                 'Go to Back',
-//                 color: Colors.black,
-//               ),
-//               onPressed: () {
-//                 print('Go to Back');
-//                 context.popRoute();
-//               },
-//             ),
-//           ],
-//         )

@@ -10,6 +10,10 @@ class SelectedCategoriesNotifier extends _$SelectedCategoriesNotifier {
     return [];
   }
 
+  void resetAndAdd(Category category) {
+    state = [category];
+  }
+
   void add(Category category) {
     state = [...state, category];
   }
@@ -27,5 +31,9 @@ class SelectedCategoriesNotifier extends _$SelectedCategoriesNotifier {
   }
 
   bool get isEmpty => state.isEmpty;
-  List<String> get categories => state.map((e) => e.title!).toList();
+  List<String> get categories => state
+      .map(
+        (e) => e.title.toLowerCase().replaceAll(' ', ''),
+      )
+      .toList();
 }

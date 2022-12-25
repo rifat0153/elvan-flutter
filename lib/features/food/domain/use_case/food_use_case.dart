@@ -14,7 +14,7 @@ class FoodUseCase {
 
   FoodUseCase({required this.foodRepository});
 
-  Future<Map<String, List<FoodItem>>> getFoodCategoryMap({
+  Future<Map<String, List<FoodItem>>> getFoodByCategories({
     List<String> selectedCategories = const [],
   }) async {
     final foodDtos = await foodRepository.getFoodList();
@@ -27,11 +27,15 @@ class FoodUseCase {
 
     final filteredFoodList = foodList
         .where(
-          (e) => selectedCategories.isEmpty ? true : selectedCategories.contains(e.category),
+          (e) => selectedCategories.isEmpty
+              ? true
+              : selectedCategories.contains(
+                  e.category?.toLowerCase().replaceAll(' ', ''),
+                ),
         )
         .toList();
 
-    final foodCategoryMap = <String, List<FoodItem>>{};
+    final Map<String, List<FoodItem>> foodCategoryMap = {};
     for (final foodItem in filteredFoodList) {
       if (foodCategoryMap.containsKey(foodItem.category)) {
         foodCategoryMap[foodItem.category]!.add(foodItem);
@@ -43,9 +47,7 @@ class FoodUseCase {
     return foodCategoryMap;
   }
 
-  Future<List<FoodItem>> getFoodList({
-    List<String> selectedCategories = const [],
-  }) async {
+  Future<List<FoodItem>> getFoodList() async {
     final foodDtos = await foodRepository.getFoodList();
 
     final foodList = foodDtos
@@ -54,13 +56,7 @@ class FoodUseCase {
         )
         .toList();
 
-    final filteredFoodList = foodList
-        .where(
-          (e) => selectedCategories.isEmpty ? true : selectedCategories.contains(e.category),
-        )
-        .toList();
-
-    return filteredFoodList;
+    return foodList;
   }
 
   Future<List<FoodItem>> getTopPicks() async {

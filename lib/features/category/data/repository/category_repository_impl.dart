@@ -23,7 +23,11 @@ class CategoryRepositoryImpl implements CategoryRepository {
   Future<Result<List<CategoryDto>>> getCategories() async {
     try {
       final snapshot = await firebaseFirestore.collection('categories').get();
-      final categories = snapshot.docs.map((doc) => CategoryDto.fromJson(doc.data())).toList();
+      final categories = snapshot.docs
+          .map(
+            (doc) => CategoryDto.fromJson(doc.data()),
+          )
+          .toList();
 
       debugPrint('categories: data ${categories.length}');
       return Result.success(categories);

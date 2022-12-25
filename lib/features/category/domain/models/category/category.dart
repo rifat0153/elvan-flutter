@@ -14,7 +14,7 @@ class Category with _$Category {
   @JsonSerializable(explicitToJson: true)
   const factory Category({
     String? id,
-    String? title,
+    required String title,
     String? description,
     String? imageUrl,
     @Default([])

@@ -22,7 +22,7 @@ class CartScreen extends ConsumerWidget {
                   .toList(),
             ),
             loading: () => const Text('Loading'),
-            error: (error) => ElevatedButton(
+            error: (error, st) => ElevatedButton(
               onPressed: () {
                 ref.invalidate(categoryNotifierProvider);
               },

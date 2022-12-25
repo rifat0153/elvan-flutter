@@ -1,0 +1,28 @@
+import 'package:elvan/shared/components/chips/elvan_chip.dart';
+import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:flutter/material.dart';
+
+class CategoryChip extends StatelessWidget {
+  const CategoryChip({
+    super.key,
+    required this.label,
+    this.onTap,
+    this.isSelected = false,
+  });
+
+  final String label;
+  final bool isSelected;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: EvlanChip(
+        label: label,
+        backgroundColor: isSelected ? AppColors.primaryRed : Colors.transparent,
+        labelColor: AppColors.white,
+      ),
+    );
+  }
+}

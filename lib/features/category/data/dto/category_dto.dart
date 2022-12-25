@@ -11,7 +11,7 @@ abstract class CategoryDto with _$CategoryDto {
   @JsonSerializable(explicitToJson: true)
   const factory CategoryDto({
     String? id,
-    String? title,
+    required String title,
     String? description,
     String? imageUrl,
     @JsonKey(name: 'build_stepsss')

@@ -16,8 +16,8 @@ class ProfileScreen extends HookConsumerWidget {
     return Center(
       child: Column(
         children: [
-          AppText('Category List: ${categoryList.data?.length}'),
-          for (final category in categoryList.data ?? <Category>[])
+          AppText('Category List: ${categoryList.value?.length}'),
+          for (final category in categoryList.value ?? <Category>[])
             for (final bs in category.buildSteps)
               AppText(
                 bs.title,

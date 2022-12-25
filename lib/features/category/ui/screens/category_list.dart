@@ -13,7 +13,9 @@ class CategoryListWidget extends HookConsumerWidget {
     return uiState.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       data: (categories) => CategiryListRow(categories: categories),
-      error: (message) => Center(child: Text(message ?? 'An error occurred')),
+      error: (message, st) => Center(
+        child: Text(message.toString()),
+      ),
     );
   }
 }
