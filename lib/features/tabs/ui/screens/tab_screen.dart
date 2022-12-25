@@ -12,9 +12,11 @@ class BottomTabScreen extends StatelessWidget {
   Widget build(context) {
     return AutoTabsScaffold(
       builder: (context, child, animation) {
-        return ScreenBackground(
-          imagePath: AppAsset.homeBackgroundPng,
-          child: child,
+        return SafeArea(
+          child: ScreenBackground(
+            imagePath: AppAsset.homeBackgroundPng,
+            child: child,
+          ),
         );
       },
       routes: const [

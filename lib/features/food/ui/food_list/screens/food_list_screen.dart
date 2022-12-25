@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:elvan/features/food/ui/food_list/notifier/food_list_notifier.dart';
 import 'package:elvan/features/food/ui/food_list/screens/widgets/food_sliver_list.dart';
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:elvan/shared/constants/app_size.dart';
 
 class FoodListScreen extends HookConsumerWidget {
   const FoodListScreen({super.key});
@@ -26,7 +28,13 @@ class FoodListScreen extends HookConsumerWidget {
                 slivers: [
                   for (final foodEntry in foodMap.entries) ...[
                     SliverToBoxAdapter(
-                      child: AppText(foodEntry.key),
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppSize.paddingMD),
+                        child: AppText(
+                          foodEntry.key.toUpperCase(),
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                      ),
                     ),
                     FoodSliverList(foodItems: foodEntry.value)
                   ]

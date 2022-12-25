@@ -29,7 +29,7 @@ class BaseCard extends StatelessWidget {
       decoration: decoration ??
           BoxDecoration(
             color: AppColors.gray_70,
-            borderRadius: BorderRadius.circular(AppSize.radiusMD.r / 1.5),
+            borderRadius: BorderRadius.circular(AppSize.radiusSM * 1.5),
             boxShadow: const [
               AppShadows.shadow1,
             ],
