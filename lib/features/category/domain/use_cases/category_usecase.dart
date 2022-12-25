@@ -1,5 +1,5 @@
 import 'package:elvan/core/result/result.dart';
-import 'package:elvan/features/category/data/repository/category_repository.dart';
+import 'package:elvan/features/category/domain/repository/category_repository.dart';
 import 'package:elvan/features/category/data/repository/category_repository_impl.dart';
 import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

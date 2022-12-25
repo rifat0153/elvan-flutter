@@ -9,15 +9,3 @@ final supabaseAuthProvider = Provider<SupabaseAuth>((ref) {
 final supabaseClientProvider = Provider<SupabaseClient>((ref) {
   return Supabase.instance.client;
 });
-
-// part 'supbase_providers.g.dart';
-
-// @riverpod
-// SupabaseAuth supabaseAuthProvider(SupabaseAuthProviderRef ref) {
-//   return SupabaseAuth.instance;
-// }
-
-// @riverpod
-// SupabaseClient supabaseClientProvider(SupabaseClientProviderRef ref) {
-//   return Supabase.instance.client;
-// }

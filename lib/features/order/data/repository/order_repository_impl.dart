@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elvan/features/order/data/dto/order_dto.dart';
-import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'order_repository.dart';
+import 'package:elvan/core/firebase/firebase_providers.dart';
+import 'package:elvan/features/order/data/dto/order_dto.dart';
+
+import '../../domain/repository/order_repository.dart';
 
 final orderRepositoryProvider = Provider<OrderRepository>((ref) {
   final firebaseFirestore = ref.watch(firebaseFirestoreProvider);

@@ -1,6 +1,6 @@
 import 'package:elvan/core/failure/failure.dart';
 import 'package:elvan/core/result/result.dart';
-import 'package:elvan/features/order/data/repository/order_repository.dart';
+import 'package:elvan/features/order/domain/repository/order_repository.dart';
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
 import 'package:elvan/features/order/domain/models/order.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

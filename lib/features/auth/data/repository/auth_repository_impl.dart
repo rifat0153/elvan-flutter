@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:elvan/core/failure/failure.dart';
+import 'package:elvan/core/firebase/firebase_providers.dart';
 import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/auth/constants/constants.dart';
 import 'package:elvan/features/auth/data/dto/elvan_user_dto.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository.dart';
-import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:flutter/foundation.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepositoryImpl(

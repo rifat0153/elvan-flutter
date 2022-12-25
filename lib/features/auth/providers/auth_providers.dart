@@ -1,9 +1,10 @@
-import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
-import 'package:elvan/shared/providers/firebase/firebase_providers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'package:elvan/core/firebase/firebase_providers.dart';
+import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 
 part 'auth_providers.g.dart';
 

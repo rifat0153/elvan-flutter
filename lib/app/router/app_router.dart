@@ -21,7 +21,7 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
   print('appRouterProvider: isLoggedIn: $isLoggedIn');
 
   return AppRouter(
-    authGuard: AuthGuard(isLoggedIn),
+    // authGuard: AuthGuard(isLoggedIn),
   );
 });
 
@@ -37,7 +37,7 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
     AutoRoute(
       path: "/tabs",
       // name: "TabsRouter",
-      guards: [AuthGuard],
+      // guards: [AuthGuard],
       page: BottomTabScreen,
       children: [
         // create home, profile and favorites routes
