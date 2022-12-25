@@ -1,12 +1,11 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:elvan/core/router/app_router.gr.dart';
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileScreen extends HookConsumerWidget {
   const ProfileScreen({super.key});

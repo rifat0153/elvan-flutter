@@ -1,12 +1,10 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:elvan/core/router/app_router.dart';
-import 'package:elvan/core/router/app_router.gr.dart';
-import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
-import 'package:elvan/features/auth/ui/state/auth_event.dart';
-import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'package:elvan/app/router/app_router.dart';
+import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
+import 'package:elvan/features/auth/ui/state/auth_event.dart';
 
 class AuthScreen extends HookConsumerWidget {
   const AuthScreen({super.key});

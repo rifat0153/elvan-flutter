@@ -14,15 +14,3 @@ class SelectedFoodItem extends _$SelectedFoodItem {
     state = foodItem;
   }
 }
-
-// @Riverpod(keepAlive: true)
-// class SelectedFoodId extends _$SelectedFoodId {
-//   @override
-//   String build() {
-//     return '0';
-//   }
-
-//   setId(String id) {
-//     state = id;
-//   }
-// }

@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:elvan/core/router/app_router.gr.dart';
+import 'package:elvan/app/router/app_router.gr.dart';
+import 'package:flutter/material.dart';
+
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
-import 'package:flutter/material.dart';
 
 class BottomTabScreen extends StatelessWidget {
   const BottomTabScreen({Key? key}) : super(key: key);
@@ -21,22 +22,6 @@ class BottomTabScreen extends StatelessWidget {
         FavoriteRoute(),
         ProfileRoute(),
       ],
-      // bottomNavigationBuilder: (_, tabsRouter) {
-      //   return BottomNavigationBar(
-      //     currentIndex: tabsRouter.activeIndex,
-      //     onTap: tabsRouter.setActiveIndex,
-      //     items: const [
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.book),
-      //         label: 'Books',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.account_box),
-      //         label: 'Account',
-      //       ),
-      //     ],
-      //   );
-      // },
       bottomNavigationBuilder: (_, tabsRouter) {
         return NavigationBar(
           selectedIndex: tabsRouter.activeIndex,
