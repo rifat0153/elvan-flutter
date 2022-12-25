@@ -40,7 +40,7 @@ class CategoryCard extends HookConsumerWidget {
             ),
             const SizedBox(height: AppSize.paddingSM),
             AppText(
-              category.title ?? '',
+              category.title,
               style: Theme.of(context).textTheme.titleMedium,
               color: AppColors.white,
             ),

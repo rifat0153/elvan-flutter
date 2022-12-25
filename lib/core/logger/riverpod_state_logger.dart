@@ -1,3 +1,4 @@
+import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Useful to log state change in our application
@@ -12,11 +13,11 @@ class StateLogger extends ProviderObserver {
     ProviderContainer container,
   ) {
     // TODO use a proper logger
-    print(
+    logInfo(
       'Provider: ${provider.name ?? provider.runtimeType} changed',
     );
-    // print(
-    //   'Provider: ${provider.name} changed from $previousValue to $newValue',
+    // logWarning(
+    //   'Provider: ${provider.name} changed from ${previousValue.toString()} to ${newValue.toString()}',
     // );
 //     print('''
 // Provider: ${provider.name ?? provider.runtimeType}

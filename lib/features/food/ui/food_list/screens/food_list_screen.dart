@@ -32,21 +32,12 @@ class FoodListScreen extends HookConsumerWidget {
                   const SliverToBoxAdapter(
                     child: SizedBox(height: AppSize.paddingMD),
                   ),
-                  SliverToBoxAdapter(
-                    child: AppText(
-                      ref
-                          .read(selectedCategoriesNotifierProvider.notifier)
-                          .categories
-                          .map(
-                            (e) => e,
-                          )
-                          .toString(),
-                    ),
-                  ),
+
                   // category chips
                   const SliverToBoxAdapter(
                     child: CategoryChips(),
                   ),
+
                   for (final foodEntry in foodMap.entries) ...[
                     SliverToBoxAdapter(
                       child: Padding(

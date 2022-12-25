@@ -17,7 +17,7 @@ class CartScreen extends ConsumerWidget {
             data: (categoryList) => Column(
               children: categoryList
                   .map(
-                    (e) => Text(e.title ?? 'No data'),
+                    (e) => Text(e.title),
                   )
                   .toList(),
             ),

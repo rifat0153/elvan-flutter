@@ -15,35 +15,35 @@ class MyApp extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ref.listen(authStateProvider, (_, next) {
-    //   debugPrint('currentUserProvider listen:  next: ${next.value?.uid}');
+    ref.listen(authStateProvider, (_, next) {
+      debugPrint('currentUserProvider listen:  next: ${next.value?.uid}');
 
-    //   debugPrint('OnChange: -> Root key -> ${ref.read(appRouterProvider).key}');
-    //   debugPrint('OnChange: ->  Curr key -> ${ref.read(appRouterProvider).current.key}');
+      debugPrint('OnChange: -> Root key -> ${ref.read(appRouterProvider).key}');
+      debugPrint('OnChange: ->  Curr key -> ${ref.read(appRouterProvider).current.key}');
 
-    //   debugPrint('OnChange: -> Current router path -> ${ref.read(appRouterProvider).current.path}');
+      debugPrint('OnChange: -> Current router path -> ${ref.read(appRouterProvider).current.path}');
 
-    //   final currrentPath = ref.read(appRouterProvider).current.path;
-    //   logWarning('OnChange: Auth State Changed -> curr path -> $currrentPath');
+      final currrentPath = ref.read(appRouterProvider).current.path;
+      logWarning('OnChange: Auth State Changed -> curr path -> $currrentPath');
 
-    //   if (next.value != null) {
-    //     debugPrint('OnChange: BottomTabRoute');
+      if (next.value != null) {
+        debugPrint('OnChange: BottomTabRoute');
 
-    //     if (currrentPath == '') {
-    //       logInfo('OnChange: Tab -----> Push');
-    //       ref.read(appRouterProvider).push(const BottomTabRoute());
-    //     } else {
-    //       logInfo('OnChange: Tab -----> ReplaceAll');
-    //       ref.read(appRouterProvider).replaceAll([const BottomTabRoute()]);
-    //     }
-    //   } else {
-    //     logInfo('OnChange: Auth -----> ReplaceAll');
-    //     final stack = ref.read(appRouterProvider).canNavigateBack;
-    //     logInfo('OnChange: Auth -----> stack: $stack');
+        if (currrentPath == '') {
+          logInfo('OnChange: Tab -----> Push');
+          ref.read(appRouterProvider).push(const BottomTabRoute());
+        } else {
+          logInfo('OnChange: Tab -----> ReplaceAll');
+          ref.read(appRouterProvider).replaceAll([const BottomTabRoute()]);
+        }
+      } else {
+        logInfo('OnChange: Auth -----> ReplaceAll');
+        final stack = ref.read(appRouterProvider).canNavigateBack;
+        logInfo('OnChange: Auth -----> stack: $stack');
 
-    //     ref.read(appRouterProvider).replaceAll([const AuthRouter()]);
-    //   }
-    // });
+        ref.read(appRouterProvider).replaceAll([const AuthRouter()]);
+      }
+    });
 
     final appRouter = ref.watch(appRouterProvider);
     final currentUser = ref.watch(currentUserProvider);

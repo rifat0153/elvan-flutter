@@ -27,22 +27,14 @@ class AppText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
+    return Text(
+      text,
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
       textAlign: textAlign ?? TextAlign.start,
-      text: TextSpan(children: [
-        TextSpan(
-          text: text,
-          style: style?.merge(style).copyWith(
-                color: color,
-              ),
-          recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              if (onTapped != null) onTapped!();
-            },
-        )
-      ]),
+      style: style?.merge(style).copyWith(
+            color: color,
+          ),
     );
   }
 }

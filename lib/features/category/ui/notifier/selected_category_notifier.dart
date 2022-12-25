@@ -10,6 +10,14 @@ class SelectedCategoriesNotifier extends _$SelectedCategoriesNotifier {
     return [];
   }
 
+  void toggleCategory(Category category) {
+    if (contains(category)) {
+      remove(category);
+    } else {
+      add(category);
+    }
+  }
+
   void resetAndAdd(Category category) {
     state = [category];
   }
