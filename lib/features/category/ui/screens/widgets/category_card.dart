@@ -18,11 +18,8 @@ class CategoryCard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
+    return InkWell(
       onTap: () {
-        print('Clicked Category Card');
-
         context.pushRoute(const FoodRouter());
       },
       child: BaseCard(

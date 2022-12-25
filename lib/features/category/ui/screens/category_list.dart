@@ -1,5 +1,5 @@
 import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
-import 'package:elvan/features/category/ui/screens/category_list_row.dart';
+import 'package:elvan/features/category/ui/screens/widgets/category_list_row.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
