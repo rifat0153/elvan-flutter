@@ -4,14 +4,12 @@ import 'package:elvan/shared/hooks/use_button_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class FavoriteButton extends HookWidget {
-  const FavoriteButton({
+class AddIconButton extends HookWidget {
+  const AddIconButton({
     super.key,
-    required this.isFavorite,
     this.onPressed,
   });
 
-  final bool isFavorite;
   final void Function()? onPressed;
 
   @override
@@ -29,17 +27,12 @@ class FavoriteButton extends HookWidget {
       buttonFinalSize,
     );
 
-    final Animation<Color?> colorTween = ColorTween(
-      begin: isFavorite ? AppColors.primaryRed : AppColors.white,
-      end: isFavorite ? AppColors.white : AppColors.primaryRed,
-    ).animate(controller);
-
     useListenable(controller);
 
     return ElvanIconButton(
-      icon: Icons.favorite,
+      icon: Icons.add,
       size: sizeTween.value,
-      color: colorTween.value,
+      color: AppColors.primaryRed,
       onPressed: () {
         if (controller.isAnimating) return;
 

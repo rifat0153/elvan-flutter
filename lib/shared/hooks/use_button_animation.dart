@@ -3,14 +3,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 Animation<double> useButtonSizeAnimation(
   AnimationController controller,
-  bool isFavorite,
   double initialSize,
   double finalSize,
 ) {
   return use(
     _ButtonSizeAnimation(
       controller,
-      isFavorite,
       initialSize,
       finalSize,
     ),
@@ -20,13 +18,11 @@ Animation<double> useButtonSizeAnimation(
 class _ButtonSizeAnimation extends Hook<Animation<double>> {
   const _ButtonSizeAnimation(
     this.controller,
-    this.isFavorite,
     this.initialSize,
     this.finalSize,
   );
 
   final AnimationController controller;
-  final bool isFavorite;
   final double initialSize;
   final double finalSize;
 

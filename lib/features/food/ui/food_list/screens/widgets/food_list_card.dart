@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:elvan/shared/components/buttons/add_icon_button.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,10 @@ import 'package:elvan/shared/components/cards/base_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 
 class FoodListCard extends StatelessWidget {
-  const FoodListCard({super.key, required this.foodItem});
+  const FoodListCard({
+    super.key,
+    required this.foodItem,
+  });
 
   final FoodItem foodItem;
 
@@ -24,7 +28,7 @@ class FoodListCard extends StatelessWidget {
       padding: const EdgeInsets.all(0),
       child: Row(
         children: [
-          // Food Image 
+          // Food Image
           Flexible(
             flex: 3,
             fit: FlexFit.tight,
@@ -74,8 +78,13 @@ class FoodListCard extends StatelessWidget {
           Flexible(
             flex: 2,
             child: Column(
-              children: const [
-                FavoriteButton(isFavorite: false),
+              children: [
+                AddIconButton(
+                  onPressed: () {},
+                ),
+                FavoriteButton(
+                  isFavorite: foodItem.isFavorite,
+                ),
               ],
             ),
           ),
