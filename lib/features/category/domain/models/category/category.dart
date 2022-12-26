@@ -15,6 +15,8 @@ class Category with _$Category {
   const factory Category({
     String? id,
     required String title,
+    @Default(false)
+        bool isSelected,
     String? description,
     String? imageUrl,
     @Default([])

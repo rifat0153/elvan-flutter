@@ -1,9 +1,8 @@
-import 'package:elvan/features/category/ui/notifier/selected_category_notifier.dart';
-import 'package:elvan/features/category/ui/screens/category_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:elvan/features/category/ui/screens/category_chips.dart';
 import 'package:elvan/features/food/ui/food_list/notifier/food_list_notifier.dart';
 import 'package:elvan/features/food/ui/food_list/screens/widgets/food_sliver_list.dart';
 import 'package:elvan/shared/components/background/screen_background.dart';

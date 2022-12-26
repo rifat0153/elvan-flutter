@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elvan/features/category/ui/notifier/selected_category_notifier.dart';
+import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,7 +21,7 @@ class CategoryCard extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
-        ref.read(selectedCategoriesNotifierProvider.notifier).resetAndAdd(category);
+        ref.read(categoryNotifierProvider.notifier).resetSelectedAndNew(category);
         context.pushRoute(const FoodRouter());
       },
       child: BaseCard(
