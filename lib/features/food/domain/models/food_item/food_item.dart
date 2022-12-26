@@ -21,8 +21,8 @@ class FoodItem with _$FoodItem {
     String? id,
     required String title,
     required double price,
+    required String category,
     double? discount,
-    String? category,
     @Default(false)
         bool isTopPick,
     String? description,
@@ -53,7 +53,7 @@ class FoodItem with _$FoodItem {
       title: foodItemDto.title,
       price: foodItemDto.price,
       discount: foodItemDto.discount,
-      category: foodItemDto.category,
+      category: foodItemDto.category ?? '',
       isTopPick: foodItemDto.isTopPick,
       description: foodItemDto.description,
       imageUrl: foodItemDto.imageUrl,

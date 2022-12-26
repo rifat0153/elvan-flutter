@@ -1,7 +1,8 @@
-import 'package:elvan/features/food/domain/repository/food_repository.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:elvan/features/food/data/repository/food_repository_impl.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:elvan/features/food/domain/repository/food_repository.dart';
 
 final foodUseCaseProvider = Provider<FoodUseCase>((ref) {
   final foodRepository = ref.watch(foodRepositoryProvider);
@@ -30,7 +31,7 @@ class FoodUseCase {
           (e) => selectedCategories.isEmpty
               ? true
               : selectedCategories.contains(
-                  e.category?.toLowerCase().replaceAll(' ', ''),
+                  e.category.toLowerCase().replaceAll(' ', ''),
                 ),
         )
         .toList();
@@ -40,7 +41,7 @@ class FoodUseCase {
       if (foodCategoryMap.containsKey(foodItem.category)) {
         foodCategoryMap[foodItem.category]!.add(foodItem);
       } else {
-        foodCategoryMap[foodItem.category!] = [foodItem];
+        foodCategoryMap[foodItem.category] = [foodItem];
       }
     }
 

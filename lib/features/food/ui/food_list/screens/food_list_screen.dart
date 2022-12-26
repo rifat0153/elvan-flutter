@@ -1,3 +1,5 @@
+import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
+import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,44 +20,76 @@ class FoodListScreen extends HookConsumerWidget {
     // final foodListMapAsync = ref.watch(foodByCategoryNotifierProvider);
     final foodListFilteredAsync = ref.watch(foodListFilteredMapProvider);
 
-    return Scaffold(
-      body: SafeArea(
-        child: ScreenBackground(
-          imagePath: AppAsset.homeBackgroundPng,
-          width: 1.sw,
-          height: 1.sh,
-          child: foodListFilteredAsync.when(
-            data: (foodMap) {
-              return CustomScrollView(
-                slivers: [
-                  const SliverToBoxAdapter(
-                    child: SizedBox(height: AppSize.paddingMD),
-                  ),
+    final selectedCategories = ref
+            .watch(
+              categoryNotifierProvider.notifier,
+            )
+            .selectedCategories
+            ?.map(
+              (e) => e.title.toLowerCase().replaceAll(' ', ''),
+            ) ??
+        [];
 
-                  // category chips
-                  const SliverToBoxAdapter(
-                    child: CategoryChips(),
-                  ),
+    return ElvanScaffold(
+      imagePath: AppAsset.homeBackgroundPng,
+      child: foodListFilteredAsync.when(
+        data: (foodMapList) {
+          return CustomScrollView(
+            slivers: [
+              const SliverToBoxAdapter(
+                child: SizedBox(height: AppSize.paddingMD),
+              ),
 
-                  for (final foodEntry in foodMap.entries) ...[
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.all(AppSize.paddingMD),
-                        child: AppText(
-                          foodEntry.key.toUpperCase(),
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ),
+              // category chips
+              const SliverToBoxAdapter(
+                child: CategoryChips(),
+              ),
+
+              SliverToBoxAdapter(
+                child: AppText(selectedCategories.toString()),
+              ),
+
+              for (final foodMap in foodMapList) ...[
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppSize.paddingMD),
+                    child: AppText(
+                      foodMap.category.toUpperCase(),
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    FoodSliverList(foodItems: foodEntry.value)
-                  ]
-                ],
-              );
-            },
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, stack) => Text(error.toString()),
-          ),
-        ),
+                  ),
+                ),
+                FoodSliverList(foodItems: foodMap.foodItems)
+              ]
+              // for (final category in selectedCategories) ...[
+              //   SliverToBoxAdapter(
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(AppSize.paddingMD),
+              //       child: AppText(
+              //         category.toUpperCase(),
+              //         style: Theme.of(context).textTheme.headlineMedium,
+              //       ),
+              //     ),
+              //   ),
+              //   FoodSliverList(foodItems: foodMap[category] ?? [])
+              // ]
+              // for (final foodEntry in foodMap.entries) ...[
+              //   SliverToBoxAdapter(
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(AppSize.paddingMD),
+              //       child: AppText(
+              //         foodEntry.key.toUpperCase(),
+              //         style: Theme.of(context).textTheme.headlineMedium,
+              //       ),
+              //     ),
+              //   ),
+              //   FoodSliverList(foodItems: foodEntry.value)
+              // ]
+            ],
+          );
+        },
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, stack) => Text(error.toString()),
       ),
     );
   }

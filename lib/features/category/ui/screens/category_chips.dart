@@ -24,6 +24,7 @@ class CategoryChips extends HookConsumerWidget {
             children: sortedCategories
                 .mapIndexed(
                   (i, category) => Padding(
+                    key: ValueKey(category.hashCode),
                     padding: EdgeInsets.only(
                       right: AppSize.paddingSM,
                       left: i == 0 ? AppSize.paddingMD : 0,
