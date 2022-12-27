@@ -23,7 +23,10 @@ class FoodSliverList extends StatelessWidget {
               horizontal: AppSize.paddingMD,
               vertical: AppSize.paddingSM,
             ),
-            child: FoodListCard(foodItem: foodItem),
+            child: FoodListCard(
+              key: ValueKey(foodItem.id),
+              foodItem: foodItem,
+            ),
           );
         },
       ),

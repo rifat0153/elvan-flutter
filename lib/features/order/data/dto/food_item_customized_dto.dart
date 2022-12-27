@@ -1,5 +1,4 @@
 import 'package:elvan/features/food/data/dto/food_item_dto.dart';
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/order/data/dto/build_step_customized_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

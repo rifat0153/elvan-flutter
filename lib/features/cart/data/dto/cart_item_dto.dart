@@ -1,6 +1,6 @@
-import 'package:elvan/features/order/data/dto/food_item_customized_dto.dart';
-import 'package:elvan/features/order/domain/models/food_item_customized.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:elvan/features/order/data/dto/food_item_customized_dto.dart';
 
 part 'cart_item_dto.freezed.dart';
 part 'cart_item_dto.g.dart';

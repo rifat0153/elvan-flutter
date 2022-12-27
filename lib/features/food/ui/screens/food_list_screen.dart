@@ -1,13 +1,11 @@
-import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
-import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
 import 'package:elvan/features/category/ui/screens/category_chips.dart';
-import 'package:elvan/features/food/ui/notifier/food_list_notifier.dart';
 import 'package:elvan/features/food/ui/components/food_sliver_list.dart';
-import 'package:elvan/shared/components/background/screen_background.dart';
+import 'package:elvan/features/food/ui/notifier/food_list_notifier.dart';
+import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_size.dart';
