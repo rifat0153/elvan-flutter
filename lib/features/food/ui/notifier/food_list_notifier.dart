@@ -1,7 +1,7 @@
 import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
 import 'package:elvan/features/food/domain/use_case/food_category_map_use_case.dart';
-import 'package:elvan/features/food/ui/food_list/notifier/food_category_map.dart';
+import 'package:elvan/features/food/ui/notifier/food_category_map.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';

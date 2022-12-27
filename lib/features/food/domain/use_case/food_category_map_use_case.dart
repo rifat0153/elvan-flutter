@@ -1,6 +1,6 @@
 import 'package:elvan/core/extensions/string/string_compare_without_case_and_space_ext.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
-import 'package:elvan/features/food/ui/food_list/notifier/food_category_map.dart';
+import 'package:elvan/features/food/ui/notifier/food_category_map.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final foodCategoryMapUseCaseProvider = Provider<FoodCategoryMapUseCase>(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
-import 'package:elvan/features/food/ui/food_list/screens/widgets/food_list_card.dart';
+import 'package:elvan/features/food/ui/components/food_list_card.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
 class FoodSliverList extends StatelessWidget {

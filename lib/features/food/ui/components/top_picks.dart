@@ -1,5 +1,5 @@
-import 'package:elvan/features/food/ui/top_picks/notifier/top_picks_notifier.dart';
-import 'package:elvan/features/food/ui/top_picks/screens/widgets/top_picks_grid.dart';
+import 'package:elvan/features/food/ui/notifier/top_picks_notifier.dart';
+import 'package:elvan/features/food/ui/components/top_picks_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
