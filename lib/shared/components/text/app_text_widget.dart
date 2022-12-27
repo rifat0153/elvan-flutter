@@ -1,8 +1,6 @@
-import 'package:elvan/shared/components/rich_text/base_text.dart';
-import 'package:elvan/shared/components/rich_text/link_text.dart';
-import 'package:elvan/shared/constants/app_colors.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import 'package:elvan/shared/constants/app_colors.dart';
 
 class AppText extends StatelessWidget {
   final String text;

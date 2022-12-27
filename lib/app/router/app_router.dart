@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
+import 'package:elvan/features/cart/ui/screens/cart_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/app/router/app_router.gr.dart';
@@ -21,8 +22,8 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
   print('appRouterProvider: isLoggedIn: $isLoggedIn');
 
   return AppRouter(
-    // authGuard: AuthGuard(isLoggedIn),
-  );
+      // authGuard: AuthGuard(isLoggedIn),
+      );
 });
 
 @MaterialAutoRouter(
@@ -72,6 +73,10 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
           page: FooDDetailScreen,
         ),
       ],
+    ),
+    AutoRoute(
+      path: "/cart",
+      page: CartScreen,
     ),
     AutoRoute(
       path: "*",

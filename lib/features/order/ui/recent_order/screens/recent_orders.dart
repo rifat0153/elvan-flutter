@@ -12,7 +12,7 @@ class RecentOrdersWidget extends HookConsumerWidget {
     return recentOrderNotifier.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       data: (cartItems) => RecentOrdersGrid(cartItems: cartItems),
-      error: (e) => Center(child: Text(e!)),
+      error: (e, st) => Center(child: Text(e!)),
     );
   }
 }
