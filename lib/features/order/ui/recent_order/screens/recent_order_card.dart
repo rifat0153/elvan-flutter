@@ -21,9 +21,9 @@ class RecentOrderCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final quantity = '${cartItem.quantity}';
-    final foodTitle = cartItem.foodItemCustomized.foodItem.title;
-    final imageUrl = cartItem.foodItemCustomized.foodItem.imageUrl;
-    final price = '${cartItem.foodItemCustomized.foodItem.price}';
+    final foodTitle = cartItem.foodItem.title;
+    final imageUrl = cartItem.foodItem.imageUrl;
+    final price = '${cartItem.foodItem.price}';
 
     return BaseCard(
       padding: const EdgeInsets.all(0),

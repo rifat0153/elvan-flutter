@@ -19,6 +19,10 @@ enum OrderStatus {
     return val ?? OrderStatus.unknown;
   }
 
+  OrderStatusDto toDto() {
+    return OrderStatusDto.values.firstWhere((e) => e.status == status);
+  }
+
   static String toJson(OrderStatus status) {
     return status.name;
   }

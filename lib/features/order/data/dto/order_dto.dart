@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elvan/features/cart/data/dto/cart_item_dto.dart';
-import 'package:elvan/features/order/data/dto/food_item_customized_dto.dart';
-import 'package:elvan/features/order/data/dto/order_status_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:elvan/core/extensions/timestamp/timestamp_json_converter.dart';
+import 'package:elvan/features/cart/data/dto/cart_item_dto.dart';
+import 'package:elvan/features/order/data/dto/order_status_dto.dart';
 
 part 'order_dto.freezed.dart';
 part 'order_dto.g.dart';

@@ -1,6 +1,6 @@
-import 'package:elvan/features/category/data/dto/add_on_dto.dart';
-import 'package:elvan/features/category/domain/models/add_on/add_on.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:elvan/features/category/data/dto/add_on_dto.dart';
 
 part 'build_step_dto.freezed.dart';
 part 'build_step_dto.g.dart';
@@ -11,11 +11,12 @@ class BuildStepDto with _$BuildStepDto {
 
   @JsonSerializable(explicitToJson: true)
   const factory BuildStepDto({
+    String? id,
     required String title,
     @Default(false) bool isRequired,
     @Default(0) int noOfItemIncludedInPrice,
     @Default(0) int minSelectedAddOns,
-    int? maxSelectedAddOns,
+    @Default(10) int maxSelectedAddOns,
     @Default([]) List<AddOnDto> addOns,
   }) = _FoodItemBuildStepDtos;
 

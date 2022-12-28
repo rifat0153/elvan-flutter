@@ -1,6 +1,7 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:elvan/features/category/data/dto/build_step_dto.dart';
 import 'package:elvan/features/category/domain/models/add_on/add_on.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'build_step.freezed.dart';
 part 'build_step.g.dart';
@@ -11,35 +12,82 @@ class BuildStep with _$BuildStep {
 
   @JsonSerializable(explicitToJson: true)
   const factory BuildStep({
+    String? id,
     required String title,
     @Default(false) bool isRequired,
     @Default(0) int noOfItemIncludedInPrice,
     @Default(0) int minSelectedAddOns,
-    int? maxSelectedAddOns,
+    @Default(10) int maxSelectedAddOns,
     @Default([]) List<AddOn> addOns,
   }) = _FoodItemBuildSteps;
 
+  bool minAddOnsSelected() {
+    return addOns
+            .where(
+              (element) => element.isSelected,
+            )
+            .length >=
+        minSelectedAddOns;
+  }
+
+  bool maxAddOnsSelected() {
+    return addOns
+            .where(
+              (element) => element.isSelected,
+            )
+            .length <=
+        maxSelectedAddOns;
+  }
+
+  double get price {
+    double price = 0;
+
+    final selectedAddOns = addOns
+        .where(
+          (element) => element.isSelected,
+        )
+        .toList();
+
+    for (int i = 0; i < selectedAddOns.length; i++) {
+      // dont include addOns that are not included in price
+      if (i >= noOfItemIncludedInPrice) {
+        price += selectedAddOns[i].price;
+      }
+    }
+    return price;
+  }
+
   factory BuildStep.fromJson(Map<String, dynamic> json) => _$BuildStepFromJson(json);
 
-  factory BuildStep.fromDto(BuildStepDto foodItemBuildStepDto) {
+  factory BuildStep.fromDto(BuildStepDto dto) {
     return BuildStep(
-      title: foodItemBuildStepDto.title,
-      isRequired: foodItemBuildStepDto.isRequired,
-      noOfItemIncludedInPrice: foodItemBuildStepDto.noOfItemIncludedInPrice,
-      minSelectedAddOns: foodItemBuildStepDto.minSelectedAddOns,
-      maxSelectedAddOns: foodItemBuildStepDto.maxSelectedAddOns,
-      addOns: foodItemBuildStepDto.addOns.map((e) => AddOn.fromDto(e)).toList(),
+      id: dto.id,
+      title: dto.title,
+      isRequired: dto.isRequired,
+      noOfItemIncludedInPrice: dto.noOfItemIncludedInPrice,
+      minSelectedAddOns: dto.minSelectedAddOns,
+      maxSelectedAddOns: dto.maxSelectedAddOns,
+      addOns: dto.addOns
+          .map(
+            (e) => AddOn.fromDto(e),
+          )
+          .toList(),
     );
   }
 
   BuildStepDto toDto() {
     return BuildStepDto(
+      id: id,
       title: title,
       isRequired: isRequired,
       noOfItemIncludedInPrice: noOfItemIncludedInPrice,
       minSelectedAddOns: minSelectedAddOns,
       maxSelectedAddOns: maxSelectedAddOns,
-      addOns: addOns.map((e) => e.toDto()).toList(),
+      addOns: addOns
+          .map(
+            (e) => e.toDto(),
+          )
+          .toList(),
     );
   }
 }

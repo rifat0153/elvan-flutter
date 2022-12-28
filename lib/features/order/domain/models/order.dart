@@ -12,6 +12,8 @@ part 'order.g.dart';
 
 @freezed
 class Order with _$Order {
+  const Order._();
+
   @JsonSerializable(explicitToJson: true)
   const factory Order({
     required String id,
@@ -50,5 +52,19 @@ class Order with _$Order {
         paymentStatus: orderDto.paymentStatus,
         instructions: orderDto.instructions,
         createdAt: orderDto.createdAt,
+      );
+
+  OrderDto toDto() => OrderDto(
+        id: id,
+        userId: userId,
+        items: items.map((e) => e.toDto()).toList(),
+        total: total,
+        discount: discount,
+        subTotal: subTotal,
+        status: status.toDto(),
+        paymentMethod: paymentMethod,
+        paymentStatus: paymentStatus,
+        instructions: instructions,
+        createdAt: createdAt,
       );
 }
