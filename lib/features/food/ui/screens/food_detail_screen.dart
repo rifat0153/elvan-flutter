@@ -1,3 +1,5 @@
+import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -18,13 +20,36 @@ class FooDDetailScreen extends HookConsumerWidget {
         imagePath: AppAsset.homeBackgroundPng,
         child: foodItemState.when(
           data: (foodItem) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                FoodDetailImageWithAppbar(foodItem: foodItem),
-                const AppText('Food Detail Screen'),
-                AppText('Food Name: ${foodItem.title}'),
-                AppText('$foodItem'),
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: FoodDetailImageWithAppbar(foodItem: foodItem),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSize.paddingMD,
+                      vertical: AppSize.paddingSM,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppText(foodItem.title.toUpperCase()),
+                        AppText(
+                          foodItem.price.toString(),
+                          style: Theme.of(context).textTheme.headlineSmall,
+                          color: AppColors.white,
+                        ),
+                        AppText(
+                          foodItem.description.toString(),
+                          style: Theme.of(context).textTheme.bodyLarge,
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             );
           },

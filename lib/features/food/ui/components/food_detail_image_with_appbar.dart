@@ -18,7 +18,9 @@ class FoodDetailImageWithAppbar extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: FoodDetailImage(foodItem: foodItem),
+            child: FoodDetailImage(
+              foodItem: foodItem,
+            ),
           ),
           const FoodDetailAppBar(),
         ],

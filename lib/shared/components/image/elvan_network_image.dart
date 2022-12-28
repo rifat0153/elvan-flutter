@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ElvanNetworkImage extends StatelessWidget {
@@ -16,18 +17,20 @@ class ElvanNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      imageUrl,
+    return CachedNetworkImage(
+      imageUrl: imageUrl,
       width: width,
       height: height,
       fit: fit,
-      errorBuilder: (context, error, stackTrace) => Image.asset(
-        // TODO: Add a placeholder image
-        'assets/images/food_placeholder.png',
-        width: width,
-        height: height,
-        fit: BoxFit.cover,
-      ),
+      errorWidget: (context, url, error) {
+        return Image.asset(
+          // TODO: Add a placeholder image
+          'assets/images/food_placeholder.png',
+          width: width,
+          height: height,
+          fit: BoxFit.cover,
+        );
+      },
     );
   }
 }

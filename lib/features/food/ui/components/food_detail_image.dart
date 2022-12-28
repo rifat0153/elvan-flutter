@@ -12,6 +12,7 @@ class FoodDetailImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElvanNetworkImage(
       foodItem.imageUrl ?? '',
+      fit: BoxFit.cover,
     );
   }
 }
