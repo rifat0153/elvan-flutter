@@ -19,7 +19,8 @@ class FoodItemDto with _$FoodItemDto {
     required String title,
     required double price,
     double? discount,
-    String? category,
+    String? categoryId,
+    String? categoryTitle,
     String? description,
     String? imageUrl,
     @Default(false)

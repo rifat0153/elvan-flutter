@@ -31,17 +31,17 @@ class FoodUseCase {
           (e) => selectedCategories.isEmpty
               ? true
               : selectedCategories.contains(
-                  e.category.toLowerCase().replaceAll(' ', ''),
+                  e.categoryId.toLowerCase().replaceAll(' ', ''),
                 ),
         )
         .toList();
 
     final Map<String, List<FoodItem>> foodCategoryMap = {};
     for (final foodItem in filteredFoodList) {
-      if (foodCategoryMap.containsKey(foodItem.category)) {
-        foodCategoryMap[foodItem.category]!.add(foodItem);
+      if (foodCategoryMap.containsKey(foodItem.categoryId)) {
+        foodCategoryMap[foodItem.categoryId]!.add(foodItem);
       } else {
-        foodCategoryMap[foodItem.category] = [foodItem];
+        foodCategoryMap[foodItem.categoryId] = [foodItem];
       }
     }
 

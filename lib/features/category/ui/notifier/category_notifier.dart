@@ -19,22 +19,20 @@ class CategoryNotifier extends _$CategoryNotifier {
 
   List<Category>? get categoriesSortedBySelected {
     return state.valueOrNull;
-    return state.valueOrNull?.toList()
-      ?..sort(
-        (a, b) {
-          if (a.isSelected && !b.isSelected) {
-            return -1;
-          } else if (!a.isSelected && b.isSelected) {
-            return 1;
-          } else {
-            return 0;
-          }
-        },
-      );
   }
 
   List<Category>? get selectedCategories {
-    return state.value?.where((e) => e.isSelected).toList();
+    final selectedCategories = state.value?.where((e) => e.isSelected).toList();
+
+    if (selectedCategories == null || selectedCategories.isEmpty) {
+      return null;
+    }
+
+    return selectedCategories;
+  }
+
+  List<Category>? get allCategories {
+    return state.value?.toList();
   }
 
   List<Category>? get notSelectedCategories {
@@ -89,8 +87,6 @@ class CategoryNotifier extends _$CategoryNotifier {
 
     logError('Selected Titles: ${modifiedCategories.where((e) => e.isSelected).map((e) => e.title).toList()} ');
 
-    if (modifiedCategories != null) {
-      state = AsyncValue.data(modifiedCategories);
-    }
+    state = AsyncValue.data(modifiedCategories);
   }
 }

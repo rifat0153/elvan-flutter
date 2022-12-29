@@ -70,18 +70,18 @@ class BuildStepsNotifier extends _$BuildStepsNotifier {
   }
 
   void setBuildStepsFromFoodItem(FoodItem foodItem) {
-    final buildSteps = getBuildStepFromCategory(foodItem.category);
+    final buildSteps = getBuildStepFromCategory(foodItem.categoryId);
 
     logError('buildSteps: ${buildSteps?.length}');
 
     state = AsyncValue.data(buildSteps ?? []);
   }
 
-  List<BuildStep>? getBuildStepFromCategory(String categoryTitle) {
+  List<BuildStep>? getBuildStepFromCategory(String categoryId) {
     final category = ref.read(categoryNotifierProvider).value?.firstWhereOrNull(
       (e) {
-        logError('Compare: ${e.title.toLowerCase()} == $categoryTitle');
-        return e.title.toLowerCase() == categoryTitle.toLowerCase();
+        logError('Compare: ${e.title.toLowerCase()} == $categoryId');
+        return e.id?.toLowerCase() == categoryId.toLowerCase();
       },
     );
 

@@ -17,15 +17,17 @@ FutureOr<List<FoodCategoryMap>> foodListFilteredMap(FoodListFilteredMapRef ref) 
 
   final categoriesAsync = ref.watch(categoryNotifierProvider);
   final selectedCategoriesNotifier = ref.watch(categoryNotifierProvider.notifier);
-  final selectedCategories = selectedCategoriesNotifier.selectedCategories ?? [];
+  final selectedCategories = selectedCategoriesNotifier.selectedCategories;
 
   final foodList = foodListAsync.valueOrNull ?? [];
 
-  List<FoodCategoryMap> foodCategoryMapList = [];
+  logError('Selected categories length: ${selectedCategories?.length}');
 
+  // get good list by category
+  List<FoodCategoryMap> foodCategoryMapList = [];
   foodCategoryMapList = foodCategoryMapUseCase.getFoodCategoryMapList(
     foodList: foodList,
-    selectedCategories: selectedCategories.map((e) => e.title).toList(),
+    categories: selectedCategories ?? categoriesAsync.valueOrNull!,
   );
 
   return foodCategoryMapList;

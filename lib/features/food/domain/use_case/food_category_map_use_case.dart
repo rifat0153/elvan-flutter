@@ -1,7 +1,9 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:elvan/core/extensions/string/string_compare_without_case_and_space_ext.dart';
+import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/notifier/food_category_map.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final foodCategoryMapUseCaseProvider = Provider<FoodCategoryMapUseCase>(
   (ref) => FoodCategoryMapUseCase(),
@@ -10,26 +12,22 @@ final foodCategoryMapUseCaseProvider = Provider<FoodCategoryMapUseCase>(
 class FoodCategoryMapUseCase {
   List<FoodCategoryMap> getFoodCategoryMapList({
     List<FoodItem> foodList = const [],
-    List<String> selectedCategories = const [],
+    List<Category> categories = const [],
   }) {
     final List<FoodCategoryMap> foodCategoryMapList = [];
 
-    if (selectedCategories.isEmpty) {
-      selectedCategories = foodList.map((e) => e.category).toSet().toList();
-    }
-
-    for (int i = 0; i < selectedCategories.length; i++) {
+    for (int i = 0; i < categories.length; i++) {
       final foodItems = foodList
           .where(
-            (foodItem) => foodItem.category.compareWithoutCaseAndSpace(
-              selectedCategories[i],
+            (foodItem) => foodItem.categoryId.compareWithoutCaseAndSpace(
+              categories[i].id,
             ),
           )
           .toList();
 
       foodCategoryMapList.add(
         FoodCategoryMap(
-          category: selectedCategories[i],
+          category: categories[i],
           foodItems: foodItems,
         ),
       );
