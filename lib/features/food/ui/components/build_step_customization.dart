@@ -1,13 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:elvan/features/category/domain/models/add_on/add_on.dart';
 import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
 import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
-import 'package:elvan/shared/components/buttons/add_icon_button.dart';
-import 'package:elvan/shared/components/chips/elvan_chip.dart';
+import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BuildStepCustomization extends HookConsumerWidget {
   const BuildStepCustomization({
@@ -28,14 +28,24 @@ class BuildStepCustomization extends HookConsumerWidget {
         _buildSectionTitle(context, buildStep),
         ...addOns
             .map(
-              (addOn) => _buildAddOnTile(context, addOn),
+              (addOn) => _buildAddOnTile(
+                context,
+                addOn,
+                () {
+                  buildStepsNotifier.updateAddOnQuantity(
+                    buildStepId: buildStep.id ?? '',
+                    addOnId: addOn.id ?? '',
+                    action: AddOnQuantityAction.toggleIsSelected,
+                  );
+                },
+              ),
             )
             .toList(),
       ],
     );
   }
 
-  Widget _buildAddOnTile(BuildContext context, AddOn addOn) {
+  Widget _buildAddOnTile(BuildContext context, AddOn addOn, Function() onPressed) {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSize.paddingMD,
@@ -43,9 +53,13 @@ class BuildStepCustomization extends HookConsumerWidget {
       ),
       child: Row(
         children: [
-          AddIconButton(
+          ElvanIconButton(
+            icon: addOn.isSelected ? Icons.check_circle_outline : Icons.add,
+            color: AppColors.primaryRed,
             // TODO: Add on pressed
-            onPressed: () {},
+            onPressed: () {
+              onPressed();
+            },
           ),
           Expanded(
             child: AppText(
@@ -68,7 +82,7 @@ class BuildStepCustomization extends HookConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSize.paddingMD,
-        vertical: AppSize.paddingSM,
+        vertical: AppSize.paddingXS,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

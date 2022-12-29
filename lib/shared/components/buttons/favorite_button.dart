@@ -1,8 +1,8 @@
-import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
-import 'package:elvan/shared/constants/app_colors.dart';
-import 'package:elvan/shared/hooks/use_button_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+
+import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
+import 'package:elvan/shared/constants/app_colors.dart';
 
 class FavoriteButton extends HookWidget {
   const FavoriteButton({
@@ -16,17 +16,8 @@ class FavoriteButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    const buttonInitialSize = 24.0;
-    const buttonFinalSize = 32.0;
-
     final controller = useAnimationController(
       duration: const Duration(milliseconds: 300),
-    );
-
-    final sizeTween = useButtonSizeAnimation(
-      controller,
-      buttonInitialSize,
-      buttonFinalSize,
     );
 
     final Animation<Color?> colorTween = ColorTween(
@@ -38,7 +29,6 @@ class FavoriteButton extends HookWidget {
 
     return ElvanIconButton(
       icon: Icons.favorite,
-      size: sizeTween.value,
       color: colorTween.value,
       onPressed: () {
         if (controller.isAnimating) return;

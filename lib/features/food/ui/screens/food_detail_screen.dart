@@ -1,5 +1,7 @@
+import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/components/build_step_customization.dart';
 import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
+import 'package:elvan/shared/components/buttons/elvan_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -23,60 +25,43 @@ class FooDDetailScreen extends HookConsumerWidget {
         imagePath: AppAsset.homeBackgroundPng,
         child: foodItemState.when(
           data: (foodItem) {
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: FoodDetailImageWithAppbar(foodItem: foodItem),
+            return Stack(
+              children: [
+                CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: FoodDetailImageWithAppbar(foodItem: foodItem),
+                    ),
+                    _foodDescription(foodItem, context),
+                    _buildStepsCustomization(),
+                    const SliverToBoxAdapter(
+                      child: SizedBox(height: AppSize.padding4XL),
+                    )
+                  ],
                 ),
-                SliverToBoxAdapter(
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSize.paddingMD,
-                      vertical: AppSize.paddingSM,
+                      vertical: AppSize.paddingMD,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppText(foodItem.title.toUpperCase()),
-                        AppText(
-                          foodItem.price.toString(),
-                          style: Theme.of(context).textTheme.headlineSmall,
-                          color: AppColors.white,
-                        ),
-                        AppText(
-                          foodItem.description.toString(),
-                          style: Theme.of(context).textTheme.bodyLarge,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                // const SliverToBoxAdapter(
-                //   child: BuildStepsWidget(),
-                // ),
-                Consumer(
-                  builder: (context, ref, child) {
-                    final buildStepsAsync = ref.watch(buildStepsNotifierProvider);
-
-                    return buildStepsAsync.when(
-                      data: (buildSteps) {
-                        return SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            childCount: buildSteps.length,
-                            (context, index) {
-                              return BuildStepCustomization(
-                                buildStep: buildSteps[index],
-                              );
-                            },
+                    child: Consumer(
+                      builder: ((context, ref, child) {
+                        return ElvanButton(
+                          color: AppColors.primaryRed,
+                          onPressed: () {},
+                          child: AppText(
+                            'Add to cart',
+                            color: AppColors.white,
+                            style: Theme.of(context).textTheme.titleSmall,
                           ),
                         );
-                      },
-                      loading: () => const Center(child: CircularProgressIndicator()),
-                      error: (error, stackTrace) => const Center(child: Text('Error')),
-                    );
-                  },
+                      }),
+                    ),
+                  ),
                 ),
               ],
             );
@@ -84,5 +69,58 @@ class FooDDetailScreen extends HookConsumerWidget {
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stackTrace) => const Center(child: Text('Error')),
         ));
+  }
+
+  Consumer _buildStepsCustomization() {
+    return Consumer(
+      builder: (context, ref, child) {
+        final buildStepsAsync = ref.watch(buildStepsNotifierProvider);
+
+        return buildStepsAsync.when(
+          data: (buildSteps) {
+            return SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: buildSteps.length,
+                (context, index) {
+                  return BuildStepCustomization(
+                    buildStep: buildSteps[index],
+                  );
+                },
+              ),
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, stackTrace) => const Center(child: Text('Error')),
+        );
+      },
+    );
+  }
+
+  SliverToBoxAdapter _foodDescription(FoodItem foodItem, BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSize.paddingMD,
+          vertical: AppSize.paddingSM,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppText(foodItem.title.toUpperCase()),
+            AppText(
+              foodItem.price.toString(),
+              style: Theme.of(context).textTheme.headlineSmall,
+              color: AppColors.white,
+            ),
+            AppText(
+              foodItem.description.toString(),
+              style: Theme.of(context).textTheme.bodyLarge,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
