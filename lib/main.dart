@@ -24,10 +24,9 @@ void main() async {
   );
 
   runApp(
-    ProviderScope(
-      observers: const [StateLogger()],
+    const ProviderScope(
+      observers: [StateLogger()],
       child: MyApp(),
     ),
   );
 }
-

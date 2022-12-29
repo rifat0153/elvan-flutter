@@ -9,6 +9,7 @@ class AppText extends StatelessWidget {
   final GestureTapCallback? onTapped;
   final int? maxLines;
   final TextAlign? textAlign;
+  final double? letterSpacing;
 
   const AppText(
     this.text, {
@@ -21,6 +22,7 @@ class AppText extends StatelessWidget {
     this.onTapped,
     this.maxLines,
     this.textAlign,
+    this.letterSpacing,
   });
 
   @override
@@ -32,6 +34,7 @@ class AppText extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.start,
       style: style?.merge(style).copyWith(
             color: color,
+            letterSpacing: letterSpacing,
           ),
     );
   }

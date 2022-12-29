@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart' show immutable;
+import 'package:flutter/material.dart';
 
 @immutable
 class AppColors {
@@ -14,8 +15,9 @@ class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const white_15 = Color.fromRGBO(255, 255, 255, 0.15);
 
-  static const gray = Color(0xFF686868);
-  static const gray_70 = Color.fromRGBO(104, 104, 104, 0.3);
+  // static const grey = Color(0xFF686868);
+  static const grey = Colors.grey;
+  static const grey_70 = Color.fromRGBO(104, 104, 104, 0.3);
   static const lightGray = Color(0xFFA7A7A7);
 
   static const primaryTextColor = Color(0xFF212121);

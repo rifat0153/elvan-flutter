@@ -32,7 +32,7 @@ class BaseCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         decoration: decoration ??
             BoxDecoration(
-              color: AppColors.gray_70,
+              color: AppColors.grey_70,
               borderRadius: BorderRadius.circular(AppSize.radiusSM * 1.5),
               boxShadow: const [
                 AppShadows.shadow1,

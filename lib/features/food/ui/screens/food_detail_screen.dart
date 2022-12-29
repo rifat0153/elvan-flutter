@@ -1,14 +1,16 @@
-import 'package:elvan/features/food/ui/components/build_steps.dart';
-import 'package:elvan/shared/constants/app_colors.dart';
-import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan/features/food/ui/components/build_step_customization.dart';
+import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:elvan/features/food/ui/components/build_steps.dart';
 import 'package:elvan/features/food/ui/components/food_detail_image_with_appbar.dart';
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
+import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan/shared/constants/app_size.dart';
 
 class FooDDetailScreen extends HookConsumerWidget {
   const FooDDetailScreen({super.key});
@@ -51,9 +53,31 @@ class FooDDetailScreen extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                const SliverToBoxAdapter(
-                  child: BuildStepsWidget(),
-                )
+                // const SliverToBoxAdapter(
+                //   child: BuildStepsWidget(),
+                // ),
+                Consumer(
+                  builder: (context, ref, child) {
+                    final buildStepsAsync = ref.watch(buildStepsNotifierProvider);
+
+                    return buildStepsAsync.when(
+                      data: (buildSteps) {
+                        return SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            childCount: buildSteps.length,
+                            (context, index) {
+                              return BuildStepCustomization(
+                                buildStep: buildSteps[index],
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      loading: () => const Center(child: CircularProgressIndicator()),
+                      error: (error, stackTrace) => const Center(child: Text('Error')),
+                    );
+                  },
+                ),
               ],
             );
           },

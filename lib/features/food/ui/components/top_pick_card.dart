@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:elvan/shared/components/buttons/add_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,7 +27,7 @@ class TopPickCard extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 100.sm,
+              height: 110.sm,
               child: Stack(
                 children: [
                   Positioned(
@@ -63,7 +64,6 @@ class TopPickCard extends HookConsumerWidget {
                 maxLines: 3,
               ),
             ),
-            const Spacer(),
             Row(
               children: [
                 const SizedBox(width: AppSize.paddingSM),
@@ -73,11 +73,8 @@ class TopPickCard extends HookConsumerWidget {
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 const Spacer(),
-                IconButton(
-                  color: AppColors.primaryRed,
-                  icon: const Icon(
-                    Icons.add,
-                  ),
+                AddIconButton(
+                  // TODO: Add to cart
                   onPressed: () {},
                 ),
               ],
