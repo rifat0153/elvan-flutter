@@ -14,12 +14,17 @@ class BuildStep with _$BuildStep {
   const factory BuildStep({
     String? id,
     required String title,
+    @Default(false) bool isValid,
     @Default(false) bool isRequired,
     @Default(0) int noOfItemIncludedInPrice,
     @Default(0) int minSelectedAddOns,
     @Default(10) int maxSelectedAddOns,
     @Default([]) List<AddOn> addOns,
   }) = _FoodItemBuildSteps;
+
+  bool get isAddOnsValid {
+    return minAddOnsSelected() && maxAddOnsSelected();
+  }
 
   bool minAddOnsSelected() {
     return addOns

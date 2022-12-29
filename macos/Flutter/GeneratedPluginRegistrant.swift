@@ -5,7 +5,7 @@
 import FlutterMacOS
 import Foundation
 
-import app_links_macos
+import app_links
 import cloud_firestore
 import firebase_auth
 import firebase_core

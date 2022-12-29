@@ -14,7 +14,6 @@ abstract class CategoryDto with _$CategoryDto {
     required String title,
     String? description,
     String? imageUrl,
-    @JsonKey(name: 'build_stepsss')
     @Default([])
         List<BuildStepDto> buildSteps,
     @JsonKey(

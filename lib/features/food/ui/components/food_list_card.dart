@@ -1,17 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
-import 'package:elvan/shared/components/buttons/add_icon_button.dart';
-import 'package:elvan/shared/constants/app_colors.dart';
-import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
+import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
+import 'package:elvan/shared/components/buttons/add_icon_button.dart';
 import 'package:elvan/shared/components/buttons/favorite_button.dart';
 import 'package:elvan/shared/components/cards/base_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan/shared/constants/app_size.dart';
 
 import '../../../../app/router/app_router.gr.dart';
 

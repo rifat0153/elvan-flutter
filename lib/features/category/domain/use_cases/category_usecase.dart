@@ -1,3 +1,4 @@
+import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/features/category/data/repository/category_repository_impl.dart';
@@ -20,6 +21,9 @@ class CategoryUseCase {
 
     return categories.when(
       success: (categories) {
+        for (var cat in categories) {
+          logError('BuildStep length for ${cat.title} ---> ${cat.buildSteps.length}');
+        }
         return categories
             .map(
               (e) => Category.fromDto(e),

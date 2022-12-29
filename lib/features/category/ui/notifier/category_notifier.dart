@@ -93,27 +93,4 @@ class CategoryNotifier extends _$CategoryNotifier {
       state = AsyncValue.data(modifiedCategories);
     }
   }
-  // void toggleSelectState(Category category) {
-  //   final modifiedCategories = state.value?.map((e) {
-  //     if (e.id == category.id) {
-  //       return e.copyWith(isSelected: !e.isSelected);
-  //     }
-  //     return e;
-  //   }).toList();
-
-  //   final indexOfFirstUnselected = modifiedCategories?.indexWhere((e) => !e.isSelected);
-
-  //   // insert into the first unselected index
-  //   if (indexOfFirstUnselected != null && indexOfFirstUnselected > -1) {
-  //     modifiedCategories?.insert(indexOfFirstUnselected, category.copyWith(isSelected: true));
-  //   } else {
-  //     modifiedCategories?.add(category.copyWith(isSelected: true));
-  //   }
-
-  //   logError('Selected Titles: ${modifiedCategories?.where((e) => e.isSelected).map((e) => e.title).toList()} ');
-
-  //   if (modifiedCategories != null) {
-  //     state = AsyncValue.data(modifiedCategories);
-  //   }
-  // }
 }

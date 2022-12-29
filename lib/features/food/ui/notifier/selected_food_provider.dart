@@ -1,3 +1,4 @@
+import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/core/logger/colored_print_log.dart';
@@ -10,11 +11,16 @@ part 'selected_food_provider.g.dart';
 class SelectedFoodItemNotifier extends _$SelectedFoodItemNotifier {
   @override
   UiState<FoodItem> build() {
-    return UiState.loading();
+    return const UiState.loading();
   }
 
   void setFoodItem(FoodItem foodItem) {
-    logWarning('setFoodItem: ${foodItem.id}');
+    logWarning('setFoodItem and update build steps: ${foodItem.id}');
+
+    ref.read(buildStepsNotifierProvider.notifier).setBuildStepsFromFoodItem(
+          foodItem,
+        );
+
     state = UiState.data(foodItem);
   }
 }

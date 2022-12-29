@@ -26,6 +26,12 @@ class AddOn with _$AddOn {
         Timestamp? createdAt,
   }) = _AddOn;
 
+  AddOn toggleIsSelected() => copyWith(isSelected: !isSelected);
+
+  AddOn incrementQuantity() => copyWith(quantitySelected: quantitySelected + 1);
+
+  AddOn decrementQuantity() => copyWith(quantitySelected: quantitySelected - 1);
+
   factory AddOn.fromJson(Map<String, dynamic> json) => _$AddOnFromJson(json);
 
   factory AddOn.fromDto(AddOnDto dto) => AddOn(
