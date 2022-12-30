@@ -42,6 +42,15 @@ class FooDDetailScreen extends HookConsumerWidget {
                             .toString(),
                       ),
                     ),
+                    SliverToBoxAdapter(
+                      child: AppText(
+                        ref
+                            .watch(
+                              currentBuildStepPriceProvider,
+                            )
+                            .toString(),
+                      ),
+                    ),
                     _buildStepsCustomization(),
                     const SliverToBoxAdapter(
                       child: SizedBox(height: AppSize.padding4XL),

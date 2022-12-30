@@ -22,6 +22,23 @@ bool isBuildStepsValid(IsBuildStepsValidRef ref) {
   );
 }
 
+@riverpod
+double currentBuildStepPrice(CurrentBuildStepPriceRef ref) {
+  final buildStepsAsyncValue = ref.watch(buildStepsNotifierProvider);
+
+  final double price = buildStepsAsyncValue.maybeWhen(
+    data: (buildSteps) {
+      return buildSteps.fold(
+        0,
+        (previousValue, element) => previousValue + element.price,
+      );
+    },
+    orElse: () => 0,
+  );
+
+  return price;
+}
+
 @Riverpod(keepAlive: true)
 class BuildStepsNotifier extends _$BuildStepsNotifier {
   @override
@@ -38,17 +55,52 @@ class BuildStepsNotifier extends _$BuildStepsNotifier {
     );
   }
 
-  bool get isBuildStepsValid {
-    return state.maybeWhen(
-      data: (buildSteps) {
-        return buildSteps.every((e) => e.isAddOnsValid);
-      },
-      orElse: () => false,
-    );
-  }
-
   void resetAndSet(List<BuildStep> buildSteps) {
     state = AsyncValue.data(buildSteps);
+  }
+
+  void updateAddOnIsIncludedInPrice(String buildStepId, String addOnId) {
+    final buildSteps = state.value ?? [];
+
+    final updatedBuildSteps = buildSteps.map(
+      (buildStep) {
+        if (buildStep.id == buildStepId) {
+          return buildStep.copyWith(
+            addOns: buildStep.addOns.map((addOn) {
+              final shouldIncludeInPrice = buildStep.shouldAddPriceToTotal;
+
+              if (addOn.id == addOnId) {
+                return addOn.copyWith(includeInPrice: shouldIncludeInPrice);
+              }
+
+              return addOn;
+            }).toList(),
+          );
+        }
+
+        return buildStep;
+      },
+    ).toList();
+
+    state = AsyncValue.data(updatedBuildSteps);
+  }
+
+  void updateBuildStepError(String buildStepId) {
+    final buildSteps = state.value ?? [];
+
+    final updatedBuildSteps = buildSteps.map(
+      (buildStep) {
+        if (buildStep.id == buildStepId) {
+          return buildStep.copyWith(
+            error: buildStep.buildStepsError,
+          );
+        }
+
+        return buildStep;
+      },
+    ).toList();
+
+    state = AsyncValue.data(updatedBuildSteps);
   }
 
   void updateAddOnQuantity({
@@ -84,6 +136,10 @@ class BuildStepsNotifier extends _$BuildStepsNotifier {
     ).toList();
 
     state = AsyncValue.data(updatedBuildSteps);
+
+    // update build step error and add on is included in price
+    updateBuildStepError(buildStepId);
+    updateAddOnIsIncludedInPrice(buildStepId, addOnId);
   }
 
   void reset() {

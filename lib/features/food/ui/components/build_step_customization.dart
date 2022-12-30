@@ -109,6 +109,13 @@ class BuildStepCustomization extends HookConsumerWidget {
             color: AppColors.grey,
             letterSpacing: 0.8,
           ),
+          Visibility(
+            visible: buildStep.error != null,
+            child: AppText(
+              buildStep.error ?? '',
+              color: AppColors.errorTextColor,
+            ),
+          )
         ],
       ),
     );

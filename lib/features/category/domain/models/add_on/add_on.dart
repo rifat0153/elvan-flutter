@@ -14,6 +14,8 @@ class AddOn with _$AddOn {
     String? id,
     required String title,
     required double price,
+    @Default(false)
+        bool includeInPrice,
     String? imageUrl,
     @Default(false)
         bool isSelected,
