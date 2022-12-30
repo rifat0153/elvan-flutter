@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:elvan/core/logger/colored_print_log.dart';
+import 'package:elvan/features/food/domain/use_case/build_steps_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
@@ -88,61 +89,25 @@ class BuildStepsNotifier extends _$BuildStepsNotifier {
     state = AsyncValue.data(updatedBuildSteps);
   }
 
-  void updateBuildStepError(String buildStepId) {
-    final buildSteps = state.value ?? [];
-
-    final updatedBuildSteps = buildSteps.map(
-      (buildStep) {
-        if (buildStep.id == buildStepId) {
-          return buildStep.copyWith(
-            error: buildStep.buildStepsError,
-          );
-        }
-
-        return buildStep;
-      },
-    ).toList();
-
-    state = AsyncValue.data(updatedBuildSteps);
-  }
-
   void updateAddOnQuantity({
     required String buildStepId,
     required String addOnId,
     required AddOnQuantityAction action,
   }) {
+    final buildStepUseCase = ref.read(buildStepsUseCaseProvider);
     final buildSteps = state.value ?? [];
 
-    final updatedBuildSteps = buildSteps.map(
-      (buildStep) {
-        if (buildStep.id == buildStepId) {
-          return buildStep.copyWith(
-            addOns: buildStep.addOns.map((addOn) {
-              if (addOn.id == addOnId) {
-                switch (action) {
-                  case AddOnQuantityAction.increment:
-                    return addOn.incrementQuantity();
-                  case AddOnQuantityAction.decrement:
-                    return addOn.decrementQuantity();
-                  case AddOnQuantityAction.toggleIsSelected:
-                    return addOn.toggleIsSelected();
-                }
-              }
-
-              return addOn;
-            }).toList(),
-          );
-        }
-
-        return buildStep;
-      },
-    ).toList();
+    final updatedBuildSteps = buildStepUseCase.toggleAddOnIsSelectedState(
+      buildSteps,
+      action,
+      addOnId,
+      buildStepId,
+    );
 
     state = AsyncValue.data(updatedBuildSteps);
 
     // update build step error and add on is included in price
-    updateBuildStepError(buildStepId);
-    updateAddOnIsIncludedInPrice(buildStepId, addOnId);
+    // updateAddOnIsIncludedInPrice(buildStepId, addOnId);
   }
 
   void reset() {

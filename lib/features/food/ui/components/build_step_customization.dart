@@ -68,6 +68,9 @@ class BuildStepCustomization extends HookConsumerWidget {
               color: AppColors.grey,
             ),
           ),
+          // TODO: Remove this
+          AppText(addOn.includeInPrice.toString()),
+          SizedBox(width: AppSize.padding3XL),
           AppText(
             '\$${addOn.price}',
             style: Theme.of(context).textTheme.titleMedium,
