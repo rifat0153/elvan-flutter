@@ -22,6 +22,21 @@ class BuildStep with _$BuildStep {
     @Default([]) List<AddOn> addOns,
   }) = _FoodItemBuildSteps;
 
+  String get buildStepsError {
+    if (isRequired && !isAddOnsValid) {
+      return 'Please select at least $minSelectedAddOns addOns';
+    }
+    return '';
+  }
+
+  int get selectedAddOnsCount {
+    return addOns
+        .where(
+          (addOn) => addOn.isSelected,
+        )
+        .length;
+  }
+
   bool get isAddOnsValid {
     return minAddOnsSelected() && maxAddOnsSelected();
   }

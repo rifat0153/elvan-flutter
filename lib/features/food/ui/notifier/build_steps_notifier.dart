@@ -10,11 +10,32 @@ part 'build_steps_notifier.g.dart';
 
 enum AddOnQuantityAction { increment, decrement, toggleIsSelected }
 
+@riverpod
+bool isBuildStepsValid(IsBuildStepsValidRef ref) {
+  final buildStepsAsyncValue = ref.watch(buildStepsNotifierProvider);
+
+  return buildStepsAsyncValue.maybeWhen(
+    data: (buildSteps) {
+      return buildSteps.every((e) => e.isAddOnsValid);
+    },
+    orElse: () => false,
+  );
+}
+
 @Riverpod(keepAlive: true)
 class BuildStepsNotifier extends _$BuildStepsNotifier {
   @override
   FutureOr<List<BuildStep>> build() {
     return [];
+  }
+
+  bool get isValid {
+    return state.maybeWhen(
+      data: (buildSteps) {
+        return buildSteps.every((e) => e.isAddOnsValid);
+      },
+      orElse: () => false,
+    );
   }
 
   bool get isBuildStepsValid {
@@ -37,10 +58,11 @@ class BuildStepsNotifier extends _$BuildStepsNotifier {
   }) {
     final buildSteps = state.value ?? [];
 
-    final updatedBuildSteps = buildSteps
-        .map(
-          (e) => e.copyWith(
-            addOns: e.addOns.map((addOn) {
+    final updatedBuildSteps = buildSteps.map(
+      (buildStep) {
+        if (buildStep.id == buildStepId) {
+          return buildStep.copyWith(
+            addOns: buildStep.addOns.map((addOn) {
               if (addOn.id == addOnId) {
                 switch (action) {
                   case AddOnQuantityAction.increment:
@@ -54,9 +76,12 @@ class BuildStepsNotifier extends _$BuildStepsNotifier {
 
               return addOn;
             }).toList(),
-          ),
-        )
-        .toList();
+          );
+        }
+
+        return buildStep;
+      },
+    ).toList();
 
     state = AsyncValue.data(updatedBuildSteps);
   }

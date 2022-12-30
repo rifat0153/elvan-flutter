@@ -84,20 +84,31 @@ class BuildStepCustomization extends HookConsumerWidget {
         horizontal: AppSize.paddingMD,
         vertical: AppSize.paddingXS,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: AppText(
-              buildStep.title.toUpperCase(),
-              style: Theme.of(context).textTheme.titleLarge,
-              maxLines: 2,
-              color: AppColors.white,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: AppText(
+                  buildStep.title.toUpperCase(),
+                  style: Theme.of(context).textTheme.titleLarge,
+                  maxLines: 2,
+                  color: AppColors.white,
+                ),
+              ),
+              AppText(
+                buildStep.isRequired ? 'Required' : 'Optional',
+              )
+            ],
           ),
           AppText(
-            buildStep.isRequired ? 'Required' : 'Optional',
-          )
+            'Choose ${buildStep.selectedAddOnsCount}/${buildStep.minSelectedAddOns}',
+            style: Theme.of(context).textTheme.titleSmall,
+            color: AppColors.grey,
+            letterSpacing: 0.8,
+          ),
         ],
       ),
     );

@@ -33,6 +33,15 @@ class FooDDetailScreen extends HookConsumerWidget {
                       child: FoodDetailImageWithAppbar(foodItem: foodItem),
                     ),
                     _foodDescription(foodItem, context),
+                    SliverToBoxAdapter(
+                      child: AppText(
+                        ref
+                            .watch(
+                              isBuildStepsValidProvider,
+                            )
+                            .toString(),
+                      ),
+                    ),
                     _buildStepsCustomization(),
                     const SliverToBoxAdapter(
                       child: SizedBox(height: AppSize.padding4XL),
@@ -50,13 +59,19 @@ class FooDDetailScreen extends HookConsumerWidget {
                     ),
                     child: Consumer(
                       builder: ((context, ref, child) {
-                        return ElvanButton(
-                          color: AppColors.primaryRed,
-                          onPressed: () {},
-                          child: AppText(
-                            'Add to cart',
-                            color: AppColors.white,
-                            style: Theme.of(context).textTheme.titleSmall,
+                        final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
+
+                        return Visibility(
+                          visible: isBuildStepsValid,
+                          child: ElvanButton(
+                            color: isBuildStepsValid ? AppColors.primaryRed : AppColors.grey,
+                            // TODO: Add to cart
+                            onPressed: () {},
+                            child: AppText(
+                              'Add to cart',
+                              color: AppColors.white,
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
                           ),
                         );
                       }),
