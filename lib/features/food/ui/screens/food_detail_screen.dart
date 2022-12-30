@@ -46,7 +46,7 @@ class FooDDetailScreen extends HookConsumerWidget {
                       child: AppText(
                         ref
                             .watch(
-                              currentBuildStepPriceProvider,
+                              currentBuildStepsPriceProvider,
                             )
                             .toString(),
                       ),

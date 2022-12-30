@@ -104,7 +104,31 @@ class BuildStepCustomization extends HookConsumerWidget {
             ],
           ),
           AppText(
-            'Choose ${buildStep.selectedAddOnsCount}/${buildStep.minSelectedAddOns}',
+            'Choose ${buildStep.selectedAddOnsCount}/${buildStep.noOfItemIncludedInPrice}',
+            style: Theme.of(context).textTheme.titleSmall,
+            color: AppColors.grey,
+            letterSpacing: 0.8,
+          ),
+          AppText(
+            'Included in price ${buildStep.noOfItemIncludedInPrice}',
+            style: Theme.of(context).textTheme.titleSmall,
+            color: AppColors.grey,
+            letterSpacing: 0.8,
+          ),
+          AppText(
+            'Min${buildStep.minSelectedAddOns} Max${buildStep.maxSelectedAddOns}',
+            style: Theme.of(context).textTheme.titleSmall,
+            color: AppColors.grey,
+            letterSpacing: 0.8,
+          ),
+          AppText(
+            'Selected Count${buildStep.selectedAddOnsCount}',
+            style: Theme.of(context).textTheme.titleSmall,
+            color: AppColors.grey,
+            letterSpacing: 0.8,
+          ),
+          AppText(
+            'Should add price ${buildStep.shouldAddPriceToTotal}',
             style: Theme.of(context).textTheme.titleSmall,
             color: AppColors.grey,
             letterSpacing: 0.8,

@@ -23,14 +23,26 @@ bool isBuildStepsValid(IsBuildStepsValidRef ref) {
 }
 
 @riverpod
-double currentBuildStepPrice(CurrentBuildStepPriceRef ref) {
+double currentBuildStepsPrice(CurrentBuildStepsPriceRef ref) {
   final buildStepsAsyncValue = ref.watch(buildStepsNotifierProvider);
 
   final double price = buildStepsAsyncValue.maybeWhen(
     data: (buildSteps) {
       return buildSteps.fold(
         0,
-        (previousValue, element) => previousValue + element.price,
+        (previousValue, bs) {
+          double addOnPrice = bs.addOns.fold(
+            previousValue,
+            (prev, addOn) {
+              if (addOn.isSelected && addOn.includeInPrice && bs.shouldAddPriceToTotal) {
+                prev += addOn.price;
+              }
+              return prev;
+            },
+          );
+
+          return addOnPrice;
+        },
       );
     },
     orElse: () => 0,
@@ -44,15 +56,6 @@ class BuildStepsNotifier extends _$BuildStepsNotifier {
   @override
   FutureOr<List<BuildStep>> build() {
     return [];
-  }
-
-  bool get isValid {
-    return state.maybeWhen(
-      data: (buildSteps) {
-        return buildSteps.every((e) => e.isAddOnsValid);
-      },
-      orElse: () => false,
-    );
   }
 
   void resetAndSet(List<BuildStep> buildSteps) {

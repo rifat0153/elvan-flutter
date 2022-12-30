@@ -40,8 +40,11 @@ class BuildStep with _$BuildStep {
   }
 
   String? get buildStepsError {
-    if (isRequired && !isAddOnsValid) {
+    if (isRequired && selectedAddOnsCount < minSelectedAddOns) {
       return 'Please select at least $minSelectedAddOns addOns';
+    }
+    if (isRequired && selectedAddOnsCount > maxSelectedAddOns) {
+      return 'Please select at most $maxSelectedAddOns addOns';
     }
     return null;
   }
@@ -55,10 +58,10 @@ class BuildStep with _$BuildStep {
   }
 
   bool get isAddOnsValid {
-    return minAddOnsSelected() && maxAddOnsSelected();
+    return satisfiesMinContraint() && satisfiesMaxConstraint();
   }
 
-  bool minAddOnsSelected() {
+  bool satisfiesMinContraint() {
     return addOns
             .where(
               (element) => element.isSelected,
@@ -67,7 +70,7 @@ class BuildStep with _$BuildStep {
         minSelectedAddOns;
   }
 
-  bool maxAddOnsSelected() {
+  bool satisfiesMaxConstraint() {
     return addOns
             .where(
               (element) => element.isSelected,
@@ -75,45 +78,6 @@ class BuildStep with _$BuildStep {
             .length <=
         maxSelectedAddOns;
   }
-
-  double get price {
-    double price = 0;
-
-    final selectedAddOns = addOns
-        .where(
-          (element) => element.isSelected && element.includeInPrice,
-        )
-        .toList();
-
-    for (int i = 0; i < selectedAddOns.length; i++) {
-      // dont include addOns that are not included in price
-      logError('Add on price ${selectedAddOns[i].title}: ${selectedAddOns[i].price}');
-      if (i >= noOfItemIncludedInPrice) {
-        logError('Adding Price to total ---> ${selectedAddOns[i].title}: ${selectedAddOns[i].price}');
-        price += selectedAddOns[i].price;
-      }
-    }
-    return price;
-  }
-  // double get price {
-  //   double price = 0;
-
-  //   final selectedAddOns = addOns
-  //       .where(
-  //         (element) => element.isSelected,
-  //       )
-  //       .toList();
-
-  //   for (int i = 0; i < selectedAddOns.length; i++) {
-  //     // dont include addOns that are not included in price
-  //     logError('Add on price ${selectedAddOns[i].title}: ${selectedAddOns[i].price}');
-  //     if (i >= noOfItemIncludedInPrice) {
-  //       logError('Adding Price to total ---> ${selectedAddOns[i].title}: ${selectedAddOns[i].price}');
-  //       price += selectedAddOns[i].price;
-  //     }
-  //   }
-  //   return price;
-  // }
 
   factory BuildStep.fromJson(Map<String, dynamic> json) => _$BuildStepFromJson(json);
 
