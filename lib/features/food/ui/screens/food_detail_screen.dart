@@ -1,14 +1,15 @@
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
-import 'package:elvan/features/food/ui/components/build_step_customization.dart';
-import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
-import 'package:elvan/shared/components/buttons/elvan_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:elvan/features/food/ui/components/build_steps.dart';
+import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
+import 'package:elvan/features/food/ui/components/build_step_customization.dart';
 import 'package:elvan/features/food/ui/components/food_detail_image_with_appbar.dart';
+import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
+import 'package:elvan/features/food/ui/notifier/current_build_step_price_notifier.dart';
+import 'package:elvan/features/food/ui/notifier/is_build_step_valid_provider.dart';
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
+import 'package:elvan/shared/components/buttons/elvan_button.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
@@ -37,7 +38,7 @@ class FooDDetailScreen extends HookConsumerWidget {
                       child: AppText(
                         ref
                             .watch(
-                              isBuildStepsValidProvider,
+                              isBuildStepsValidNotifierProvider,
                             )
                             .toString(),
                       ),
@@ -68,7 +69,7 @@ class FooDDetailScreen extends HookConsumerWidget {
                     ),
                     child: Consumer(
                       builder: ((context, ref, child) {
-                        final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
+                        final isBuildStepsValid = ref.watch(isBuildStepsValidNotifierProvider);
 
                         if (!isBuildStepsValid) {
                           return const SizedBox();

@@ -32,10 +32,9 @@ class BuildStepCustomization extends HookConsumerWidget {
                 context,
                 addOn,
                 () {
-                  buildStepsNotifier.updateAddOnQuantity(
+                  buildStepsNotifier.toggleAddOnIsSelectedState(
                     buildStepId: buildStep.id ?? '',
                     addOnId: addOn.id ?? '',
-                    action: AddOnQuantityAction.toggleIsSelected,
                   );
                 },
               ),

@@ -1,113 +1,42 @@
 import 'package:collection/collection.dart';
-import 'package:elvan/core/logger/colored_print_log.dart';
-import 'package:elvan/features/food/domain/use_case/build_steps_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
 import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
-
-part 'build_steps_notifier.g.dart';
+import 'package:elvan/features/food/domain/use_case/build_steps_use_case.dart';
 
 enum AddOnQuantityAction { increment, decrement, toggleIsSelected }
 
-@riverpod
-bool isBuildStepsValid(IsBuildStepsValidRef ref) {
-  final buildStepsAsyncValue = ref.watch(buildStepsNotifierProvider);
+final buildStepsNotifierProvider = AsyncNotifierProvider<BuildStepsNotifier, List<BuildStep>>(
+  BuildStepsNotifier.new,
+);
 
-  return buildStepsAsyncValue.maybeWhen(
-    data: (buildSteps) {
-      return buildSteps.every((e) => e.isAddOnsValid);
-    },
-    orElse: () => false,
-  );
-}
-
-@riverpod
-double currentBuildStepsPrice(CurrentBuildStepsPriceRef ref) {
-  final buildStepsAsyncValue = ref.watch(buildStepsNotifierProvider);
-
-  final double price = buildStepsAsyncValue.maybeWhen(
-    data: (buildSteps) {
-      return buildSteps.fold(
-        0,
-        (previousValue, bs) {
-          double addOnPrice = bs.addOns.fold(
-            previousValue,
-            (prev, addOn) {
-              if (addOn.isSelected && addOn.includeInPrice && bs.shouldAddPriceToTotal) {
-                prev += addOn.price;
-              }
-              return prev;
-            },
-          );
-
-          return addOnPrice;
-        },
-      );
-    },
-    orElse: () => 0,
-  );
-
-  return price;
-}
-
-@Riverpod(keepAlive: true)
-class BuildStepsNotifier extends _$BuildStepsNotifier {
+class BuildStepsNotifier extends AsyncNotifier<List<BuildStep>> {
   @override
   FutureOr<List<BuildStep>> build() {
     return [];
   }
 
-  void resetAndSet(List<BuildStep> buildSteps) {
-    state = AsyncValue.data(buildSteps);
-  }
-
-  void updateAddOnIsIncludedInPrice(String buildStepId, String addOnId) {
-    final buildSteps = state.value ?? [];
-
-    final updatedBuildSteps = buildSteps.map(
-      (buildStep) {
-        if (buildStep.id == buildStepId) {
-          return buildStep.copyWith(
-            addOns: buildStep.addOns.map((addOn) {
-              final shouldIncludeInPrice = buildStep.shouldAddPriceToTotal;
-
-              if (addOn.id == addOnId) {
-                return addOn.copyWith(includeInPrice: shouldIncludeInPrice);
-              }
-
-              return addOn;
-            }).toList(),
-          );
-        }
-
-        return buildStep;
-      },
-    ).toList();
-
-    state = AsyncValue.data(updatedBuildSteps);
-  }
-
-  void updateAddOnQuantity({
+  void toggleAddOnIsSelectedState({
     required String buildStepId,
     required String addOnId,
-    required AddOnQuantityAction action,
   }) {
     final buildStepUseCase = ref.read(buildStepsUseCaseProvider);
     final buildSteps = state.value ?? [];
 
     final updatedBuildSteps = buildStepUseCase.toggleAddOnIsSelectedState(
       buildSteps,
-      action,
       addOnId,
       buildStepId,
     );
 
     state = AsyncValue.data(updatedBuildSteps);
+  }
 
-    // update build step error and add on is included in price
-    // updateAddOnIsIncludedInPrice(buildStepId, addOnId);
+  void resetAndSet(List<BuildStep> buildSteps) {
+    state = AsyncValue.data(buildSteps);
   }
 
   void reset() {

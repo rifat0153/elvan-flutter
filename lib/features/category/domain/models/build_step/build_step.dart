@@ -24,6 +24,10 @@ class BuildStep with _$BuildStep {
     String? error,
   }) = _FoodItemBuildSteps;
 
+  bool get shouldNextAddOnBeIncludedInPrice {
+    return selectedAddOnsCount + 1 > noOfItemIncludedInPrice;
+  }
+
   bool get shouldAddPriceToTotal {
     return selectedAddOnsCount > noOfItemIncludedInPrice;
   }
