@@ -70,17 +70,18 @@ class FooDDetailScreen extends HookConsumerWidget {
                       builder: ((context, ref, child) {
                         final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
 
-                        return Visibility(
-                          visible: isBuildStepsValid,
-                          child: ElvanButton(
-                            color: isBuildStepsValid ? AppColors.primaryRed : AppColors.grey,
-                            // TODO: Add to cart
-                            onPressed: () {},
-                            child: AppText(
-                              'Add to cart',
-                              color: AppColors.white,
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
+                        if (!isBuildStepsValid) {
+                          return const SizedBox();
+                        }
+
+                        return ElvanButton(
+                          color: isBuildStepsValid ? AppColors.primaryRed : AppColors.grey,
+                          // TODO: Add to cart
+                          onPressed: () {},
+                          child: AppText(
+                            'Add to cart',
+                            color: AppColors.white,
+                            style: Theme.of(context).textTheme.titleSmall,
                           ),
                         );
                       }),

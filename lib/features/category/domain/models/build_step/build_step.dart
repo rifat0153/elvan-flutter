@@ -58,6 +58,8 @@ class BuildStep with _$BuildStep {
   }
 
   bool get isAddOnsValid {
+    if (!isRequired) return true;
+
     return satisfiesMinContraint() && satisfiesMaxConstraint();
   }
 
