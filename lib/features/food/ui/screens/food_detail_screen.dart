@@ -2,6 +2,8 @@ import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:auto_route/auto_route.dart';
+
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/components/build_step_customization.dart';
 import 'package:elvan/features/food/ui/components/food_detail_image_with_appbar.dart';
@@ -63,34 +65,7 @@ class FooDDetailScreen extends HookConsumerWidget {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSize.paddingMD,
-                      vertical: AppSize.paddingMD,
-                    ),
-                    child: Consumer(
-                      builder: ((context, ref, child) {
-                        final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
-
-                        if (!isBuildStepsValid) {
-                          return const SizedBox();
-                        }
-
-                        return ElvanButton(
-                          color: isBuildStepsValid ? AppColors.primaryRed : AppColors.grey,
-                          // TODO: Add to cart
-                          onPressed: () {
-                            ref.read(cartNotifierProvider.notifier).addToCart(foodItem);
-                          },
-                          child: AppText(
-                            'Add to cart',
-                            color: AppColors.white,
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                        );
-                      }),
-                    ),
-                  ),
+                  child: _cartButton(foodItem, context),
                 ),
               ],
             );
@@ -98,6 +73,54 @@ class FooDDetailScreen extends HookConsumerWidget {
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stackTrace) => const Center(child: Text('Error')),
         ));
+  }
+
+  Padding _cartButton(
+    FoodItem foodItem,
+    BuildContext context,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSize.paddingMD,
+        vertical: AppSize.paddingMD,
+      ),
+      child: Consumer(
+        builder: ((context, ref, child) {
+          final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
+
+          if (!isBuildStepsValid) {
+            return const SizedBox();
+          }
+
+          return ElvanButton(
+            color: isBuildStepsValid ? AppColors.primaryRed : AppColors.grey,
+            // TODO: Add to cart
+            onPressed: () {
+              ref.read(cartNotifierProvider.notifier).handleAddToCart();
+
+              context.popRoute();
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text('Added to cart'),
+                  action: SnackBarAction(
+                    label: 'Undo',
+                    onPressed: () {
+                      ref.read(cartNotifierProvider.notifier).removeFromCart();
+                    },
+                  ),
+                ),
+              );
+            },
+            child: AppText(
+              'Add to cart',
+              color: AppColors.white,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+          );
+        }),
+      ),
+    );
   }
 
   Consumer _buildStepsCustomization() {
