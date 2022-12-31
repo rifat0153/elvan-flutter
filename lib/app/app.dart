@@ -1,3 +1,4 @@
+import 'package:elvan/shared/providers/scaffold_messenger/scaffold_messenger_key_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -45,21 +46,22 @@ class MyApp extends HookConsumerWidget {
       }
     });
 
+    final scaffoldMessengerKey = ref.watch(scaffoldMessengerKeyProvider);
     final appRouter = ref.watch(appRouterProvider);
-    final currentUser = ref.watch(currentUserProvider);
-    final loggedIn = currentUser != null;
 
-    final authState = ref.watch(authNotifierProvider.notifier);
-    // final appRouter = AppRouter();
-
-    print('isAuthenticated loggedIn -> in MYAPP  -> : ${authState.isAuthenticated}');
-    print('loggedIn -> in MYAPP -> : $loggedIn');
+    // TODO: Remove this lines
+    // final currentUser = ref.watch(currentUserProvider);
+    // final loggedIn = currentUser != null;
+    // final authState = ref.watch(authNotifierProvider.notifier);
+    // print('isAuthenticated loggedIn -> in MYAPP  -> : ${authState.isAuthenticated}');
+    // print('loggedIn -> in MYAPP -> : $loggedIn');
 
     return ScreenUtilInit(
       designSize: const Size(400, 1000),
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp.router(
+          scaffoldMessengerKey: scaffoldMessengerKey,
           debugShowCheckedModeBanner: false,
           title: 'Elvan',
           routerDelegate: appRouter.delegate(),

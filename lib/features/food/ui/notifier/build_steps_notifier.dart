@@ -58,7 +58,6 @@ class BuildStepsNotifier extends AsyncNotifier<List<BuildStep>> {
   List<BuildStep>? getBuildStepFromCategory(String categoryId) {
     final category = ref.read(categoryNotifierProvider).value?.firstWhereOrNull(
       (e) {
-        logError('Compare: ${e.title.toLowerCase()} == $categoryId');
         return e.id?.toLowerCase() == categoryId.toLowerCase();
       },
     );

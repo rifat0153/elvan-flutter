@@ -29,12 +29,8 @@ class CategoryRepositoryImpl implements CategoryRepository {
           )
           .toList();
 
-      debugPrint('categories: data ${categories.length}');
       return Result.success(categories);
-    } catch (e, st) {
-      debugPrint('categories: error $e');
-      debugPrint(st.toString());
-
+    } catch (e, _) {
       return Result.failure(Failure(error: e));
     }
   }

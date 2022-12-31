@@ -71,8 +71,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<User?> signInAnyonymously() async {
-    debugPrint('AuthRepository.signInAnyonymously()');
-
     final userCredential = await firebaseAuth.signInAnonymously();
     return userCredential.user;
   }

@@ -94,23 +94,10 @@ class FooDDetailScreen extends HookConsumerWidget {
 
           return ElvanButton(
             color: isBuildStepsValid ? AppColors.primaryRed : AppColors.grey,
-            // TODO: Add to cart
             onPressed: () {
               ref.read(cartNotifierProvider.notifier).handleAddToCart();
 
               context.popRoute();
-
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: const Text('Added to cart'),
-                  action: SnackBarAction(
-                    label: 'Undo',
-                    onPressed: () {
-                      ref.read(cartNotifierProvider.notifier).removeFromCart();
-                    },
-                  ),
-                ),
-              );
             },
             child: AppText(
               'Add to cart',

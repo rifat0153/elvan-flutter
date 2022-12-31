@@ -1,3 +1,7 @@
+import 'package:elvan/core/logger/colored_print_log.dart';
+import 'package:elvan/shared/components/buttons/elvan_button.dart';
+import 'package:elvan/shared/components/text/app_text_widget.dart';
+import 'package:elvan/shared/providers/scaffold_messenger/snackbar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,15 +14,29 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const CustomScrollView(
+    return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
+          child: ElvanButton(
+            onPressed: () {
+              ref.read(snackbarNotifierProvider.notifier).showSnackbarWithAction(
+                'Hello',
+                actionLabel: 'Undo',
+                onAction: () {
+                  logInfo('Undo');
+                },
+              );
+            },
+            child: const Text('show snackbar'),
+          ),
+        ),
+        const SliverToBoxAdapter(
           child: CategoryListWidget(),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: RecentOrdersWidget(),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: TopPicksWidget(),
         ),
       ],

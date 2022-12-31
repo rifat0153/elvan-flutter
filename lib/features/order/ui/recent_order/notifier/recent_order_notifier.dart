@@ -22,20 +22,14 @@ class RecentOrderNotifier extends Notifier<UiState<List<CartItem>>> {
   }
 
   Future getRecentOrders() async {
-    print('get recent orders notifier');
-
     state = const UiState.loading();
 
     final userId = ref.read(currentUserIdProvider);
-
-    print('get recent orders -> userId: $userId');
 
     if (userId == null) {
       state = const UiState.error('User not found');
       return;
     }
-
-    debugPrint('userId: $userId');
 
     final result = await orderUseCase.getRecentOrders(userId, limit: 10);
 

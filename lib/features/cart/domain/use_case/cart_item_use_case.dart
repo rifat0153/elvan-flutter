@@ -34,9 +34,9 @@ class CartItemListUseCase {
 
   List<CartItem> removeFromCart(
     List<CartItem> cartItems,
-    String cartItemId,
+    CartItem cartItem,
   ) {
-    final updatedCartItems = cartItems.where((item) => item.id != cartItemId);
+    final updatedCartItems = cartItems.where((item) => item.id != cartItem.id);
 
     return updatedCartItems.toList();
   }

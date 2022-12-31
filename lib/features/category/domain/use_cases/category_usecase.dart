@@ -21,9 +21,6 @@ class CategoryUseCase {
 
     return categories.when(
       success: (categories) {
-        for (var cat in categories) {
-          logError('BuildStep length for ${cat.title} ---> ${cat.buildSteps.length}');
-        }
         return categories
             .map(
               (e) => Category.fromDto(e),

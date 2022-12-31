@@ -52,8 +52,6 @@ class FoodListCard extends HookConsumerWidget {
               fit: FlexFit.tight,
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  logError('Constrant Height and Width: ${constraints.maxHeight} - ${constraints.maxWidth}');
-
                   return Stack(
                     children: [
                       Positioned(

@@ -41,8 +41,6 @@ class AuthNotifier extends Notifier<AuthScreenState> {
   }
 
   void handleUserStream(User? user) {
-    debugPrint('Auth Stream: ${user?.uid}');
-
     if (user != null) {
       getElvanUserData(user.uid);
     }
@@ -98,7 +96,5 @@ class AuthNotifier extends Notifier<AuthScreenState> {
         state = AuthScreenState.error(message.toString());
       },
     );
-
-    debugPrint('Login with email and password: $email, $password');
   }
 }

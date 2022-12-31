@@ -42,8 +42,6 @@ class OrderRepositoryImpl implements OrderRepository {
 
     final orderDtos = orders.docs.map((e) => OrderDto.fromJson(e.data())).toList();
 
-    debugPrint('orders length: ${orderDtos.length}');
-
     return orderDtos;
   }
 }

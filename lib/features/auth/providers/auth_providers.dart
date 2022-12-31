@@ -11,8 +11,6 @@ part 'auth_providers.g.dart';
 // FirebaseAuth providers
 @Riverpod(keepAlive: true)
 bool isAuthenticated(IsAuthenticatedRef ref) {
-  debugPrint('isAuthenticated provider called');
-
   return ref.watch(authNotifierProvider.notifier).isAuthenticated;
 }
 
@@ -23,8 +21,6 @@ final authStateProvider = StreamProvider<User?>((ref) {
 @riverpod
 User? currentUser(CurrentUserRef ref) {
   final firebaseAuth = ref.watch(firebaseAuthProvider);
-
-  print('currentUser: ${firebaseAuth.currentUser}');
 
   return firebaseAuth.currentUser;
 }
