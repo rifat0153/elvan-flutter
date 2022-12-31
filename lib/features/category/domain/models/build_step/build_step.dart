@@ -1,4 +1,3 @@
-import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:elvan/features/category/data/dto/build_step_dto.dart';
@@ -23,6 +22,16 @@ class BuildStep with _$BuildStep {
     @Default([]) List<AddOn> addOns,
     String? error,
   }) = _FoodItemBuildSteps;
+
+  double get price {
+    double price = 0;
+    for (var addOn in addOns) {
+      if (addOn.isSelected && addOn.includeInPrice && shouldAddPriceToTotal) {
+        price += addOn.price;
+      }
+    }
+    return price;
+  }
 
   bool get shouldNextAddOnBeIncludedInPrice {
     return selectedAddOnsCount + 1 > noOfItemIncludedInPrice;

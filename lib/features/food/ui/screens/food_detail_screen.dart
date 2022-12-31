@@ -1,3 +1,4 @@
+import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -38,7 +39,7 @@ class FooDDetailScreen extends HookConsumerWidget {
                       child: AppText(
                         ref
                             .watch(
-                              isBuildStepsValidNotifierProvider,
+                              isBuildStepsValidProvider,
                             )
                             .toString(),
                       ),
@@ -69,7 +70,7 @@ class FooDDetailScreen extends HookConsumerWidget {
                     ),
                     child: Consumer(
                       builder: ((context, ref, child) {
-                        final isBuildStepsValid = ref.watch(isBuildStepsValidNotifierProvider);
+                        final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
 
                         if (!isBuildStepsValid) {
                           return const SizedBox();
@@ -78,7 +79,9 @@ class FooDDetailScreen extends HookConsumerWidget {
                         return ElvanButton(
                           color: isBuildStepsValid ? AppColors.primaryRed : AppColors.grey,
                           // TODO: Add to cart
-                          onPressed: () {},
+                          onPressed: () {
+                            ref.read(cartNotifierProvider.notifier).addToCart(foodItem);
+                          },
                           child: AppText(
                             'Add to cart',
                             color: AppColors.white,

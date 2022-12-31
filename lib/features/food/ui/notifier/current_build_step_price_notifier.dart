@@ -15,17 +15,7 @@ class CurrentBuildStepsNotifier extends Notifier<double> {
         return buildSteps.fold(
           0,
           (previousValue, bs) {
-            double addOnPrice = bs.addOns.fold(
-              previousValue,
-              (prev, addOn) {
-                if (addOn.isSelected && addOn.includeInPrice && bs.shouldAddPriceToTotal) {
-                  prev += addOn.price;
-                }
-                return prev;
-              },
-            );
-
-            return addOnPrice;
+            return previousValue + bs.price;
           },
         );
       },

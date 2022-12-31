@@ -1,7 +1,7 @@
 import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final isBuildStepsValidNotifierProvider = NotifierProvider<IsBuildStepsValidNotifier, bool>(
+final isBuildStepsValidProvider = NotifierProvider<IsBuildStepsValidNotifier, bool>(
   IsBuildStepsValidNotifier.new,
 );
 

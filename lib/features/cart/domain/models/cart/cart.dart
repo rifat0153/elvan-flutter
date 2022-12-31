@@ -13,11 +13,11 @@ class Cart with _$Cart {
   const factory Cart({
     required String userId,
     @Default([]) List<CartItem> cartItems,
-    @Default(0) double total,
-    @Default(0) double subTotal,
   }) = _Cart;
 
   bool get isEmpty => cartItems.isEmpty;
+
+  double get total => cartItems.fold(0, (total, cartItem) => total + cartItem.price);
 
   double getTotalBeforeDiscount() {
     double total = 0;
@@ -48,8 +48,13 @@ class Cart with _$Cart {
     return Cart(
       userId: cartDto.userId,
       cartItems: cartDto.cartItems.map((e) => CartItem.fromDto(e)).toList(),
-      total: cartDto.total,
-      subTotal: cartDto.subTotal,
+    );
+  }
+
+  CartDto toDto() {
+    return CartDto(
+      userId: userId,
+      cartItems: cartItems.map((e) => e.toDto()).toList(),
     );
   }
 }
