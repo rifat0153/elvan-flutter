@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -55,10 +57,7 @@ class BuildStepCustomization extends HookConsumerWidget {
           ElvanIconButton(
             icon: addOn.isSelected ? Icons.check_circle_outline : Icons.add,
             color: AppColors.primaryRed,
-            // TODO: Add on pressed
-            onPressed: () {
-              onPressed();
-            },
+            onPressed: onPressed,
           ),
           Expanded(
             child: AppText(
@@ -67,20 +66,27 @@ class BuildStepCustomization extends HookConsumerWidget {
               color: AppColors.grey,
             ),
           ),
-          // TODO: Remove this
-          AppText(addOn.includeInPrice.toString()),
-          SizedBox(width: AppSize.padding3XL),
-          AppText(
-            '\$${addOn.price}',
-            style: Theme.of(context).textTheme.titleMedium,
-            color: AppColors.grey,
-          )
+          _itemPrice(addOn, context)
         ],
       ),
     );
   }
 
+  AppText _itemPrice(AddOn addOn, BuildContext context) {
+    final priceText = !addOn.includeInPrice && addOn.isSelected ? 'Included' : '\$${addOn.price}';
+
+    return AppText(
+      priceText,
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          // decoration: !addOn.includeInPrice && addOn.isSelected ? TextDecoration.lineThrough : TextDecoration.none,
+          ),
+      color: AppColors.grey,
+    );
+  }
+
   Widget _buildSectionTitle(BuildContext context, BuildStep buildStep) {
+    final itemsIncludedInPrice = max(buildStep.noOfItemIncludedInPrice, buildStep.minSelectedAddOns);
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSize.paddingMD,
@@ -106,31 +112,7 @@ class BuildStepCustomization extends HookConsumerWidget {
             ],
           ),
           AppText(
-            'Choose ${buildStep.selectedAddOnsCount}/${buildStep.noOfItemIncludedInPrice}',
-            style: Theme.of(context).textTheme.titleSmall,
-            color: AppColors.grey,
-            letterSpacing: 0.8,
-          ),
-          AppText(
-            'Included in price ${buildStep.noOfItemIncludedInPrice}',
-            style: Theme.of(context).textTheme.titleSmall,
-            color: AppColors.grey,
-            letterSpacing: 0.8,
-          ),
-          AppText(
-            'Min${buildStep.minSelectedAddOns} Max${buildStep.maxSelectedAddOns}',
-            style: Theme.of(context).textTheme.titleSmall,
-            color: AppColors.grey,
-            letterSpacing: 0.8,
-          ),
-          AppText(
-            'Selected Count${buildStep.selectedAddOnsCount}',
-            style: Theme.of(context).textTheme.titleSmall,
-            color: AppColors.grey,
-            letterSpacing: 0.8,
-          ),
-          AppText(
-            'Should add price ${buildStep.shouldAddPriceToTotal}',
+            'Choose ${buildStep.selectedAddOnsCount}/$itemsIncludedInPrice',
             style: Theme.of(context).textTheme.titleSmall,
             color: AppColors.grey,
             letterSpacing: 0.8,

@@ -19,7 +19,8 @@ class BuildStepsUseCase {
     AddOn addOn = buildStep.addOns.firstWhere((e) => e.id == addOnId);
     final bool isRemovingAddOn = addOn.isSelected;
 
-    // if the addOn is being removed, then we need to check if the next addOn should be included in price
+    // if the addOn is being removed,
+    // then we need to check if the next addOn should be included in price
     if (isRemovingAddOn) {
       final nextSelectedAddOnSize = buildStep.selectedAddOnsCount - 1;
 
@@ -41,10 +42,6 @@ class BuildStepsUseCase {
       includeInPrice: isRemovingAddOn ? false : buildStep.shouldNextAddOnBeIncludedInPrice,
     );
 
-    final addOnsQueue = Queue.of(buildStep.addOns);
-    // remove the addOn from the queue
-    addOnsQueue.removeWhere((element) => element.id == addOn.id);
-
     final updatedAddOns = buildStep.addOns.map((e) {
       if (e.id == addOnId) {
         return updatedAddOn;
@@ -60,6 +57,25 @@ class BuildStepsUseCase {
     final updatedBuildSteps = buildSteps.map((e) {
       if (e.id == buildStepId) {
         return updatedBuildStep;
+      }
+      return e;
+    }).toList();
+
+    final buildStepsWithError = updateBuildStepsError(
+      buildSteps: updatedBuildSteps,
+      buildStepId: buildStepId,
+    );
+
+    return buildStepsWithError;
+  }
+
+  List<BuildStep> updateBuildStepsError({
+    required List<BuildStep> buildSteps,
+    required String buildStepId,
+  }) {
+    final updatedBuildSteps = buildSteps.map((e) {
+      if (e.id == buildStepId) {
+        return e.copyWith(error: e.buildStepsError);
       }
       return e;
     }).toList();
