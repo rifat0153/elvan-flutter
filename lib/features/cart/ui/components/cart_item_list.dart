@@ -1,7 +1,7 @@
-import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
+import 'package:elvan/features/cart/ui/components/cart_item_card.dart';
 
 class CartItemList extends StatelessWidget {
   const CartItemList({super.key, required this.cartItems});
@@ -14,11 +14,8 @@ class CartItemList extends StatelessWidget {
       itemCount: cartItems.length,
       itemBuilder: (context, index) {
         final item = cartItems[index];
-        return ListTile(
-          title: AppText(item.foodItem.title),
-          subtitle: AppText(item.foodItem.description!),
-          trailing: AppText(item.quantity.toString()),
-        );
+
+        return CartItemCard(item);
       },
     );
   }

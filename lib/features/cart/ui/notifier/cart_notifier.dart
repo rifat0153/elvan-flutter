@@ -29,6 +29,9 @@ class CartNotifier extends Notifier<CartUiState> {
     return DateTime.now().millisecondsSinceEpoch.toString();
   }
 
+  /// If the cart item is being updated, then we need to update the cart item
+  /// with the new values. If the cart item is not being updated, then we need
+  /// to add the cart item to the cart.
   void handleAddToCart() {
     final foodItem = ref.read(selectedFoodItemNotifierProvider).value;
     final buildSteps = ref.read(buildStepsNotifierProvider).value;
@@ -121,6 +124,12 @@ class CartNotifier extends Notifier<CartUiState> {
         cartItems: updatedCartItems,
       ),
     );
+
+    ref.read(snackbarNotifierProvider.notifier).showSnackbarWithAction(
+          'Updated cart item',
+          actionLabel: 'Undo',
+          onAction: () => updateCart(updatingCartItem),
+        );
   }
 
   void removeFromCart(CartItem cartItem) {

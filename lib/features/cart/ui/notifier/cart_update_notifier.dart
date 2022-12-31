@@ -20,8 +20,8 @@ class CartUpdateNotifier extends Notifier<CartUpdateNotifierState> {
     state = CartUpdateNotifierState.initial;
   }
 
-  void setUpdatingCartItemId(CartItem cartId) {
-    updatingCartItem = cartId;
+  void setUpdatingCartItem(CartItem cartItem) {
+    updatingCartItem = cartItem;
   }
 
   void startUpdating() {
