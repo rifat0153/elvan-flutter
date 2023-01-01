@@ -16,10 +16,9 @@ import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
 
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
-  final user = ref.read(currentUserProvider);
-  final isLoggedIn = user != null;
-
-  print('appRouterProvider: isLoggedIn: $isLoggedIn');
+  // final user = ref.read(currentUserProvider);
+  // final isLoggedIn = user != null;
+  // print('appRouterProvider: isLoggedIn: $isLoggedIn');
 
   return AppRouter(
       // authGuard: AuthGuard(isLoggedIn),
@@ -29,57 +28,59 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
 @MaterialAutoRouter(
   replaceInRouteName: 'Screen,Route',
   routes: <AutoRoute>[
-    RedirectRoute(path: "/", redirectTo: '/tabs'),
+    RedirectRoute(path: '/', redirectTo: '/tabs'),
     AutoRoute(
-      path: "/auth",
-      name: "AuthRouter",
+      path: '/auth',
+      name: 'AuthRouter',
       page: AuthScreen,
     ),
     AutoRoute(
-      path: "/tabs",
-      // name: "TabsRouter",
+      path: '/tabs',
+      name: 'TabsRouter',
       // guards: [AuthGuard],
       page: BottomTabScreen,
       children: [
         // create home, profile and favorites routes
         AutoRoute(
-          path: "home",
-          // name: "HomeTabRoute",
+          path: 'home',
+          // name: 'HomeTabRoute',
           page: HomeScreen,
         ),
         AutoRoute(
-          path: "favorites",
-          // name: "FavoritesTabRoute",
+          path: 'favorites',
+          // name: 'FavoritesTabRoute',
           page: FavoriteScreen,
         ),
         AutoRoute(
-          path: "profile",
-          // name: "ProfileTabRoute",
+          path: 'profile',
+          // name: 'ProfileTabRoute',
           page: ProfileScreen,
         ),
+        RedirectRoute(path: '*', redirectTo: 'home'),
       ],
     ),
     AutoRoute(
-      path: "/food",
-      name: "FoodRouter",
+      path: '/food',
+      name: 'FoodRouter',
       page: EmptyRouterPage,
       children: [
         AutoRoute(
-          path: "",
+          path: '',
           page: FoodListScreen,
         ),
         AutoRoute(
-          path: "details",
+          path: 'details',
           page: FooDDetailScreen,
         ),
+        RedirectRoute(path: '*', redirectTo: ''),
       ],
     ),
     AutoRoute(
-      path: "/cart",
+      path: '/cart',
       page: CartScreen,
     ),
     AutoRoute(
-      path: "*",
+      path: '*',
       page: NotFoundScreen,
     )
   ],

@@ -21,6 +21,15 @@ class SnackbarNotifier extends Notifier<void> {
     return true;
   }
 
+  bool showSnackbarWithMessage(String message) {
+    showSnackbar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+    return true;
+  }
+
   bool showSnackbarWithAction(
     String message, {
     required String actionLabel,

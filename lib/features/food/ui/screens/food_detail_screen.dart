@@ -1,4 +1,5 @@
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
+import 'package:elvan/features/cart/ui/notifier/cart_update_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -87,6 +88,10 @@ class FooDDetailScreen extends HookConsumerWidget {
       child: Consumer(
         builder: ((context, ref, child) {
           final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
+          final cartUpdateNotifier = ref.watch(cartItemUpdateProvider.notifier);
+          final isCartUpdating = cartUpdateNotifier.isUpdating;
+
+          final String cartButtonText = isCartUpdating ? 'Update cart' : 'Add to cart';
 
           if (!isBuildStepsValid) {
             return const SizedBox();
@@ -100,7 +105,7 @@ class FooDDetailScreen extends HookConsumerWidget {
               context.popRoute();
             },
             child: AppText(
-              'Add to cart',
+              cartButtonText,
               color: AppColors.white,
               style: Theme.of(context).textTheme.titleSmall,
             ),

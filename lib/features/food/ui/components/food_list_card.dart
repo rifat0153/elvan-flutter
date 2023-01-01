@@ -37,7 +37,7 @@ class FoodListCard extends HookConsumerWidget {
     return BaseCard(
       key: key,
       onTap: () {
-        selectedFoodItemNotifier.setFoodItem(foodItem);
+        selectedFoodItemNotifier.setFoodItemAndBuildSteps(foodItem);
 
         context.pushRoute(const FooDDetailRoute());
       },

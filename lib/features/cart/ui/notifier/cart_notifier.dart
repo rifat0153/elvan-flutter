@@ -45,7 +45,7 @@ class CartNotifier extends Notifier<CartUiState> {
       return;
     }
 
-    final isCartUpdateState = ref.read(cartUpdateProvider);
+    final isCartUpdateState = ref.read(cartItemUpdateProvider);
 
     final cartItem = CartItem(
       id: getUniqueId(),
@@ -101,7 +101,7 @@ class CartNotifier extends Notifier<CartUiState> {
     }
 
     final cartItemListUseCase = ref.read(cartItemListUseCaseProvider);
-    final updatingCartItem = ref.read(cartUpdateProvider.notifier).updatingCartItem;
+    final updatingCartItem = ref.read(cartItemUpdateProvider.notifier).updatingCartItem;
 
     if (updatingCartItem == null) {
       state = const CartUiState.error('Cart item id is null');
@@ -113,11 +113,12 @@ class CartNotifier extends Notifier<CartUiState> {
       updatingCartItem.copyWith(
         foodItem: cartItem.foodItem,
         buildSteps: cartItem.buildSteps,
+        price: cartItem.price,
       ),
     );
 
     // reset updating cart item
-    ref.read(cartUpdateProvider.notifier).reset();
+    ref.read(cartItemUpdateProvider.notifier).reset();
 
     state = CartUiState.data(
       state.value!.copyWith(
@@ -125,11 +126,8 @@ class CartNotifier extends Notifier<CartUiState> {
       ),
     );
 
-    ref.read(snackbarNotifierProvider.notifier).showSnackbarWithAction(
-          'Updated cart item',
-          actionLabel: 'Undo',
-          onAction: () => updateCart(updatingCartItem),
-        );
+    // show snackbar with message
+    ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage('Cart item updated');
   }
 
   void removeFromCart(CartItem cartItem) {

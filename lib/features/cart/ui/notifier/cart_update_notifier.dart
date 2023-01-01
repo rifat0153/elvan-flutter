@@ -1,19 +1,24 @@
-import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
+import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
+import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 
 enum CartUpdateNotifierState { initial, updating, cancelled }
 
-final cartUpdateProvider = NotifierProvider<CartUpdateNotifier, CartUpdateNotifierState>(
-  CartUpdateNotifier.new,
+final cartItemUpdateProvider = NotifierProvider<CartItemUpdateNotifier, CartUpdateNotifierState>(
+  CartItemUpdateNotifier.new,
 );
 
-class CartUpdateNotifier extends Notifier<CartUpdateNotifierState> {
+class CartItemUpdateNotifier extends Notifier<CartUpdateNotifierState> {
   CartItem? updatingCartItem;
 
   @override
   build() {
     return CartUpdateNotifierState.initial;
   }
+
+  bool get isUpdating => state == CartUpdateNotifierState.updating;
 
   void reset() {
     updatingCartItem = null;
@@ -22,6 +27,13 @@ class CartUpdateNotifier extends Notifier<CartUpdateNotifierState> {
 
   void setUpdatingCartItem(CartItem cartItem) {
     updatingCartItem = cartItem;
+
+    // update selected food item
+    ref.read(selectedFoodItemNotifierProvider.notifier).setFoodItem(cartItem.foodItem);
+    // update build steps
+    ref.read(buildStepsNotifierProvider.notifier).setBuildSteps(cartItem.buildSteps);
+
+    state = CartUpdateNotifierState.updating;
   }
 
   void startUpdating() {

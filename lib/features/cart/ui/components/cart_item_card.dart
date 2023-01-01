@@ -56,13 +56,13 @@ class CartItemCard extends HookConsumerWidget {
 
             ElvanButton(
               onPressed: () {
-                ref.read(cartUpdateProvider.notifier).setUpdatingCartItem(cartItem);
+                ref.read(cartItemUpdateProvider.notifier).setUpdatingCartItem(cartItem);
 
-                // context.navigateTo(const FooDDetailRoute());
-                AutoRouter.of(context).pushAll(const [
-                  FoodRouter(),
-                  FooDDetailRoute(),
-                ]);
+                context.pushRoute(
+                  const FoodRouter(children: [
+                    FooDDetailRoute(),
+                  ]),
+                );
               },
               child: AppText(
                 'Customize',

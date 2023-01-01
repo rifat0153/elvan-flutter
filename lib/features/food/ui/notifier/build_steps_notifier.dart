@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
 import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
@@ -49,8 +48,6 @@ class BuildStepsNotifier extends AsyncNotifier<List<BuildStep>> {
 
   void setBuildStepsFromFoodItem(FoodItem foodItem) {
     final buildSteps = getBuildStepFromCategory(foodItem.categoryId);
-
-    logError('buildSteps: ${buildSteps?.length}');
 
     state = AsyncValue.data(buildSteps ?? []);
   }

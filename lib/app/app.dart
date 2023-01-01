@@ -32,10 +32,10 @@ class MyApp extends HookConsumerWidget {
 
         if (currrentPath == '') {
           logInfo('OnChange: Tab -----> Push');
-          ref.read(appRouterProvider).push(const BottomTabRoute());
+          ref.read(appRouterProvider).push(const TabsRouter());
         } else {
           logInfo('OnChange: Tab -----> ReplaceAll');
-          ref.read(appRouterProvider).replaceAll([const BottomTabRoute()]);
+          ref.read(appRouterProvider).replaceAll([const TabsRouter()]);
         }
       } else {
         logInfo('OnChange: Auth -----> ReplaceAll');
