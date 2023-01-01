@@ -15,7 +15,7 @@ import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 import 'package:elvan/shared/providers/scaffold_messenger/snackbar_provider.dart';
 
-final cartNotifierProvider = NotifierProvider<CartNotifier, CartUiState>(
+final cartProvider = NotifierProvider<CartNotifier, CartUiState>(
   CartNotifier.new,
 );
 
@@ -66,7 +66,7 @@ class CartNotifier extends Notifier<CartUiState> {
     // pop all the screens and go to the cart screen
     ref.read(appRouterProvider).popUntilRoot();
     ref.read(appRouterProvider).pushAll(
-      [const TabsRouter(), const FoodRouter()],
+      [const BottomTabRouter(), const FoodRouter()],
     );
   }
 

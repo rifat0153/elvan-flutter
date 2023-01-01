@@ -36,7 +36,7 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
     ),
     AutoRoute(
       path: '/tabs',
-      name: 'TabsRouter',
+      name: 'BottomTabRouter',
       // guards: [AuthGuard],
       page: BottomTabScreen,
       children: [

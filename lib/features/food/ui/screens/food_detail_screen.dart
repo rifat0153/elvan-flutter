@@ -100,7 +100,7 @@ class FooDDetailScreen extends HookConsumerWidget {
               if (!isBuildStepsValid) {
                 return;
               }
-              ref.read(cartNotifierProvider.notifier).handleAddToCart();
+              ref.read(cartProvider.notifier).handleAddToCart();
             },
             child: AppText(
               cartButtonText,
