@@ -1,3 +1,5 @@
+import 'package:elvan/app/router/app_router.dart';
+import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/core/logger/colored_print_log.dart';
@@ -60,6 +62,12 @@ class CartNotifier extends Notifier<CartUiState> {
     } else {
       addToCart(cartItem);
     }
+
+    // pop all the screens and go to the cart screen
+    ref.read(appRouterProvider).popUntilRoot();
+    ref.read(appRouterProvider).pushAll(
+      [const TabsRouter(), const FoodRouter()],
+    );
   }
 
   void addToCart(CartItem cartItem) {

@@ -1,10 +1,8 @@
-import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
-import 'package:elvan/features/cart/ui/notifier/cart_update_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:auto_route/auto_route.dart';
-
+import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
+import 'package:elvan/features/cart/ui/notifier/cart_update_notifier.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/components/build_step_customization.dart';
 import 'package:elvan/features/food/ui/components/food_detail_image_with_appbar.dart';
@@ -90,19 +88,19 @@ class FooDDetailScreen extends HookConsumerWidget {
           final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
           final cartUpdateNotifier = ref.watch(cartItemUpdateProvider.notifier);
           final isCartUpdating = cartUpdateNotifier.isUpdating;
+          final currentBuildStepsPrice = ref.watch(currentBuildStepsPriceProvider);
+          final totalPrice = foodItem.price + currentBuildStepsPrice;
 
-          final String cartButtonText = isCartUpdating ? 'Update cart' : 'Add to cart';
-
-          if (!isBuildStepsValid) {
-            return const SizedBox();
-          }
+          final String cartText = isCartUpdating ? 'Update cart' : 'Add to cart';
+          final String cartButtonText = '$cartText - \$ $totalPrice';
 
           return ElvanButton(
             color: isBuildStepsValid ? AppColors.primaryRed : AppColors.grey,
             onPressed: () {
+              if (!isBuildStepsValid) {
+                return;
+              }
               ref.read(cartNotifierProvider.notifier).handleAddToCart();
-
-              context.popRoute();
             },
             child: AppText(
               cartButtonText,

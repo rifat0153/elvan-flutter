@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
-import 'package:elvan/features/cart/ui/screens/cart_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/app/router/app_router.gr.dart';
@@ -8,6 +7,7 @@ import 'package:elvan/app/router/not_found_screen.dart';
 import 'package:elvan/app/router/route_guards.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/auth/ui/screens/auth_screen.dart';
+import 'package:elvan/features/cart/ui/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';
 import 'package:elvan/features/food/ui/screens/food_detail_screen.dart';
 import 'package:elvan/features/food/ui/screens/food_list_screen.dart';
