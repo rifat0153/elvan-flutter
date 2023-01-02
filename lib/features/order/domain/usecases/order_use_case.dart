@@ -15,8 +15,14 @@ class OrderUseCase {
 
   OrderUseCase(this._orderRepository);
 
-  Stream<Order> getOrderStream(String orderId) {
-    return _orderRepository.getOrderStream(orderId).map((e) => Order.fromDto(e));
+  Stream<Order> getOrderStream(String userId) {
+    return _orderRepository.getOrderStream(userId).map((e) => Order.fromDto(e));
+  }
+
+  Future createOrder(Order order) async {
+    final orderDto = order.toDto();
+
+    await _orderRepository.createOrder(orderDto);
   }
 
   Future<List<Order>> getRecentOrders(String userId, {limit = 10}) async {

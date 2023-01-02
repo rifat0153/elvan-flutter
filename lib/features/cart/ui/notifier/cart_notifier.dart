@@ -26,6 +26,7 @@ class CartNotifier extends Notifier<CartUiState> {
   }
 
   bool get hasData => state.value != null;
+  Cart? get cart => state.value;
 
   String getUniqueId() {
     return DateTime.now().millisecondsSinceEpoch.toString();

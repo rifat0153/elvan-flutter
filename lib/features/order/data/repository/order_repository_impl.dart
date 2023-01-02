@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/core/firebase/firebase_providers.dart';
 import 'package:elvan/features/order/data/dto/order_dto.dart';
-
-import '../../domain/repository/order_repository.dart';
+import 'package:elvan/features/order/domain/repository/order_repository.dart';
 
 final orderRepositoryProvider = Provider<OrderRepository>((ref) {
   final firebaseFirestore = ref.watch(firebaseFirestoreProvider);
@@ -31,10 +29,22 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
-  Stream<OrderDto> getOrderStream(String orderId) {
-    return firebaseFirestore.collection('orders').doc(orderId).snapshots().map(
+  Stream<OrderDto> getOrderStream(String userId) {
+    return firebaseFirestore
+        .collection('orders')
+        .where(
+          'userId',
+          isEqualTo: userId,
+        )
+        .orderBy(
+          'createdAt',
+          descending: true,
+        )
+        .limit(1)
+        .snapshots()
+        .map(
           (event) => OrderDto.fromJson(
-            event.data()!,
+            event.docs.first.data(),
           ),
         );
   }
