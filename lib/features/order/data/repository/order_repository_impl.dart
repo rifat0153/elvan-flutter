@@ -31,6 +31,15 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
+  Stream<OrderDto> getOrderStream(String orderId) {
+    return firebaseFirestore.collection('orders').doc(orderId).snapshots().map(
+          (event) => OrderDto.fromJson(
+            event.data()!,
+          ),
+        );
+  }
+
+  @override
   Future<List<OrderDto>> getOrders(String userId, {int limit = 10}) async {
     final orders = await firebaseFirestore
         .collection('orders')

@@ -13,7 +13,7 @@ import 'package:elvan/features/food/ui/screens/food_detail_screen.dart';
 import 'package:elvan/features/food/ui/screens/food_list_screen.dart';
 import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
-import 'package:elvan/features/tabs/ui/screens/tab_screen.dart';
+import 'package:elvan/features/tabs/ui/screens/bottom_tab_screen.dart';
 
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
   // final user = ref.read(currentUserProvider);
