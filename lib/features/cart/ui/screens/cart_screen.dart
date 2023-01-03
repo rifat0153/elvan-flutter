@@ -20,8 +20,18 @@ class CartScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, st) => Center(child: Text(error.toString())),
         data: (cart) {
-          return CartItemList(
-            cartItems: cart.cartItems,
+          return Column(
+            children: [
+              Expanded(
+                child: CartItemList(
+                  cartItems: cart.cartItems,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Checkout'),
+              ),
+            ],
           );
         },
       ),
