@@ -1,4 +1,5 @@
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
+import 'package:elvan/features/order/ui/recent_order/notifier/order_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -28,7 +29,9 @@ class CartScreen extends ConsumerWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  ref.read(orderProvider.notifier).createOrderFromCart();
+                },
                 child: const Text('Checkout'),
               ),
             ],

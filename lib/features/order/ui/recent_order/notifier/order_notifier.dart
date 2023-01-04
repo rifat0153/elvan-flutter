@@ -1,3 +1,4 @@
+import 'package:elvan/features/order/domain/models/order_status.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
@@ -18,13 +19,16 @@ class OrderNotifier extends Notifier<void> {
       throw Exception('Cart is empty');
     }
 
-    // final order = Order(
-    //   id: DateTime.now().millisecondsSinceEpoch.toString(),
-    //   cart: cart,
-    // );
+    final order = Order(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      discount: 0,
+      items: cart.cartItems,
+      status: OrderStatus.pending,
+      subTotal: 100,
+      total: 100,
+      userId: '123',
+    );
 
-    // final 
-
-    // await useCase.createOrder(order);
+    await useCase.createOrder(order);
   }
 }

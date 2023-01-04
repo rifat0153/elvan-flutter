@@ -19,7 +19,9 @@ class HomeScreen extends HookConsumerWidget {
         SliverToBoxAdapter(
           child: ElvanButton(
             onPressed: () {
-              ref.read(snackbarNotifierProvider.notifier).showSnackbarWithAction(
+              ref
+                  .read(snackbarNotifierProvider.notifier)
+                  .showSnackbarWithAction(
                 'Hello',
                 actionLabel: 'Undo',
                 onAction: () {
