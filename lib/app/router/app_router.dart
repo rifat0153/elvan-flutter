@@ -84,7 +84,6 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
       path: '*',
       page: NotFoundScreen,
     ),
-    //order routes
     AutoRoute(
       path: '/order',
       name: 'OrderRouter',

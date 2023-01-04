@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -25,7 +27,7 @@ class ProfileScreen extends HookConsumerWidget {
           const AppText('Profile'),
           ElevatedButton(
             onPressed: () {
-              // context.pushRoute(OrdersRecordsWidget());
+              context.pushRoute(const OrderRouter());
             },
             child: const Text('Your Orders and records'),
           ),
