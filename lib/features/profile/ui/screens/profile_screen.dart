@@ -25,6 +25,12 @@ class ProfileScreen extends HookConsumerWidget {
           const AppText('Profile'),
           ElevatedButton(
             onPressed: () {
+              // context.pushRoute(OrdersRecordsWidget());
+            },
+            child: const Text('Your Orders and records'),
+          ),
+          ElevatedButton(
+            onPressed: () {
               ref.read(authNotifierProvider.notifier).onEvent(
                     const AuthEvent.logout(),
                   );

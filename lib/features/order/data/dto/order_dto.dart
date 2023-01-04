@@ -24,7 +24,6 @@ class OrderDto with _$OrderDto {
       fromJson: OrderStatusDto.fromJson,
       toJson: OrderStatusDto.toJson,
     )
-    @Default(OrderStatusDto.pending)
         required OrderStatusDto status,
     String? paymentMethod,
     String? paymentStatus,
