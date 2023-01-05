@@ -32,11 +32,24 @@ class OrdersRecordsScreen extends HookConsumerWidget {
               shrinkWrap: true,
               itemCount: orders.length,
               itemBuilder: (BuildContext context, int index) {
+                var order = orders[index];
                 return ListTile(
-                  //set background color
-                  tileColor: Colors.white,
-                  title: AppText(orders[index].id),
-                  trailing: AppText("\$${orders[index].total}"),
+                  tileColor: Colors.grey,
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (var item in order.items)
+                        AppText(
+                          '${item.foodItem.title} x${item.quantity}',
+                          style: item == order.items.first
+                              ? Theme.of(context).textTheme.headline4
+                              : Theme.of(context).textTheme.bodyText1,
+                        ),
+                    ],
+                  ),
+
+                  // AppText('${order.items.length} items'),
+                  trailing: AppText("\$${order.total}"),
                 );
               },
             ),
