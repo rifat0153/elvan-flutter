@@ -1,4 +1,7 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/order/ui/components/order_records_app_bar.dart';
+import 'package:elvan/features/order/ui/order/screens/single_order.dart';
 import 'package:elvan/features/order/ui/order_records/notifier/order_records_notifier.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
@@ -34,6 +37,10 @@ class OrdersRecordsScreen extends HookConsumerWidget {
               itemBuilder: (BuildContext context, int index) {
                 var order = orders[index];
                 return ListTile(
+                  onTap: () {
+                    //push to single order screen
+                    context.pushRoute(SingleOrderRoute(order: order));
+                  },
                   tileColor: Colors.grey,
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

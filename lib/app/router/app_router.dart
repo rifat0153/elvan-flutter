@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
+import 'package:elvan/features/order/ui/order/screens/single_order.dart';
 import 'package:elvan/features/order/ui/order_records/screens/order_records.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -92,6 +93,10 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
         AutoRoute(
           path: '',
           page: OrdersRecordsScreen,
+        ),
+        AutoRoute(
+          path: 'single',
+          page: SingleOrderScreen,
         ),
         RedirectRoute(path: '*', redirectTo: ''),
       ],
