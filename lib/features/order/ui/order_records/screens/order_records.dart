@@ -47,9 +47,10 @@ class OrdersRecordsScreen extends HookConsumerWidget {
                         ),
                     ],
                   ),
-
-                  // AppText('${order.items.length} items'),
-                  trailing: AppText("\$${order.total}"),
+                  trailing: AppText(
+                    "\$${order.total}",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
                 );
               },
             ),
