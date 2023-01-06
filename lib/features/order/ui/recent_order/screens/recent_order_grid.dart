@@ -1,4 +1,5 @@
 import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
@@ -27,7 +28,8 @@ class RecentOrdersGrid extends StatelessWidget {
               1.fr,
             ],
             // each row is taking as much space as its content
-            rowSizes: List.generate(((cartItems.length - 1) ~/ 2) + 1, (index) => auto).toList(),
+            rowSizes: List.generate(
+                ((cartItems.length - 1) ~/ 2) + 1, (index) => auto).toList(),
             columnGap: AppSize.paddingMD,
             rowGap: AppSize.paddingMD,
             children: [

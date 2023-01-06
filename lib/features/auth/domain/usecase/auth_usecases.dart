@@ -3,6 +3,7 @@ import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:elvan/features/auth/domain/models/elvan_user.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -42,7 +43,8 @@ class AuthUseCases {
     required String password,
   }) async {
     if (email.isEmpty || password.isEmpty) {
-      return const Result.failure(Failure(message: 'Email or password is empty'));
+      return const Result.failure(
+          Failure(message: 'Email or password is empty'));
     }
 
     final user = await authRepository.singInWithEmailAndPassword(

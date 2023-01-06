@@ -60,6 +60,11 @@ dependencies:
 
   freezed_annotation: ^2.2.0
 
+  # shared libs
+  elvan_shared:
+    path: ./../elvan_shared
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

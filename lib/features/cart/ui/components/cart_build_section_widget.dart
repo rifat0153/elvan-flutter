@@ -1,6 +1,5 @@
+import 'package:elvan_shared/dtos/index.dart';
 import 'package:flutter/material.dart';
-
-import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 

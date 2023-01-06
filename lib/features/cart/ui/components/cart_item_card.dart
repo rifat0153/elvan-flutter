@@ -3,10 +3,9 @@ import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_update_notifier.dart';
 import 'package:elvan/shared/components/buttons/elvan_button.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
 import 'package:elvan/features/cart/ui/components/cart_build_section_widget.dart';
 import 'package:elvan/shared/components/cards/base_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
@@ -56,7 +55,9 @@ class CartItemCard extends HookConsumerWidget {
 
             ElvanButton(
               onPressed: () {
-                ref.read(cartItemUpdateProvider.notifier).setUpdatingCartItem(cartItem);
+                ref
+                    .read(cartItemUpdateProvider.notifier)
+                    .setUpdatingCartItem(cartItem);
 
                 context.pushRoute(
                   const FoodRouter(children: [

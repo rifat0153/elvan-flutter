@@ -1,11 +1,13 @@
 import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/core/ui_state/ui_state.dart';
 import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 
-final selectedFoodItemNotifierProvider = NotifierProvider<SelectedFoodItemNotifier, UiState<FoodItem>>(() {
+final selectedFoodItemNotifierProvider =
+    NotifierProvider<SelectedFoodItemNotifier, UiState<FoodItem>>(() {
   return SelectedFoodItemNotifier();
 });
 

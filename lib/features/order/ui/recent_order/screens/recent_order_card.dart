@@ -3,6 +3,7 @@ import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

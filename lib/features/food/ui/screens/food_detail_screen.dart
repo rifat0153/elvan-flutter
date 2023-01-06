@@ -1,3 +1,4 @@
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -88,10 +89,12 @@ class FooDDetailScreen extends HookConsumerWidget {
           final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
           final cartUpdateNotifier = ref.watch(cartItemUpdateProvider.notifier);
           final isCartUpdating = cartUpdateNotifier.isUpdating;
-          final currentBuildStepsPrice = ref.watch(currentBuildStepsPriceProvider);
+          final currentBuildStepsPrice =
+              ref.watch(currentBuildStepsPriceProvider);
           final totalPrice = foodItem.price + currentBuildStepsPrice;
 
-          final String cartText = isCartUpdating ? 'Update cart' : 'Add to cart';
+          final String cartText =
+              isCartUpdating ? 'Update cart' : 'Add to cart';
           final String cartButtonText = '$cartText - \$ $totalPrice';
 
           return ElvanButton(

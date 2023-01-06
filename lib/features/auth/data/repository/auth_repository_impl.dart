@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan_shared/dtos/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -34,7 +35,8 @@ class AuthRepositoryImpl implements AuthRepository {
             Constants.firebaseElvanUserCollectionName,
           )
           .withConverter(
-            fromFirestore: (snapshot, _) => ElvanUserDto.fromJson(snapshot.data()!),
+            fromFirestore: (snapshot, _) =>
+                ElvanUserDto.fromJson(snapshot.data()!),
             toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
           )
           .doc(userId)

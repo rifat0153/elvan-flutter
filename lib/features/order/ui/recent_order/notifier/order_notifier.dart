@@ -1,4 +1,6 @@
 import 'package:elvan/features/order/domain/models/order_status.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';

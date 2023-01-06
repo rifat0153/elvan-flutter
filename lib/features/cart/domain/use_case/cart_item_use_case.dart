@@ -1,4 +1,4 @@
-import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
+import 'package:elvan_shared/domain_models/cart/cart_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // create provider
