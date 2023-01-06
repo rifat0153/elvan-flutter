@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -32,7 +33,8 @@ class FoodListCard extends HookConsumerWidget {
     final imageLeftOffset = -35.w;
     final imageRadius = 50.w;
 
-    final selectedFoodItemNotifier = ref.read(selectedFoodItemNotifierProvider.notifier);
+    final selectedFoodItemNotifier =
+        ref.read(selectedFoodItemNotifierProvider.notifier);
 
     return BaseCard(
       key: key,

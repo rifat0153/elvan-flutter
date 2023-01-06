@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -35,7 +36,8 @@ class TopPickCard extends HookConsumerWidget {
                     left: imageOffset,
                     child: CircleAvatar(
                       radius: imageRadius,
-                      backgroundImage: CachedNetworkImageProvider(foodItem.imageUrl!),
+                      backgroundImage:
+                          CachedNetworkImageProvider(foodItem.imageUrl!),
                     ),
                   ),
                   Positioned(
@@ -50,14 +52,16 @@ class TopPickCard extends HookConsumerWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
               child: AppText(
                 foodItem.title,
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
               child: AppText(
                 foodItem.description ?? '',
                 style: Theme.of(context).textTheme.subtitle2,

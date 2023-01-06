@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:elvan_shared/dtos/category/add_on/add_on.dart';
+import 'package:elvan_shared/dtos/index.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -46,7 +48,8 @@ class BuildStepCustomization extends HookConsumerWidget {
     );
   }
 
-  Widget _buildAddOnTile(BuildContext context, AddOn addOn, Function() onPressed) {
+  Widget _buildAddOnTile(
+      BuildContext context, AddOn addOn, Function() onPressed) {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSize.paddingMD,
@@ -73,7 +76,9 @@ class BuildStepCustomization extends HookConsumerWidget {
   }
 
   AppText _itemPrice(AddOn addOn, BuildContext context) {
-    final priceText = !addOn.includeInPrice && addOn.isSelected ? 'Included' : '\$${addOn.price}';
+    final priceText = !addOn.includeInPrice && addOn.isSelected
+        ? 'Included'
+        : '\$${addOn.price}';
 
     return AppText(
       priceText,
@@ -85,7 +90,8 @@ class BuildStepCustomization extends HookConsumerWidget {
   }
 
   Widget _buildSectionTitle(BuildContext context, BuildStep buildStep) {
-    final itemsIncludedInPrice = max(buildStep.noOfItemIncludedInPrice, buildStep.minSelectedAddOns);
+    final itemsIncludedInPrice =
+        max(buildStep.noOfItemIncludedInPrice, buildStep.minSelectedAddOns);
 
     return Padding(
       padding: const EdgeInsets.symmetric(
