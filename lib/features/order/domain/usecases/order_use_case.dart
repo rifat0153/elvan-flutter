@@ -29,14 +29,17 @@ class OrderUseCase {
     await _orderRepository.createOrder(orderDto);
   }
 
+  Future<Order> getSingleOrder(String orderId) async {
+    final orderDto = await _orderRepository.getSingleOrder(orderId);
+    return Order.fromDto(orderDto);
+  }
+
   Future cancelOrder(String orderId) async {
     await _orderRepository.cancelOrder(orderId);
   }
 
   Stream<OrderDto> getSingleOrderStream(String orderId) {
     return _orderRepository.getSingleOrderStream(orderId);
-    // final order = Order.fromDto(await orderDto.first);
-    // return order;
   }
 
   Future<List<Order>> getRecentOrders(String userId, {limit = 10}) async {

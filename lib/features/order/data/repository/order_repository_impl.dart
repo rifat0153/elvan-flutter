@@ -89,4 +89,18 @@ class OrderRepositoryImpl implements OrderRepository {
           ),
         );
   }
+
+  @override
+  Future<OrderDto> getSingleOrder(String orderId) {
+    return firebaseFirestore
+        .collection('orders')
+        .doc(orderId)
+        .get()
+        .then(
+          (value) => OrderDto.fromJson(
+            value.data()!,
+          ),
+        )
+        .catchError((error) => throw error);
+  }
 }

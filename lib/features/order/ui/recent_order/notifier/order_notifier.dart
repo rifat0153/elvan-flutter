@@ -14,7 +14,7 @@ class OrderNotifier extends Notifier<void> {
   @override
   build() {}
 
-  Future createOrderFromCart() async {
+  Future<String> createOrderFromCart() async {
     final useCase = ref.read(orderUseCaseProvider);
 
     final cart = ref.read(cartProvider.notifier).cart;
@@ -33,11 +33,18 @@ class OrderNotifier extends Notifier<void> {
       discount: 0,
       items: cart.cartItems,
       status: OrderStatus.pending,
-      subTotal: 100,
-      total: 100,
+      subTotal: cart.cartItems.fold(
+        0,
+        (previousValue, element) => previousValue + element.price,
+      ),
+      total: cart.total,
       userId: userId,
     );
 
     await useCase.createOrder(order);
+    //clear cart
+    ref.read(cartProvider.notifier).resetCart();
+
+    return order.id;
   }
 }

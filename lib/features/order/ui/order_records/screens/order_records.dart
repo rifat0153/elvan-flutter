@@ -23,33 +23,36 @@ class OrdersRecordsScreen extends HookConsumerWidget {
       data: (orders) => ElvanScaffold(
         imagePath: AppAsset.homeBackgroundPng,
         appBar: const OrderRecordsAppBar(),
-        child: Padding(
-          padding: const EdgeInsets.all(AppSize.paddingMD),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(AppSize.paddingMD),
-                child: AppText(
-                  'Your last orders',
-                  style: Theme.of(context).textTheme.headline6,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSize.paddingMD),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(AppSize.paddingMD),
+                  child: AppText(
+                    'Your last orders',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
                 ),
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: orders.length,
-                itemBuilder: (BuildContext context, int index) {
-                  var order = orders[index];
-                  return InkWell(
-                      onTap: () {
-                        context.pushRoute(SingleOrderRoute(
-                          order: order,
-                        ));
-                      },
-                      child: OrderCard(order: order));
-                },
-              ),
-            ],
+                ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: orders.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var order = orders[index];
+                    return InkWell(
+                        onTap: () {
+                          context.pushRoute(SingleOrderRoute(
+                            order: order,
+                          ));
+                        },
+                        child: OrderCard(order: order));
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

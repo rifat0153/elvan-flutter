@@ -10,4 +10,6 @@ abstract class OrderRepository {
   Future cancelOrder(String orderId);
 
   Stream<OrderDto> getSingleOrderStream(String orderID);
+
+  Future<OrderDto> getSingleOrder(String orderId);
 }

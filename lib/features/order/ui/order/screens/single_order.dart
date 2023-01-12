@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
 import 'package:elvan/features/order/domain/models/order.dart';
 import 'package:elvan/features/order/ui/components/order_records_app_bar.dart';
+import 'package:elvan/features/order/ui/components/order_summery.dart';
+import 'package:elvan/features/order/ui/components/order_timeline.dart';
 import 'package:elvan/features/order/ui/order_records/notifier/order_records_notifier.dart';
 import 'package:elvan/features/order/ui/order_records/notifier/single_order_provider.dart';
 import 'package:elvan/features/order/ui/order_records/screens/order_records.dart';
@@ -126,134 +128,6 @@ class OrderTimeline extends StatelessWidget {
           OrderCard(order: order),
         ],
       ),
-    );
-  }
-}
-
-class OrderTimeLine extends StatelessWidget {
-  const OrderTimeLine({
-    this.isLast = false,
-    this.isFirst = false,
-    required this.title,
-    this.isCompleted = false,
-    Key? key,
-  }) : super(key: key);
-
-  final String title;
-  final bool isLast;
-  final bool isFirst;
-  final bool isCompleted;
-  @override
-  Widget build(BuildContext context) {
-    return TimelineTile(
-      isFirst: isFirst,
-      isLast: isLast,
-      afterLineStyle: const LineStyle(color: AppColors.primaryRed),
-      beforeLineStyle: const LineStyle(color: AppColors.primaryRed),
-      indicatorStyle: IndicatorStyle(
-        width: 25,
-        color: AppColors.primaryRed,
-        indicator: !isCompleted
-            ? Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Container(
-                    height: 150,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(40),
-                      ),
-                      border: Border.all(
-                        width: 2,
-                        color: AppColors.primaryRed,
-                        style: BorderStyle.solid,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 12,
-                    height: 12,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.primaryRed,
-                    ),
-                  )
-                ],
-              )
-            : ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.asset(
-                  AppAsset.checkboxState,
-                  fit: BoxFit.cover,
-                ),
-              ),
-      ),
-      alignment: TimelineAlign.manual,
-      lineXY: 0.3,
-      endChild: Container(
-        constraints: const BoxConstraints(
-          minHeight: 70,
-        ),
-        child: Center(
-          child: AppText(
-            title,
-            color: isCompleted ? AppColors.white : Colors.grey,
-            textAlign: TextAlign.left,
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-        ),
-      ),
-      startChild: Container(
-        child: const AppText("2:00 PM"),
-      ),
-    );
-  }
-}
-
-class OrderSummery extends StatelessWidget {
-  const OrderSummery({
-    Key? key,
-    required this.orderID,
-    required this.estimatedTime,
-  }) : super(key: key);
-
-  final String orderID;
-  final String estimatedTime;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          color: AppColors.primaryRed,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const AppText("Estimated Time"),
-                  AppText(
-                    "30 Min",
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const AppText("Your Order ID"),
-                  AppText(
-                    "#$orderID",
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

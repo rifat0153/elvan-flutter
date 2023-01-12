@@ -1,5 +1,10 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:elvan/app/router/app_router.dart';
+import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
+import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
 import 'package:elvan/features/order/ui/recent_order/notifier/order_notifier.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,6 +18,7 @@ class CartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cartState = ref.watch(cartProvider);
+    final orderRepository = ref.watch(orderRepositoryProvider);
 
     return ElvanScaffold(
       imagePath: AppAsset.homeBackgroundPng,
@@ -29,8 +35,22 @@ class CartScreen extends ConsumerWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-                  ref.read(orderProvider.notifier).createOrderFromCart();
+                onPressed: () async {
+                  var orderId = await ref
+                      .read(orderProvider.notifier)
+                      .createOrderFromCart();
+
+                  var orderDto = await orderRepository.getSingleOrder(orderId);
+
+                  var order = Order.fromDto(orderDto);
+                  // ignore: use_build_context_synchronously
+                  context.replaceRoute(
+                    OrderRouter(
+                      children: [
+                        SingleOrderRoute(order: order),
+                      ],
+                    ),
+                  );
                 },
                 child: const Text('Checkout'),
               ),
