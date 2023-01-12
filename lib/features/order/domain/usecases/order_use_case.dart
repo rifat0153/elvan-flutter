@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,7 +31,6 @@ class OrderUseCase {
   Future<List<Order>> getRecentOrders(String userId, {limit = 10}) async {
     final orderDtos = await _orderRepository.getOrders(userId, limit: limit);
     final orders = orderDtos.map((e) => Order.fromDto(e)).toList();
-
     return orders;
   }
 }

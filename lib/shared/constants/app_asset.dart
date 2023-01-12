@@ -9,4 +9,8 @@ class AppAsset {
 
   static const String saladBackgroundPng = 'assets/images/salad_background.png';
   static const String saladBackgroundSvg = 'assets/svgs/salad_background.svg';
+
+  static const String checkboxState = 'assets/images/order-checkbox.png';
+
+  static String halfPizzaPng = 'assets/images/half-pizza.png';
 }

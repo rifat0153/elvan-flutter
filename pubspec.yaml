@@ -64,6 +64,9 @@ dependencies:
   elvan_shared:
     path: ./../elvan_shared
 
+  # design
+  timeline_tile: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:

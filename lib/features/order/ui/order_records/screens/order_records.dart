@@ -7,8 +7,10 @@ import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrdersRecordsScreen extends HookConsumerWidget {
   const OrdersRecordsScreen({super.key});
@@ -21,52 +23,97 @@ class OrdersRecordsScreen extends HookConsumerWidget {
       data: (orders) => ElvanScaffold(
         imagePath: AppAsset.homeBackgroundPng,
         appBar: const OrderRecordsAppBar(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(AppSize.paddingMD),
-              child: AppText(
-                'Your last orders',
-                style: Theme.of(context).textTheme.headline6,
+        child: Padding(
+          padding: const EdgeInsets.all(AppSize.paddingMD),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(AppSize.paddingMD),
+                child: AppText(
+                  'Your last orders',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               ),
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: orders.length,
-              itemBuilder: (BuildContext context, int index) {
-                var order = orders[index];
-                return ListTile(
-                  onTap: () {
-                    //push to single order screen
-                    context.pushRoute(SingleOrderRoute(order: order));
-                  },
-                  tileColor: Colors.grey,
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      for (var item in order.items)
-                        AppText(
-                          '${item.foodItem.title} x${item.quantity}',
-                          style: item == order.items.first
-                              ? Theme.of(context).textTheme.headline4
-                              : Theme.of(context).textTheme.bodyText1,
-                        ),
-                    ],
-                  ),
-                  trailing: AppText(
-                    "\$${order.total}",
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                );
-              },
-            ),
-          ],
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: orders.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var order = orders[index];
+                  return InkWell(
+                      onTap: () {
+                        context.pushRoute(SingleOrderRoute(
+                          order: order,
+                        ));
+                      },
+                      child: OrderCard(order: order));
+                },
+              ),
+            ],
+          ),
         ),
       ),
       error: (e, st) => Center(
         child: Text(e.toString()),
       ),
     );
+  }
+}
+
+class OrderCard extends StatelessWidget {
+  const OrderCard({
+    Key? key,
+    required this.order,
+  }) : super(key: key);
+
+  final Order order;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.symmetric(vertical: AppSize.paddingMD / 2),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(.15),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                AppAsset.halfPizzaPng,
+                fit: BoxFit.fitHeight,
+                //round top left corner
+                width: 80,
+              ),
+            ),
+            const SizedBox(
+              width: AppSize.paddingMD,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (var item in order.items)
+                  SizedBox(
+                    width: 175.w,
+                    child: AppText(
+                      '${item.foodItem.title} x${item.quantity}',
+                      style: item == order.items.first
+                          ? Theme.of(context).textTheme.headline4
+                          : Theme.of(context).textTheme.bodyText1,
+                    ),
+                  ),
+              ],
+            ),
+            const Spacer(),
+            AppText(
+              "\$${order.total}",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            const SizedBox(
+              width: AppSize.paddingMD,
+            )
+          ],
+        ));
   }
 }

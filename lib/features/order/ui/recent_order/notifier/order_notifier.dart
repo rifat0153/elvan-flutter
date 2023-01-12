@@ -1,3 +1,4 @@
+import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/order/domain/models/order_status.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
@@ -21,6 +22,12 @@ class OrderNotifier extends Notifier<void> {
       throw Exception('Cart is empty');
     }
 
+    final userId = ref.read(currentUserIdProvider);
+
+    if (userId == null) {
+      throw Exception('User is not logged in');
+    }
+
     final order = Order(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       discount: 0,
@@ -28,7 +35,7 @@ class OrderNotifier extends Notifier<void> {
       status: OrderStatus.pending,
       subTotal: 100,
       total: 100,
-      userId: '123',
+      userId: userId,
     );
 
     await useCase.createOrder(order);
