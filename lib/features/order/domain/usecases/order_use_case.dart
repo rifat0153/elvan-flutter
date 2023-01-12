@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:elvan_shared/domain_models/order/order.dart';
+import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
@@ -26,6 +27,16 @@ class OrderUseCase {
     final orderDto = order.toDto();
 
     await _orderRepository.createOrder(orderDto);
+  }
+
+  Future cancelOrder(String orderId) async {
+    await _orderRepository.cancelOrder(orderId);
+  }
+
+  Stream<OrderDto> getSingleOrderStream(String orderId) {
+    return _orderRepository.getSingleOrderStream(orderId);
+    // final order = Order.fromDto(await orderDto.first);
+    // return order;
   }
 
   Future<List<Order>> getRecentOrders(String userId, {limit = 10}) async {

@@ -6,4 +6,8 @@ abstract class OrderRepository {
   Stream<OrderDto> getOrderStream(String userId);
 
   Future<List<OrderDto>> getOrders(String userId, {int limit});
+
+  Future cancelOrder(String orderId);
+
+  Stream<OrderDto> getSingleOrderStream(String orderID);
 }

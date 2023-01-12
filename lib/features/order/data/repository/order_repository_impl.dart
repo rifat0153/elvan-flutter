@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -64,5 +65,28 @@ class OrderRepositoryImpl implements OrderRepository {
         orders.docs.map((e) => OrderDto.fromJson(e.data())).toList();
 
     return orderDtos;
+  }
+
+  @override
+  Future cancelOrder(String orderId) {
+    return firebaseFirestore
+        .collection('orders')
+        .doc(orderId)
+        .update(
+          {
+            'status': OrderStatus.cancelled,
+          },
+        )
+        .then((value) => true)
+        .catchError((error) => throw error);
+  }
+
+  @override
+  Stream<OrderDto> getSingleOrderStream(String orderID) {
+    return firebaseFirestore.collection('orders').doc(orderID).snapshots().map(
+          (event) => OrderDto.fromJson(
+            event.data()!,
+          ),
+        );
   }
 }
