@@ -93,20 +93,21 @@ class OrderCard extends StatelessWidget {
             const SizedBox(
               width: AppSize.paddingMD,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                for (var item in order.items)
-                  SizedBox(
-                    width: 175.w,
-                    child: AppText(
+            Flexible(
+              flex: 3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (var item in order.items)
+                    AppText(
                       '${item.foodItem.title} x${item.quantity}',
                       style: item == order.items.first
                           ? Theme.of(context).textTheme.headline4
                           : Theme.of(context).textTheme.bodyText1,
+                      maxLines: 3,
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
             const Spacer(),
             AppText(

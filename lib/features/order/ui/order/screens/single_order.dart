@@ -99,7 +99,7 @@ class OrderTimeline extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText(
-            'Order Progress',
+            'Order Status',
             style: Theme.of(context).textTheme.headline6,
           ),
           OrderTimeLine(
