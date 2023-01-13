@@ -1,3 +1,4 @@
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 
 abstract class OrderRepository {
@@ -12,4 +13,6 @@ abstract class OrderRepository {
   Stream<OrderDto> getSingleOrderStream(String orderID);
 
   Future<OrderDto> getSingleOrder(String orderId);
+
+  Stream<List<OrderDto>> getOrdersStream(String userID);
 }

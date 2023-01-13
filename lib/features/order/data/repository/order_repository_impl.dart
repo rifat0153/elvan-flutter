@@ -103,4 +103,28 @@ class OrderRepositoryImpl implements OrderRepository {
         )
         .catchError((error) => throw error);
   }
+
+  @override
+  Stream<List<OrderDto>> getOrdersStream(String userID) {
+    return firebaseFirestore
+        .collection('orders')
+        .where(
+          'userId',
+          isEqualTo: userID,
+        )
+        .orderBy(
+          'createdAt',
+          descending: true,
+        )
+        .snapshots()
+        .map(
+          (event) => event.docs
+              .map(
+                (e) => OrderDto.fromJson(
+                  e.data(),
+                ),
+              )
+              .toList(),
+        );
+  }
 }

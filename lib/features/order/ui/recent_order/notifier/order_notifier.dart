@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart' as fs;
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/order/domain/models/order_status.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
@@ -31,6 +32,7 @@ class OrderNotifier extends Notifier<void> {
     }
 
     final order = Order(
+      createdAt: fs.Timestamp.fromDate(DateTime.now()),
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       discount: 0,
       items: cart.cartItems,

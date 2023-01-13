@@ -3,6 +3,7 @@ import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/order/ui/components/order_records_app_bar.dart';
 import 'package:elvan/features/order/ui/order/screens/single_order.dart';
 import 'package:elvan/features/order/ui/order_records/notifier/order_records_notifier.dart';
+import 'package:elvan/features/order/ui/order_records/notifier/order_records_stream_provider.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
@@ -16,46 +17,50 @@ class OrdersRecordsScreen extends HookConsumerWidget {
   const OrdersRecordsScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final orderRecordsNotifier = ref.watch(orderRecordsNotifierProvider);
+    final orderNotifier = ref.watch(orderStreamProvider);
 
-    return orderRecordsNotifier.when(
+    return orderNotifier.when(
       loading: () => const Center(child: CircularProgressIndicator()),
-      data: (orders) => ElvanScaffold(
-        imagePath: AppAsset.homeBackgroundPng,
-        appBar: const OrderRecordsAppBar(),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(AppSize.paddingMD),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(AppSize.paddingMD),
-                  child: AppText(
-                    'Your last orders',
-                    style: Theme.of(context).textTheme.headline6,
+      data: (orders) {
+        return ElvanScaffold(
+          imagePath: AppAsset.homeBackgroundPng,
+          appBar: const OrderRecordsAppBar(),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(AppSize.paddingMD),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(AppSize.paddingMD),
+                    child: AppText(
+                      'Your last orders',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
                   ),
-                ),
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: orders.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    var order = orders[index];
-                    return InkWell(
-                        onTap: () {
-                          context.pushRoute(SingleOrderRoute(
-                            order: order,
-                          ));
-                        },
-                        child: OrderCard(order: order));
-                  },
-                ),
-              ],
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: orders.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var order = orders[index];
+                      return InkWell(
+                          onTap: () {
+                            context.pushRoute(
+                              SingleOrderRoute(
+                                order: order,
+                              ),
+                            );
+                          },
+                          child: OrderCard(order: order));
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
       error: (e, st) => Center(
         child: Text(e.toString()),
       ),

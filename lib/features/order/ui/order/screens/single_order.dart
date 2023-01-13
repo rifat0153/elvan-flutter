@@ -103,7 +103,7 @@ class OrderTimeline extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6,
           ),
           OrderTimeLine(
-            isCompleted: order.status.index >= 1,
+            isCompleted: order.status.index >= 0,
             isFirst: true,
             title: "Order Successfully Placed",
           ),

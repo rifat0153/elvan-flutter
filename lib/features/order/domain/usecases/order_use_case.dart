@@ -38,8 +38,16 @@ class OrderUseCase {
     await _orderRepository.cancelOrder(orderId);
   }
 
-  Stream<OrderDto> getSingleOrderStream(String orderId) {
-    return _orderRepository.getSingleOrderStream(orderId);
+  Stream<Order> getSingleOrderStream(String orderId) {
+    return _orderRepository
+        .getSingleOrderStream(orderId)
+        .map((e) => Order.fromDto(e));
+  }
+
+  Stream<List<Order>> getOrdersStream(String userID) {
+    return _orderRepository
+        .getOrdersStream(userID)
+        .map((e) => e.map((e) => Order.fromDto(e)).toList());
   }
 
   Future<List<Order>> getRecentOrders(String userId, {limit = 10}) async {
