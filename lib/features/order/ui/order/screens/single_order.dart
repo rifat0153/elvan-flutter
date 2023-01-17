@@ -71,7 +71,13 @@ class SingleOrderScreen extends HookConsumerWidget {
                       borderRadius: BorderRadius.circular(AppSize.radiusLG),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    await ref
+                        .read(orderRecordsNotifierProvider.notifier)
+                        .cancleOrder(
+                          order.id,
+                        );
+                  },
                   child: const AppText("Cancel")),
             ),
           ],

@@ -29,4 +29,8 @@ class OrderRecordsNotifier extends AsyncNotifier<List<Order>> {
 
     return result;
   }
+
+  Future cancleOrder(String orderID) {
+    return orderUseCase.cancelOrder(orderID);
+  }
 }

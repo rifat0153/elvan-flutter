@@ -78,7 +78,7 @@ class OrderTimeLine extends StatelessWidget {
           ),
         ),
       ),
-      startChild: const AppText(""),
+      // startChild: const AppText(""),
     );
   }
 }
