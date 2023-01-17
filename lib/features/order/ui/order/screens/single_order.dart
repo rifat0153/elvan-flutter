@@ -116,11 +116,18 @@ class OrderTimeline extends StatelessWidget {
             isLast: false,
             title: "Ready to pickup",
           ),
-          OrderTimeLine(
-            isCompleted: order.status.index >= 4,
-            isLast: true,
-            title: "Delivered",
-          ),
+          if (order.status.index >= 5)
+            OrderTimeLine(
+              isCompleted: order.status.index >= 4,
+              isLast: true,
+              title: "Delivered",
+            )
+          else
+            OrderTimeLine(
+              isCompleted: order.status.index >= 4,
+              isLast: true,
+              title: "Delivered",
+            ),
           AppText(
             'Order Items',
             style: Theme.of(context).textTheme.headline6,

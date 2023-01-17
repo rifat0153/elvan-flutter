@@ -1,11 +1,6 @@
-import 'dart:developer';
-
 import 'package:elvan_shared/domain_models/order/order.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
-import 'package:elvan/features/order/domain/models/order.dart';
 import 'package:elvan/features/order/domain/repository/order_repository.dart';
 
 final orderUseCaseProvider = Provider<OrderUseCase>((ref) {
@@ -50,7 +45,7 @@ class OrderUseCase {
         .map((e) => e.map((e) => Order.fromDto(e)).toList());
   }
 
-  Future<List<Order>> getRecentOrders(String userId, {limit = 10}) async {
+  Future<List<Order>> getRecentOrders(String userId, {int limit = 10}) async {
     final orderDtos = await _orderRepository.getOrders(userId, limit: limit);
     final orders = orderDtos.map((e) => Order.fromDto(e)).toList();
     return orders;

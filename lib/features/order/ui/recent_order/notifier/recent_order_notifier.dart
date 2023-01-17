@@ -28,7 +28,7 @@ class RecentOrderNotifier extends AsyncNotifier<List<CartItem>> {
       throw Exception('User is not logged in');
     }
 
-    final result = await orderUseCase.getRecentOrders(userId, limit: 10);
+    final result = await orderUseCase.getRecentOrders(userId, limit: 4);
 
     final cartItems = <CartItem>[];
 

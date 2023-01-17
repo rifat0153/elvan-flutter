@@ -59,6 +59,7 @@ class OrderRepositoryImpl implements OrderRepository {
           'userId',
           isEqualTo: userId,
         )
+        .limit(limit)
         .get();
 
     final orderDtos =

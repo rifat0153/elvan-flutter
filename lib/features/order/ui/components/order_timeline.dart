@@ -64,7 +64,7 @@ class OrderTimeLine extends StatelessWidget {
               ),
       ),
       alignment: TimelineAlign.manual,
-      lineXY: 0.3,
+      lineXY: 0.0,
       endChild: Container(
         constraints: const BoxConstraints(
           minHeight: 70,
@@ -78,7 +78,7 @@ class OrderTimeLine extends StatelessWidget {
           ),
         ),
       ),
-      startChild: const AppText("2:00 PM"),
+      startChild: const AppText(""),
     );
   }
 }
