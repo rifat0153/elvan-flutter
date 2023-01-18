@@ -86,6 +86,13 @@ class SingleOrderScreen extends HookConsumerWidget {
                             );
                         snakbar.closeAlartDialog();
 
+                        snakbar.showSnackbar(
+                          const SnackBar(
+                            content: Text("Order Cancelled"),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+
                         //back
                         Navigator.of(context).pop();
                       },
