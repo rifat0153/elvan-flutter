@@ -75,7 +75,7 @@ class OrderRepositoryImpl implements OrderRepository {
         .doc(orderId)
         .update(
           {
-            'status': OrderStatus.cancelled,
+            'status': OrderStatus.cancelled.status,
           },
         )
         .then((value) => true)

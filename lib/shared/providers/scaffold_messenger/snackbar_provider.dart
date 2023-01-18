@@ -79,10 +79,14 @@ class SnackbarNotifier extends Notifier<void> {
           ),
           TextButton(
             onPressed: onOk,
-            child: const Text('Ok'),
+            child: const Text('Yes'),
           ),
         ],
       ),
     );
+  }
+
+  void closeAlartDialog() {
+    Navigator.of(scaffoldMessengerKey.currentContext!).pop();
   }
 }

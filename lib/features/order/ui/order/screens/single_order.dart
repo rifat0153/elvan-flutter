@@ -14,6 +14,7 @@ import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan/shared/providers/scaffold_messenger/snackbar_provider.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/shared/constants/app_colors.dart';
@@ -30,6 +31,8 @@ class SingleOrderScreen extends HookConsumerWidget {
     final orderRecordsNotifier = ref.watch(orderRecordsNotifierProvider);
 
     final currentOrder = ref.watch(singleOrderProvider(order.id));
+
+    var snakbar = ref.read(snackbarNotifierProvider.notifier);
 
     return orderRecordsNotifier.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -72,11 +75,21 @@ class SingleOrderScreen extends HookConsumerWidget {
                     ),
                   ),
                   onPressed: () async {
-                    await ref
-                        .read(orderRecordsNotifierProvider.notifier)
-                        .cancleOrder(
-                          order.id,
-                        );
+                    snakbar.alartDialog(
+                      title: "Cancel Order",
+                      content: "Are you sure you want to cancel this order?",
+                      onOk: () async {
+                        await ref
+                            .read(orderRecordsNotifierProvider.notifier)
+                            .cancleOrder(
+                              order.id,
+                            );
+                        snakbar.closeAlartDialog();
+
+                        //back
+                        Navigator.of(context).pop();
+                      },
+                    );
                   },
                   child: const AppText("Cancel")),
             ),
@@ -126,7 +139,7 @@ class OrderTimeline extends StatelessWidget {
             OrderTimeLine(
               isCompleted: order.status.index >= 4,
               isLast: true,
-              title: "Delivered",
+              title: order.status.status.toUpperCase(),
             )
           else
             OrderTimeLine(
