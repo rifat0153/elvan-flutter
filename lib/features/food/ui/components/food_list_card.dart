@@ -111,7 +111,8 @@ class FoodListCard extends HookConsumerWidget {
                     onPressed: () {},
                   ),
                   FavoriteButton(
-                    isFavorite: foodItem.isFavorite,
+                    // isFavorite: foodItem.isFavorite,
+                    foodItem: foodItem,
                   ),
                 ],
               ),

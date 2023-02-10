@@ -44,7 +44,8 @@ class TopPickCard extends HookConsumerWidget {
                     top: 0,
                     right: 0,
                     child: FavoriteButton(
-                      isFavorite: false,
+                      // isFavorite: false,
+                      foodItem: foodItem,
                       onPressed: () {},
                     ),
                   ),

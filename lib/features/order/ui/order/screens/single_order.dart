@@ -79,6 +79,7 @@ class SingleOrderScreen extends HookConsumerWidget {
                       title: "Cancel Order",
                       content: "Are you sure you want to cancel this order?",
                       onOk: () async {
+                        Navigator.of(context).pop();
                         await ref
                             .read(orderRecordsNotifierProvider.notifier)
                             .cancleOrder(
@@ -92,9 +93,6 @@ class SingleOrderScreen extends HookConsumerWidget {
                             duration: Duration(seconds: 2),
                           ),
                         );
-
-                        //back
-                        Navigator.of(context).pop();
                       },
                     );
                   },
