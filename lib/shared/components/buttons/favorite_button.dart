@@ -23,13 +23,14 @@ class FavoriteButton extends HookConsumerWidget {
       duration: const Duration(milliseconds: 300),
     );
 
-    var favProvider = ref.read(favoriteProvider);
-    var fav = ref.watch(favoriteProvider);
-    bool isFavorite = fav.isFavorite(foodItem);
+    FavoriteProvider favProvider = ref.read(favoriteProvider.notifier);
+    // var fav = ref.watch(favoriteProvider);
+    bool isFavorite = ref.watch(favoriteProvider.notifier).isFavorite(foodItem);
+    print('isFavorite: $isFavorite');
 
     final Animation<Color?> colorTween = ColorTween(
-      begin: isFavorite ? AppColors.primaryRed : AppColors.white,
-      end: isFavorite ? AppColors.white : AppColors.primaryRed,
+      begin: AppColors.white,
+      end: AppColors.primaryRed,
     ).animate(controller);
 
     useListenable(controller);
@@ -39,13 +40,13 @@ class FavoriteButton extends HookConsumerWidget {
       color: colorTween.value,
       onPressed: () {
         if (controller.isAnimating) return;
-        controller.reset();
-        controller.forward();
 
-        if (fav.isFavorite(foodItem)) {
+        if (isFavorite) {
           favProvider.removeFavorite(foodItem);
+          controller.reverse();
         } else {
           favProvider.addFavorite(foodItem);
+          controller.forward();
         }
         onPressed?.call();
       },
