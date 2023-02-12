@@ -16,4 +16,16 @@ abstract class AuthRepository {
   Stream<User?> getUserStream();
 
   Future<bool> signOut();
+
+  //set user data
+  Future<void> setElvanUser({
+    required String userId,
+    required ElvanUserDto elvanUserDto,
+  });
+
+  //sign up
+  Future<User?> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
 }

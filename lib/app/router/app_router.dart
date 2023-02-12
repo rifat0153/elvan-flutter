@@ -17,6 +17,8 @@ import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/bottom_tab_screen.dart';
 
+import '../../features/auth/ui/screens/registration_screen.dart';
+
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
   // final user = ref.read(currentUserProvider);
   // final isLoggedIn = user != null;
@@ -35,6 +37,11 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
       path: '/auth',
       name: 'AuthRouter',
       page: AuthScreen,
+    ),
+    AutoRoute(
+      path: '/reg',
+      name: 'RegRouter',
+      page: RegistrationScreen,
     ),
     AutoRoute(
       path: '/tabs',

@@ -12,5 +12,7 @@ class AppAsset {
 
   static const String checkboxState = 'assets/images/order-checkbox.png';
 
-  static String halfPizzaPng = 'assets/images/half-pizza.png';
+  static const String halfPizzaPng = 'assets/images/half-pizza.png';
+
+  static const String redLogo = 'assets/images/red-logo.png';
 }

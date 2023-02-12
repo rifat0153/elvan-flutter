@@ -54,7 +54,6 @@ class FavoriteProvider extends StateNotifier<List<FoodItem>> {
 
   bool isFavorite(FoodItem? foodItem) {
     if (foodItem == null) return false;
-    saveFavorite();
     return state.contains(foodItem);
   }
 }

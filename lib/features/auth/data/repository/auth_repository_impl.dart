@@ -87,4 +87,35 @@ class AuthRepositoryImpl implements AuthRepository {
   Stream<User?> getUserStream() {
     return firebaseAuth.authStateChanges();
   }
+
+  @override
+  Future<void> setElvanUser(
+      {required String userId, required ElvanUserDto elvanUserDto}) async {
+    await firebaseFirestore
+        .collection(
+          Constants.firebaseElvanUserCollectionName,
+        )
+        .withConverter(
+          fromFirestore: (snapshot, _) =>
+              ElvanUserDto.fromJson(snapshot.data()!),
+          toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
+        )
+        .doc(userId)
+        .set(elvanUserDto);
+  }
+
+  @override
+  Future<User?> signUpWithEmailAndPassword(
+      {required String email, required String password}) async {
+    //sign up
+    await firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    //sign in
+    final userCredential = await firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    // return Result.success(userCredential);
+    return userCredential.user;
+  }
 }

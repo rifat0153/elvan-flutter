@@ -80,11 +80,58 @@ class AuthUseCases {
     );
   }
 
+  //sign up with email and password
+
+  Future<Result<ElvanUser>> signUpWithEmailAndPasswordAndGetElvanUserUseCase({
+    required String email,
+    required String password,
+    required String name,
+    required String surname,
+  }) async {
+    if (email.isEmpty || password.isEmpty) {
+      return const Result.failure(
+          Failure(message: 'Email or password is empty'));
+    }
+
+    final user = await authRepository.signUpWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    //loging in with UserCredential
+
+    if (user == null) {
+      return const Result.failure(
+        Failure(message: 'User is null'),
+      );
+    }
+
+    final elvanUser = await getUserUseCase(userId: await user.uid);
+
+    return elvanUser.when(
+      success: (elvanUser) {
+        return Result.success(elvanUser);
+      },
+      failure: (failure) {
+        return Result.failure(failure);
+      },
+    );
+  }
+
   Stream<User?> getUserStreamUseCase() {
     return authRepository.getUserStream();
   }
 
   Future<bool> signOutUseCase() async {
     return authRepository.signOut();
+  }
+
+  Future setUserUseCase({
+    required String userId,
+    required ElvanUser elvanUser,
+  }) async {
+    return authRepository.setElvanUser(
+      userId: userId,
+      elvanUserDto: elvanUser.toDto(),
+    );
   }
 }
