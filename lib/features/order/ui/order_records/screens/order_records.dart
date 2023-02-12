@@ -8,6 +8,7 @@ import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -117,6 +118,71 @@ class OrderCard extends StatelessWidget {
             const Spacer(),
             AppText(
               "\$${order.total}",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            const SizedBox(
+              width: AppSize.paddingMD,
+            )
+          ],
+        ));
+  }
+}
+
+class CartCard extends StatelessWidget {
+  const CartCard({
+    Key? key,
+    required this.cartItem,
+  }) : super(key: key);
+
+  final CartItem cartItem;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.symmetric(vertical: AppSize.paddingMD / 2),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(.15),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                AppAsset.halfPizzaPng,
+                fit: BoxFit.fitHeight,
+                //round top left corner
+                width: 80,
+              ),
+            ),
+            const SizedBox(
+              width: AppSize.paddingMD,
+            ),
+            Flexible(
+              flex: 3,
+              child: AppText(
+                '${cartItem.foodItem.title} x${cartItem.quantity}',
+                style: Theme.of(context).textTheme.bodyText1,
+                maxLines: 3,
+              ),
+
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     for (var item in order.items)
+              //       AppText(
+              //         '${item.foodItem.title} x${item.quantity}',
+              //         style: item == order.items.first
+              //             ? Theme.of(context).textTheme.headline4
+              //             : Theme.of(context).textTheme.bodyText1,
+              //         maxLines: 3,
+              //       ),
+              //   ],
+              // ),
+            ),
+            const Spacer(),
+            AppText(
+              "\$${cartItem.foodItem.price}",
               style: Theme.of(context).textTheme.headline5,
             ),
             const SizedBox(

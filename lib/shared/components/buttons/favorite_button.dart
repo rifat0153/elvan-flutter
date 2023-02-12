@@ -26,7 +26,6 @@ class FavoriteButton extends HookConsumerWidget {
     FavoriteProvider favProvider = ref.read(favoriteProvider.notifier);
     // var fav = ref.watch(favoriteProvider);
     bool isFavorite = ref.watch(favoriteProvider.notifier).isFavorite(foodItem);
-    print('isFavorite: $isFavorite');
 
     final Animation<Color?> colorTween = ColorTween(
       begin: AppColors.white,
@@ -34,6 +33,12 @@ class FavoriteButton extends HookConsumerWidget {
     ).animate(controller);
 
     useListenable(controller);
+
+    if (isFavorite) {
+      controller.value = 1;
+    } else {
+      controller.value = 0;
+    }
 
     return ElvanIconButton(
       icon: Icons.favorite,

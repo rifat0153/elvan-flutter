@@ -125,7 +125,15 @@ class ProfileScreen extends HookConsumerWidget {
                 ],
               ),
             ),
-        unAuthenticated: () => const Center(child: Text('Unauthenticated')),
+        unAuthenticated: () => Center(
+                child: InkWell(
+              child: const Text('Unauthenticated'),
+              onTap: () {
+                ref.read(authNotifierProvider.notifier).onEvent(
+                      const AuthEvent.logout(),
+                    );
+              },
+            )),
         error: (error) => const Center(child: Text('Error')));
   }
 }

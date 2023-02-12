@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,10 @@ import 'package:elvan/shared/components/cards/base_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+
+import '../../../../app/router/app_router.gr.dart';
+import '../../../cart/ui/notifier/cart_update_notifier.dart';
+import '../notifier/selected_food_provider.dart';
 
 class TopPickCard extends HookConsumerWidget {
   const TopPickCard({super.key, required this.foodItem});
@@ -81,8 +86,18 @@ class TopPickCard extends HookConsumerWidget {
                 ElvanIconButton(
                   icon: Icons.add,
                   color: AppColors.primaryRed,
-                  // TODO: Add to cart
-                  onPressed: () {},
+                  onPressed: () {
+                    // selectedFoodItemNotifier.setFoodItemAndBuildSteps(foodItem);
+                    // ref
+                    //     .read(cartItemUpdateProvider.notifier)
+                    //     .setUpdatingCartItem(cartItem);
+
+                    context.pushRoute(
+                      const FoodRouter(children: [
+                        FooDDetailRoute(),
+                      ]),
+                    );
+                  },
                 ),
               ],
             ),

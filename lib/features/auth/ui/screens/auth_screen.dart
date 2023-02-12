@@ -92,6 +92,7 @@ class AuthScreen extends HookConsumerWidget {
                       fillColor: Colors.white,
                     ),
                   ),
+                  const SizedBox(height: AppSize.kPadding * 2),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       fixedSize: Size(1.sw, 34),
@@ -103,10 +104,10 @@ class AuthScreen extends HookConsumerWidget {
                     onPressed: () async {
                       authNotifier.onEvent(
                         AuthEvent.loginWithPasswordAndEmail(
-                          // email: 'elvan@gmail.com',
-                          // password: '123456',
-                          email: emailTextController.value.text,
-                          password: passwordTextController.value.text,
+                          email: 'elvan@gmail.com',
+                          password: '123456',
+                          // email: emailTextController.value.text,
+                          // password: passwordTextController.value.text,
                         ),
                       );
                     },

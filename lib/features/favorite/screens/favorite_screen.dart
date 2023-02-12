@@ -24,9 +24,12 @@ class FavoriteScreen extends ConsumerWidget {
             itemCount: favorite.length,
             itemBuilder: (BuildContext context, int index) {
               var foodItem = favorite[index];
-              return FoodListCard(
-                key: ValueKey(foodItem.id),
-                foodItem: foodItem,
+              return Padding(
+                padding: const EdgeInsets.only(bottom: AppSize.kPadding * 2),
+                child: FoodListCard(
+                  key: ValueKey(foodItem.id),
+                  foodItem: foodItem,
+                ),
               );
             },
           ),

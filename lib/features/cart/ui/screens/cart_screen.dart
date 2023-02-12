@@ -4,6 +4,7 @@ import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
 import 'package:elvan/features/order/ui/recent_order/notifier/order_notifier.dart';
+import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -29,6 +30,7 @@ class CartScreen extends ConsumerWidget {
         data: (cart) {
           return Column(
             children: [
+              ElvanAppBar(title: 'Your Cart'),
               Expanded(
                 child: CartItemList(
                   cartItems: cart.cartItems,
