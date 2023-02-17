@@ -142,13 +142,6 @@ class RegistrationScreen extends HookConsumerWidget {
                           password: passwordTextController.text,
                         ),
                       );
-                      //set username and phone
-                      // authNotifier.authUseCase.setUserUseCase(
-                      //     userId: " ",
-                      //     elvanUser: ElvanUser(
-                      //       name: usernameTextController.text,
-                      //       phone: phoneTextController.text,
-                      //     ));
                     },
                     child: const AppText('Sign Up'),
                   ),
