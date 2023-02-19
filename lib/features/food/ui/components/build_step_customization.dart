@@ -28,11 +28,6 @@ class BuildStepCustomization extends HookConsumerWidget {
 
     final addOns = buildStep.addOns;
 
-    // if (isSaladBar) {
-    //   //grid view
-    //   return _buildSalad(context, buildStep, addOns, buildStepsNotifier);
-    // }
-
     return Column(
       children: [
         _buildSectionTitle(context, buildStep),
@@ -50,7 +45,6 @@ class BuildStepCustomization extends HookConsumerWidget {
                       addOnId: addOn.id ?? '',
                     );
                   },
-                  // isSaladBar: true,
                 ),
               )
               .toList(),
@@ -65,10 +59,10 @@ class BuildStepCustomization extends HookConsumerWidget {
       columnSizes: [
         1.fr,
         1.fr,
+        1.fr,
       ],
       rowSizes: List.generate(((addOns.length - 1) ~/ 2 + 1), (index) => auto)
           .toList(),
-      columnGap: AppSize.paddingMD,
       rowGap: AppSize.paddingMD,
       children: addOns
           .map(
@@ -94,7 +88,7 @@ class BuildStepCustomization extends HookConsumerWidget {
   ) {
     return Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppSize.paddingMD,
+          horizontal: AppSize.paddingSM,
           vertical: AppSize.paddingXS,
         ),
         child: BaseCard(
@@ -103,8 +97,8 @@ class BuildStepCustomization extends HookConsumerWidget {
           children: [
             //salad image
             Container(
-              height: 100,
-              width: 100,
+              height: 105,
+              width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(addOn.imageUrl ?? ''),
@@ -127,9 +121,10 @@ class BuildStepCustomization extends HookConsumerWidget {
 
                 //add button
                 ElvanIconButton(
-                  icon:
-                      addOn.isSelected ? Icons.check_circle_outline : Icons.add,
-                  color: AppColors.primaryRed,
+                  icon: addOn.isSelected
+                      ? Icons.remove_circle_outline
+                      : Icons.add_circle,
+                  color: isSaladBar ? AppColors.green : AppColors.primaryRed,
                   onPressed: onPressed,
                 ),
               ],

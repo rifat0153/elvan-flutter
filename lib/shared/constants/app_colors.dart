@@ -26,4 +26,7 @@ class AppColors {
   static const dividerColor = Color(0xFFBDBDBD);
 
   static const errorTextColor = Color(0xFFB00020);
+
+  //green
+  static const green = Color(0xFF4CAF50);
 }

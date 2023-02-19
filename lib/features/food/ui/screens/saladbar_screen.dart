@@ -76,10 +76,7 @@ class SaladBarScreen extends HookConsumerWidget {
         ));
   }
 
-  Padding _cartButton(
-    FoodItem foodItem,
-    BuildContext context,
-  ) {
+  Padding _cartButton(FoodItem foodItem, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSize.paddingMD,
@@ -99,7 +96,7 @@ class SaladBarScreen extends HookConsumerWidget {
           final String cartButtonText = '$cartText - \$ $totalPrice';
 
           return ElvanButton(
-            color: isBuildStepsValid ? AppColors.primaryRed : AppColors.grey,
+            color: isBuildStepsValid ? AppColors.green : AppColors.grey,
             onPressed: () {
               if (!isBuildStepsValid) {
                 return;
