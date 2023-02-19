@@ -42,8 +42,9 @@ class FoodListCard extends HookConsumerWidget {
         selectedFoodItemNotifier.setFoodItemAndBuildSteps(foodItem);
         if (foodItem.title == 'Salads Bar') {
           context.pushRoute(const SaladRouter());
+        } else {
+          context.pushRoute(const FooDDetailRoute());
         }
-        context.pushRoute(const FooDDetailRoute());
       },
       padding: const EdgeInsets.all(0),
       child: SizedBox(

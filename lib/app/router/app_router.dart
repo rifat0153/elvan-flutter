@@ -94,14 +94,7 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
     AutoRoute(
       path: '/salad',
       name: 'SaladRouter',
-      page: EmptyRouterPage,
-      children: [
-        AutoRoute(
-          path: '',
-          page: SaladBarScreen,
-        ),
-        RedirectRoute(path: '*', redirectTo: ''),
-      ],
+      page: SaladBarScreen,
     ),
     AutoRoute(
       path: '/cart',
