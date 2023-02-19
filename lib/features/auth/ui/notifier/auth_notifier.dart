@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:elvan/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/features/auth/ui/state/auth_screen_state.dart';
+import 'package:elvan/shared/providers/scaffold_messenger/snackbar_provider.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -63,9 +64,21 @@ class AuthNotifier extends Notifier<AuthScreenState> {
             authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
                 email: email, password: password, name: '', surname: '');
       },
-      resetPassword: (email) {
-        state = const AuthScreenState.loading();
-        final result = authUseCase.resetPasswordUseCase(email: email);
+      resetPassword: (email) async {
+        // state = const AuthScreenState.loading();
+
+        try {
+          final result = await authUseCase.resetPasswordUseCase(email: email);
+          var snakbar = ref.read(snackbarNotifierProvider.notifier);
+          snakbar.alartDialog(
+            title: 'Email Sent',
+            content: 'Reset Password Email has been sent to your email address',
+            onOk: () {
+              snakbar.closeAlartDialog();
+            },
+          );
+          //show toast
+        } catch (e) {}
       },
       goToRegisterScreen: () {
         state = const AuthScreenState.loading();

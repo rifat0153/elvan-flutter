@@ -24,9 +24,6 @@ class ForgetScreen extends HookConsumerWidget {
     // );
 
     final emailTextController = useTextEditingController();
-    final passwordTextController = useTextEditingController();
-    final phoneTextController = useTextEditingController();
-    final usernameTextController = useTextEditingController();
 
     return ElvanScaffold(
       imagePath: AppAsset.homeBackgroundPng,
@@ -43,7 +40,7 @@ class ForgetScreen extends HookConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextField(
-                    controller: usernameTextController,
+                    controller: emailTextController,
                     decoration: const InputDecoration(
                       hintText: 'Enter your email',
                       //rounded white border
@@ -67,12 +64,9 @@ class ForgetScreen extends HookConsumerWidget {
                       ),
                     ),
                     onPressed: () async {
-                      // authNotifier.onEvent(
-                      AuthEvent.registerWithEmailAndPassword(
+                      authNotifier.onEvent(AuthEvent.resetPassword(
                         email: emailTextController.text,
-                        password: passwordTextController.text,
-                      );
-                      // );
+                      ));
                     },
                     child: const AppText('Get Code'),
                   ),
