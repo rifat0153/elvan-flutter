@@ -1,4 +1,4 @@
-import 'package:elvan/features/favorite/provider/favorite_provider.dart';
+// import 'package:elvan/features/favorite/provider/favorite_provider.dart';
 import 'package:elvan_shared/domain_models/food/food_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,10 +12,12 @@ class FavoriteButton extends HookConsumerWidget {
     super.key,
     required this.foodItem,
     this.onPressed,
+    required this.isFavorite,
   });
 
   final FoodItem foodItem;
   final void Function()? onPressed;
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,9 +25,9 @@ class FavoriteButton extends HookConsumerWidget {
       duration: const Duration(milliseconds: 300),
     );
 
-    FavoriteProvider favProvider = ref.read(favoriteProvider.notifier);
-    // var fav = ref.watch(favoriteProvider);
-    bool isFavorite = ref.watch(favoriteProvider.notifier).isFavorite(foodItem);
+    // FavoriteProvider favProvider = ref.read(favoriteProvider.notifier);
+    // // var fav = ref.watch(favoriteProvider);
+    // bool isFavorite = ref.watch(favoriteProvider.notifier).isFavorite(foodItem);
 
     final Animation<Color?> colorTween = ColorTween(
       begin: AppColors.white,
@@ -46,13 +48,8 @@ class FavoriteButton extends HookConsumerWidget {
       onPressed: () {
         if (controller.isAnimating) return;
 
-        if (isFavorite) {
-          favProvider.removeFavorite(foodItem);
-          controller.reverse();
-        } else {
-          favProvider.addFavorite(foodItem);
-          controller.forward();
-        }
+        controller.reset();
+        controller.forward();
         onPressed?.call();
       },
     );

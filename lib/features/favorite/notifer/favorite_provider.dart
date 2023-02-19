@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:elvan/features/favorite/usecase/favorite_use_case.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,50 +11,40 @@ final favoriteProvider =
         (ref) => FavoriteProvider());
 
 class FavoriteProvider extends StateNotifier<List<FoodItem>> {
+  FavoriteUseCase favoriteUseCase = FavoriteUseCase();
+
   FavoriteProvider() : super([]) {
     loadFavorite();
   }
 
   void addFavorite(FoodItem? foodItem) {
-    if (foodItem == null) return;
-
-    var temp = state;
-    state = [...temp, foodItem];
-    saveFavorite();
+    state = favoriteUseCase.addFavorite(foodItem!, state);
   }
 
   //save to local storage
   void saveFavorite() {
-    var list = state.map((e) {
-      return jsonEncode(e.toJson());
-    }).toList();
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setStringList('favorite', list);
-    });
+    favoriteUseCase.saveFavoriteToLocal(state);
   }
 
   //load from local storage
-  void loadFavorite() {
-    SharedPreferences.getInstance().then((prefs) {
-      var list = prefs.getStringList('favorite');
-      if (list != null) {
-        state = list.map((e) => FoodItem.fromJson(jsonDecode(e))).toList();
-      }
-    });
+  void loadFavorite() async {
+    state = await favoriteUseCase.getFavoriteFromLocal();
   }
 
   void removeFavorite(FoodItem? foodItem) {
-    if (foodItem == null) return;
-
-    var temp = state;
-
-    temp.removeWhere((element) => element.id == foodItem.id);
-    state = [...temp];
-    saveFavorite();
+    state = favoriteUseCase.removeFavorite(foodItem!, state);
   }
 
   bool isFavorite(FoodItem? foodItem) {
     if (foodItem == null) return false;
     return state.any((element) => element.id == foodItem.id);
+  }
+
+  void toggle(FoodItem foodItem) {
+    if (isFavorite(foodItem)) {
+      removeFavorite(foodItem);
+    } else {
+      addFavorite(foodItem);
+    }
   }
 }

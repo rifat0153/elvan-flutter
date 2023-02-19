@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:elvan/features/favorite/notifer/favorite_provider.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +28,10 @@ class TopPickCard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    FavoriteProvider favProvider = ref.read(favoriteProvider.notifier);
+
+    bool isFavorite = ref.watch(favoriteProvider.notifier).isFavorite(foodItem);
+
     return BaseCard(
         padding: const EdgeInsets.all(0),
         child: Column(
@@ -49,9 +54,11 @@ class TopPickCard extends HookConsumerWidget {
                     top: 0,
                     right: 0,
                     child: FavoriteButton(
-                      // isFavorite: false,
+                      isFavorite: isFavorite,
                       foodItem: foodItem,
-                      onPressed: () {},
+                      onPressed: () {
+                        favProvider.toggle(foodItem);
+                      },
                     ),
                   ),
                 ],
