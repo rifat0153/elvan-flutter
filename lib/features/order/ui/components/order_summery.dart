@@ -10,7 +10,7 @@ class OrderSummery extends StatelessWidget {
   }) : super(key: key);
 
   final String orderID;
-  final String estimatedTime;
+  final num estimatedTime;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,8 @@ class OrderSummery extends StatelessWidget {
                 children: [
                   const AppText("Estimated Time"),
                   AppText(
-                    "30 Min",
-                    style: Theme.of(context).textTheme.headline5,
+                    "${estimatedTime.toInt()} Min",
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ],
               ),
@@ -37,7 +37,7 @@ class OrderSummery extends StatelessWidget {
                   const AppText("Your Order ID"),
                   AppText(
                     "#$orderID",
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ],
               )

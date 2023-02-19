@@ -43,26 +43,25 @@ class SingleOrderScreen extends HookConsumerWidget {
         ),
         child: Stack(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                OrderSummery(
-                  estimatedTime: '',
-                  orderID: order.id,
-                ),
-                currentOrder.when(
-                  data: (order) {
-                    log(order.status.toString());
-                    return OrderTimeline(order: order);
-                  },
-                  error: (e, st) => Center(
-                    child: Text(e.toString()),
-                  ),
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                )
-              ],
+            currentOrder.when(
+              data: (Order order) {
+                log(order.status.toString());
+                return Column(
+                  children: [
+                    OrderSummery(
+                      estimatedTime: (order.orderPreparationTime ?? 20) / 60,
+                      orderID: order.id,
+                    ),
+                    OrderTimeline(order: order),
+                  ],
+                );
+              },
+              error: (e, st) => Center(
+                child: Text(e.toString()),
+              ),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
             Positioned(
               bottom: 0,

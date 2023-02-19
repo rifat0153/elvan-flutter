@@ -118,4 +118,9 @@ class AuthRepositoryImpl implements AuthRepository {
     // return Result.success(userCredential);
     return userCredential.user;
   }
+
+  @override
+  Future resetPassword({required String email}) async {
+    await firebaseAuth.sendPasswordResetEmail(email: email);
+  }
 }

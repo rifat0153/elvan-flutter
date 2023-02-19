@@ -134,4 +134,8 @@ class AuthUseCases {
       elvanUserDto: elvanUser.toDto(),
     );
   }
+
+  resetPasswordUseCase({required String email}) {
+    return authRepository.resetPassword(email: email);
+  }
 }

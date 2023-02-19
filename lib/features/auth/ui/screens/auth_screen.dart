@@ -51,6 +51,7 @@ class AuthScreen extends HookConsumerWidget {
               padding: const EdgeInsets.all(AppSize.paddingLG),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   //asset image
                   Image.asset(
@@ -90,6 +91,17 @@ class AuthScreen extends HookConsumerWidget {
                       //filled white background
                       filled: true,
                       fillColor: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: AppSize.kPadding * 2),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
+                      onTap: () {
+                        context.pushRoute(const ForgerRouter());
+                      },
+                      child: const AppText('Forgot Password?',
+                          color: AppColors.grey),
                     ),
                   ),
                   const SizedBox(height: AppSize.kPadding * 2),

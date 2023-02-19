@@ -17,6 +17,7 @@ import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/bottom_tab_screen.dart';
 
+import '../../features/auth/ui/screens/forget_screen.dart';
 import '../../features/auth/ui/screens/registration_screen.dart';
 
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
@@ -42,6 +43,11 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
       path: '/reg',
       name: 'RegRouter',
       page: RegistrationScreen,
+    ),
+    AutoRoute(
+      path: '/forget',
+      name: 'ForgerRouter',
+      page: ForgetScreen,
     ),
     AutoRoute(
       path: '/tabs',

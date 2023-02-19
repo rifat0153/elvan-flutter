@@ -63,7 +63,10 @@ class AuthNotifier extends Notifier<AuthScreenState> {
             authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
                 email: email, password: password, name: '', surname: '');
       },
-      resetPassword: (email) {},
+      resetPassword: (email) {
+        state = const AuthScreenState.loading();
+        final result = authUseCase.resetPasswordUseCase(email: email);
+      },
       goToRegisterScreen: () {
         state = const AuthScreenState.loading();
       },
