@@ -28,91 +28,102 @@ class TopPickCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return BaseCard(
-        padding: const EdgeInsets.all(0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 110.sm,
-              child: Stack(
+    final selectedFoodItemNotifier =
+        ref.read(selectedFoodItemNotifierProvider.notifier);
+    return InkWell(
+      onTap: () {
+        selectedFoodItemNotifier.setFoodItemAndBuildSteps(foodItem);
+        context.pushRoute(
+          const FoodRouter(children: [
+            FoodListRoute(),
+            FooDDetailRoute(),
+          ]),
+        );
+      },
+      child: BaseCard(
+          padding: const EdgeInsets.all(0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 110.sm,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: imageOffset,
+                      left: imageOffset,
+                      child: CircleAvatar(
+                        radius: imageRadius,
+                        backgroundImage:
+                            CachedNetworkImageProvider(foodItem.imageUrl!),
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Consumer(
+                        builder: (BuildContext context, WidgetRef ref,
+                            Widget? child) {
+                          final _ = ref.watch(favoriteProvider);
+                          final favProviderNotifier =
+                              ref.read(favoriteProvider.notifier);
+                          return FavoriteButton(
+                            isFavorite:
+                                favProviderNotifier.isFavorite(foodItem),
+                            foodItem: foodItem,
+                            onPressed: () {
+                              favProviderNotifier.toggle(foodItem);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
+                child: AppText(
+                  foodItem.title,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
+                child: AppText(
+                  foodItem.description ?? '',
+                  style: Theme.of(context).textTheme.titleSmall,
+                  maxLines: 3,
+                ),
+              ),
+              Row(
                 children: [
-                  Positioned(
-                    top: imageOffset,
-                    left: imageOffset,
-                    child: CircleAvatar(
-                      radius: imageRadius,
-                      backgroundImage:
-                          CachedNetworkImageProvider(foodItem.imageUrl!),
-                    ),
+                  const SizedBox(width: AppSize.paddingSM),
+                  AppText(
+                    foodItem.price.toString(),
+                    color: AppColors.primaryRed,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Consumer(
-                      builder:
-                          (BuildContext context, WidgetRef ref, Widget? child) {
-                        final _ = ref.watch(favoriteProvider);
-                        final favProviderNotifier =
-                            ref.read(favoriteProvider.notifier);
-                        return FavoriteButton(
-                          isFavorite: favProviderNotifier.isFavorite(foodItem),
-                          foodItem: foodItem,
-                          onPressed: () {
-                            favProviderNotifier.toggle(foodItem);
-                          },
-                        );
-                      },
-                    ),
+                  const Spacer(),
+                  ElvanIconButton(
+                    icon: Icons.add,
+                    color: AppColors.primaryRed,
+                    onPressed: () {
+                      selectedFoodItemNotifier
+                          .setFoodItemAndBuildSteps(foodItem);
+                      context.pushRoute(
+                        const FoodRouter(children: [
+                          FooDDetailRoute(),
+                        ]),
+                      );
+                    },
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
-              child: AppText(
-                foodItem.title,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
-              child: AppText(
-                foodItem.description ?? '',
-                style: Theme.of(context).textTheme.subtitle2,
-                maxLines: 3,
-              ),
-            ),
-            Row(
-              children: [
-                const SizedBox(width: AppSize.paddingSM),
-                AppText(
-                  foodItem.price.toString(),
-                  color: AppColors.primaryRed,
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                const Spacer(),
-                ElvanIconButton(
-                  icon: Icons.add,
-                  color: AppColors.primaryRed,
-                  onPressed: () {
-                    // selectedFoodItemNotifier.setFoodItemAndBuildSteps(foodItem);
-                    // ref
-                    //     .read(cartItemUpdateProvider.notifier)
-                    //     .setUpdatingCartItem(cartItem);
-
-                    context.pushRoute(
-                      const FoodRouter(children: [
-                        FooDDetailRoute(),
-                      ]),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
-        ));
+            ],
+          )),
+    );
   }
 }

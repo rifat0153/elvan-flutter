@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,6 +27,12 @@ class FooDDetailScreen extends HookConsumerWidget {
     final foodItemState = ref.watch(selectedFoodItemNotifierProvider);
 
     return ElvanScaffold(
+        // appBar: AppBar(
+        //   leading: IconButton(
+        //     icon: const Icon(Icons.arrow_back),
+        //     onPressed: () => context.navigateBack(),
+        //   ),
+        // ),
         imagePath: AppAsset.homeBackgroundPng,
         child: foodItemState.when(
           data: (foodItem) {
