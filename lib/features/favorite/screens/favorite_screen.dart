@@ -37,40 +37,5 @@ class FavoriteScreen extends ConsumerWidget {
         ),
       ],
     );
-    // CustomScrollView(
-    //   slivers: [
-    //     SliverList(
-    //       delegate: SliverChildBuilderDelegate(
-    //         (context, index) => AppText(index.toString()),
-    //         childCount: 10,
-    //       ),
-    //     ),
-    //     //horizontal list
-    //     SliverToBoxAdapter(
-    //       child: Container(
-    //         color: Colors.blue.shade200,
-    //         height: 55,
-    //         child: ListView.builder(
-    //             scrollDirection: Axis.horizontal,
-    //             itemCount: 10,
-    //             itemBuilder: (context, index) {
-    //               return AppText(index.toString());
-    //             }),
-    //       ),
-    //     ),
-
-    //     // //grid list
-    //     SliverGrid(
-    //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-    //         crossAxisCount: 2,
-    //         mainAxisSpacing: 0,
-    //         crossAxisSpacing: 0,
-    //       ),
-    //       delegate: SliverChildListDelegate(
-    //         List.generate(10, (index) => AppText(index.toString())),
-    //       ),
-    //     )
-    //   ],
-    // );
   }
 }

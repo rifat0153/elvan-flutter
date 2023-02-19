@@ -37,6 +37,8 @@ class FoodListCard extends HookConsumerWidget {
     final selectedFoodItemNotifier =
         ref.read(selectedFoodItemNotifierProvider.notifier);
 
+    FavoriteProvider favProvider = ref.watch(favoriteProvider.notifier);
+
     return BaseCard(
       key: key,
       onTap: () {
@@ -115,7 +117,7 @@ class FoodListCard extends HookConsumerWidget {
                     onPressed: () {},
                   ),
                   FavoriteButton(
-                    isFavorite: foodItem.isFavorite,
+                    isFavorite: favProvider.isFavorite(foodItem),
                     foodItem: foodItem,
                     onPressed: () {
                       ref.read(favoriteProvider.notifier).toggle(foodItem);

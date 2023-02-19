@@ -25,10 +25,6 @@ class FavoriteButton extends HookConsumerWidget {
       duration: const Duration(milliseconds: 300),
     );
 
-    // FavoriteProvider favProvider = ref.read(favoriteProvider.notifier);
-    // // var fav = ref.watch(favoriteProvider);
-    // bool isFavorite = ref.watch(favoriteProvider.notifier).isFavorite(foodItem);
-
     final Animation<Color?> colorTween = ColorTween(
       begin: AppColors.white,
       end: AppColors.primaryRed,
@@ -49,8 +45,12 @@ class FavoriteButton extends HookConsumerWidget {
         if (controller.isAnimating) return;
 
         controller.reset();
-        controller.forward();
         onPressed?.call();
+        if (isFavorite) {
+          controller.reverse();
+        } else {
+          controller.forward();
+        }
       },
     );
   }

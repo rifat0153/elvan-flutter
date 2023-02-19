@@ -18,7 +18,7 @@ import '../../../../app/router/app_router.gr.dart';
 import '../../../cart/ui/notifier/cart_update_notifier.dart';
 import '../notifier/selected_food_provider.dart';
 
-class TopPickCard extends HookConsumerWidget {
+class TopPickCard extends ConsumerWidget {
   const TopPickCard({super.key, required this.foodItem});
 
   final FoodItem foodItem;
@@ -29,8 +29,6 @@ class TopPickCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     FavoriteProvider favProvider = ref.read(favoriteProvider.notifier);
-
-    bool isFavorite = ref.watch(favoriteProvider.notifier).isFavorite(foodItem);
 
     return BaseCard(
         padding: const EdgeInsets.all(0),
@@ -54,7 +52,7 @@ class TopPickCard extends HookConsumerWidget {
                     top: 0,
                     right: 0,
                     child: FavoriteButton(
-                      isFavorite: isFavorite,
+                      isFavorite: favProvider.isFavorite(foodItem),
                       foodItem: foodItem,
                       onPressed: () {
                         favProvider.toggle(foodItem);
