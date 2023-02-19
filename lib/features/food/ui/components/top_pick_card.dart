@@ -28,8 +28,6 @@ class TopPickCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    FavoriteProvider favProvider = ref.read(favoriteProvider.notifier);
-
     return BaseCard(
         padding: const EdgeInsets.all(0),
         child: Column(
@@ -51,11 +49,19 @@ class TopPickCard extends ConsumerWidget {
                   Positioned(
                     top: 0,
                     right: 0,
-                    child: FavoriteButton(
-                      isFavorite: favProvider.isFavorite(foodItem),
-                      foodItem: foodItem,
-                      onPressed: () {
-                        favProvider.toggle(foodItem);
+                    child: Consumer(
+                      builder:
+                          (BuildContext context, WidgetRef ref, Widget? child) {
+                        final _ = ref.watch(favoriteProvider);
+                        final favProviderNotifier =
+                            ref.read(favoriteProvider.notifier);
+                        return FavoriteButton(
+                          isFavorite: favProviderNotifier.isFavorite(foodItem),
+                          foodItem: foodItem,
+                          onPressed: () {
+                            favProviderNotifier.toggle(foodItem);
+                          },
+                        );
                       },
                     ),
                   ),

@@ -14,7 +14,7 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var snakbar = ref.read(snackbarNotifierProvider.notifier);
+    // var snakbar = ref.read(snackbarNotifierProvider.notifier);
     return const CustomScrollView(
       slivers: [
         // SliverToBoxAdapter(

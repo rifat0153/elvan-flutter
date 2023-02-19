@@ -4,7 +4,6 @@ import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
-import 'package:elvan_shared/domain_models/index.dart';
 import 'package:elvan_shared/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -19,30 +18,17 @@ class RegistrationScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authNotifierProvider);
     final authNotifier = ref.read(authNotifierProvider.notifier);
-    // final isAuthenticated = ref.read(
-    //   authNotifierProvider.notifier.select((v) => v.isAuthenticated),
-    // );
-
     final emailTextController = useTextEditingController();
     final passwordTextController = useTextEditingController();
     final phoneTextController = useTextEditingController();
     final usernameTextController = useTextEditingController();
 
-    // final currentRoute = ref.read(appRouterProvider).current.path;
-
-    return
-        // appBar: AppBar(
-        //   title: Text('Auth $isAuthenticated '),
-        // ),
-        ElvanScaffold(
+    return ElvanScaffold(
       imagePath: AppAsset.homeBackgroundPng,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // A('Registration Screen'),
-          ElvanAppBar(title: "Registration"),
-          // const Text('Auth Screen'),
-          // Text('Current Route --> $currentRoute'),
+          const ElvanAppBar(title: "Registration"),
           authState.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             unKnown: () => const Center(child: Text('Unknown')),
