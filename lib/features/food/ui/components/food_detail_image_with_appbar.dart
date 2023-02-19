@@ -7,14 +7,16 @@ import 'package:elvan/features/food/ui/components/food_detail_appbar.dart';
 import 'package:elvan/features/food/ui/components/food_detail_image.dart';
 
 class FoodDetailImageWithAppbar extends StatelessWidget {
-  const FoodDetailImageWithAppbar({super.key, required this.foodItem});
+  const FoodDetailImageWithAppbar(
+      {super.key, required this.foodItem, this.isSaladBar = false});
 
   final FoodItem foodItem;
+  final bool isSaladBar;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.screenHeightPercent(0.4),
+      height: context.screenHeightPercent(isSaladBar ? 0.3 : 0.4),
       width: context.screenWidthPercent(1),
       child: Stack(
         children: [

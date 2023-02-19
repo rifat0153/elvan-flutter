@@ -19,6 +19,7 @@ import 'package:elvan/features/tabs/ui/screens/bottom_tab_screen.dart';
 
 import '../../features/auth/ui/screens/forget_screen.dart';
 import '../../features/auth/ui/screens/registration_screen.dart';
+import '../../features/food/ui/screens/saladbar_screen.dart';
 
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
   // final user = ref.read(currentUserProvider);
@@ -86,6 +87,18 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
         AutoRoute(
           path: 'details',
           page: FooDDetailScreen,
+        ),
+        RedirectRoute(path: '*', redirectTo: ''),
+      ],
+    ),
+    AutoRoute(
+      path: '/salad',
+      name: 'SaladRouter',
+      page: EmptyRouterPage,
+      children: [
+        AutoRoute(
+          path: '',
+          page: SaladBarScreen,
         ),
         RedirectRoute(path: '*', redirectTo: ''),
       ],

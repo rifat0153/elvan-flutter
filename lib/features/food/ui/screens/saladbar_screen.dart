@@ -18,8 +18,8 @@ import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
-class FooDDetailScreen extends HookConsumerWidget {
-  const FooDDetailScreen({super.key});
+class SaladBarScreen extends HookConsumerWidget {
+  const SaladBarScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,7 +34,8 @@ class FooDDetailScreen extends HookConsumerWidget {
                 CustomScrollView(
                   slivers: [
                     SliverToBoxAdapter(
-                      child: FoodDetailImageWithAppbar(foodItem: foodItem),
+                      child: FoodDetailImageWithAppbar(
+                          foodItem: foodItem, isSaladBar: true),
                     ),
                     _foodDescription(foodItem, context),
                     SliverToBoxAdapter(
@@ -129,7 +130,7 @@ class FooDDetailScreen extends HookConsumerWidget {
                 (context, index) {
                   return BuildStepCustomization(
                     buildStep: buildSteps[index],
-                    isSaladBar: false,
+                    isSaladBar: true,
                   );
                 },
               ),
@@ -153,9 +154,19 @@ class FooDDetailScreen extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppText(foodItem.title.toUpperCase()),
             AppText(
-              foodItem.price.toString(),
+              foodItem.title.toUpperCase(),
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+
+            //show rating
+            // AppText(
+            //   foodItem.rating.toString(),
+            //   style: Theme.of(context).textTheme.headlineSmall,
+            //   color: Colors.grey,
+            // ),
+            AppText(
+              "\$${foodItem.price}",
               style: Theme.of(context).textTheme.headlineSmall,
               color: AppColors.white,
             ),
