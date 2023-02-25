@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan_shared/dtos/food/food_item_dto.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/core/firebase/firebase_providers.dart';
@@ -24,7 +25,8 @@ class FoodRepositoryImpl implements FoodRepository {
     return firebaseFirestore
         .collection(Constants.foodItemsCollection)
         .withConverter(
-          fromFirestore: (snapshot, _) => FoodItemDto.fromJson(snapshot.data()!),
+          fromFirestore: (snapshot, _) =>
+              FoodItemDto.fromJson(snapshot.data()!),
           toFirestore: (foodItemDto, _) => foodItemDto.toJson(),
         )
         .snapshots()
@@ -42,7 +44,8 @@ class FoodRepositoryImpl implements FoodRepository {
     return firebaseFirestore
         .collection(Constants.foodItemsCollection)
         .withConverter(
-          fromFirestore: (snapshot, _) => FoodItemDto.fromJson(snapshot.data()!),
+          fromFirestore: (snapshot, _) =>
+              FoodItemDto.fromJson(snapshot.data()!),
           toFirestore: (foodItemDto, _) => foodItemDto.toJson(),
         )
         .get()
@@ -57,7 +60,8 @@ class FoodRepositoryImpl implements FoodRepository {
         .collection(Constants.foodItemsCollection)
         .where('isTopPick', isEqualTo: true)
         .withConverter(
-          fromFirestore: (snapshot, _) => FoodItemDto.fromJson(snapshot.data()!),
+          fromFirestore: (snapshot, _) =>
+              FoodItemDto.fromJson(snapshot.data()!),
           toFirestore: (foodItemDto, _) => foodItemDto.toJson(),
         )
         .get()

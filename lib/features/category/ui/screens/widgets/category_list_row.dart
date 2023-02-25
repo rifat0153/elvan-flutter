@@ -1,9 +1,8 @@
-import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:elvan/features/category/ui/screens/widgets/category_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan_shared/dtos/category/category/category.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CategiryListRow extends StatelessWidget {

@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
+import 'package:elvan/features/order/ui/order/screens/single_order.dart';
+import 'package:elvan/features/order/ui/order_records/screens/order_records.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/app/router/app_router.gr.dart';
@@ -14,6 +16,10 @@ import 'package:elvan/features/food/ui/screens/food_list_screen.dart';
 import 'package:elvan/features/profile/ui/screens/profile_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/bottom_tab_screen.dart';
+
+import '../../features/auth/ui/screens/forget_screen.dart';
+import '../../features/auth/ui/screens/registration_screen.dart';
+import '../../features/food/ui/screens/saladbar_screen.dart';
 
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
   // final user = ref.read(currentUserProvider);
@@ -33,6 +39,16 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
       path: '/auth',
       name: 'AuthRouter',
       page: AuthScreen,
+    ),
+    AutoRoute(
+      path: '/reg',
+      name: 'RegRouter',
+      page: RegistrationScreen,
+    ),
+    AutoRoute(
+      path: '/forget',
+      name: 'ForgerRouter',
+      page: ForgetScreen,
     ),
     AutoRoute(
       path: '/tabs',
@@ -76,13 +92,34 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
       ],
     ),
     AutoRoute(
+      path: '/salad',
+      name: 'SaladRouter',
+      page: SaladBarScreen,
+    ),
+    AutoRoute(
       path: '/cart',
       page: CartScreen,
     ),
     AutoRoute(
       path: '*',
       page: NotFoundScreen,
-    )
+    ),
+    AutoRoute(
+      path: '/order',
+      name: 'OrderRouter',
+      page: EmptyRouterPage,
+      children: [
+        AutoRoute(
+          path: '',
+          page: OrdersRecordsScreen,
+        ),
+        AutoRoute(
+          path: 'single',
+          page: SingleOrderScreen,
+        ),
+        RedirectRoute(path: '*', redirectTo: ''),
+      ],
+    ),
   ],
 )
 class $AppRouter {}

@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:elvan/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/features/auth/ui/state/auth_screen_state.dart';
+import 'package:elvan/shared/providers/scaffold_messenger/snackbar_provider.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -58,9 +60,26 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       },
       registerWithEmailAndPassword: (email, password) {
         state = const AuthScreenState.loading();
-        final result = authUseCase.signInWithEmailAndPasswordUseCase(email: email, password: password);
+        final result =
+            authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
+                email: email, password: password, name: '', surname: '');
       },
-      resetPassword: (email) {},
+      resetPassword: (email) async {
+        // state = const AuthScreenState.loading();
+
+        try {
+          final result = await authUseCase.resetPasswordUseCase(email: email);
+          var snakbar = ref.read(snackbarNotifierProvider.notifier);
+          snakbar.alartDialog(
+            title: 'Email Sent',
+            content: 'Reset Password Email has been sent to your email address',
+            onOk: () {
+              snakbar.closeAlartDialog();
+            },
+          );
+          //show toast
+        } catch (e) {}
+      },
       goToRegisterScreen: () {
         state = const AuthScreenState.loading();
       },
@@ -83,7 +102,8 @@ class AuthNotifier extends Notifier<AuthScreenState> {
   Future loginAndGetUserData(String email, String password) async {
     state = const AuthScreenState.loading();
 
-    final result = await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
+    final result =
+        await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
       email: email,
       password: password,
     );
@@ -94,6 +114,21 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       },
       failure: (message) {
         state = AuthScreenState.error(message.toString());
+      },
+    );
+  }
+
+  //set user data
+  Future<void> setElvanUserData(String userID, String email) async {
+    final result = await authUseCase.setUserUseCase(
+        userId: "userId", elvanUser: ElvanUser(email: email));
+
+    result.when(
+      success: (elvanUser) {
+        state = AuthScreenState.authenticated(elvanUser);
+      },
+      failure: (failure) {
+        state = const AuthScreenState.unAuthenticated();
       },
     );
   }

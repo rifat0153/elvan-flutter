@@ -1,5 +1,6 @@
 import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/auth/data/dto/elvan_user_dto.dart';
+import 'package:elvan_shared/dtos/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthRepository {
@@ -15,4 +16,18 @@ abstract class AuthRepository {
   Stream<User?> getUserStream();
 
   Future<bool> signOut();
+
+  //set user data
+  Future<void> setElvanUser({
+    required String userId,
+    required ElvanUserDto elvanUserDto,
+  });
+
+  //sign up
+  Future<User?> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
+
+  resetPassword({required String email});
 }

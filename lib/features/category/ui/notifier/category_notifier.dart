@@ -1,12 +1,8 @@
 import 'package:elvan/core/logger/colored_print_log.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:elvan_shared/dtos/category/category/category.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:collection/collection.dart';
-
-import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:elvan/features/category/domain/use_cases/category_usecase.dart';
-
 part 'category_notifier.g.dart';
 
 @riverpod
@@ -83,10 +79,12 @@ class CategoryNotifier extends _$CategoryNotifier {
         category.copyWith(isSelected: !isCategorySelected),
       );
     } else {
-      modifiedCategories.add(category.copyWith(isSelected: !isCategorySelected));
+      modifiedCategories
+          .add(category.copyWith(isSelected: !isCategorySelected));
     }
 
-    logError('Selected Titles: ${modifiedCategories.where((e) => e.isSelected).map((e) => e.title).toList()} ');
+    logError(
+        'Selected Titles: ${modifiedCategories.where((e) => e.isSelected).map((e) => e.title).toList()} ');
 
     state = AsyncValue.data(modifiedCategories);
   }

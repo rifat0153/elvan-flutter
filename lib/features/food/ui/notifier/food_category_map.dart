@@ -1,5 +1,5 @@
-import 'package:elvan/features/category/domain/models/category/category.dart';
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
+import 'package:elvan_shared/domain_models/index.dart';
+import 'package:elvan_shared/dtos/category/category/category.dart';
 import 'package:flutter/foundation.dart' show immutable;
 
 @immutable

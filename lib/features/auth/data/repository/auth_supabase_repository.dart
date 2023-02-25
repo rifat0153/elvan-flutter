@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:supabase_flutter/supabase_flutter.dart' show AuthState, SupabaseAuth, SupabaseClient;
+import 'package:supabase_flutter/supabase_flutter.dart'
+    show AuthState, SupabaseAuth, SupabaseClient;
 
 final authRepositoryProvider = Provider<AuthSupabaseRepository>((ref) {
   return AuthSupabaseRepository(
@@ -23,11 +24,6 @@ class AuthSupabaseRepository {
 
   Stream<AuthState> getUserStream() {
     return supabase.auth.onAuthStateChange;
-  }
-
-  Future<User> singInWithEmailAndPassword({required String email, required String password}) {
-    // TODO: implement singInWithEmailAndPassword
-    throw UnimplementedError();
   }
 
   Future<bool> signOut() async {

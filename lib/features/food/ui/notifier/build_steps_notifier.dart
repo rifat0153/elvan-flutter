@@ -1,14 +1,14 @@
 import 'package:collection/collection.dart';
+import 'package:elvan_shared/domain_models/index.dart';
+import 'package:elvan_shared/dtos/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
 import 'package:elvan/features/category/ui/notifier/category_notifier.dart';
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/domain/use_case/build_steps_use_case.dart';
 
 enum AddOnQuantityAction { increment, decrement, toggleIsSelected }
 
-final buildStepsNotifierProvider = AsyncNotifierProvider<BuildStepsNotifier, List<BuildStep>>(
+final buildStepsNotifierProvider =
+    AsyncNotifierProvider<BuildStepsNotifier, List<BuildStep>>(
   BuildStepsNotifier.new,
 );
 

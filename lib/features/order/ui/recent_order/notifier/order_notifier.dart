@@ -1,3 +1,10 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart' as fs;
+import 'package:elvan/features/auth/providers/auth_providers.dart';
+import 'package:elvan/features/order/domain/models/order_status.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
@@ -10,7 +17,7 @@ class OrderNotifier extends Notifier<void> {
   @override
   build() {}
 
-  Future createOrderFromCart() async {
+  Future<String> createOrderFromCart() async {
     final useCase = ref.read(orderUseCaseProvider);
 
     final cart = ref.read(cartProvider.notifier).cart;
@@ -18,13 +25,30 @@ class OrderNotifier extends Notifier<void> {
       throw Exception('Cart is empty');
     }
 
-    // final order = Order(
-    //   id: DateTime.now().millisecondsSinceEpoch.toString(),
-    //   cart: cart,
-    // );
+    final userId = ref.read(currentUserIdProvider);
 
-    // final 
+    if (userId == null) {
+      throw Exception('User is not logged in');
+    }
 
-    // await useCase.createOrder(order);
+    final order = Order(
+      createdAt: fs.Timestamp.fromDate(DateTime.now()),
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      discount: 0,
+      items: cart.cartItems,
+      status: OrderStatus.pending,
+      subTotal: cart.cartItems.fold(
+        0,
+        (previousValue, element) => previousValue + element.price,
+      ),
+      total: cart.total,
+      userId: userId,
+    );
+
+    await useCase.createOrder(order);
+    //clear cart
+    ref.read(cartProvider.notifier).resetCart();
+
+    return order.id;
   }
 }

@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elvan/core/logger/colored_print_log.dart';
+import 'package:elvan/features/favorite/notifer/favorite_provider.dart';
 import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -32,14 +34,20 @@ class FoodListCard extends HookConsumerWidget {
     final imageLeftOffset = -35.w;
     final imageRadius = 50.w;
 
-    final selectedFoodItemNotifier = ref.read(selectedFoodItemNotifierProvider.notifier);
+    final selectedFoodItemNotifier =
+        ref.read(selectedFoodItemNotifierProvider.notifier);
+
+    FavoriteProvider favProvider = ref.watch(favoriteProvider.notifier);
 
     return BaseCard(
       key: key,
       onTap: () {
         selectedFoodItemNotifier.setFoodItemAndBuildSteps(foodItem);
-
-        context.pushRoute(const FooDDetailRoute());
+        if (foodItem.title == 'Salads Bar') {
+          context.pushRoute(const SaladRouter());
+        } else {
+          context.pushRoute(const FooDDetailRoute());
+        }
       },
       padding: const EdgeInsets.all(0),
       child: SizedBox(
@@ -109,7 +117,11 @@ class FoodListCard extends HookConsumerWidget {
                     onPressed: () {},
                   ),
                   FavoriteButton(
-                    isFavorite: foodItem.isFavorite,
+                    isFavorite: favProvider.isFavorite(foodItem),
+                    foodItem: foodItem,
+                    onPressed: () {
+                      ref.read(favoriteProvider.notifier).toggle(foodItem);
+                    },
                   ),
                 ],
               ),

@@ -1,3 +1,4 @@
+import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,9 +11,11 @@ class RecentOrdersWidget extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final recentOrderNotifier = ref.watch(recentOrderNotifierProvider);
 
+    final _ = ref.watch(currentUserProvider);
+
     return recentOrderNotifier.when(
       loading: () => const Center(child: CircularProgressIndicator()),
-      data: (cartItems) => RecentOrdersGrid(cartItems: cartItems),
+      data: (cartItems) => RecentOrdersRow(cartItems: cartItems),
       error: (e, st) => Center(
         child: Text(e.toString()),
       ),
