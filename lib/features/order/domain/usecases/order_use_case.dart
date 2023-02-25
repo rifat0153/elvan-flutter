@@ -1,4 +1,5 @@
 import 'package:elvan_shared/domain_models/order/order.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
 import 'package:elvan/features/order/domain/repository/order_repository.dart';
@@ -49,5 +50,10 @@ class OrderUseCase {
     final orderDtos = await _orderRepository.getOrders(userId, limit: limit);
     final orders = orderDtos.map((e) => Order.fromDto(e)).toList();
     return orders;
+  }
+
+  //check if order is in progress
+  Future<bool> isOrderInProgress(String userId) async {
+    return _orderRepository.isOrderInProgress(userId);
   }
 }

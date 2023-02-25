@@ -15,4 +15,7 @@ abstract class OrderRepository {
   Future<OrderDto> getSingleOrder(String orderId);
 
   Stream<List<OrderDto>> getOrdersStream(String userID);
+
+  //check if order is in progress
+  Future<bool> isOrderInProgress(String userId);
 }

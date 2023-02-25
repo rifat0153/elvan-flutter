@@ -128,4 +128,27 @@ class OrderRepositoryImpl implements OrderRepository {
               .toList(),
         );
   }
+
+  @override
+  Future<bool> isOrderInProgress(String userId) async {
+    var result = await firebaseFirestore
+        .collection('orders')
+        .where(
+          'userId',
+          isEqualTo: userId,
+        )
+        .where(
+      //         //is either delivered, cancelled or pending
+      'status',
+      whereIn: [
+        OrderStatus.delivered.status,
+        OrderStatus.cancelled.status,
+      ],
+    ).get();
+
+    print("on going orders count: ${result.docs.length}");
+    print(result.docs.isNotEmpty);
+
+    return result.docs.isNotEmpty;
+  }
 }

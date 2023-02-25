@@ -6,6 +6,7 @@ import 'package:elvan/features/order/data/repository/order_repository_impl.dart'
 import 'package:elvan/features/order/ui/recent_order/notifier/order_notifier.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
+import 'package:elvan_shared/shared/providers/scaffold_messenger/snackbar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -30,7 +31,7 @@ class CartScreen extends ConsumerWidget {
         data: (cart) {
           return Column(
             children: [
-              ElvanAppBar(title: 'Your Cart'),
+              const ElvanAppBar(title: 'Your Cart'),
               Expanded(
                 child: CartItemList(
                   cartItems: cart.cartItems,
@@ -38,6 +39,32 @@ class CartScreen extends ConsumerWidget {
               ),
               ElevatedButton(
                 onPressed: () async {
+                  //check if order is in progress then show dialog
+                  final isOrderInProgress =
+                      await orderRepository.isOrderInProgress(cart.userId);
+
+                  if (isOrderInProgress) {
+                    //show dialog
+
+                    await showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('Order in progress'),
+                            content: const Text(
+                                'You already have an order in progress. You can only have one order in progress at a time.'),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Ok'))
+                            ],
+                          );
+                        });
+                    return;
+                  }
+
                   var orderId = await ref
                       .read(orderProvider.notifier)
                       .createOrderFromCart();
