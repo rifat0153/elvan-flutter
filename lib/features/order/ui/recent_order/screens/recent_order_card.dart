@@ -30,8 +30,8 @@ class RecentOrderCard extends HookConsumerWidget {
     return BaseCard(
       onTap: () {
         //add to cart
+
         ref.read(cartProvider.notifier).addToCart(cartItem);
-        ref.read(cartProvider.notifier).handleAddToCart();
       },
       padding: const EdgeInsets.all(0),
       child: Row(
