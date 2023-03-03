@@ -1,6 +1,5 @@
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
-
-import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
 import 'package:elvan/features/cart/ui/components/cart_item_card.dart';
 
 class CartItemList extends StatelessWidget {

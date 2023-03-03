@@ -1,6 +1,6 @@
-import 'package:elvan/features/category/domain/models/category/category.dart';
 import 'package:elvan/shared/components/chips/elvan_chip.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan_shared/dtos/category/category/category.dart';
 import 'package:flutter/material.dart';
 
 class CategoryChip extends StatelessWidget {

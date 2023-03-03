@@ -1,6 +1,5 @@
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
-
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/shared/components/image/elvan_network_image.dart';
 
 class FoodDetailImage extends StatelessWidget {

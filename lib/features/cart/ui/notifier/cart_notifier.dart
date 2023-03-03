@@ -1,21 +1,20 @@
 import 'package:elvan/app/router/app_router.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
+import 'package:elvan_shared/domain_models/cart/cart.dart';
+import 'package:elvan_shared/domain_models/index.dart';
+import 'package:elvan_shared/dtos/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
-import 'package:elvan/features/cart/domain/models/cart/cart.dart';
-import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
 import 'package:elvan/features/cart/domain/use_case/cart_item_use_case.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_update_notifier.dart';
 import 'package:elvan/features/cart/ui/state/cart_ui_state.dart';
-import 'package:elvan/features/category/domain/models/build_step/build_step.dart';
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 import 'package:elvan/shared/providers/scaffold_messenger/snackbar_provider.dart';
 
-final cartNotifierProvider = NotifierProvider<CartNotifier, CartUiState>(
+final cartProvider = NotifierProvider<CartNotifier, CartUiState>(
   CartNotifier.new,
 );
 
@@ -26,6 +25,7 @@ class CartNotifier extends Notifier<CartUiState> {
   }
 
   bool get hasData => state.value != null;
+  Cart? get cart => state.value;
 
   String getUniqueId() {
     return DateTime.now().millisecondsSinceEpoch.toString();
@@ -66,7 +66,7 @@ class CartNotifier extends Notifier<CartUiState> {
     // pop all the screens and go to the cart screen
     ref.read(appRouterProvider).popUntilRoot();
     ref.read(appRouterProvider).pushAll(
-      [const TabsRouter(), const FoodRouter()],
+      [const BottomTabRouter(), const FoodRouter()],
     );
   }
 
@@ -109,7 +109,8 @@ class CartNotifier extends Notifier<CartUiState> {
     }
 
     final cartItemListUseCase = ref.read(cartItemListUseCaseProvider);
-    final updatingCartItem = ref.read(cartItemUpdateProvider.notifier).updatingCartItem;
+    final updatingCartItem =
+        ref.read(cartItemUpdateProvider.notifier).updatingCartItem;
 
     if (updatingCartItem == null) {
       state = const CartUiState.error('Cart item id is null');
@@ -135,7 +136,9 @@ class CartNotifier extends Notifier<CartUiState> {
     );
 
     // show snackbar with message
-    ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage('Cart item updated');
+    ref
+        .read(snackbarNotifierProvider.notifier)
+        .showSnackbarWithMessage('Cart item updated');
   }
 
   void removeFromCart(CartItem cartItem) {

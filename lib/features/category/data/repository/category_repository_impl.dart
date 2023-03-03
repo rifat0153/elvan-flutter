@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:elvan_shared/dtos/category/category_dto.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:elvan/core/failure/failure.dart';
 import 'package:elvan/core/firebase/firebase_providers.dart';
 import 'package:elvan/core/result/result.dart';
-import 'package:elvan/features/category/data/dto/category_dto.dart';
 import 'package:elvan/features/category/domain/repository/category_repository.dart';
 
 final categoryRepositoryProvider = Provider<CategoryRepository>((ref) {

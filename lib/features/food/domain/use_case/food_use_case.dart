@@ -1,7 +1,6 @@
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:elvan/features/food/data/repository/food_repository_impl.dart';
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/domain/repository/food_repository.dart';
 
 final foodUseCaseProvider = Provider<FoodUseCase>((ref) {

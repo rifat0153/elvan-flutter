@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/category/ui/screens/category_chips.dart';
+import 'package:elvan/features/food/ui/components/food_list_app_bar.dart';
 import 'package:elvan/features/food/ui/components/food_sliver_list.dart';
 import 'package:elvan/features/food/ui/notifier/food_list_notifier.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
@@ -18,6 +19,7 @@ class FoodListScreen extends HookConsumerWidget {
 
     return ElvanScaffold(
       imagePath: AppAsset.homeBackgroundPng,
+      appBar: const FoodListAppBar(),
       child: foodListFilteredAsync.when(
         data: (foodMapList) {
           return CustomScrollView(

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elvan_shared/dtos/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -34,7 +35,8 @@ class AuthRepositoryImpl implements AuthRepository {
             Constants.firebaseElvanUserCollectionName,
           )
           .withConverter(
-            fromFirestore: (snapshot, _) => ElvanUserDto.fromJson(snapshot.data()!),
+            fromFirestore: (snapshot, _) =>
+                ElvanUserDto.fromJson(snapshot.data()!),
             toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
           )
           .doc(userId)
@@ -84,5 +86,41 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Stream<User?> getUserStream() {
     return firebaseAuth.authStateChanges();
+  }
+
+  @override
+  Future<void> setElvanUser(
+      {required String userId, required ElvanUserDto elvanUserDto}) async {
+    await firebaseFirestore
+        .collection(
+          Constants.firebaseElvanUserCollectionName,
+        )
+        .withConverter(
+          fromFirestore: (snapshot, _) =>
+              ElvanUserDto.fromJson(snapshot.data()!),
+          toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
+        )
+        .doc(userId)
+        .set(elvanUserDto);
+  }
+
+  @override
+  Future<User?> signUpWithEmailAndPassword(
+      {required String email, required String password}) async {
+    //sign up
+    await firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    //sign in
+    final userCredential = await firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    // return Result.success(userCredential);
+    return userCredential.user;
+  }
+
+  @override
+  Future resetPassword({required String email}) async {
+    await firebaseAuth.sendPasswordResetEmail(email: email);
   }
 }

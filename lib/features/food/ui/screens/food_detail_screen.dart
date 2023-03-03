@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -25,6 +27,12 @@ class FooDDetailScreen extends HookConsumerWidget {
     final foodItemState = ref.watch(selectedFoodItemNotifierProvider);
 
     return ElvanScaffold(
+        // appBar: AppBar(
+        //   leading: IconButton(
+        //     icon: const Icon(Icons.arrow_back),
+        //     onPressed: () => context.navigateBack(),
+        //   ),
+        // ),
         imagePath: AppAsset.homeBackgroundPng,
         child: foodItemState.when(
           data: (foodItem) {
@@ -88,10 +96,12 @@ class FooDDetailScreen extends HookConsumerWidget {
           final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
           final cartUpdateNotifier = ref.watch(cartItemUpdateProvider.notifier);
           final isCartUpdating = cartUpdateNotifier.isUpdating;
-          final currentBuildStepsPrice = ref.watch(currentBuildStepsPriceProvider);
+          final currentBuildStepsPrice =
+              ref.watch(currentBuildStepsPriceProvider);
           final totalPrice = foodItem.price + currentBuildStepsPrice;
 
-          final String cartText = isCartUpdating ? 'Update cart' : 'Add to cart';
+          final String cartText =
+              isCartUpdating ? 'Update cart' : 'Add to cart';
           final String cartButtonText = '$cartText - \$ $totalPrice';
 
           return ElvanButton(
@@ -100,7 +110,7 @@ class FooDDetailScreen extends HookConsumerWidget {
               if (!isBuildStepsValid) {
                 return;
               }
-              ref.read(cartNotifierProvider.notifier).handleAddToCart();
+              ref.read(cartProvider.notifier).handleAddToCart();
             },
             child: AppText(
               cartButtonText,
@@ -126,6 +136,7 @@ class FooDDetailScreen extends HookConsumerWidget {
                 (context, index) {
                   return BuildStepCustomization(
                     buildStep: buildSteps[index],
+                    isSaladBar: false,
                   );
                 },
               ),

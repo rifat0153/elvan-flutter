@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
+import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,6 +28,11 @@ class RecentOrderCard extends HookConsumerWidget {
     final price = '${cartItem.foodItem.price}';
 
     return BaseCard(
+      onTap: () {
+        //add to cart
+
+        ref.read(cartProvider.notifier).addToCart(cartItem);
+      },
       padding: const EdgeInsets.all(0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

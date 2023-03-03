@@ -6,14 +6,17 @@ class ElvanScaffold extends StatelessWidget {
     super.key,
     required this.imagePath,
     required this.child,
+    this.appBar,
   });
 
   final String imagePath;
+  final PreferredSizeWidget? appBar;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar,
       body: SafeArea(
         child: ScreenBackground(
           imagePath: imagePath,

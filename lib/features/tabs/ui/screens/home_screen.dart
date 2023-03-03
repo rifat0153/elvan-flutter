@@ -14,29 +14,33 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return CustomScrollView(
+    // var snakbar = ref.read(snackbarNotifierProvider.notifier);
+    return const CustomScrollView(
       slivers: [
+        // SliverToBoxAdapter(
+        //   child: ElvanButton(
+        //     onPressed: () {
+        //       snakbar.showSnackbarWithAction(
+        //         'Hello',
+        //         actionLabel: 'Undo',
+        //         onAction: () {
+        //           logInfo('Undo');
+        //         },
+        //       );
+
+        //       snakbar.alartDialog(
+        //           title: "title", content: "content", onOk: () {});
+        //     },
+        //     child: const Text('show snackbar'),
+        //   ),
+        // ),
         SliverToBoxAdapter(
-          child: ElvanButton(
-            onPressed: () {
-              ref.read(snackbarNotifierProvider.notifier).showSnackbarWithAction(
-                'Hello',
-                actionLabel: 'Undo',
-                onAction: () {
-                  logInfo('Undo');
-                },
-              );
-            },
-            child: const Text('show snackbar'),
-          ),
-        ),
-        const SliverToBoxAdapter(
           child: CategoryListWidget(),
         ),
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: RecentOrdersWidget(),
         ),
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: TopPicksWidget(),
         ),
       ],

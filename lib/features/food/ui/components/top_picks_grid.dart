@@ -1,4 +1,5 @@
 import 'package:elvan/features/food/ui/components/top_pick_card.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
@@ -26,7 +27,8 @@ class TopPicksGrid extends StatelessWidget {
               1.fr,
             ],
             // rowSizes: [auto],
-            rowSizes: List.generate(((foodItems.length - 1) ~/ 2 + 1), (index) => auto).toList(),
+            rowSizes: List.generate(
+                ((foodItems.length - 1) ~/ 2 + 1), (index) => auto).toList(),
             columnGap: AppSize.paddingMD,
             rowGap: AppSize.paddingMD,
             children: [

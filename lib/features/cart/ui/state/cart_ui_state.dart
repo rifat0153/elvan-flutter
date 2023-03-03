@@ -1,5 +1,5 @@
-import 'package:elvan/features/cart/domain/models/cart/cart.dart';
-import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
+import 'package:elvan_shared/domain_models/cart/cart.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_ui_state.freezed.dart';
@@ -11,7 +11,8 @@ class CartUiState with _$CartUiState {
   const factory CartUiState.loading() = _CartState_Loading;
   const factory CartUiState.empty() = _CartState_Empty;
   const factory CartUiState.data(Cart cart) = _CartState_Loaded;
-  const factory CartUiState.error(String message, {StackTrace? st}) = _CartState_Error;
+  const factory CartUiState.error(String message, {StackTrace? st}) =
+      _CartState_Error;
 
   bool get isEmpty => maybeWhen(
         empty: () => true,
