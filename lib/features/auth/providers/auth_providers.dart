@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/core/firebase/firebase_providers.dart';
+import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 
 part 'auth_providers.g.dart';
@@ -18,16 +18,18 @@ final authStateProvider = StreamProvider<User?>((ref) {
   return ref.watch(firebaseAuthProvider).authStateChanges();
 });
 
-@riverpod
-User? currentUser(CurrentUserRef ref) {
-  final firebaseAuth = ref.watch(firebaseAuthProvider);
+final currentUserProvider = Provider<User?>((ref) {
+  final user = ref.watch(authStateProvider).value;
 
-  return firebaseAuth.currentUser;
-}
+  logError('currentUser: ${user?.uid}');
 
-@riverpod
-String? currentUserId(CurrentUserIdRef ref) {
+  return user;
+});
+
+final currentUserIdProvider = Provider<String?>((ref) {
   final user = ref.watch(currentUserProvider);
 
+  logError('currentUserId: ${user?.uid}');
+
   return user?.uid;
-}
+});

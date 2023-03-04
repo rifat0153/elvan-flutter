@@ -1,13 +1,13 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:elvan/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/features/auth/ui/state/auth_screen_state.dart';
 import 'package:elvan/shared/providers/scaffold_messenger/snackbar_provider.dart';
 import 'package:elvan_shared/domain_models/index.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 final authNotifierProvider = NotifierProvider<AuthNotifier, AuthScreenState>(
   AuthNotifier.new,
@@ -60,9 +60,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       },
       registerWithEmailAndPassword: (email, password) {
         state = const AuthScreenState.loading();
-        final result =
-            authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
-                email: email, password: password, name: '', surname: '');
+        final result = authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(email: email, password: password, name: '', surname: '');
       },
       resetPassword: (email) async {
         // state = const AuthScreenState.loading();
@@ -120,8 +118,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
 
   //set user data
   Future<void> setElvanUserData(String userID, String email) async {
-    final result = await authUseCase.setUserUseCase(
-        userId: "userId", elvanUser: ElvanUser(email: email));
+    final result = await authUseCase.setUserUseCase(userId: "userId", elvanUser: ElvanUser(email: email));
 
     result.when(
       success: (elvanUser) {
