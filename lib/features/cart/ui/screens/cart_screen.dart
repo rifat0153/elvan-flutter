@@ -5,6 +5,8 @@ import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
 import 'package:elvan/features/order/ui/recent_order/notifier/order_notifier.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
+import 'package:elvan/shared/components/text/app_text_widget.dart';
+import 'package:elvan/shared/constants/app_size.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/shared/providers/scaffold_messenger/snackbar_provider.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,19 @@ class CartScreen extends ConsumerWidget {
     return ElvanScaffold(
       imagePath: AppAsset.homeBackgroundPng,
       child: cartState.when(
-        empty: () => const Center(child: Text('Empty cart')),
+        empty: () => Center(
+            child: Padding(
+          padding: const EdgeInsets.only(top: AppSize.padding4XL),
+          child: Column(
+            children: [
+              Image.asset(AppAsset.emptyCart, height: 300),
+              AppText("Sorry!", style: Theme.of(context).textTheme.headline2),
+              const SizedBox(height: AppSize.kPadding),
+              AppText("Your cart is empty",
+                  style: Theme.of(context).textTheme.headline5),
+            ],
+          ),
+        )),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, st) => Center(child: Text(error.toString())),
         data: (cart) {
