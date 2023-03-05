@@ -46,7 +46,8 @@ class CartScreen extends ConsumerWidget {
                   if (isOrderInProgress) {
                     //show dialog
 
-                    await showDialog(
+                    // ignore: use_build_context_synchronously
+                    showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(

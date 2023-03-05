@@ -34,6 +34,7 @@ class CartItemCard extends HookConsumerWidget {
 
               context.pushRoute(
                 const FoodRouter(children: [
+                  FoodListRoute(),
                   FooDDetailRoute(),
                 ]),
               );
