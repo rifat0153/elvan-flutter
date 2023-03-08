@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';

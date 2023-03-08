@@ -1,4 +1,3 @@
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/domain/use_case/food_use_case.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

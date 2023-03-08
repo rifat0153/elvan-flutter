@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:elvan/features/auth/ui/screens/registration_screen.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
-import 'package:elvan/shared/components/buttons/elvan_button.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan_shared/shared/constants/app_size.dart';
@@ -115,7 +113,7 @@ class AuthScreen extends HookConsumerWidget {
                     ),
                     onPressed: () async {
                       authNotifier.onEvent(
-                        AuthEvent.loginWithPasswordAndEmail(
+                        const AuthEvent.loginWithPasswordAndEmail(
                           email: 'elvan@gmail.com',
                           password: '123456',
                           // email: emailTextController.value.text,

@@ -4,7 +4,6 @@ import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/core/firebase/firebase_providers.dart';
-import 'package:elvan/features/order/data/dto/order_dto.dart';
 import 'package:elvan/features/order/domain/repository/order_repository.dart';
 
 final orderRepositoryProvider = Provider<OrderRepository>((ref) {

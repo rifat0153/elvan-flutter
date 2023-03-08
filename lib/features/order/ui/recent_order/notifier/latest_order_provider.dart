@@ -2,7 +2,6 @@ import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/auth/providers/auth_providers.dart';
-import 'package:elvan/features/order/domain/models/order.dart';
 import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
 
 final currentOrderProvider = StreamProvider<Order>((ref) async* {

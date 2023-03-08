@@ -44,7 +44,7 @@ class NavigationRailScreen extends HookConsumerWidget {
   }
 
   static int _calculateSelectedIndex(BuildContext context) {
-    final String location = '';
+    const String location = '';
 
     if (location.startsWith('/home')) {
       return 0;

@@ -6,8 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/app/router/not_found_screen.dart';
-import 'package:elvan/app/router/route_guards.dart';
-import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/auth/ui/screens/auth_screen.dart';
 import 'package:elvan/features/cart/ui/screens/cart_screen.dart';
 import 'package:elvan/features/favorite/screens/favorite_screen.dart';

@@ -1,7 +1,6 @@
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/components/food_list_card.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 

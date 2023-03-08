@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/order/ui/components/order_records_app_bar.dart';
-import 'package:elvan/features/order/ui/order/screens/single_order.dart';
-import 'package:elvan/features/order/ui/order_records/notifier/order_records_notifier.dart';
 import 'package:elvan/features/order/ui/order_records/notifier/order_records_stream_provider.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
@@ -12,7 +10,6 @@ import 'package:elvan_shared/domain_models/index.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrdersRecordsScreen extends HookConsumerWidget {
   const OrdersRecordsScreen({super.key});

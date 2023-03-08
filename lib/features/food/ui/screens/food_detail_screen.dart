@@ -1,11 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_update_notifier.dart';
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/components/build_step_customization.dart';
 import 'package:elvan/features/food/ui/components/food_detail_image_with_appbar.dart';
 import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';

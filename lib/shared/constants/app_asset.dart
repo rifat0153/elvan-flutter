@@ -15,4 +15,6 @@ class AppAsset {
   static const String halfPizzaPng = 'assets/images/half-pizza.png';
 
   static const String redLogo = 'assets/images/red-logo.png';
+
+  static const String emptyCart = 'assets/images/empty_cart.png';
 }

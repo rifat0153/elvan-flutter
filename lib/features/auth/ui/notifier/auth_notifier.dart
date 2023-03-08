@@ -60,7 +60,9 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       },
       registerWithEmailAndPassword: (email, password) {
         state = const AuthScreenState.loading();
-        final result = authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(email: email, password: password, name: '', surname: '');
+        final result =
+            authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
+                email: email, password: password, name: '', surname: '');
       },
       resetPassword: (email) async {
         // state = const AuthScreenState.loading();
@@ -100,7 +102,8 @@ class AuthNotifier extends Notifier<AuthScreenState> {
   Future loginAndGetUserData(String email, String password) async {
     state = const AuthScreenState.loading();
 
-    final result = await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
+    final result =
+        await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
       email: email,
       password: password,
     );
@@ -117,7 +120,8 @@ class AuthNotifier extends Notifier<AuthScreenState> {
 
   //set user data
   Future<void> setElvanUserData(String userID, String email) async {
-    final result = await authUseCase.setUserUseCase(userId: "userId", elvanUser: ElvanUser(email: email));
+    final result = await authUseCase.setUserUseCase(
+        userId: "userId", elvanUser: ElvanUser(email: email));
 
     result.when(
       success: (elvanUser) {

@@ -2,7 +2,6 @@ import 'package:elvan/core/failure/failure.dart';
 import 'package:elvan/core/result/result.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository.dart';
 import 'package:elvan/features/auth/data/repository/auth_repository_impl.dart';
-import 'package:elvan/features/auth/domain/models/elvan_user.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -105,7 +104,7 @@ class AuthUseCases {
       );
     }
 
-    final elvanUser = await getUserUseCase(userId: await user.uid);
+    final elvanUser = await getUserUseCase(userId: user.uid);
 
     return elvanUser.when(
       success: (elvanUser) {

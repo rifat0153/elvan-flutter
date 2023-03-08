@@ -4,7 +4,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/core/firebase/firebase_providers.dart';
 import 'package:elvan/features/food/constants/constant.dart';
-import 'package:elvan/features/food/data/dto/food_item_dto.dart';
 import 'package:elvan/features/food/domain/repository/food_repository.dart';
 
 final foodRepositoryProvider = Provider<FoodRepository>((ref) {

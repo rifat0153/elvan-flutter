@@ -1,13 +1,14 @@
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
-import 'package:elvan_shared/domain_models/index.dart';
 
 final recentOrderNotifierProvider = FutureProvider<List<CartItem>>((ref) async {
   final orderUseCase = ref.read(orderUseCaseProvider);
-  final userId = ref.watch(currentUserIdProvider);
+  final userId =
+      ref.watch(currentUserIdProvider);
 
   logInfo('getRecentOrders: userId: $userId');
 
