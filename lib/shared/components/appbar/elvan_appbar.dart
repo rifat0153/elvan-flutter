@@ -7,9 +7,11 @@ import 'package:elvan/shared/constants/app_colors.dart';
 class ElvanAppBar extends HookConsumerWidget with PreferredSizeWidget {
   final String title;
   final PreferredSizeWidget? bottom;
+  final bool showBackButton;
   const ElvanAppBar({
     required this.title,
     this.bottom,
+    this.showBackButton = true,
     Key? key,
   }) : super(key: key);
 
@@ -25,13 +27,15 @@ class ElvanAppBar extends HookConsumerWidget with PreferredSizeWidget {
       bottom: bottom,
       backgroundColor: AppColors.primaryRed,
       centerTitle: true,
-      leading: IconButton(
-        onPressed: () => ref.read(navigatorProvider.notifier).pop(),
-        icon: const Icon(
-          Icons.arrow_back,
-          color: AppColors.white,
-        ),
-      ),
+      leading: !showBackButton
+          ? Container()
+          : IconButton(
+              onPressed: () => ref.read(navigatorProvider.notifier).pop(),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: AppColors.white,
+              ),
+            ),
       title: AppText(title),
     );
   }

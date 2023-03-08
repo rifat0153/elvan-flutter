@@ -1,5 +1,6 @@
 import 'package:elvan/app/router/navigator_provider.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
+import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/badge/elvan_icon_badge.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
@@ -17,6 +18,7 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // var snakbar = ref.read(snackbarNotifierProvider.notifier);
     return ElvanScaffold(
+      appBar: const ElvanAppBar(title: 'Elvan', showBackButton: false),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Consumer(builder: (context, ref, child) {

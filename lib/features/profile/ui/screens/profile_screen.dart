@@ -23,7 +23,7 @@ class ProfileScreen extends HookConsumerWidget {
         authenticated: (user) => Center(
               child: Column(
                 children: [
-                  const ElvanAppBar(title: 'Profile'),
+                  const ElvanAppBar(title: 'Profile', showBackButton: false),
 
                   //circle avatar with image from user
                   SizedBox(

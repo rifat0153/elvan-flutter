@@ -17,7 +17,7 @@ class FavoriteScreen extends ConsumerWidget {
 
     return Column(
       children: [
-        const ElvanAppBar(title: 'Favorite'),
+        const ElvanAppBar(title: 'Favorite', showBackButton: false),
         Padding(
           padding: const EdgeInsets.all(AppSize.kPadding * 2),
           child: ListView.builder(
