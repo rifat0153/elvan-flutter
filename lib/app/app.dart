@@ -9,7 +9,6 @@ import 'package:elvan/app/router/app_router.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
-import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 
 class MyApp extends HookConsumerWidget {
   const MyApp({super.key});

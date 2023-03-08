@@ -1,14 +1,11 @@
-import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart' as fs;
 import 'package:elvan/features/auth/providers/auth_providers.dart';
-import 'package:elvan/features/order/domain/models/order_status.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
-import 'package:elvan/features/order/domain/models/order.dart';
 import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
 
 final orderProvider = NotifierProvider<OrderNotifier, void>(OrderNotifier.new);

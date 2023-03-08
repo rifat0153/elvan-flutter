@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
 import 'package:elvan/shared/components/buttons/favorite_button.dart';
 import 'package:elvan/shared/components/cards/base_card.dart';
@@ -15,7 +14,6 @@ import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
 import '../../../../app/router/app_router.gr.dart';
-import '../../../cart/ui/notifier/cart_update_notifier.dart';
 import '../notifier/selected_food_provider.dart';
 
 class TopPickCard extends ConsumerWidget {

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:elvan/app/router/app_router.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
@@ -8,7 +7,6 @@ import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
-import 'package:elvan_shared/shared/providers/scaffold_messenger/snackbar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

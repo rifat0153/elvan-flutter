@@ -1,4 +1,3 @@
-import 'package:elvan/features/auth/domain/models/elvan_user.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

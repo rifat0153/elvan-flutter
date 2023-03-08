@@ -1,7 +1,6 @@
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:elvan/features/cart/domain/models/cart_item/cart_item.dart';
 import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 

@@ -2,7 +2,6 @@ import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:elvan/core/extensions/build_context/screen_size_ext.dart';
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/components/food_detail_appbar.dart';
 import 'package:elvan/features/food/ui/components/food_detail_image.dart';
 

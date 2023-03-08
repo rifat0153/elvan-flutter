@@ -1,7 +1,6 @@
 import 'package:elvan/features/favorite/notifer/favorite_provider.dart';
 
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
-import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -26,7 +26,7 @@ class ProfileScreen extends HookConsumerWidget {
                   const ElvanAppBar(title: 'Profile', showBackButton: false),
 
                   //circle avatar with image from user
-                  SizedBox(
+                  const SizedBox(
                     height: AppSize.paddingMD,
                   ),
                   Stack(
@@ -70,7 +70,7 @@ class ProfileScreen extends HookConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.phone,
                         color: AppColors.white,
                       ),

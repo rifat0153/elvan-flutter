@@ -1,15 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_update_notifier.dart';
-import 'package:elvan/shared/components/buttons/elvan_button.dart';
-import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:elvan/features/cart/ui/components/cart_build_section_widget.dart';
-import 'package:elvan/shared/components/cards/base_card.dart';
-import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
 import '../../../order/ui/order_records/screens/order_records.dart';

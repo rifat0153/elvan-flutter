@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elvan/core/logger/colored_print_log.dart';
 import 'package:elvan/features/favorite/notifer/favorite_provider.dart';
 import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
 import 'package:elvan_shared/domain_models/index.dart';
@@ -8,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:elvan/features/food/domain/models/food_item/food_item.dart';
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 import 'package:elvan/shared/components/buttons/favorite_button.dart';
 import 'package:elvan/shared/components/cards/base_card.dart';

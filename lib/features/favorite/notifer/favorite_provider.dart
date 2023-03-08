@@ -1,10 +1,7 @@
-import 'dart:convert';
 
 import 'package:elvan/features/favorite/usecase/favorite_use_case.dart';
 import 'package:elvan_shared/domain_models/index.dart';
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 final favoriteProvider =
     StateNotifierProvider<FavoriteProvider, List<FoodItem>>(
