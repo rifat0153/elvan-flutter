@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_update_notifier.dart';
 import 'package:elvan/shared/components/buttons/elvan_button.dart';
@@ -32,7 +33,7 @@ class CartItemCard extends HookConsumerWidget {
                   .read(cartItemUpdateProvider.notifier)
                   .setUpdatingCartItem(cartItem);
 
-              context.pushRoute(
+              context.navigateTo(
                 const FoodRouter(children: [
                   FoodListRoute(),
                   FooDDetailRoute(),
