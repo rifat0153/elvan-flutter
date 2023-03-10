@@ -114,13 +114,21 @@ class FoodListCard extends HookConsumerWidget {
                     // TODO: Add to cart
                     onPressed: () {},
                   ),
-                  FavoriteButton(
-                    isFavorite: favProvider.isFavorite(foodItem),
-                    foodItem: foodItem,
-                    onPressed: () {
-                      ref.read(favoriteProvider.notifier).toggle(foodItem);
+                  Consumer(
+                    builder:
+                        (BuildContext context, WidgetRef ref, Widget? child) {
+                      final _ = ref.watch(favoriteProvider);
+                      final favProviderNotifier =
+                          ref.read(favoriteProvider.notifier);
+                      return FavoriteButton(
+                        isFavorite: favProviderNotifier.isFavorite(foodItem),
+                        foodItem: foodItem,
+                        onPressed: () {
+                          favProviderNotifier.toggle(foodItem);
+                        },
+                      );
                     },
-                  ),
+                  )
                 ],
               ),
             ),
