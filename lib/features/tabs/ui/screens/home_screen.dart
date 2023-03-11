@@ -37,38 +37,40 @@ class HomeScreen extends HookConsumerWidget {
               );
       }),
       imagePath: AppAsset.homeBackgroundPng,
-      child: const Padding(
-        padding: EdgeInsets.only(bottom: AppSize.kPadding * 10),
-        child: CustomScrollView(
-          slivers: [
-            // SliverToBoxAdapter(
-            //   child: ElvanButton(
-            //     onPressed: () {
-            //       snakbar.showSnackbarWithAction(
-            //         'Hello',
-            //         actionLabel: 'Undo',
-            //         onAction: () {
-            //           logInfo('Undo');
-            //         },
-            //       );
+      child: const CustomScrollView(
+        slivers: [
+          // SliverToBoxAdapter(
+          //   child: ElvanButton(
+          //     onPressed: () {
+          //       snakbar.showSnackbarWithAction(
+          //         'Hello',
+          //         actionLabel: 'Undo',
+          //         onAction: () {
+          //           logInfo('Undo');
+          //         },
+          //       );
 
-            //       snakbar.alartDialog(
-            //           title: "title", content: "content", onOk: () {});
-            //     },
-            //     child: const Text('show snackbar'),
-            //   ),
-            // ),
-            SliverToBoxAdapter(
-              child: CategoryListWidget(),
+          //       snakbar.alartDialog(
+          //           title: "title", content: "content", onOk: () {});
+          //     },
+          //     child: const Text('show snackbar'),
+          //   ),
+          // ),
+          SliverToBoxAdapter(
+            child: CategoryListWidget(),
+          ),
+          SliverToBoxAdapter(
+            child: RecentOrdersWidget(),
+          ),
+          SliverToBoxAdapter(
+            child: TopPicksWidget(),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: AppSize.kPadding * 10,
             ),
-            SliverToBoxAdapter(
-              child: RecentOrdersWidget(),
-            ),
-            SliverToBoxAdapter(
-              child: TopPicksWidget(),
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
