@@ -9,12 +9,10 @@ class FoodDetailImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: foodItem.id ?? '',
-      child: ElvanNetworkImage(
-        foodItem.imageUrl ?? '',
-        fit: BoxFit.cover,
-      ),
+    return ElvanNetworkImage(
+      foodItem.imageUrl ?? '',
+      foodItem.id ?? '',
+      fit: BoxFit.cover,
     );
   }
 }

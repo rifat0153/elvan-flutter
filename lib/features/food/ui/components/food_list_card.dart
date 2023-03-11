@@ -32,8 +32,7 @@ class FoodListCard extends HookConsumerWidget {
     final imageLeftOffset = -35.w;
     final imageRadius = 50.w;
 
-    final selectedFoodItemNotifier =
-        ref.read(selectedFoodItemNotifierProvider.notifier);
+    final selectedFoodItemNotifier = ref.read(selectedFoodItemNotifierProvider.notifier);
 
     FavoriteProvider favProvider = ref.watch(favoriteProvider.notifier);
 
@@ -65,11 +64,14 @@ class FoodListCard extends HookConsumerWidget {
                         left: imageLeftOffset,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(imageRadius),
-                          child: CachedNetworkImage(
-                            imageUrl: foodItem.imageUrl ?? '',
-                            fit: BoxFit.cover,
-                            width: imageRadius * 2,
-                            height: imageRadius * 2,
+                          child: Hero(
+                            tag: foodItem.id!,
+                            child: CachedNetworkImage(
+                              imageUrl: foodItem.imageUrl ?? '',
+                              fit: BoxFit.cover,
+                              width: imageRadius * 2,
+                              height: imageRadius * 2,
+                            ),
                           ),
                         ),
                       ),
@@ -115,11 +117,9 @@ class FoodListCard extends HookConsumerWidget {
                     onPressed: () {},
                   ),
                   Consumer(
-                    builder:
-                        (BuildContext context, WidgetRef ref, Widget? child) {
+                    builder: (BuildContext context, WidgetRef ref, Widget? child) {
                       final _ = ref.watch(favoriteProvider);
-                      final favProviderNotifier =
-                          ref.read(favoriteProvider.notifier);
+                      final favProviderNotifier = ref.read(favoriteProvider.notifier);
                       return FavoriteButton(
                         isFavorite: favProviderNotifier.isFavorite(foodItem),
                         foodItem: foodItem,
