@@ -4,6 +4,7 @@ import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/badge/elvan_icon_badge.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
+import 'package:elvan/shared/constants/app_size.dart';
 import 'package:elvan_shared/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,51 +20,55 @@ class HomeScreen extends HookConsumerWidget {
     // var snakbar = ref.read(snackbarNotifierProvider.notifier);
     return ElvanScaffold(
       appBar: const ElvanAppBar(title: 'Elvan', showBackButton: false),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Consumer(builder: (context, ref, child) {
-          final cartItemCount = ref.watch(cartProvider).cartItems?.length ?? 0;
-
-          return ElvanIconBadge(
-            icon: const Icon(
-              Icons.shopping_cart,
-              color: AppColors.black,
-            ),
-            count: cartItemCount,
-            onPressed: ref.read(navigatorProvider.notifier).pushCartRoute,
-          );
-        }),
-      ),
+      floatingActionButton: Consumer(builder: (context, ref, child) {
+        final cartItemCount = ref.watch(cartProvider).cartItems?.length ?? 0;
+        return cartItemCount == 0
+            ? Container()
+            : FloatingActionButton(
+                onPressed: () {},
+                child: ElvanIconBadge(
+                  icon: const Icon(
+                    Icons.shopping_cart,
+                    color: AppColors.black,
+                  ),
+                  count: cartItemCount,
+                  onPressed: ref.read(navigatorProvider.notifier).pushCartRoute,
+                ),
+              );
+      }),
       imagePath: AppAsset.homeBackgroundPng,
-      child: const CustomScrollView(
-        slivers: [
-          // SliverToBoxAdapter(
-          //   child: ElvanButton(
-          //     onPressed: () {
-          //       snakbar.showSnackbarWithAction(
-          //         'Hello',
-          //         actionLabel: 'Undo',
-          //         onAction: () {
-          //           logInfo('Undo');
-          //         },
-          //       );
+      child: const Padding(
+        padding: EdgeInsets.only(bottom: AppSize.kPadding * 10),
+        child: CustomScrollView(
+          slivers: [
+            // SliverToBoxAdapter(
+            //   child: ElvanButton(
+            //     onPressed: () {
+            //       snakbar.showSnackbarWithAction(
+            //         'Hello',
+            //         actionLabel: 'Undo',
+            //         onAction: () {
+            //           logInfo('Undo');
+            //         },
+            //       );
 
-          //       snakbar.alartDialog(
-          //           title: "title", content: "content", onOk: () {});
-          //     },
-          //     child: const Text('show snackbar'),
-          //   ),
-          // ),
-          SliverToBoxAdapter(
-            child: CategoryListWidget(),
-          ),
-          SliverToBoxAdapter(
-            child: RecentOrdersWidget(),
-          ),
-          SliverToBoxAdapter(
-            child: TopPicksWidget(),
-          ),
-        ],
+            //       snakbar.alartDialog(
+            //           title: "title", content: "content", onOk: () {});
+            //     },
+            //     child: const Text('show snackbar'),
+            //   ),
+            // ),
+            SliverToBoxAdapter(
+              child: CategoryListWidget(),
+            ),
+            SliverToBoxAdapter(
+              child: RecentOrdersWidget(),
+            ),
+            SliverToBoxAdapter(
+              child: TopPicksWidget(),
+            ),
+          ],
+        ),
       ),
     );
   }
