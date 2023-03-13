@@ -35,5 +35,21 @@
     "faqAndSupport": "FAQ and Support",
     "signOut": "Sign out",
     "yourCart": "Your cart",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "yourOrder": "Your order",
+    "estimatedTime": "Estimated time",
+    "yourOrderID": "Your order ID",
+    "cancel": "Cancel",
+    "orderStatus": "Order status",
+    "orderSuccfullyPlaced": "Order successfully placed",
+    "orderIsBeingPrepared": "Order is being prepared",
+    "readyToPickUp": "Ready to pick up",
+    "delivered": "Delivered",
+    "orderItems": "Order Items",
+    "cancleOrder": "Cancle Order",
+    "cancleOrderMessage": "Are you sure you want to cancle this order?",
+    "yes": "Yes",
+    "orderInProcess": "Order in process",
+    "orderInProcessMessage": "You already have an order in progress. You can only have one order in progress at a time."
+
 }

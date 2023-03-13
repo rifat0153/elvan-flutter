@@ -72,9 +72,10 @@ class CartScreen extends ConsumerWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: const Text('Order in progress'),
-                              content: const Text(
-                                  'You already have an order in progress. You can only have one order in progress at a time.'),
+                              title: Text(
+                                  AppLocalizations.of(context)!.orderInProcess),
+                              content: Text(AppLocalizations.of(context)!
+                                  .orderInProcessMessage),
                               actions: [
                                 TextButton(
                                     onPressed: () {

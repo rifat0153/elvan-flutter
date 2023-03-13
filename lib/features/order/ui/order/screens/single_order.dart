@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/features/order/ui/components/order_summery.dart';
 import 'package:elvan/features/order/ui/components/order_timeline.dart';
 import 'package:elvan/features/order/ui/order_records/notifier/order_records_notifier.dart';
@@ -32,8 +32,8 @@ class SingleOrderScreen extends HookConsumerWidget {
       loading: () => const Center(child: CircularProgressIndicator()),
       data: (orders) => ElvanScaffold(
         imagePath: AppAsset.homeBackgroundPng,
-        appBar: const ElvanAppBar(
-          title: 'Your Order',
+        appBar: ElvanAppBar(
+          title: AppLocalizations.of(context)!.yourOrder,
         ),
         child: Stack(
           children: [
@@ -69,8 +69,8 @@ class SingleOrderScreen extends HookConsumerWidget {
                   ),
                   onPressed: () async {
                     snakbar.alartDialog(
-                      title: "Cancel Order",
-                      content: "Are you sure you want to cancel this order?",
+                      title: AppLocalizations.of(context)!.cancleOrder,
+                      content: AppLocalizations.of(context)!.cancleOrderMessage,
                       onOk: () async {
                         Navigator.of(context).pop();
                         await ref
@@ -89,7 +89,7 @@ class SingleOrderScreen extends HookConsumerWidget {
                       },
                     );
                   },
-                  child: const AppText("Cancel")),
+                  child: AppText(AppLocalizations.of(context)!.cancel)),
             ),
           ],
         ),
@@ -116,22 +116,22 @@ class OrderTimeline extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText(
-            'Order Status',
+            AppLocalizations.of(context)!.orderStatus,
             style: Theme.of(context).textTheme.headline6,
           ),
           OrderTimeLine(
             isCompleted: order.status.index >= 0,
             isFirst: true,
-            title: "Order Successfully Placed",
+            title: AppLocalizations.of(context)!.orderSuccfullyPlaced,
           ),
           OrderTimeLine(
             isCompleted: order.status.index >= 2,
-            title: "Order is being prepared",
+            title: AppLocalizations.of(context)!.orderIsBeingPrepared,
           ),
           OrderTimeLine(
             isCompleted: order.status.index >= 3,
             isLast: false,
-            title: "Ready to pickup",
+            title: AppLocalizations.of(context)!.readyToPickUp,
           ),
           if (order.status.index >= 5)
             OrderTimeLine(
@@ -143,10 +143,10 @@ class OrderTimeline extends StatelessWidget {
             OrderTimeLine(
               isCompleted: order.status.index >= 4,
               isLast: true,
-              title: "Delivered",
+              title: AppLocalizations.of(context)!.delivered,
             ),
           AppText(
-            'Order Items',
+            AppLocalizations.of(context)!.orderItems,
             style: Theme.of(context).textTheme.headline6,
           ),
           OrderCard(order: order),
