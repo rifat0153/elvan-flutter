@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileScreen extends HookConsumerWidget {
   const ProfileScreen({super.key});
@@ -23,7 +24,9 @@ class ProfileScreen extends HookConsumerWidget {
         authenticated: (user) => Center(
               child: Column(
                 children: [
-                  const ElvanAppBar(title: 'Profile', showBackButton: false),
+                  ElvanAppBar(
+                      title: AppLocalizations.of(context)!.profile,
+                      showBackButton: false),
 
                   //circle avatar with image from user
                   const SizedBox(
@@ -82,26 +85,26 @@ class ProfileScreen extends HookConsumerWidget {
                   ),
                   ProfileRow(
                       icon: Icons.badge,
-                      text: "Your Orders and records",
+                      text: AppLocalizations.of(context)!.yourOrderAndRecords,
                       onTap: () {
                         context.pushRoute(const OrderRouter());
                       }),
                   ProfileRow(
                       icon: Icons.notifications,
-                      text: "Notifications",
+                      text: AppLocalizations.of(context)!.notifications,
                       onTap: () {}),
                   ProfileRow(icon: Icons.phone, text: "Contacts", onTap: () {}),
                   ProfileRow(
                       icon: Icons.info,
-                      text: "Terms and Conditions",
+                      text: AppLocalizations.of(context)!.termsAndConditions,
                       onTap: () {}),
                   ProfileRow(
                       icon: Icons.question_mark_rounded,
-                      text: "FAQs and Support",
+                      text: AppLocalizations.of(context)!.faqAndSupport,
                       onTap: () {}),
                   ProfileRow(
                       icon: Icons.exit_to_app_outlined,
-                      text: "Sign out",
+                      text: AppLocalizations.of(context)!.signOut,
                       onTap: () {
                         ref.read(authNotifierProvider.notifier).onEvent(
                               const AuthEvent.logout(),

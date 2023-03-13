@@ -22,5 +22,18 @@
     "recentOrdersListTitle": "Recent orders",
     "@recentOrdersListTitle": {
       "description": "Recent Orders Section Title"
-    }
+    },
+    "home": "Home",
+    "favorite": "Favorite",
+    "profile": "Profile",
+    "addToCart": "Add to cart",
+    "updateCart": "Update cart",
+    "yourOrderAndRecords": "Your Order and records",
+    "notifications": "Notifications",
+    "contacts": "Contacts",
+    "termsAndConditions": "Terms and Conditions",
+    "faqAndSupport": "FAQ and Support",
+    "signOut": "Sign out",
+    "yourCart": "Your cart",
+    "checkout": "Checkout"
 }

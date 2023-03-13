@@ -3,5 +3,18 @@
     "viewAll": "Visa alla",
     "categoriesListTitle": "Kategorier",
     "topPicksListTitle": "Toppval",
-    "recentOrdersListTitle": "Nylagda beställningar"
+    "recentOrdersListTitle": "Nylagda beställningar",
+    "home": "Hem",
+    "favorite": "Favorit",
+    "profile": "Profil",
+    "addToCart": "Lägg till i kundvagnen",
+    "updateCart": "Uppdatera kundvagnen",
+    "yourOrderAndRecords": "Din beställning och poster",
+    "notifications": "Meddelanden",
+    "contacts": "Kontakter",
+    "termsAndConditions": "Villkor",
+    "faqAndSupport": "FAQ och Stöd",
+    "signOut": "Logga ut",
+    "yourCart": "Din kundvagn",
+    "checkout": "Kassa"
 }
