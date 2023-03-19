@@ -17,6 +17,8 @@ import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../order/domain/usecases/order_use_case.dart';
+
 class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});
 
@@ -63,6 +65,31 @@ class CartScreen extends ConsumerWidget {
                     //check if order is in progress then show dialog
                     final isOrderInProgress =
                         await orderRepository.isOrderInProgress(cart.userId);
+
+                    final isTakingOrder = ref.read(isTakingOrderProvider);
+
+                    if (isTakingOrder.value!) {
+                      //show dialog
+
+                      // ignore: use_build_context_synchronously
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text(AppLocalizations.of(context)!.sorry),
+                              content: Text(
+                                  AppLocalizations.of(context)!.noTakingOrders),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('Ok'))
+                              ],
+                            );
+                          });
+                      return;
+                    }
 
                     if (isOrderInProgress) {
                       //show dialog
