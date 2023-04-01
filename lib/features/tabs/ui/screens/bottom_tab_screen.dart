@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 
@@ -28,16 +28,16 @@ class BottomTabScreen extends StatelessWidget {
         return NavigationBar(
           selectedIndex: tabsRouter.activeIndex,
           onDestinationSelected: tabsRouter.setActiveIndex,
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Icons.home),
-              label: 'Home',
+              icon: const Icon(Icons.home),
+              label: AppLocalizations.of(context)!.home,
             ),
-            NavigationDestination(
+            const NavigationDestination(
               icon: Icon(Icons.favorite),
               label: 'Favorite',
             ),
-            NavigationDestination(
+            const NavigationDestination(
               icon: Icon(Icons.person),
               label: 'Profile',
             ),

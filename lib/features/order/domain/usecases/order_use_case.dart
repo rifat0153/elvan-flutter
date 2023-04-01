@@ -9,6 +9,15 @@ final orderUseCaseProvider = Provider<OrderUseCase>((ref) {
   return OrderUseCase(orderRepository);
 });
 
+final isTakingOrderProvider = StreamProvider<bool>((ref) async* {
+  final useCase = ref.read(orderUseCaseProvider);
+  // final userId = ref.read(currentUserIdProvider);
+
+  final order = useCase.isTakingOrder();
+
+  yield* order;
+});
+
 class OrderUseCase {
   final OrderRepository _orderRepository;
 
@@ -54,5 +63,10 @@ class OrderUseCase {
   //check if order is in progress
   Future<bool> isOrderInProgress(String userId) async {
     return _orderRepository.isOrderInProgress(userId);
+  }
+
+  //get if we are taking order or not
+  Stream<bool> isTakingOrder() {
+    return _orderRepository.isTakingOrder();
   }
 }

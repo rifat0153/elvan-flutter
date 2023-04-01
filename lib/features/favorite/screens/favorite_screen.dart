@@ -4,7 +4,7 @@ import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../food/ui/components/food_list_card.dart';
 
 class FavoriteScreen extends ConsumerWidget {
@@ -16,7 +16,9 @@ class FavoriteScreen extends ConsumerWidget {
 
     return Column(
       children: [
-        const ElvanAppBar(title: 'Favorite', showBackButton: false),
+        ElvanAppBar(
+            title: AppLocalizations.of(context)!.favorite,
+            showBackButton: false),
         Padding(
           padding: const EdgeInsets.all(AppSize.kPadding * 2),
           child: ListView.builder(

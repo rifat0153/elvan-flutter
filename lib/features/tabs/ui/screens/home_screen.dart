@@ -1,9 +1,13 @@
 import 'package:elvan/app/router/navigator_provider.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
+import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
+import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/badge/elvan_icon_badge.dart';
+import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
+import 'package:elvan/shared/constants/app_size.dart';
 import 'package:elvan_shared/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,53 +20,72 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // var snakbar = ref.read(snackbarNotifierProvider.notifier);
+    final isTakingOrder = ref.watch(isTakingOrderProvider);
     return ElvanScaffold(
       appBar: const ElvanAppBar(title: 'Elvan', showBackButton: false),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Consumer(builder: (context, ref, child) {
-          final cartItemCount = ref.watch(cartProvider).cartItems?.length ?? 0;
-
-          return ElvanIconBadge(
-            icon: const Icon(
-              Icons.shopping_cart,
-              color: AppColors.black,
-            ),
-            count: cartItemCount,
-            onPressed: ref.read(navigatorProvider.notifier).pushCartRoute,
-          );
-        }),
-      ),
+      floatingActionButton: Consumer(builder: (context, ref, child) {
+        final cartItemCount = ref.watch(cartProvider).cartItems?.length ?? 0;
+        return cartItemCount == 0
+            ? Container()
+            : FloatingActionButton(
+                onPressed: () {},
+                child: ElvanIconBadge(
+                  icon: const Icon(
+                    Icons.shopping_cart,
+                    color: AppColors.black,
+                  ),
+                  count: cartItemCount,
+                  onPressed: ref.read(navigatorProvider.notifier).pushCartRoute,
+                ),
+              );
+      }),
       imagePath: AppAsset.homeBackgroundPng,
-      child: const CustomScrollView(
+      child: CustomScrollView(
         slivers: [
-          // SliverToBoxAdapter(
-          //   child: ElvanButton(
-          //     onPressed: () {
-          //       snakbar.showSnackbarWithAction(
-          //         'Hello',
-          //         actionLabel: 'Undo',
-          //         onAction: () {
-          //           logInfo('Undo');
-          //         },
-          //       );
-
-          //       snakbar.alartDialog(
-          //           title: "title", content: "content", onOk: () {});
-          //     },
-          //     child: const Text('show snackbar'),
-          //   ),
-          // ),
           SliverToBoxAdapter(
+              child: isTakingOrder.when(
+                  data: (data) {
+                    return data
+                        ? Container()
+                        : Container(
+                            margin: const EdgeInsets.all(AppSize.paddingMD),
+                            padding: const EdgeInsets.all(AppSize.paddingSM),
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryRed,
+                              borderRadius: BorderRadius.circular(10),
+                              //round
+                            ),
+                            child: Column(
+                              children: [
+                                AppText(
+                                  "Sorry!",
+                                  style:
+                                      Theme.of(context).textTheme.headlineLarge,
+                                ),
+                                AppText(
+                                  "We are not taking order right now.\nThank you for being with us.",
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                              ],
+                            ),
+                          );
+                  },
+                  error: (e, s) => AppText(e.toString()),
+                  loading: () => CircularProgressIndicator())),
+          const SliverToBoxAdapter(
             child: CategoryListWidget(),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: RecentOrdersWidget(),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: TopPicksWidget(),
           ),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: AppSize.kPadding * 10,
+            ),
+          )
         ],
       ),
     );

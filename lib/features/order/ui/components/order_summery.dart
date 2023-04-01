@@ -1,6 +1,7 @@
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan_shared/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderSummery extends StatelessWidget {
   const OrderSummery({
@@ -24,7 +25,7 @@ class OrderSummery extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const AppText("Estimated Time"),
+                  AppText(AppLocalizations.of(context)!.estimatedTime),
                   AppText(
                     "${estimatedTime.toInt()} Min",
                     style: Theme.of(context).textTheme.headlineSmall,
@@ -34,7 +35,9 @@ class OrderSummery extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const AppText("Your Order ID"),
+                  AppText(
+                    AppLocalizations.of(context)!.yourOrderID,
+                  ),
                   AppText(
                     "#$orderID",
                     style: Theme.of(context).textTheme.headlineSmall,

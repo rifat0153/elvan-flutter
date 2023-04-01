@@ -17,4 +17,7 @@ abstract class OrderRepository {
 
   //check if order is in progress
   Future<bool> isOrderInProgress(String userId);
+
+  //get if we are taking order or not
+  Stream<bool> isTakingOrder();
 }
