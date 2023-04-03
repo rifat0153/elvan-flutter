@@ -67,7 +67,7 @@ class CartScreen extends ConsumerWidget {
                         await orderRepository.isOrderInProgress(cart.userId);
 
                     final isTakingOrder = ref.read(isTakingOrderProvider);
-
+                    print("------------value ${isTakingOrder.value}");
                     if (isTakingOrder.value!) {
                       //show dialog
 
