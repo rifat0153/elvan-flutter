@@ -1,8 +1,8 @@
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:flutter/material.dart';
 
-class ElvanScaffold extends StatelessWidget {
-  const ElvanScaffold({
+class ElvanSafeRemoveScaffold extends StatelessWidget {
+  const ElvanSafeRemoveScaffold({
     super.key,
     required this.imagePath,
     required this.child,
@@ -19,16 +19,15 @@ class ElvanScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: floatingActionButton,
-            extendBodyBehindAppBar: true,
-
+      extendBodyBehindAppBar: true,
+      extendBody: true,
       appBar: appBar,
-      body: SafeArea(
-        child: ScreenBackground(
-          imagePath: imagePath,
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: child,
-        ),
+      resizeToAvoidBottomInset: false,
+      body: ScreenBackground(
+        imagePath: imagePath,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: child,
       ),
     );
   }

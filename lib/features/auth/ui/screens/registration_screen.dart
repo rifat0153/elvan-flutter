@@ -29,126 +29,114 @@ class RegistrationScreen extends HookConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const ElvanAppBar(title: "Registration"),
-          authState.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
-            unKnown: () => const Center(child: Text('Unknown')),
-            unAuthenticated: () => Padding(
-              padding: const EdgeInsets.all(AppSize.paddingLG),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //asset image
-                  Image.asset(
-                    AppAsset.redLogo,
-                    width: 200,
-                    height: 200,
-                  ),
-                  TextField(
-                    controller: usernameTextController,
-                    decoration: const InputDecoration(
-                      // icon: Icon(Icons.email),
-                      prefixIcon: Icon(Icons.person, color: AppColors.grey),
-                      hintText: 'Username',
-                      //rounded white border
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5.0),
-                        ),
-                      ),
-                      //filled white background
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.kPadding * 2),
-                  TextField(
-                    controller: emailTextController,
-                    decoration: const InputDecoration(
-                      // icon: Icon(Icons.email),
-                      prefixIcon: Icon(Icons.email, color: AppColors.grey),
-                      hintText: 'Email',
-                      //rounded white border
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5.0),
-                        ),
-                      ),
-                      //filled white background
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.kPadding * 2),
-                  TextField(
-                    controller: phoneTextController,
-                    decoration: const InputDecoration(
-                      // icon: Icon(Icons.email),
-                      prefixIcon: Icon(Icons.phone, color: AppColors.grey),
-                      hintText: 'Phone',
-                      //rounded white border
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5.0),
-                        ),
-                      ),
-                      //filled white background
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.kPadding * 2),
-                  TextField(
-                    controller: passwordTextController,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.lock, color: AppColors.grey),
-                      hintText: 'Password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5.0),
-                        ),
-                      ),
-                      //filled white background
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.kPadding * 2),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: Size(1.sw, 34),
-                      backgroundColor: AppColors.primaryRed,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppSize.radiusLG),
+         Padding(
+            padding: const EdgeInsets.all(AppSize.paddingLG),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                //asset image
+                Image.asset(
+                  AppAsset.redLogo,
+                  width: 200,
+                  height: 200,
+                ),
+                TextField(
+                  controller: usernameTextController,
+                  decoration: const InputDecoration(
+                    // icon: Icon(Icons.email),
+                    prefixIcon: Icon(Icons.person, color: AppColors.grey),
+                    hintText: 'Username',
+                    //rounded white border
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5.0),
                       ),
                     ),
-                    onPressed: () async {
-                      authNotifier.onEvent(
-                        AuthEvent.registerWithEmailAndPassword(
-                          email: emailTextController.text,
-                          password: passwordTextController.text,
-                        ),
-                      );
-                    },
-                    child: const AppText('Sign Up'),
+                    //filled white background
+                    filled: true,
+                    fillColor: Colors.white,
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: AppSize.kPadding * 2),
+                TextField(
+                  controller: emailTextController,
+                  decoration: const InputDecoration(
+                    // icon: Icon(Icons.email),
+                    prefixIcon: Icon(Icons.email, color: AppColors.grey),
+                    hintText: 'Email',
+                    //rounded white border
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5.0),
+                      ),
+                    ),
+                    //filled white background
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: AppSize.kPadding * 2),
+                TextField(
+                  controller: phoneTextController,
+                  decoration: const InputDecoration(
+                    // icon: Icon(Icons.email),
+                    prefixIcon: Icon(Icons.phone, color: AppColors.grey),
+                    hintText: 'Phone',
+                    //rounded white border
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5.0),
+                      ),
+                    ),
+                    //filled white background
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: AppSize.kPadding * 2),
+                TextField(
+                  controller: passwordTextController,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.lock, color: AppColors.grey),
+                    hintText: 'Password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5.0),
+                      ),
+                    ),
+                    //filled white background
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: AppSize.kPadding * 2),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(1.sw, 34),
+                    backgroundColor: AppColors.primaryRed,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSize.radiusLG),
+                    ),
+                  ),
+                  onPressed: () async {
+                    authNotifier.onEvent(
+                      AuthEvent.registerWithEmailAndPassword(
+                        email: emailTextController.text,
+                        password: passwordTextController.text,
+                      ),
+                    );
+                  },
+                  child:  authState.loading
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child:
+                              CircularProgressIndicator(color: AppColors.white),
+                        )
+                      : const AppText('Sign Up'),
+                ),
+              ],
             ),
-            authenticated: (elvanUser) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Authenticated: ${elvanUser.email}'),
-                  ElevatedButton(
-                    onPressed: () {
-                      authNotifier.onEvent(const AuthEvent.logout());
-                    },
-                    child: const Text('Logout'),
-                  ),
-                ],
-              ),
-            ),
-            error: (message) => Center(child: Text('Error: $message')),
           ),
         ],
       ),

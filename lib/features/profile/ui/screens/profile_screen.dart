@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
+import 'package:elvan/features/profile/ui/notifier/profile_notifier.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
@@ -15,11 +16,13 @@ class ProfileScreen extends HookConsumerWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.watch(authNotifierProvider);
+    final auth = ref.watch(profileNotifierProvider);
     final _ = ref.watch(currentUserProvider);
 
     return auth.when(
-        loading: () => const CircularProgressIndicator(),
+        loading: () => const Center(
+            child: SizedBox(
+                height: 40, width: 40, child: CircularProgressIndicator())),
         unKnown: () => const Center(child: Text('Unknown')),
         authenticated: (user) => Center(
               child: Column(

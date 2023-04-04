@@ -1,5 +1,6 @@
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
+import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
@@ -24,69 +25,58 @@ class ForgetScreen extends HookConsumerWidget {
 
     final emailTextController = useTextEditingController();
 
-    return ElvanScaffold(
+    return ElvanSafeRemoveScaffold(
       imagePath: AppAsset.homeBackgroundPng,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const ElvanAppBar(title: "Password rest"),
-          authState.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
-            unKnown: () => const Center(child: Text('Unknown')),
-            unAuthenticated: () => Padding(
-              padding: const EdgeInsets.all(AppSize.paddingLG),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextField(
-                    controller: emailTextController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your email',
-                      //rounded white border
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5.0),
-                        ),
-                      ),
-                      //filled white background
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.kPadding * 2),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: Size(1.sw, 34),
-                      backgroundColor: AppColors.primaryRed,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppSize.radiusLG),
+          Padding(
+            padding: const EdgeInsets.all(AppSize.paddingLG),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  controller: emailTextController,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter your email',
+                    //rounded white border
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5.0),
                       ),
                     ),
-                    onPressed: () async {
-                      authNotifier.onEvent(AuthEvent.resetPassword(
-                        email: emailTextController.text,
-                      ));
-                    },
-                    child: const AppText('Get Code'),
+                    contentPadding: EdgeInsets.all(15),
+                    //filled white background
+                    filled: true,
+                    fillColor: Colors.white,
                   ),
-                ],
-              ),
-            ),
-            authenticated: (elvanUser) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Authenticated: ${elvanUser.email}'),
-                  ElevatedButton(
-                    onPressed: () {
-                      authNotifier.onEvent(const AuthEvent.logout());
-                    },
-                    child: const Text('Logout'),
+                ),
+                const SizedBox(height: AppSize.kPadding * 2),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(1.sw, 34),
+                    backgroundColor: AppColors.primaryRed,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSize.radiusLG),
+                    ),
                   ),
-                ],
-              ),
+                  onPressed: () async {
+                    authNotifier.onEvent(AuthEvent.resetPassword(
+                      email: emailTextController.text,
+                    ));
+                  },
+                  child: authState.loading
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child:
+                              CircularProgressIndicator(color: AppColors.white),
+                        )
+                      : const AppText('Get Code'),
+                ),
+              ],
             ),
-            error: (message) => Center(child: Text('Error: $message')),
           ),
         ],
       ),

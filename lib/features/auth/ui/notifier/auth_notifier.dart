@@ -19,10 +19,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
   late final AuthUseCases authUseCase;
   late final StreamSubscription<User?> authStateChangesSubscription;
 
-  bool get isAuthenticated => state.maybeWhen(
-        authenticated: (elvanUser) => true,
-        orElse: () => false,
-      );
+  bool get isAuthenticated => state.elvanUser != null ? true : false;
 
   @override
   build() {
@@ -39,7 +36,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
     });
 
     // return the initial state of the notifier
-    return const AuthScreenState.unAuthenticated();
+    return const AuthScreenState();
   }
 
   void handleUserStream(User? user) {
@@ -54,15 +51,27 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       // loginWithPasswordAndEmail: login,
       loginWithPasswordAndEmail: loginAndGetUserData,
       logout: () {
-        state = const AuthScreenState.loading();
+        state = state.copyWith(elvanUser: state.elvanUser, loading: true);
         authUseCase.signOutUseCase();
-        state = const AuthScreenState.unAuthenticated();
+        state = state.copyWith(elvanUser: null, loading: false);
       },
-      registerWithEmailAndPassword: (email, password) {
-        state = const AuthScreenState.loading();
+      registerWithEmailAndPassword: (email, password) async {
+        state = state.copyWith(elvanUser: state.elvanUser, loading: true);
         final result =
-            authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
+            await authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
                 email: email, password: password, name: '', surname: '');
+
+        result.when(
+          success: (data) {
+            state = state.copyWith(elvanUser: null, loading: false);
+          },
+          failure: (failure) {
+            state = state.copyWith(elvanUser: state.elvanUser, loading: false);
+            ref
+                .read(snackbarNotifierProvider.notifier)
+                .showSnackbarWithMessage(failure.message ?? '');
+          },
+        );
       },
       resetPassword: (email) async {
         // state = const AuthScreenState.loading();
@@ -81,26 +90,30 @@ class AuthNotifier extends Notifier<AuthScreenState> {
         } catch (e) {}
       },
       goToRegisterScreen: () {
-        state = const AuthScreenState.loading();
+        state = state.copyWith(elvanUser: state.elvanUser, loading: true);
       },
     );
   }
 
   Future getElvanUserData(String userID) async {
+    state = state.copyWith(elvanUser: state.elvanUser, loading: true);
     final result = await authUseCase.getUserUseCase(userId: userID);
 
     result.when(
       success: (elvanUser) {
-        state = AuthScreenState.authenticated(elvanUser);
+        state = state.copyWith(elvanUser: elvanUser, loading: false);
       },
       failure: (failure) {
-        state = const AuthScreenState.unAuthenticated();
+        state = state.copyWith(elvanUser: state.elvanUser, loading: false);
+        ref
+            .read(snackbarNotifierProvider.notifier)
+            .showSnackbarWithMessage(failure.message ?? '');
       },
     );
   }
 
   Future loginAndGetUserData(String email, String password) async {
-    state = const AuthScreenState.loading();
+    state = state.copyWith(elvanUser: null, loading: true);
 
     final result =
         await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
@@ -110,25 +123,34 @@ class AuthNotifier extends Notifier<AuthScreenState> {
 
     result.when(
       success: (elvanUser) {
-        state = AuthScreenState.authenticated(elvanUser);
+        state = state.copyWith(elvanUser: elvanUser, loading: false);
       },
       failure: (message) {
-        state = AuthScreenState.error(message.toString());
+        // state = AuthScreenState.error(message.toString());
+        state = state.copyWith(elvanUser: null, loading: false);
+        ref
+            .read(snackbarNotifierProvider.notifier)
+            .showSnackbarWithMessage(message.message ?? '');
       },
     );
   }
 
   //set user data
   Future<void> setElvanUserData(String userID, String email) async {
+            state = state.copyWith(elvanUser: state.elvanUser, loading: true);
+
     final result = await authUseCase.setUserUseCase(
         userId: "userId", elvanUser: ElvanUser(email: email));
 
     result.when(
       success: (elvanUser) {
-        state = AuthScreenState.authenticated(elvanUser);
+        state = state.copyWith(elvanUser: elvanUser, loading: false);
       },
       failure: (failure) {
-        state = const AuthScreenState.unAuthenticated();
+        state = state.copyWith(elvanUser: state.elvanUser, loading: false);
+        ref
+            .read(snackbarNotifierProvider.notifier)
+            .showSnackbarWithMessage(failure.message ?? '');
       },
     );
   }

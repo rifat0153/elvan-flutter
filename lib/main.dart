@@ -19,10 +19,7 @@ void main() async {
   runApp(
     const ProviderScope(
       observers: [StateLogger()],
-      child: MaterialApp(
-        navigatorObservers: [],
-        home: MyApp(),
-      ),
+      child: MyApp(),
     ),
   );
 }
