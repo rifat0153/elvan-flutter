@@ -48,6 +48,15 @@
     "verify":"Kontrollera",
     "changePassword":"Ändra lösenord",
     "username":"Användarnamn",
-    "signup":"Bli Medlem"
+    "signup":"Bli Medlem",
+    "passwordReset":"Lösenordsåterställning",
+    "phone":"Telefon",
+    "required":"Nödvändig",
+    "optional":"Frivillig",
+    "emailSent":"Email skickat",
+    "resetPasswordMsg":"Återställ lösenord E-post har skickats till din e-postadress",
+    "cancel":"Annullera",
+    "yes":"Ja"
+
     
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_event.freezed.dart';
@@ -18,6 +19,7 @@ class AuthEvent with _$AuthEvent {
 
   const factory AuthEvent.resetPassword({
     required String email,
+    required BuildContext context,
   }) = _AuthEvent_ResetPassword;
 
   const factory AuthEvent.goToRegisterScreen() = _AuthEvent_GoToRegisterScreen;

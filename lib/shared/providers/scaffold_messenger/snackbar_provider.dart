@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/shared/providers/scaffold_messenger/scaffold_messenger_key_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final snackbarNotifierProvider = NotifierProvider<SnackbarNotifier, void>(
   SnackbarNotifier.new,
@@ -58,10 +59,11 @@ class SnackbarNotifier extends Notifier<void> {
     required String content,
     required VoidCallback onOk,
     VoidCallback? onCancel,
+    required BuildContext context
   }) async {
     return showDialog(
-      context: scaffoldMessengerKey.currentContext!,
-      builder: (context) => AlertDialog(
+      context: context,
+      builder: (_) => AlertDialog(
         //reounded corners
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -75,11 +77,11 @@ class SnackbarNotifier extends Notifier<void> {
               primary: AppColors.primaryRed,
             ),
             onPressed: onCancel ?? () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child:  Text(AppLocalizations.of(context)?.cancel ??'Cancel'),
           ),
           TextButton(
             onPressed: onOk,
-            child: const Text('Yes'),
+            child:  Text(AppLocalizations.of(context)?.yes ?? 'Yes'),
           ),
         ],
       ),

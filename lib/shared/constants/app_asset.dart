@@ -17,4 +17,6 @@ class AppAsset {
   static const String redLogo = 'assets/images/red-logo.png';
 
   static const String emptyCart = 'assets/images/empty_cart.png';
+
+  static const String logoSvg = 'assets/svgs/logo.svg';
 }

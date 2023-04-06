@@ -22,7 +22,7 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isTakingOrder = ref.watch(isTakingOrderProvider);
     return ElvanScaffold(
-      appBar: const ElvanAppBar(title: 'Elvan', showBackButton: false),
+      //appBar: const ElvanAppBar(title: 'Elvan', showBackButton: false),
       floatingActionButton: Consumer(builder: (context, ref, child) {
         final cartItemCount = ref.watch(cartProvider).cartItems?.length ?? 0;
         return cartItemCount == 0

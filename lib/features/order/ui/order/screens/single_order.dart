@@ -69,6 +69,7 @@ class SingleOrderScreen extends HookConsumerWidget {
                   ),
                   onPressed: () async {
                     snakbar.alartDialog(
+                      context: context,
                       title: AppLocalizations.of(context)!.cancleOrder,
                       content: AppLocalizations.of(context)!.cancleOrderMessage,
                       onOk: () async {

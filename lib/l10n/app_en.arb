@@ -67,6 +67,14 @@
     "verify":"Verify",
     "changePassword":"Change Password",
     "username":"Username",
-    "signup":"Sign Up"
+    "signup":"Sign Up",
+    "passwordReset":"Password reset",
+    "phone":"Phone",
+    "required":"Required",
+    "optional":"Optional",
+    "emailSent":"Email Sent",
+    "resetPasswordMsg":"Reset Password Email has been sent to your email address",
+    "cancel":"Cancel",
+    "yes":"Yes"
 
 }

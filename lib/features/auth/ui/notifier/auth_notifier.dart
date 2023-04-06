@@ -8,6 +8,7 @@ import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/features/auth/ui/state/auth_screen_state.dart';
 import 'package:elvan/shared/providers/scaffold_messenger/snackbar_provider.dart';
 import 'package:elvan_shared/domain_models/index.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final authNotifierProvider = NotifierProvider<AuthNotifier, AuthScreenState>(
   AuthNotifier.new,
@@ -63,7 +64,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
 
         result.when(
           success: (data) {
-            state = state.copyWith(elvanUser: null, loading: false);
+            state = state.copyWith(elvanUser: data, loading: false);
           },
           failure: (failure) {
             state = state.copyWith(elvanUser: state.elvanUser, loading: false);
@@ -73,18 +74,22 @@ class AuthNotifier extends Notifier<AuthScreenState> {
           },
         );
       },
-      resetPassword: (email) async {
+      resetPassword: (email,context) async {
         // state = const AuthScreenState.loading();
 
         try {
           final result = await authUseCase.resetPasswordUseCase(email: email);
           var snakbar = ref.read(snackbarNotifierProvider.notifier);
+          // ignore: use_build_context_synchronously
           snakbar.alartDialog(
-            title: 'Email Sent',
-            content: 'Reset Password Email has been sent to your email address',
+            // ignore: use_build_context_synchronously
+            title: AppLocalizations.of(context)?.emailSent ??'Email Sent',
+            // ignore: use_build_context_synchronously
+            content: AppLocalizations.of(context)?.resetPasswordMsg ?? 'Reset Password Email has been sent to your email address',
             onOk: () {
               snakbar.closeAlartDialog();
             },
+            context: context
           );
           //show toast
         } catch (e) {}

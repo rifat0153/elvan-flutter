@@ -1,21 +1,35 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
+import 'package:elvan/shared/components/appbar/elvan_appbar_svg.dart';
+import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class BottomTabScreen extends StatelessWidget {
+class BottomTabScreen extends HookConsumerWidget {
   const BottomTabScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(context) {
+  Widget build(context, ref) {
+   // ref.read(statusBarColorProvider(AppColors.primaryRed));
     return AutoTabsScaffold(
       builder: (context, child, animation) {
         return SafeArea(
-          child: ScreenBackground(
-            imagePath: AppAsset.homeBackgroundPng,
-            child: child,
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: kToolbarHeight),
+                child: ScreenBackground(
+                  imagePath: AppAsset.homeBackgroundPng,
+                  child: child,
+                ),
+              ),
+              const Positioned(child: ElvanAppBarSvg())
+            ],
           ),
         );
       },

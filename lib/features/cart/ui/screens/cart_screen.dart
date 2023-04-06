@@ -7,6 +7,7 @@ import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/shared/components/buttons/elvan_button.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class CartScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    //ref.watch(statusBarColorProvider(AppColors.primaryRed));
     final cartState = ref.watch(cartProvider);
     final orderRepository = ref.watch(orderRepositoryProvider);
 
@@ -97,7 +99,7 @@ class CartScreen extends ConsumerWidget {
                       // ignore: use_build_context_synchronously
                       showDialog(
                           context: context,
-                          builder: (context) {
+                          builder: (_) {
                             return AlertDialog(
                               title: Text(
                                   AppLocalizations.of(context)!.orderInProcess),

@@ -11,6 +11,7 @@ import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BuildStepCustomization extends HookConsumerWidget {
   const BuildStepCustomization({
@@ -177,8 +178,8 @@ class BuildStepCustomization extends HookConsumerWidget {
           Expanded(
             child: AppText(
               addOn.title,
-              style: Theme.of(context).textTheme.titleMedium,
-              color: AppColors.grey,
+              style: Theme.of(context).textTheme.titleSmall,
+              color: AppColors.white,
             ),
           ),
           _itemPrice(addOn, context)
@@ -197,7 +198,7 @@ class BuildStepCustomization extends HookConsumerWidget {
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
           // decoration: !addOn.includeInPrice && addOn.isSelected ? TextDecoration.lineThrough : TextDecoration.none,
           ),
-      color: AppColors.grey,
+      color: AppColors.white,
     );
   }
 
@@ -219,13 +220,24 @@ class BuildStepCustomization extends HookConsumerWidget {
               Expanded(
                 child: AppText(
                   buildStep.title.toUpperCase(),
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: isSaladBar
+                      ? Theme.of(context).textTheme.titleSmall
+                      : Theme.of(context).textTheme.titleMedium,
                   maxLines: 2,
                   color: AppColors.white,
                 ),
               ),
-              AppText(
-                buildStep.isRequired ? 'Required' : 'Optional',
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: AppColors.white.withOpacity(0.3)
+                ),
+                child: AppText(
+                    buildStep.isRequired
+                        ? AppLocalizations.of(context)?.required ?? 'Required'
+                        : AppLocalizations.of(context)?.optional ?? 'Optional',
+                    style: Theme.of(context).textTheme.labelMedium),
               )
             ],
           ),

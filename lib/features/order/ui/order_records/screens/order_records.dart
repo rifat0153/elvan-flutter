@@ -83,6 +83,7 @@ class OrderCard extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
@@ -97,7 +98,7 @@ class OrderCard extends StatelessWidget {
               width: AppSize.paddingMD,
             ),
             Flexible(
-              flex: 3,
+              flex: 2,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -105,8 +106,8 @@ class OrderCard extends StatelessWidget {
                     AppText(
                       '${item.foodItem.title} x${item.quantity}',
                       style: item == order.items.first
-                          ? Theme.of(context).textTheme.headline4
-                          : Theme.of(context).textTheme.bodyText1,
+                          ? Theme.of(context).textTheme.titleMedium
+                          : Theme.of(context).textTheme.bodyMedium,
                       maxLines: 3,
                     ),
                 ],
@@ -115,7 +116,7 @@ class OrderCard extends StatelessWidget {
             const Spacer(),
             AppText(
               "\$${order.total}",
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             const SizedBox(
               width: AppSize.paddingMD,

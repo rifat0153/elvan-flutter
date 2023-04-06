@@ -48,7 +48,7 @@ class FoodListCard extends HookConsumerWidget {
       },
       padding: const EdgeInsets.all(0),
       child: SizedBox(
-        height: tileHeight,
+        height: tileHeight + 6,
         child: Row(
           children: [
             // Food Image
@@ -89,12 +89,14 @@ class FoodListCard extends HookConsumerWidget {
                 children: [
                   AppText(
                     foodItem.title,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
                     height: AppSize.paddingXS,
                   ),
-                  AppText(foodItem.ingredients.join(', ')),
+                  AppText(foodItem.ingredients.join(', '),
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
                   const SizedBox(
                     height: AppSize.paddingXS,
                   ),

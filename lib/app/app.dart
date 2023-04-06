@@ -1,5 +1,7 @@
+import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/providers/scaffold_messenger/scaffold_messenger_key_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,9 +60,12 @@ class MyApp extends HookConsumerWidget {
     return ScreenUtilInit(
       designSize: const Size(400, 1000),
       splitScreenMode: true,
+
       builder: (context, child) {
         return MaterialApp.router(
+          
           scaffoldMessengerKey: scaffoldMessengerKey,
+          
           debugShowCheckedModeBanner: false,
           title: 'Elvan',
           routerDelegate: appRouter.delegate(),
@@ -76,10 +81,20 @@ class MyApp extends HookConsumerWidget {
             Locale('sv', ''), // Swedish, no country code
           ],
           locale: const Locale('sv', ''),
+          
           theme: ThemeData(
             primarySwatch: Colors.pink,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
             useMaterial3: true,
+            appBarTheme: const AppBarTheme(
+               systemOverlayStyle: SystemUiOverlayStyle(
+                  //<-- SEE HERE
+                  // Status bar color
+                  statusBarColor: AppColors.primaryRed,
+                  statusBarIconBrightness: Brightness.dark,
+                  statusBarBrightness: Brightness.light,
+                ),
+            )
           ),
         );
       },

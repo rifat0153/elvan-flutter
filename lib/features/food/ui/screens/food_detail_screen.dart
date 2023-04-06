@@ -1,5 +1,8 @@
+import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.dart';
+import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
@@ -16,12 +19,18 @@ import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class FooDDetailScreen extends HookConsumerWidget {
   const FooDDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: AppColors.grey_70,
+        //or set color with: Color(0x57646475)
+        statusBarIconBrightness: Brightness.dark));
+
     final foodItemState = ref.watch(selectedFoodItemNotifierProvider);
 
     return ElvanScaffold(
@@ -42,25 +51,25 @@ class FooDDetailScreen extends HookConsumerWidget {
                       child: FoodDetailImageWithAppbar(foodItem: foodItem),
                     ),
                     _foodDescription(foodItem, context),
-                    SliverToBoxAdapter(
-                      child: AppText(
-                        ref
-                            .watch(
-                              isBuildStepsValidProvider,
-                            )
-                            .toString(),
-                      ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: AppText(
-                        ref
-                            .watch(
-                              currentBuildStepsPriceProvider,
-                            )
-                            .toString(),
-                      ),
-                    ),
-                    _buildStepsCustomization(),
+                    // SliverToBoxAdapter(
+                    //   child: AppText(
+                    //     ref
+                    //         .watch(
+                    //           isBuildStepsValidProvider,
+                    //         )
+                    //         .toString(),
+                    //   ),
+                    // ),
+                    // SliverToBoxAdapter(
+                    //   child: AppText(
+                    //     ref
+                    //         .watch(
+                    //           currentBuildStepsPriceProvider,
+                    //         )
+                    //         .toString(),
+                    //   ),
+                    // ),
+                    _buildStepsCustomization(foodItem),
                     const SliverToBoxAdapter(
                       child: SizedBox(height: AppSize.padding4XL),
                     )
@@ -122,7 +131,7 @@ class FooDDetailScreen extends HookConsumerWidget {
     );
   }
 
-  Consumer _buildStepsCustomization() {
+  Consumer _buildStepsCustomization(FoodItem foodItem) {
     return Consumer(
       builder: (context, ref, child) {
         final buildStepsAsync = ref.watch(buildStepsNotifierProvider);
@@ -135,7 +144,7 @@ class FooDDetailScreen extends HookConsumerWidget {
                 (context, index) {
                   return BuildStepCustomization(
                     buildStep: buildSteps[index],
-                    isSaladBar: false,
+                    isSaladBar: foodItem.categoryId == "category-2",
                   );
                 },
               ),

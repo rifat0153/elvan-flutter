@@ -1,4 +1,6 @@
+import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/app/router/navigator_provider.dart';
@@ -27,7 +29,11 @@ class FoodListAppBar extends HookConsumerWidget with PreferredSizeWidget {
           color: AppColors.white,
         ),
       ),
-      title: const AppText('Elvan'),
+      title: SvgPicture.asset(
+        AppAsset.logoSvg,
+        height: 28,
+        width: 103,
+      ),
       actions: [
         Consumer(builder: (context, ref, child) {
           final cartItemCount = ref.watch(cartProvider).cartItems?.length ?? 0;
