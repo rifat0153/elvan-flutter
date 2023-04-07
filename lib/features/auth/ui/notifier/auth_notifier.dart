@@ -54,18 +54,30 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       // loginWithPasswordAndEmail: login,
       loginWithPasswordAndEmail: loginAndGetUserData,
       logout: () {
-        state = state.copyWith(elvanUser: state.elvanUser, loading: true);
+        state = state.copyWith(
+          elvanUser: state.elvanUser,
+          loading: true,
+        );
         authUseCase.signOutUseCase();
-        state = state.copyWith(elvanUser: null, loading: false);
+        state = state.copyWith(
+          elvanUser: null,
+          loading: false,
+        );
       },
       registerWithEmailAndPassword: _registration,
       resetPassword: (email, context) async {
         // state = const AuthScreenState.loading();
-        state = state.copyWith(elvanUser: state.elvanUser, loading: true);
+        state = state.copyWith(
+          elvanUser: state.elvanUser,
+          loading: true,
+        );
 
         try {
           final result = await authUseCase.resetPasswordUseCase(email: email);
-          state = state.copyWith(elvanUser: state.elvanUser, loading: false);
+          state = state.copyWith(
+            elvanUser: state.elvanUser,
+            loading: false,
+          );
 
           var snakbar = ref.read(snackbarNotifierProvider.notifier);
           // ignore: use_build_context_synchronously
@@ -84,21 +96,33 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       },
 
       goToRegisterScreen: () {
-        state = state.copyWith(elvanUser: state.elvanUser, loading: true);
+        state = state.copyWith(
+          elvanUser: state.elvanUser,
+          loading: true,
+        );
       },
     );
   }
 
   Future getElvanUserData(String userID) async {
-    state = state.copyWith(elvanUser: state.elvanUser, loading: true);
+    state = state.copyWith(
+      elvanUser: state.elvanUser,
+      loading: true,
+    );
     final result = await authUseCase.getUserUseCase(userId: userID);
 
     result.when(
       success: (elvanUser) {
-        state = state.copyWith(elvanUser: elvanUser, loading: false);
+        state = state.copyWith(
+          elvanUser: elvanUser,
+          loading: false,
+        );
       },
       failure: (failure) {
-        state = state.copyWith(elvanUser: state.elvanUser, loading: false);
+        state = state.copyWith(
+          elvanUser: state.elvanUser,
+          loading: false,
+        );
         ref
             .read(snackbarNotifierProvider.notifier)
             .showSnackbarWithMessage(failure.message ?? '');
@@ -117,11 +141,17 @@ class AuthNotifier extends Notifier<AuthScreenState> {
 
     result.when(
       success: (elvanUser) {
-        state = state.copyWith(elvanUser: elvanUser, loading: false);
+        state = state.copyWith(
+          elvanUser: elvanUser,
+          loading: false,
+        );
       },
       failure: (message) {
         // state = AuthScreenState.error(message.toString());
-        state = state.copyWith(elvanUser: null, loading: false);
+        state = state.copyWith(
+          elvanUser: null,
+          loading: false,
+        );
         ref
             .read(snackbarNotifierProvider.notifier)
             .showSnackbarWithMessage(message.message ?? '');
@@ -131,17 +161,30 @@ class AuthNotifier extends Notifier<AuthScreenState> {
 
   //set user data
   Future<void> setElvanUserData(String userID, String email) async {
-    state = state.copyWith(elvanUser: state.elvanUser, loading: true);
+    state = state.copyWith(
+      elvanUser: state.elvanUser,
+      loading: true,
+    );
 
     final result = await authUseCase.setUserUseCase(
-        userId: "userId", elvanUser: ElvanUser(email: email));
+      userId: "userId",
+      elvanUser: ElvanUser(
+        email: email,
+      ),
+    );
 
     result.when(
       success: (elvanUser) {
-        state = state.copyWith(elvanUser: elvanUser, loading: false);
+        state = state.copyWith(
+          elvanUser: elvanUser,
+          loading: false,
+        );
       },
       failure: (failure) {
-        state = state.copyWith(elvanUser: state.elvanUser, loading: false);
+        state = state.copyWith(
+          elvanUser: state.elvanUser,
+          loading: false,
+        );
         ref
             .read(snackbarNotifierProvider.notifier)
             .showSnackbarWithMessage(failure.message ?? '');
@@ -149,24 +192,48 @@ class AuthNotifier extends Notifier<AuthScreenState> {
     );
   }
 
-  Future? _registration(BuildContext context, String email, String username,
-      String phone, String password) async {
-    state = state.copyWith(elvanUser: state.elvanUser, loading: true);
-    
-    if (!_validation(context, email, username, phone, password)) {
+  Future? _registration(
+    BuildContext context,
+    String email,
+    String username,
+    String phone,
+    String password,
+  ) async {
+    state = state.copyWith(
+      elvanUser: state.elvanUser,
+      loading: true,
+    );
+
+    if (!_validation(
+      context,
+      email,
+      username,
+      phone,
+      password,
+    )) {
       return;
     }
 
     final result =
         await authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
-            email: email, password: password, phone: phone, username: username);
+      email: email,
+      password: password,
+      phone: phone,
+      username: username,
+    );
 
     result.when(
       success: (data) {
-        state = state.copyWith(elvanUser: data, loading: false);
+        state = state.copyWith(
+          elvanUser: data,
+          loading: false,
+        );
       },
       failure: (failure) {
-        state = state.copyWith(elvanUser: state.elvanUser, loading: false);
+        state = state.copyWith(
+          elvanUser: state.elvanUser,
+          loading: false,
+        );
         ref
             .read(snackbarNotifierProvider.notifier)
             .showSnackbarWithMessage(failure.message ?? '');
@@ -174,28 +241,56 @@ class AuthNotifier extends Notifier<AuthScreenState> {
     );
   }
 
-  bool _validation(BuildContext context, String email, String username,
-      String phone, String password) {
+  bool _validation(
+    BuildContext context,
+    String email,
+    String username,
+    String phone,
+    String password,
+  ) {
     final emailRegExp = RegExp(AppValidation.emailpattern);
 
     if (username.isEmpty) {
-      state = state.copyWith(elvanUser: state.elvanUser, loading: false);
+      state = state.copyWith(
+        elvanUser: state.elvanUser,
+        loading: false,
+      );
       ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
           AppLocalizations.of(context)?.usernameEmpty ?? '');
       return false;
     } else if (email.isEmpty) {
+      state = state.copyWith(
+        elvanUser: state.elvanUser,
+        loading: false,
+      );
+
       ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
           AppLocalizations.of(context)?.emailEmpty ?? '');
       return false;
     } else if (!emailRegExp.hasMatch(email)) {
+      state = state.copyWith(
+        elvanUser: state.elvanUser,
+        loading: false,
+      );
+
       ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
           AppLocalizations.of(context)?.emailEmpty ?? '');
       return false;
     } else if (phone.isEmpty) {
+      state = state.copyWith(
+        elvanUser: state.elvanUser,
+        loading: false,
+      );
+
       ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
           AppLocalizations.of(context)?.phoneEmpty ?? '');
       return false;
     } else if (password.isEmpty) {
+      state = state.copyWith(
+        elvanUser: state.elvanUser,
+        loading: false,
+      );
+
       ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
           AppLocalizations.of(context)?.passwordEmpty ?? '');
       return false;

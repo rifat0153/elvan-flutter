@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/profile/ui/notifier/profile_notifier.dart';
-import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
