@@ -56,7 +56,12 @@
     "emailSent":"Email skickat",
     "resetPasswordMsg":"Återställ lösenord E-post har skickats till din e-postadress",
     "cancel":"Annullera",
-    "yes":"Ja"
+    "yes":"Ja",
+    "usernameEmpty":"Skriv in ditt användarnamn",
+    "emailEmpty":"Skriv in e-mail",
+    "emailInvalid":"Ogiltig e-postadress",
+    "phoneEmpty":"Ange din telefon",
+    "passwordEmpty":"Skriv in lösenord"
 
     
 }

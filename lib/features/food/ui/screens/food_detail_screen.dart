@@ -19,17 +19,14 @@ import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 class FooDDetailScreen extends HookConsumerWidget {
   const FooDDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: AppColors.grey_70,
-        //or set color with: Color(0x57646475)
-        statusBarIconBrightness: Brightness.dark));
+  
+    ref.read(statusBarColorProvider(AppColors.grey_70));
 
     final foodItemState = ref.watch(selectedFoodItemNotifierProvider);
 

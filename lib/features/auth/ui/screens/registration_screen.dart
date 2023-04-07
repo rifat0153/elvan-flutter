@@ -168,10 +168,14 @@ class RegistrationScreen extends HookConsumerWidget {
                         ),
                       ),
                       onPressed: () async {
+                     
                         authNotifier.onEvent(
                           AuthEvent.registerWithEmailAndPassword(
+                            context: context,
                             email: emailTextController.text,
                             password: passwordTextController.text,
+                            phone: phoneTextController.text,
+                            username: usernameTextController.text
                           ),
                         );
                       },

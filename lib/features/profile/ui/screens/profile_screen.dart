@@ -3,6 +3,7 @@ import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/profile/ui/notifier/profile_notifier.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
+import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
@@ -40,12 +41,27 @@ class ProfileScreen extends HookConsumerWidget {
                       CircleAvatar(
                         radius: 50,
                         backgroundColor: AppColors.primaryRed,
-                        child: CircleAvatar(
-                            radius: 45,
-                            //placeholder image
-                            backgroundImage: NetworkImage(
-                              user.imageUrl ?? 'https://picsum.photos/200',
-                            )),
+                        child: Builder(
+                          builder: (context) {
+                            if (user.imageUrl == null) {
+                              return  CircleAvatar(
+                                radius: 45,
+                                //placeholder image
+                                child:   Image.asset(
+                                  AppAsset.user,
+                                  color: AppColors.black,
+                                  width: 60,
+                                  height: 60,
+                                ));
+                            }
+                            return CircleAvatar(
+                                radius: 45,
+                                //placeholder image
+                                backgroundImage:  NetworkImage(
+                                  user.imageUrl ?? 'https://picsum.photos/200',
+                                ));
+                          }
+                        ),
                       ),
 
                       //edit profile button
@@ -69,9 +85,12 @@ class ProfileScreen extends HookConsumerWidget {
                     ],
                   ),
 
-                  AppText(
-                    "${user.name}",
-                    style: Theme.of(context).textTheme.headlineMedium,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: AppText(
+                      "${user.name}",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -79,13 +98,15 @@ class ProfileScreen extends HookConsumerWidget {
                       const Icon(
                         Icons.phone,
                         color: AppColors.white,
+                        size: 14,
                       ),
                       AppText(
                         "${user.phone}",
-                        style: Theme.of(context).textTheme.headlineMedium,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ],
                   ),
+                  const SizedBox(height: 30,),
                   ProfileRow(
                       icon: Icons.badge,
                       text: AppLocalizations.of(context)!.yourOrderAndRecords,
@@ -172,7 +193,7 @@ class ProfileRow extends StatelessWidget {
             ),
             AppText(
               text,
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ],
         ),

@@ -75,6 +75,11 @@
     "emailSent":"Email Sent",
     "resetPasswordMsg":"Reset Password Email has been sent to your email address",
     "cancel":"Cancel",
-    "yes":"Yes"
+    "yes":"Yes",
+    "usernameEmpty":"Enter Username",
+    "emailEmpty":"Enter Email",
+    "emailInvalid":"Invalid email",
+    "phoneEmpty":"Enter your phone",
+    "passwordEmpty":"Enter password"
 
 }

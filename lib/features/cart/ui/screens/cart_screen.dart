@@ -25,7 +25,6 @@ class CartScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //ref.watch(statusBarColorProvider(AppColors.primaryRed));
     final cartState = ref.watch(cartProvider);
     final orderRepository = ref.watch(orderRepositoryProvider);
 
