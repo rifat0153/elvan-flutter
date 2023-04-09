@@ -292,7 +292,8 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       );
 
       ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
-          AppLocalizations.of(context)?.passwordEmpty ?? '');
+            AppLocalizations.of(context)?.passwordEmpty ?? '',
+          );
       return false;
     } else {
       return true;

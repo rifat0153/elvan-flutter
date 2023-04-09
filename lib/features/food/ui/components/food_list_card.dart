@@ -112,12 +112,12 @@ class FoodListCard extends HookConsumerWidget {
               flex: 2,
               child: Column(
                 children: [
-                  ElvanIconButton(
-                    icon: Icons.add,
-                    color: AppColors.primaryRed,
-                    // TODO: Add to cart
-                    onPressed: () {},
-                  ),
+                  // ElvanIconButton(
+                  //   icon: Icons.add,
+                  //   color: AppColors.primaryRed,
+                  //   // TODO: Add to cart
+                  //   onPressed: () {},
+                  // ),
                   Consumer(
                     builder: (BuildContext context, WidgetRef ref, Widget? child) {
                       final _ = ref.watch(favoriteProvider);
