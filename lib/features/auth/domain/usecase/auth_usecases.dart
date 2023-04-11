@@ -108,6 +108,7 @@ class AuthUseCases {
       email: user.email,
       imageUrl: user.photoURL,
       phone: phone,
+      uid: user.uid,
     ));
     final elvanUser = await getUserUseCase(userId: user.uid);
 

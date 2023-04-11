@@ -21,9 +21,11 @@ class MyApp extends HookConsumerWidget {
       debugPrint('currentUserProvider listen:  next: ${next.value?.uid}');
 
       debugPrint('OnChange: -> Root key -> ${ref.read(appRouterProvider).key}');
-      debugPrint('OnChange: ->  Curr key -> ${ref.read(appRouterProvider).current.key}');
+      debugPrint(
+          'OnChange: ->  Curr key -> ${ref.read(appRouterProvider).current.key}');
 
-      debugPrint('OnChange: -> Current router path -> ${ref.read(appRouterProvider).current.path}');
+      debugPrint(
+          'OnChange: -> Current router path -> ${ref.read(appRouterProvider).current.path}');
 
       final currrentPath = ref.read(appRouterProvider).current.path;
       logWarning('OnChange: Auth State Changed -> curr path -> $currrentPath');
@@ -60,16 +62,14 @@ class MyApp extends HookConsumerWidget {
     return ScreenUtilInit(
       designSize: const Size(400, 1000),
       splitScreenMode: true,
-
       builder: (context, child) {
         return MaterialApp.router(
-          
           scaffoldMessengerKey: scaffoldMessengerKey,
-          
           debugShowCheckedModeBanner: false,
           title: 'Elvan',
           routerDelegate: appRouter.delegate(),
-          routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
+          routeInformationParser:
+              appRouter.defaultRouteParser(includePrefixMatches: true),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -80,22 +80,20 @@ class MyApp extends HookConsumerWidget {
             Locale('en', ''), // English, no country code
             Locale('sv', ''), // Swedish, no country code
           ],
-          locale: const Locale('sv', ''),
-          
+          locale: const Locale('en', ''),
           theme: ThemeData(
-            primarySwatch: Colors.pink,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
-            useMaterial3: true,
-            appBarTheme: const AppBarTheme(
-               systemOverlayStyle: SystemUiOverlayStyle(
+              primarySwatch: Colors.pink,
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+              useMaterial3: true,
+              appBarTheme: const AppBarTheme(
+                systemOverlayStyle: SystemUiOverlayStyle(
                   //<-- SEE HERE
                   // Status bar color
                   statusBarColor: AppColors.primaryRed,
                   statusBarIconBrightness: Brightness.dark,
                   statusBarBrightness: Brightness.light,
                 ),
-            )
-          ),
+              )),
         );
       },
     );

@@ -22,7 +22,7 @@ class ElvanSafeRemoveScaffold extends StatelessWidget {
       extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: appBar,
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: ScreenBackground(
         imagePath: imagePath,
         width: MediaQuery.of(context).size.width,

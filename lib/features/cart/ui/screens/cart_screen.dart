@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:elvan/app/router/app_router.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
@@ -69,13 +70,13 @@ class CartScreen extends ConsumerWidget {
 
                     final isTakingOrder = ref.read(isTakingOrderProvider);
                     print("------------value ${isTakingOrder.value}");
-                    if (isTakingOrder.value!) {
+                    if (!isTakingOrder.value!) {
                       //show dialog
 
                       // ignore: use_build_context_synchronously
                       showDialog(
                           context: context,
-                          builder: (context) {
+                          builder: (_) {
                             return AlertDialog(
                               title: Text(AppLocalizations.of(context)!.sorry),
                               content: Text(
@@ -83,7 +84,7 @@ class CartScreen extends ConsumerWidget {
                               actions: [
                                 TextButton(
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      ref.read(appRouterProvider).pop();
                                     },
                                     child: const Text('Ok'))
                               ],
@@ -92,7 +93,7 @@ class CartScreen extends ConsumerWidget {
                       return;
                     }
 
-                    if (isOrderInProgress) {
+                    if (!isOrderInProgress) {
                       //show dialog
 
                       // ignore: use_build_context_synchronously
@@ -107,7 +108,7 @@ class CartScreen extends ConsumerWidget {
                               actions: [
                                 TextButton(
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      ref.read(appRouterProvider).pop();
                                     },
                                     child: const Text('Ok'))
                               ],
@@ -125,13 +126,13 @@ class CartScreen extends ConsumerWidget {
 
                     var order = Order.fromDto(orderDto);
                     // ignore: use_build_context_synchronously
-                    context.replaceRoute(
-                      OrderRouter(
-                        children: [
-                          SingleOrderRoute(order: order),
-                        ],
-                      ),
-                    );
+                    ref.read(appRouterProvider).replace(
+                          OrderRouter(
+                            children: [
+                              SingleOrderRoute(order: order),
+                            ],
+                          ),
+                        );
                   },
                   child: SizedBox(
                     width: double.infinity,

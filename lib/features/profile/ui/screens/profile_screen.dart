@@ -5,6 +5,7 @@ import 'package:elvan/features/profile/ui/notifier/profile_notifier.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan/shared/providers/package_info_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
@@ -18,6 +19,7 @@ class ProfileScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final auth = ref.watch(profileNotifierProvider);
     final _ = ref.watch(currentUserProvider);
+    final version = ref.watch(versionProvider);
 
     return auth.when(
         loading: () => const Center(
@@ -40,27 +42,25 @@ class ProfileScreen extends HookConsumerWidget {
                       CircleAvatar(
                         radius: 50,
                         backgroundColor: AppColors.primaryRed,
-                        child: Builder(
-                          builder: (context) {
-                            if (user.imageUrl == null) {
-                              return  CircleAvatar(
+                        child: Builder(builder: (context) {
+                          if (user.imageUrl == null) {
+                            return CircleAvatar(
                                 radius: 45,
                                 //placeholder image
-                                child:   Image.asset(
+                                child: Image.asset(
                                   AppAsset.user,
                                   color: AppColors.black,
                                   width: 60,
                                   height: 60,
                                 ));
-                            }
-                            return CircleAvatar(
-                                radius: 45,
-                                //placeholder image
-                                backgroundImage:  NetworkImage(
-                                  user.imageUrl ?? 'https://picsum.photos/200',
-                                ));
                           }
-                        ),
+                          return CircleAvatar(
+                              radius: 45,
+                              //placeholder image
+                              backgroundImage: NetworkImage(
+                                user.imageUrl ?? 'https://picsum.photos/200',
+                              ));
+                        }),
                       ),
 
                       //edit profile button
@@ -105,7 +105,9 @@ class ProfileScreen extends HookConsumerWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30,),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   ProfileRow(
                       icon: Icons.badge,
                       text: AppLocalizations.of(context)!.yourOrderAndRecords,
@@ -147,6 +149,20 @@ class ProfileScreen extends HookConsumerWidget {
                   //   },
                   //   child: const Text('Logout'),
                   // ),
+                  const Spacer(),
+                  version.when(
+                    data: (data) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: AppText("v $data"),
+                        )],
+                      );
+                    },
+                    error: (error, stackTrace) =>Container(),
+                    loading: () => Container(),
+                  )
                 ],
               ),
             ),
@@ -159,7 +175,7 @@ class ProfileScreen extends HookConsumerWidget {
                     );
               },
             )),
-        error: (error) => const Center(child: Text('Error')));
+        error: (error) => const Center(child: AppText('Error', style: TextStyle(color: AppColors.white))));
   }
 }
 

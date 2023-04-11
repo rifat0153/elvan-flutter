@@ -8,6 +8,7 @@ import 'package:elvan/shared/components/badge/elvan_icon_badge.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan/shared/providers/android_update_provider.dart';
 import 'package:elvan_shared/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,12 +16,14 @@ import 'package:elvan/features/category/ui/screens/category_list.dart';
 import 'package:elvan/features/food/ui/components/top_picks.dart';
 import 'package:elvan/features/order/ui/recent_order/screens/recent_orders.dart';
 
+
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isTakingOrder = ref.watch(isTakingOrderProvider);
+   
     return ElvanScaffold(
       //appBar: const ElvanAppBar(title: 'Elvan', showBackButton: false),
       floatingActionButton: Consumer(builder: (context, ref, child) {
@@ -35,7 +38,8 @@ class HomeScreen extends HookConsumerWidget {
                     color: AppColors.black,
                   ),
                   count: cartItemCount,
-                  onPressed: ref.read(navigatorProvider.notifier).pushCartRoute,
+                  onPressed:
+                      ref.read(navigatorProvider.notifier).pushCartRoute,
                 ),
               );
       }),
@@ -59,12 +63,14 @@ class HomeScreen extends HookConsumerWidget {
                               children: [
                                 AppText(
                                   "Sorry!",
-                                  style:
-                                      Theme.of(context).textTheme.headlineLarge,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge,
                                 ),
                                 AppText(
                                   "We are not taking order right now.\nThank you for being with us.",
-                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  style:
+                                      Theme.of(context).textTheme.bodyLarge,
                                 ),
                               ],
                             ),
