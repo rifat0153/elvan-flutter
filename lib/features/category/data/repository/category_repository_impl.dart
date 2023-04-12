@@ -29,6 +29,7 @@ class CategoryRepositoryImpl implements CategoryRepository {
 
       return Result.success(categories);
     } catch (e, _) {
+      print("---------------$e");
       return Result.failure(Failure(error: e));
     }
   }

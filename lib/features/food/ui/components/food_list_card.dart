@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elvan/features/favorite/notifer/favorite_provider.dart';
-import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +13,7 @@ import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
-import '../../../../app/router/app_router.gr.dart';
+import 'package:elvan/app/router/app_router.gr.dart';
 
 class FoodListCard extends HookConsumerWidget {
   const FoodListCard({
@@ -32,8 +31,7 @@ class FoodListCard extends HookConsumerWidget {
     final imageLeftOffset = -35.w;
     final imageRadius = 50.w;
 
-    final selectedFoodItemNotifier =
-        ref.read(selectedFoodItemNotifierProvider.notifier);
+    final selectedFoodItemNotifier = ref.read(selectedFoodItemNotifierProvider.notifier);
 
     FavoriteProvider favProvider = ref.watch(favoriteProvider.notifier);
 
@@ -44,12 +42,15 @@ class FoodListCard extends HookConsumerWidget {
         if (foodItem.title == 'Salads Bar') {
           context.pushRoute(const SaladRouter());
         } else {
-          context.pushRoute(const FooDDetailRoute());
+          context.pushRoute(const FoodRouter(children: [
+            FoodListRoute(),
+            FoodDetailRoute(),
+          ]));
         }
       },
       padding: const EdgeInsets.all(0),
       child: SizedBox(
-        height: tileHeight,
+        height: tileHeight + 6,
         child: Row(
           children: [
             // Food Image
@@ -65,11 +66,14 @@ class FoodListCard extends HookConsumerWidget {
                         left: imageLeftOffset,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(imageRadius),
-                          child: CachedNetworkImage(
-                            imageUrl: foodItem.imageUrl ?? '',
-                            fit: BoxFit.cover,
-                            width: imageRadius * 2,
-                            height: imageRadius * 2,
+                          child: Hero(
+                            tag: foodItem.id!,
+                            child: CachedNetworkImage(
+                              imageUrl: foodItem.imageUrl ?? '',
+                              fit: BoxFit.cover,
+                              width: imageRadius * 2,
+                              height: imageRadius * 2,
+                            ),
                           ),
                         ),
                       ),
@@ -87,12 +91,15 @@ class FoodListCard extends HookConsumerWidget {
                 children: [
                   AppText(
                     foodItem.title,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
                     height: AppSize.paddingXS,
                   ),
-                  AppText(foodItem.ingredients.join(', ')),
+                  AppText(
+                    foodItem.ingredients.join(', '),
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
                   const SizedBox(
                     height: AppSize.paddingXS,
                   ),
@@ -108,18 +115,16 @@ class FoodListCard extends HookConsumerWidget {
               flex: 2,
               child: Column(
                 children: [
-                  ElvanIconButton(
-                    icon: Icons.add,
-                    color: AppColors.primaryRed,
-                    // TODO: Add to cart
-                    onPressed: () {},
-                  ),
+                  // ElvanIconButton(
+                  //   icon: Icons.add,
+                  //   color: AppColors.primaryRed,
+                  //   // TODO: Add to cart
+                  //   onPressed: () {},
+                  // ),
                   Consumer(
-                    builder:
-                        (BuildContext context, WidgetRef ref, Widget? child) {
+                    builder: (BuildContext context, WidgetRef ref, Widget? child) {
                       final _ = ref.watch(favoriteProvider);
-                      final favProviderNotifier =
-                          ref.read(favoriteProvider.notifier);
+                      final favProviderNotifier = ref.read(favoriteProvider.notifier);
                       return FavoriteButton(
                         isFavorite: favProviderNotifier.isFavorite(foodItem),
                         foodItem: foodItem,

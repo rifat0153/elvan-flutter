@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
-import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
+import 'package:elvan/features/profile/ui/notifier/profile_notifier.dart';
+import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan/shared/providers/package_info_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
@@ -15,18 +17,21 @@ class ProfileScreen extends HookConsumerWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.watch(authNotifierProvider);
+    final auth = ref.watch(profileNotifierProvider);
     final _ = ref.watch(currentUserProvider);
+    final version = ref.watch(versionProvider);
 
     return auth.when(
-        loading: () => const CircularProgressIndicator(),
+        loading: () => const Center(
+            child: SizedBox(
+                height: 40, width: 40, child: CircularProgressIndicator())),
         unKnown: () => const Center(child: Text('Unknown')),
         authenticated: (user) => Center(
               child: Column(
                 children: [
-                  ElvanAppBar(
-                      title: AppLocalizations.of(context)!.profile,
-                      showBackButton: false),
+                  // ElvanAppBar(
+                  //     title: AppLocalizations.of(context)!.profile,
+                  //     showBackButton: false),
 
                   //circle avatar with image from user
                   const SizedBox(
@@ -37,12 +42,25 @@ class ProfileScreen extends HookConsumerWidget {
                       CircleAvatar(
                         radius: 50,
                         backgroundColor: AppColors.primaryRed,
-                        child: CircleAvatar(
-                            radius: 45,
-                            //placeholder image
-                            backgroundImage: NetworkImage(
-                              user.imageUrl ?? 'https://picsum.photos/200',
-                            )),
+                        child: Builder(builder: (context) {
+                          if (user.imageUrl == null) {
+                            return CircleAvatar(
+                                radius: 45,
+                                //placeholder image
+                                child: Image.asset(
+                                  AppAsset.user,
+                                  color: AppColors.black,
+                                  width: 60,
+                                  height: 60,
+                                ));
+                          }
+                          return CircleAvatar(
+                              radius: 45,
+                              //placeholder image
+                              backgroundImage: NetworkImage(
+                                user.imageUrl ?? 'https://picsum.photos/200',
+                              ));
+                        }),
                       ),
 
                       //edit profile button
@@ -66,9 +84,12 @@ class ProfileScreen extends HookConsumerWidget {
                     ],
                   ),
 
-                  AppText(
-                    "${user.name}",
-                    style: Theme.of(context).textTheme.headlineMedium,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: AppText(
+                      "${user.name}",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -76,12 +97,16 @@ class ProfileScreen extends HookConsumerWidget {
                       const Icon(
                         Icons.phone,
                         color: AppColors.white,
+                        size: 14,
                       ),
                       AppText(
                         "${user.phone}",
-                        style: Theme.of(context).textTheme.headlineMedium,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 30,
                   ),
                   ProfileRow(
                       icon: Icons.badge,
@@ -124,6 +149,20 @@ class ProfileScreen extends HookConsumerWidget {
                   //   },
                   //   child: const Text('Logout'),
                   // ),
+                  const Spacer(),
+                  version.when(
+                    data: (data) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: AppText("v $data"),
+                        )],
+                      );
+                    },
+                    error: (error, stackTrace) =>Container(),
+                    loading: () => Container(),
+                  )
                 ],
               ),
             ),
@@ -136,7 +175,7 @@ class ProfileScreen extends HookConsumerWidget {
                     );
               },
             )),
-        error: (error) => const Center(child: Text('Error')));
+        error: (error) => const Center(child: AppText('Error', style: TextStyle(color: AppColors.white))));
   }
 }
 
@@ -169,7 +208,7 @@ class ProfileRow extends StatelessWidget {
             ),
             AppText(
               text,
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ],
         ),
