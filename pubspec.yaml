@@ -66,6 +66,10 @@ dependencies:
   # design
   timeline_tile: ^2.0.0
   carousel_slider: ^4.2.1
+  #check update
+  upgrader: ^6.2.0
+  in_app_update: ^4.0.1
+  package_info_plus: ^3.1.0
 
 dev_dependencies:
   flutter_test:

@@ -19,6 +19,8 @@ class ElvanScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: floatingActionButton,
+            extendBodyBehindAppBar: true,
+
       appBar: appBar,
       body: SafeArea(
         child: ScreenBackground(

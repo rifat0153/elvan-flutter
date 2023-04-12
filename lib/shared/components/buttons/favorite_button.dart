@@ -41,6 +41,7 @@ class FavoriteButton extends HookConsumerWidget {
     return ElvanIconButton(
       icon: Icons.favorite,
       color: colorTween.value,
+      size: 20,
       onPressed: () {
         if (controller.isAnimating) return;
 

@@ -84,8 +84,8 @@ class AuthUseCases {
   Future<Result<ElvanUser>> signUpWithEmailAndPasswordAndGetElvanUserUseCase({
     required String email,
     required String password,
-    required String name,
-    required String surname,
+    required String username,
+    required String phone,
   }) async {
     if (email.isEmpty || password.isEmpty) {
       return const Result.failure(
@@ -103,7 +103,13 @@ class AuthUseCases {
         Failure(message: 'User is null'),
       );
     }
-
+    await setUserUseCase(userId: user.uid, elvanUser: ElvanUser(
+      name: username,
+      email: user.email,
+      imageUrl: user.photoURL,
+      phone: phone,
+      uid: user.uid,
+    ));
     final elvanUser = await getUserUseCase(userId: user.uid);
 
     return elvanUser.when(

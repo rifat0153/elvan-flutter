@@ -11,6 +11,7 @@ import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BuildStepCustomization extends HookConsumerWidget {
   const BuildStepCustomization({
@@ -92,43 +93,73 @@ class BuildStepCustomization extends HookConsumerWidget {
           vertical: AppSize.paddingXS,
         ),
         child: BaseCard(
-            child: Column(
-          //image and title
+            child: Stack(
           children: [
-            //salad image
-            Container(
-              height: 105,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(addOn.imageUrl ?? ''),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            //title
-            Row(
+            Column(
+              //image and title
               children: [
-                Expanded(
-                  child: AppText(
-                    addOn.title,
-                    maxLines: 2,
-                    style: Theme.of(context).textTheme.titleMedium,
-                    color: AppColors.grey,
+                //salad image
+                Container(
+                  height: 105,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(addOn.imageUrl ?? ''),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-
-                //add button
-                ElvanIconButton(
-                  icon: addOn.isSelected
-                      ? Icons.remove_circle_outline
-                      : Icons.add_circle,
-                  color: isSaladBar ? AppColors.green : AppColors.primaryRed,
-                  onPressed: onPressed,
+                //title
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: AppText(
+                        addOn.title,
+                        maxLines: 2,
+                        style: Theme.of(context).textTheme.titleSmall,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    )
+                  ],
                 ),
               ],
             ),
+            Positioned(
+              bottom: -10,
+              child: //add button
+                  Container(
+                constraints: const BoxConstraints(minWidth: 100),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    AppText(
+                      "${addOn.price}",
+                      maxLines: 2,
+                      style: Theme.of(context).textTheme.bodySmall,
+                      color: AppColors.green,
+                    ),
+                    ElvanIconButton(
+                      icon: addOn.isSelected
+                          ? Icons.remove_circle_outline
+                          : Icons.add_circle,
+                      color: !addOn.isSelected
+                          ? AppColors.green
+                          : AppColors.primaryRed,
+                      onPressed: onPressed,
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ))
 
@@ -177,8 +208,8 @@ class BuildStepCustomization extends HookConsumerWidget {
           Expanded(
             child: AppText(
               addOn.title,
-              style: Theme.of(context).textTheme.titleMedium,
-              color: AppColors.grey,
+              style: Theme.of(context).textTheme.titleSmall,
+              color: AppColors.white,
             ),
           ),
           _itemPrice(addOn, context)
@@ -197,7 +228,7 @@ class BuildStepCustomization extends HookConsumerWidget {
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
           // decoration: !addOn.includeInPrice && addOn.isSelected ? TextDecoration.lineThrough : TextDecoration.none,
           ),
-      color: AppColors.grey,
+      color: AppColors.white,
     );
   }
 
@@ -215,17 +246,29 @@ class BuildStepCustomization extends HookConsumerWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: AppText(
                   buildStep.title.toUpperCase(),
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: isSaladBar
+                      ? Theme.of(context).textTheme.titleSmall
+                      : Theme.of(context).textTheme.titleMedium,
                   maxLines: 2,
                   color: AppColors.white,
                 ),
               ),
-              AppText(
-                buildStep.isRequired ? 'Required' : 'Optional',
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: AppColors.white.withOpacity(0.3)),
+                child: AppText(
+                    buildStep.isRequired
+                        ? AppLocalizations.of(context)?.required ?? 'Required'
+                        : AppLocalizations.of(context)?.optional ?? 'Optional',
+                    style: Theme.of(context).textTheme.labelMedium),
               )
             ],
           ),

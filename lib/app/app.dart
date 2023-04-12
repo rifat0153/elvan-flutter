@@ -1,5 +1,7 @@
+import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/providers/scaffold_messenger/scaffold_messenger_key_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,9 +21,11 @@ class MyApp extends HookConsumerWidget {
       debugPrint('currentUserProvider listen:  next: ${next.value?.uid}');
 
       debugPrint('OnChange: -> Root key -> ${ref.read(appRouterProvider).key}');
-      debugPrint('OnChange: ->  Curr key -> ${ref.read(appRouterProvider).current.key}');
+      debugPrint(
+          'OnChange: ->  Curr key -> ${ref.read(appRouterProvider).current.key}');
 
-      debugPrint('OnChange: -> Current router path -> ${ref.read(appRouterProvider).current.path}');
+      debugPrint(
+          'OnChange: -> Current router path -> ${ref.read(appRouterProvider).current.path}');
 
       final currrentPath = ref.read(appRouterProvider).current.path;
       logWarning('OnChange: Auth State Changed -> curr path -> $currrentPath');
@@ -64,7 +68,8 @@ class MyApp extends HookConsumerWidget {
           debugShowCheckedModeBanner: false,
           title: 'Elvan',
           routerDelegate: appRouter.delegate(),
-          routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
+          routeInformationParser:
+              appRouter.defaultRouteParser(includePrefixMatches: true),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -75,12 +80,20 @@ class MyApp extends HookConsumerWidget {
             Locale('en', ''), // English, no country code
             Locale('sv', ''), // Swedish, no country code
           ],
-          locale: const Locale('sv', ''),
+          locale: const Locale('en', ''),
           theme: ThemeData(
-            primarySwatch: Colors.pink,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
-            useMaterial3: true,
-          ),
+              primarySwatch: Colors.pink,
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+              useMaterial3: true,
+              appBarTheme: const AppBarTheme(
+                systemOverlayStyle: SystemUiOverlayStyle(
+                  //<-- SEE HERE
+                  // Status bar color
+                  statusBarColor: AppColors.primaryRed,
+                  statusBarIconBrightness: Brightness.dark,
+                  statusBarBrightness: Brightness.light,
+                ),
+              )),
         );
       },
     );

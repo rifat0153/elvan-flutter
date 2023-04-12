@@ -48,7 +48,7 @@ class FoodListCard extends HookConsumerWidget {
       },
       padding: const EdgeInsets.all(0),
       child: SizedBox(
-        height: tileHeight,
+        height: tileHeight + 6,
         child: Row(
           children: [
             // Food Image
@@ -89,12 +89,14 @@ class FoodListCard extends HookConsumerWidget {
                 children: [
                   AppText(
                     foodItem.title,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
                     height: AppSize.paddingXS,
                   ),
-                  AppText(foodItem.ingredients.join(', ')),
+                  AppText(foodItem.ingredients.join(', '),
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
                   const SizedBox(
                     height: AppSize.paddingXS,
                   ),
@@ -110,12 +112,12 @@ class FoodListCard extends HookConsumerWidget {
               flex: 2,
               child: Column(
                 children: [
-                  ElvanIconButton(
-                    icon: Icons.add,
-                    color: AppColors.primaryRed,
-                    // TODO: Add to cart
-                    onPressed: () {},
-                  ),
+                  // ElvanIconButton(
+                  //   icon: Icons.add,
+                  //   color: AppColors.primaryRed,
+                  //   // TODO: Add to cart
+                  //   onPressed: () {},
+                  // ),
                   Consumer(
                     builder: (BuildContext context, WidgetRef ref, Widget? child) {
                       final _ = ref.watch(favoriteProvider);
