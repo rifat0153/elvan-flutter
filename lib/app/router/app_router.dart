@@ -45,7 +45,7 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
     ),
     AutoRoute(
       path: '/forget',
-      name: 'ForgerRouter',
+      name: 'ForgetRouter',
       page: ForgetScreen,
     ),
     AutoRoute(
@@ -85,7 +85,7 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
         ),
         AutoRoute(
           path: 'details',
-          page: FooDDetailScreen,
+          page: FoodDetailScreen,
         ),
         RedirectRoute(path: '*', redirectTo: ''),
       ],
