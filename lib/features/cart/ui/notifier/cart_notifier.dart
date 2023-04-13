@@ -64,10 +64,8 @@ class CartNotifier extends Notifier<CartUiState> {
     }
 
     // pop all the screens and go to the cart screen
-    ref.read(appRouterProvider).popUntilRoot();
-    ref.read(appRouterProvider).pushAll(
-      [const BottomTabRouter(), const FoodRouter()],
-    );
+ 
+    ref.read(appRouterProvider).popAndPush(const FoodRouter());
   }
 
   void addToCart(CartItem cartItem) {

@@ -70,6 +70,7 @@ class CartScreen extends ConsumerWidget {
                     if (!isTakingOrder.value!) {
                       //show dialog
 
+                      // ignore: use_build_context_synchronously
                       showDialog(
                           context: context,
                           builder: (_) {

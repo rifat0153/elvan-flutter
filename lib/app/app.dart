@@ -80,7 +80,7 @@ class MyApp extends HookConsumerWidget {
             Locale('en', ''), // English, no country code
             Locale('sv', ''), // Swedish, no country code
           ],
-          locale: const Locale('en', ''),
+          locale: const Locale('sv', ''),
           theme: ThemeData(
               primarySwatch: Colors.pink,
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),

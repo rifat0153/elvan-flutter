@@ -58,15 +58,19 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<User?> singInWithEmailAndPassword({
+  Future<Result<User?>> singInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    final userCredential = await firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    return userCredential.user;
+    try {
+      final userCredential = await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return Result.success(userCredential.user);
+    } on FirebaseAuthException catch (e) {
+      return Result.failure(Failure(message: e.message));
+    }
   }
 
   @override
