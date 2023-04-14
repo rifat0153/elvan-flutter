@@ -13,7 +13,7 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.logout() = _AuthEvent_LogginOut;
 
   const factory AuthEvent.registerWithEmailAndPassword({
-   required BuildContext context,
+    required BuildContext context,
     required String email,
     required String username,
     required String phone,
@@ -26,6 +26,4 @@ class AuthEvent with _$AuthEvent {
   }) = _AuthEvent_ResetPassword;
 
   const factory AuthEvent.goToRegisterScreen() = _AuthEvent_GoToRegisterScreen;
-
- 
 }

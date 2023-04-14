@@ -1,25 +1,22 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:elvan/app/router/app_router.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
+import 'package:elvan/features/cart/ui/components/cart_item_list.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
+import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
 import 'package:elvan/features/order/ui/recent_order/notifier/order_notifier.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
+import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
+import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
-import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/shared/components/buttons/elvan_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:elvan/features/cart/ui/components/cart_item_list.dart';
-import 'package:elvan/shared/components/background/elvan_scaffold.dart';
-import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../../order/domain/usecases/order_use_case.dart';
 
 class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});

@@ -1,4 +1,5 @@
 import 'package:elvan/core/extensions/build_context/screen_size_ext.dart';
+import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.dart';
@@ -13,7 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../notifier/auth_notifier.dart';
+
 
 class ForgetScreen extends HookConsumerWidget {
   const ForgetScreen({super.key});

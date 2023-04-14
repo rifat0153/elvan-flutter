@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elvan/features/favorite/notifer/favorite_provider.dart';
-import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +13,7 @@ import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
-import '../../../../app/router/app_router.gr.dart';
+import 'package:elvan/app/router/app_router.gr.dart';
 
 class FoodListCard extends HookConsumerWidget {
   const FoodListCard({
@@ -43,7 +42,10 @@ class FoodListCard extends HookConsumerWidget {
         if (foodItem.title == 'Salads Bar') {
           context.pushRoute(const SaladRouter());
         } else {
-          context.pushRoute(const FooDDetailRoute());
+          context.pushRoute(const FoodRouter(children: [
+            FoodListRoute(),
+            FoodDetailRoute(),
+          ]));
         }
       },
       padding: const EdgeInsets.all(0),
@@ -94,7 +96,8 @@ class FoodListCard extends HookConsumerWidget {
                   const SizedBox(
                     height: AppSize.paddingXS,
                   ),
-                  AppText(foodItem.ingredients.join(', '),
+                  AppText(
+                    foodItem.ingredients.join(', '),
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   const SizedBox(
