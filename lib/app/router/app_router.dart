@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
+import 'package:elvan/app/router/route_guards.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/app/router/app_router.gr.dart';
@@ -51,7 +52,7 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
     AutoRoute(
       path: '/tabs',
       name: 'BottomTabRouter',
-      // guards: [AuthGuard],
+      guards: [AuthGuard],
       page: BottomTabScreen,
       children: [
         // create home, profile and favorites routes
