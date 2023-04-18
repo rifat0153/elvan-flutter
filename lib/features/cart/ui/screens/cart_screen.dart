@@ -11,6 +11,9 @@ import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:elvan/shared/providers/dialogs/isOrder_dialog_provider.dart';
+import 'package:elvan/shared/providers/dialogs/not_takeing_order_provider.dart';
+import 'package:elvan/shared/providers/scaffold_messenger/scaffold_messenger_key_provider.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/shared/components/buttons/elvan_button.dart';
 import 'package:flutter/material.dart';
@@ -66,51 +69,18 @@ class CartScreen extends ConsumerWidget {
                         await orderRepository.isOrderInProgress(cart.userId);
 
                     final isTakingOrder = ref.read(isTakingOrderProvider);
-                    print("------------value ${isTakingOrder.value}");
                     if (!isTakingOrder.value!) {
                       //show dialog
-
-                      // ignore: use_build_context_synchronously
-                      showDialog(
-                          context: context,
-                          builder: (_) {
-                            return AlertDialog(
-                              title: Text(AppLocalizations.of(context)!.sorry),
-                              content: Text(
-                                  AppLocalizations.of(context)!.noTakingOrders),
-                              actions: [
-                                TextButton(
-                                    onPressed: () {
-                                      ref.read(appRouterProvider).pop();
-                                    },
-                                    child: const Text('Ok'))
-                              ],
-                            );
-                          });
+                      ref.refresh(isNotTakingDialogProvider);
                       return;
                     }
 
-                    if (!isOrderInProgress) {
+                    if (isOrderInProgress) {
                       //show dialog
 
+                      ref.refresh(isOrerProgressDialogProvider);
                       // ignore: use_build_context_synchronously
-                      showDialog(
-                          context: context,
-                          builder: (_) {
-                            return AlertDialog(
-                              title: Text(
-                                  AppLocalizations.of(context)!.orderInProcess),
-                              content: Text(AppLocalizations.of(context)!
-                                  .orderInProcessMessage),
-                              actions: [
-                                TextButton(
-                                    onPressed: () {
-                                      ref.read(appRouterProvider).pop();
-                                    },
-                                    child: const Text('Ok'))
-                              ],
-                            );
-                          });
+
                       return;
                     }
 
@@ -120,6 +90,8 @@ class CartScreen extends ConsumerWidget {
 
                     var orderDto =
                         await orderRepository.getSingleOrder(orderId);
+                    //clear cart
+                    ref.read(cartProvider.notifier).resetCart();
 
                     var order = Order.fromDto(orderDto);
                     // ignore: use_build_context_synchronously

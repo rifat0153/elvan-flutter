@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:elvan/app/router/route_guards.dart';
+import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/app/router/app_router.gr.dart';
@@ -21,8 +22,8 @@ import 'package:elvan/features/tabs/ui/screens/bottom_tab_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
-  // final user = ref.read(currentUserProvider);
-  // final isLoggedIn = user != null;
+   final user = ref.read(currentUserProvider);
+   final isLoggedIn = user != null;
   // print('appRouterProvider: isLoggedIn: $isLoggedIn');
 
   return AppRouter(

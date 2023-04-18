@@ -65,6 +65,7 @@ class MyApp extends HookConsumerWidget {
       builder: (context, child) {
         return MaterialApp.router(
           scaffoldMessengerKey: scaffoldMessengerKey,
+          
           debugShowCheckedModeBanner: false,
           title: 'Elvan',
           routerDelegate: appRouter.delegate(),
@@ -80,7 +81,7 @@ class MyApp extends HookConsumerWidget {
             Locale('en', ''), // English, no country code
             Locale('sv', ''), // Swedish, no country code
           ],
-          locale: const Locale('sv', ''),
+          locale: const Locale('en', ''),
           theme: ThemeData(
               primarySwatch: Colors.pink,
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),

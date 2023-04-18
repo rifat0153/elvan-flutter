@@ -69,4 +69,5 @@ class OrderUseCase {
   Stream<bool> isTakingOrder() {
     return _orderRepository.isTakingOrder();
   }
+  
 }
