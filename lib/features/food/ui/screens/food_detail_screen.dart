@@ -20,12 +20,11 @@ import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
-class FooDDetailScreen extends HookConsumerWidget {
-  const FooDDetailScreen({super.key});
+class FoodDetailScreen extends HookConsumerWidget {
+  const FoodDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-  
     ref.read(statusBarColorProvider(AppColors.grey_70));
 
     final foodItemState = ref.watch(selectedFoodItemNotifierProvider);
@@ -100,13 +99,10 @@ class FooDDetailScreen extends HookConsumerWidget {
           final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
           final cartUpdateNotifier = ref.watch(cartItemUpdateProvider.notifier);
           final isCartUpdating = cartUpdateNotifier.isUpdating;
-          final currentBuildStepsPrice =
-              ref.watch(currentBuildStepsPriceProvider);
+          final currentBuildStepsPrice = ref.watch(currentBuildStepsPriceProvider);
           final totalPrice = foodItem.price + currentBuildStepsPrice;
 
-          final String cartText = isCartUpdating
-              ? AppLocalizations.of(context)!.updateCart
-              : AppLocalizations.of(context)!.addToCart;
+          final String cartText = isCartUpdating ? AppLocalizations.of(context)!.updateCart : AppLocalizations.of(context)!.addToCart;
           final String cartButtonText = '$cartText - \$ $totalPrice';
 
           return ElvanButton(

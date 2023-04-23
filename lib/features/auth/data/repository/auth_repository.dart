@@ -3,7 +3,7 @@ import 'package:elvan_shared/dtos/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthRepository {
-  Future<User?> singInWithEmailAndPassword({
+  Future<Result<User?>> singInWithEmailAndPassword({
     required String email,
     required String password,
   });

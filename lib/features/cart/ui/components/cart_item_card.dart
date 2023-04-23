@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
-import '../../../order/ui/order_records/screens/order_records.dart';
+import 'package:elvan/features/order/ui/order_records/screens/order_records.dart';
 
 class CartItemCard extends HookConsumerWidget {
   const CartItemCard(this.cartItem, {super.key});
@@ -30,7 +30,7 @@ class CartItemCard extends HookConsumerWidget {
               context.navigateTo(
                 const FoodRouter(children: [
                   FoodListRoute(),
-                  FooDDetailRoute(),
+                  FoodDetailRoute(),
                 ]),
               );
             },

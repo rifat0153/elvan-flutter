@@ -1,25 +1,15 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:elvan/app/router/app_router.dart';
-import 'package:elvan/app/router/app_router.gr.dart';
+import 'package:elvan/features/cart/ui/components/cart_item_list.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
-import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
-import 'package:elvan/features/order/ui/recent_order/notifier/order_notifier.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
+import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
+import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
-import 'package:elvan/shared/providers/statusbar_color_provider.dart';
-import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/shared/components/buttons/elvan_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:elvan/features/cart/ui/components/cart_item_list.dart';
-import 'package:elvan/shared/components/background/elvan_scaffold.dart';
-import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../../order/domain/usecases/order_use_case.dart';
 
 class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});
@@ -27,7 +17,6 @@ class CartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cartState = ref.watch(cartProvider);
-    final orderRepository = ref.watch(orderRepositoryProvider);
 
     return ElvanScaffold(
       imagePath: AppAsset.homeBackgroundPng,
@@ -64,75 +53,7 @@ class CartScreen extends ConsumerWidget {
                 child: ElvanButton(
                   color: AppColors.primaryRed,
                   onPressed: () async {
-                    //check if order is in progress then show dialog
-                    final isOrderInProgress =
-                        await orderRepository.isOrderInProgress(cart.userId);
-
-                    final isTakingOrder = ref.read(isTakingOrderProvider);
-                    print("------------value ${isTakingOrder.value}");
-                    if (!isTakingOrder.value!) {
-                      //show dialog
-
-                      // ignore: use_build_context_synchronously
-                      showDialog(
-                          context: context,
-                          builder: (_) {
-                            return AlertDialog(
-                              title: Text(AppLocalizations.of(context)!.sorry),
-                              content: Text(
-                                  AppLocalizations.of(context)!.noTakingOrders),
-                              actions: [
-                                TextButton(
-                                    onPressed: () {
-                                      ref.read(appRouterProvider).pop();
-                                    },
-                                    child: const Text('Ok'))
-                              ],
-                            );
-                          });
-                      return;
-                    }
-
-                    if (!isOrderInProgress) {
-                      //show dialog
-
-                      // ignore: use_build_context_synchronously
-                      showDialog(
-                          context: context,
-                          builder: (_) {
-                            return AlertDialog(
-                              title: Text(
-                                  AppLocalizations.of(context)!.orderInProcess),
-                              content: Text(AppLocalizations.of(context)!
-                                  .orderInProcessMessage),
-                              actions: [
-                                TextButton(
-                                    onPressed: () {
-                                      ref.read(appRouterProvider).pop();
-                                    },
-                                    child: const Text('Ok'))
-                              ],
-                            );
-                          });
-                      return;
-                    }
-
-                    var orderId = await ref
-                        .read(orderProvider.notifier)
-                        .createOrderFromCart();
-
-                    var orderDto =
-                        await orderRepository.getSingleOrder(orderId);
-
-                    var order = Order.fromDto(orderDto);
-                    // ignore: use_build_context_synchronously
-                    ref.read(appRouterProvider).replace(
-                          OrderRouter(
-                            children: [
-                              SingleOrderRoute(order: order),
-                            ],
-                          ),
-                        );
+                    ref.read(cartProvider.notifier).orderPlaced(cart);
                   },
                   child: SizedBox(
                     width: double.infinity,

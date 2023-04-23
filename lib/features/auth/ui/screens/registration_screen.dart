@@ -1,23 +1,25 @@
 import 'package:elvan/core/extensions/build_context/screen_size_ext.dart';
+import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
-import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:elvan_shared/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../notifier/auth_notifier.dart';
 
 class RegistrationScreen extends HookConsumerWidget {
   const RegistrationScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final statusBarColor =
+        ref.watch(statusBarColorProvider(AppColors.primaryRed));
     final authState = ref.watch(authNotifierProvider);
     final authNotifier = ref.read(authNotifierProvider.notifier);
     final emailTextController = useTextEditingController();
@@ -25,9 +27,8 @@ class RegistrationScreen extends HookConsumerWidget {
     final phoneTextController = useTextEditingController();
     final usernameTextController = useTextEditingController();
     final isShowPassword = useState<bool>(true);
-   
 
-    return ElvanSafeRemoveScaffold(
+    return ElvanScaffold(
       imagePath: AppAsset.homeBackgroundPng,
       child: SingleChildScrollView(
         child: Column(
@@ -65,7 +66,7 @@ class RegistrationScreen extends HookConsumerWidget {
                             contentPadding:
                                 const EdgeInsets.symmetric(vertical: 15.0),
                             //rounded white border
-                      
+
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5.0),
@@ -127,7 +128,7 @@ class RegistrationScreen extends HookConsumerWidget {
                           controller: passwordTextController,
                           obscureText: isShowPassword.value,
                           decoration: InputDecoration(
-                              suffixIcon: IconButton(
+                            suffixIcon: IconButton(
                                 onPressed: () {
                                   isShowPassword.value = !isShowPassword.value;
                                 },
@@ -165,19 +166,18 @@ class RegistrationScreen extends HookConsumerWidget {
                           fixedSize: Size(0.7.sw, 34),
                           backgroundColor: AppColors.primaryRed,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(AppSize.radiusLG),
+                            borderRadius:
+                                BorderRadius.circular(AppSize.radiusLG),
                           ),
                         ),
                         onPressed: () async {
-                       
                           authNotifier.onEvent(
                             AuthEvent.registerWithEmailAndPassword(
-                              context: context,
-                              email: emailTextController.text,
-                              password: passwordTextController.text,
-                              phone: phoneTextController.text,
-                              username: usernameTextController.text
-                            ),
+                                context: context,
+                                email: emailTextController.text,
+                                password: passwordTextController.text,
+                                phone: phoneTextController.text,
+                                username: usernameTextController.text),
                           );
                         },
                         child: authState.loading

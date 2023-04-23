@@ -43,9 +43,7 @@ class OrderNotifier extends Notifier<void> {
     );
 
     await useCase.createOrder(order);
-    //clear cart
-    ref.read(cartProvider.notifier).resetCart();
-
+    
     return order.id;
   }
 }

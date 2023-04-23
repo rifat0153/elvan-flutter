@@ -13,8 +13,8 @@ import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
 
-import '../../../../app/router/app_router.gr.dart';
-import '../notifier/selected_food_provider.dart';
+import 'package:elvan/app/router/app_router.gr.dart';
+import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 
 class TopPickCard extends ConsumerWidget {
   const TopPickCard({super.key, required this.foodItem});
@@ -33,7 +33,7 @@ class TopPickCard extends ConsumerWidget {
         context.pushRoute(
           const FoodRouter(children: [
             FoodListRoute(),
-            FooDDetailRoute(),
+            FoodDetailRoute(),
           ]),
         );
       },
@@ -43,7 +43,7 @@ class TopPickCard extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 110.sm,
+                height: 110.spMin,
                 child: Stack(
                   children: [
                     Positioned(
@@ -118,7 +118,7 @@ class TopPickCard extends ConsumerWidget {
                       selectedFoodItemNotifier.setFoodItemAndBuildSteps(foodItem);
                       context.pushRoute(
                         const FoodRouter(children: [
-                          FooDDetailRoute(),
+                          FoodDetailRoute(),
                         ]),
                       );
                     },
