@@ -18,7 +18,8 @@ class RegistrationScreen extends HookConsumerWidget {
   const RegistrationScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final statusBarColor = ref.watch(statusBarColorProvider(AppColors.primaryRed));
+    final statusBarColor =
+        ref.watch(statusBarColorProvider(AppColors.primaryRed));
     final authState = ref.watch(authNotifierProvider);
     final authNotifier = ref.read(authNotifierProvider.notifier);
     final emailTextController = useTextEditingController();

@@ -168,7 +168,7 @@ class ProfileScreen extends HookConsumerWidget {
                         ],
                       );
                     },
-                    error: (error, stackTrace) => Container(),
+                    error: (error, stackTrace) =>Container(),
                     loading: () => Container(),
                   )
                 ],
