@@ -1,24 +1,14 @@
-import 'package:elvan/app/router/app_router.dart';
-import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/cart/ui/components/cart_item_list.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
-import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
-import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
-import 'package:elvan/features/order/ui/recent_order/notifier/order_notifier.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
-import 'package:elvan/shared/providers/dialogs/isOrder_dialog_provider.dart';
-import 'package:elvan/shared/providers/dialogs/not_takeing_order_provider.dart';
-import 'package:elvan/shared/providers/scaffold_messenger/scaffold_messenger_key_provider.dart';
-import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/shared/components/buttons/elvan_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartScreen extends ConsumerWidget {
@@ -27,7 +17,6 @@ class CartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cartState = ref.watch(cartProvider);
-    final orderRepository = ref.watch(orderRepositoryProvider);
 
     return ElvanScaffold(
       imagePath: AppAsset.homeBackgroundPng,
@@ -64,44 +53,7 @@ class CartScreen extends ConsumerWidget {
                 child: ElvanButton(
                   color: AppColors.primaryRed,
                   onPressed: () async {
-                    //check if order is in progress then show dialog
-                    final isOrderInProgress =
-                        await orderRepository.isOrderInProgress(cart.userId);
-
-                    final isTakingOrder = ref.read(isTakingOrderProvider);
-                    if (!isTakingOrder.value!) {
-                      //show dialog
-                      ref.refresh(isNotTakingDialogProvider);
-                      return;
-                    }
-
-                    if (isOrderInProgress) {
-                      //show dialog
-
-                      ref.refresh(isOrerProgressDialogProvider);
-                      // ignore: use_build_context_synchronously
-
-                      return;
-                    }
-
-                    var orderId = await ref
-                        .read(orderProvider.notifier)
-                        .createOrderFromCart();
-
-                    var orderDto =
-                        await orderRepository.getSingleOrder(orderId);
-                    //clear cart
-                    ref.read(cartProvider.notifier).resetCart();
-
-                    var order = Order.fromDto(orderDto);
-                    // ignore: use_build_context_synchronously
-                    ref.read(appRouterProvider).replace(
-                          OrderRouter(
-                            children: [
-                              SingleOrderRoute(order: order),
-                            ],
-                          ),
-                        );
+                    ref.read(cartProvider.notifier).orderPlaced(cart);
                   },
                   child: SizedBox(
                     width: double.infinity,

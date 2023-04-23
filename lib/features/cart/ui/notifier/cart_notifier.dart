@@ -1,7 +1,12 @@
 import 'package:elvan/app/router/app_router.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
+import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
+import 'package:elvan/features/order/ui/recent_order/notifier/order_notifier.dart';
+import 'package:elvan/shared/providers/dialogs/isOrder_dialog_provider.dart';
+import 'package:elvan/shared/providers/dialogs/not_takeing_order_provider.dart';
 import 'package:elvan_shared/domain_models/cart/cart.dart';
 import 'package:elvan_shared/domain_models/index.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/dtos/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -64,7 +69,7 @@ class CartNotifier extends Notifier<CartUiState> {
     }
 
     // pop all the screens and go to the cart screen
- 
+
     ref.read(appRouterProvider).popAndPush(const FoodRouter());
   }
 
@@ -170,5 +175,66 @@ class CartNotifier extends Notifier<CartUiState> {
 
   void resetCart() {
     state = const CartUiState.empty();
+  }
+
+  Future<void> orderPlaced(Cart cart) async {
+    //check if order is in progress then show dialog
+    final isOrderInProgress = await ref
+        .read(
+          orderUseCaseProvider,
+        )
+        .isOrderInProgress(
+          cart.userId,
+        );
+
+    final isTakingOrder = ref.read(
+      isTakingOrderProvider,
+    );
+    if (!isTakingOrder.value!) {
+      //show dialog
+      final _ = ref.refresh(
+        isNotTakingDialogProvider,
+      );
+      return;
+    }
+
+    if (isOrderInProgress) {
+      //show dialog
+
+      final _ = ref.refresh(
+        isOrerProgressDialogProvider,
+      );
+
+      // ignore: use_build_context_synchronously
+
+      return;
+    }
+
+    var orderId = await ref
+        .read(
+          orderProvider.notifier,
+        )
+        .createOrderFromCart();
+
+    var order = await ref
+        .read(
+          orderUseCaseProvider,
+        )
+        .getSingleOrder(orderId);
+    //clear cart
+    ref
+        .read(
+          cartProvider.notifier,
+        )
+        .resetCart();
+
+    // ignore: use_build_context_synchronously
+    ref.read(appRouterProvider).replace(
+          OrderRouter(
+            children: [
+              SingleOrderRoute(order: order),
+            ],
+          ),
+        );
   }
 }

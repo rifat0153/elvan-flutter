@@ -6,7 +6,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:elvan/app/router/app_router.dart';
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/core/logger/colored_print_log.dart';
@@ -65,7 +64,6 @@ class MyApp extends HookConsumerWidget {
       builder: (context, child) {
         return MaterialApp.router(
           scaffoldMessengerKey: scaffoldMessengerKey,
-          
           debugShowCheckedModeBanner: false,
           title: 'Elvan',
           routerDelegate: appRouter.delegate(),
@@ -81,7 +79,7 @@ class MyApp extends HookConsumerWidget {
             Locale('en', ''), // English, no country code
             Locale('sv', ''), // Swedish, no country code
           ],
-          locale: const Locale('en', ''),
+          locale: const Locale('sv', ''),
           theme: ThemeData(
               primarySwatch: Colors.pink,
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),

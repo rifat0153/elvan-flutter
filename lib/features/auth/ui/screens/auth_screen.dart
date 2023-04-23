@@ -67,7 +67,6 @@ class AuthScreen extends HookConsumerWidget {
                       contentPadding:
                           const EdgeInsets.symmetric(vertical: 15.0),
 
-                      // icon: Icon(Icons.email),
                       prefixIcon: const Icon(Icons.person,
                           color: AppColors.grey, size: 20),
                       hintText: AppLocalizations.of(context)?.email ?? 'Email',
