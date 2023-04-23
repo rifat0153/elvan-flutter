@@ -52,7 +52,7 @@
     "orderInProcess": "Order in process",
     "orderInProcessMessage": "You already have an order in progress. You can only have one order in progress at a time.",
     "sorry": "Sorry",
-    "noTakingOrders": "We are not taking order right now.\nThank you for being with us."
+    "noTakingOrders": "We are not taking order right now.\nThank you for being with us.",
     "email":"Email",
     "password":"Password",
     "forgotPassword":"Forgot Password?",
