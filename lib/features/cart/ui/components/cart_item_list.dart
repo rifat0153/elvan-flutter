@@ -17,6 +17,7 @@ class CartItemList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       itemCount: cartItems.length,
+      padding: EdgeInsets.zero,
       itemBuilder: (context, index) {
         final item = cartItems[index];
 
