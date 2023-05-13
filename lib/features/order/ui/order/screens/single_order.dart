@@ -60,58 +60,63 @@ class SingleOrderScreen extends HookConsumerWidget {
                 child: CircularProgressIndicator(),
               ),
             ),
-            if (order.status.status == OrderStatus.delivered.status ||
-                order.status.status == OrderStatus.cancelled.status)
-              Container()
-            else
-              Positioned(
-                bottom: 10,
-                child: SizedBox(
-                  width: context.screenWidth,
-                  child: Center(
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(0.8.sw, 34),
-                          backgroundColor: AppColors.primaryRed,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(AppSize.radiusLG),
-                          ),
-                        ),
-                        onPressed: () async {
-                          snakbar.alartDialog(
-                            context: context,
-                            title: AppLocalizations.of(context)!.cancleOrder,
-                            content:
-                                AppLocalizations.of(context)!.cancleOrderMessage,
-                            onCancel: () {
-                              ref.read(appRouterProvider).pop();
-                            },
-                            onOk: () async {
-                              ref.read(appRouterProvider).pop();
-                              await ref
-                                  .read(orderRecordsNotifierProvider.notifier)
-                                  .cancleOrder(
-                                    order.id,
-                                  );
-                                  
-                              snakbar.showSnackbar(
-                                const SnackBar(
-                                  content: Text("Order Cancelled"),
-                                  duration: Duration(seconds: 2),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                        child: AppText(AppLocalizations.of(context)!.cancel)),
-                  ),
-                ),
-              ),
+            // if (order.status.status == OrderStatus.delivered.status ||
+            //     order.status.status == OrderStatus.cancelled.status)
+            //   Container()
+            // else
+            //   Positioned(
+            //     bottom: 10,
+            //     child: cancleBtn(context, snakbar, ref),
+            //   ),
           ],
         ),
       ),
       error: (e, st) => Center(
         child: Text(e.toString()),
+      ),
+    );
+  }
+
+  SizedBox cancleBtn(
+      BuildContext context, SnackbarNotifier snakbar, WidgetRef ref) {
+    return SizedBox(
+      width: context.screenWidth,
+      child: Center(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            fixedSize: Size(0.8.sw, 34),
+            backgroundColor: AppColors.primaryRed,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppSize.radiusLG),
+            ),
+          ),
+          onPressed: () async {
+            snakbar.alartDialog(
+              context: context,
+              title: AppLocalizations.of(context)!.cancleOrder,
+              content: AppLocalizations.of(context)!.cancleOrderMessage,
+              onCancel: () {
+                ref.read(appRouterProvider).pop();
+              },
+              onOk: () async {
+                ref.read(appRouterProvider).pop();
+                await ref
+                    .read(orderRecordsNotifierProvider.notifier)
+                    .cancleOrder(
+                      order.id,
+                    );
+
+                snakbar.showSnackbar(
+                  const SnackBar(
+                    content: Text("Order Cancelled"),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              },
+            );
+          },
+          child: AppText(AppLocalizations.of(context)!.cancel),
+        ),
       ),
     );
   }

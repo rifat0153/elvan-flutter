@@ -61,7 +61,10 @@
     "emailEmpty":"Skriv in e-mail",
     "emailInvalid":"Ogiltig e-postadress",
     "phoneEmpty":"Ange din telefon",
-    "passwordEmpty":"Skriv in lösenord"
+    "passwordEmpty":"Skriv in lösenord",
+    "yourCart":"Din vagn",
+    "sorry":"Förlåt!",
+    "cartEmpty":"din vagn är tom"
 
     
 }

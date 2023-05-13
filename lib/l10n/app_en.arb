@@ -80,5 +80,8 @@
     "emailEmpty":"Enter Email",
     "emailInvalid":"Invalid email",
     "phoneEmpty":"Enter your phone",
-    "passwordEmpty":"Enter password"
+    "passwordEmpty":"Enter password",
+    "yourCart":"Your Cart",
+    "sorry":"Sorry!",
+    "cartEmpty":"Your cart is empty"
 }

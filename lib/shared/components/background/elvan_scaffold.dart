@@ -1,7 +1,12 @@
 import 'package:elvan/shared/components/background/screen_background.dart';
+import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ElvanScaffold extends StatelessWidget {
+class ElvanScaffold extends HookConsumerWidget {
   const ElvanScaffold({
     super.key,
     required this.imagePath,
@@ -16,10 +21,13 @@ class ElvanScaffold extends StatelessWidget {
   final Widget? floatingActionButton;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    useEffect(() {
+      ref.read(statusBarColorProvider(AppColors.primaryRed));
+    }, const []);
     return Scaffold(
       floatingActionButton: floatingActionButton,
-            extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: true,
       appBar: appBar,
       body: SafeArea(
         child: ScreenBackground(
