@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
+import 'dart:math' as math;
 
 final orderProvider = NotifierProvider<OrderNotifier, void>(OrderNotifier.new);
 
@@ -30,7 +31,7 @@ class OrderNotifier extends Notifier<void> {
 
     final order = Order(
       createdAt: fs.Timestamp.fromDate(DateTime.now()),
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      id: math.Random().nextInt(9999).toString() + DateTime.now().millisecondsSinceEpoch.toString(),
       discount: 0,
       items: cart.cartItems,
       status: OrderStatus.pending,
@@ -43,9 +44,10 @@ class OrderNotifier extends Notifier<void> {
     );
 
     await useCase.createOrder(order);
-    //clear cart
-    ref.read(cartProvider.notifier).resetCart();
-
+    
     return order.id;
   }
+
+
+  
 }

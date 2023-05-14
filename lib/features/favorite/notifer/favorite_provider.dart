@@ -1,21 +1,22 @@
-
 import 'package:elvan/features/favorite/usecase/favorite_use_case.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final favoriteProvider =
-    StateNotifierProvider<FavoriteProvider, List<FoodItem>>(
-        (ref) => FavoriteProvider());
+    NotifierProvider<FavoriteProvider, List<FoodItem>>(FavoriteProvider.new);
 
-class FavoriteProvider extends StateNotifier<List<FoodItem>> {
+class FavoriteProvider extends Notifier<List<FoodItem>> {
   FavoriteUseCase favoriteUseCase = FavoriteUseCase();
 
-  FavoriteProvider() : super([]) {
+  @override
+  List<FoodItem> build() {
     loadFavorite();
+    return [];
   }
 
   void addFavorite(FoodItem? foodItem) {
     state = favoriteUseCase.addFavorite(foodItem!, state);
+    saveFavorite();
   }
 
   //save to local storage

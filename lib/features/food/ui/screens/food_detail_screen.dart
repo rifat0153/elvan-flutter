@@ -1,3 +1,4 @@
+import 'package:elvan/core/extensions/build_context/screen_size_ext.dart';
 import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.dart';
 import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:elvan_shared/domain_models/index.dart';
@@ -29,7 +30,7 @@ class FoodDetailScreen extends HookConsumerWidget {
 
     final foodItemState = ref.watch(selectedFoodItemNotifierProvider);
 
-    return ElvanScaffold(
+    return ElvanSafeRemoveScaffold(
         // appBar: AppBar(
         //   leading: IconButton(
         //     icon: const Icon(Icons.arrow_back),
@@ -41,35 +42,38 @@ class FoodDetailScreen extends HookConsumerWidget {
           data: (foodItem) {
             return Stack(
               children: [
-                CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: FoodDetailImageWithAppbar(foodItem: foodItem),
-                    ),
-                    _foodDescription(foodItem, context),
-                    // SliverToBoxAdapter(
-                    //   child: AppText(
-                    //     ref
-                    //         .watch(
-                    //           isBuildStepsValidProvider,
-                    //         )
-                    //         .toString(),
-                    //   ),
-                    // ),
-                    // SliverToBoxAdapter(
-                    //   child: AppText(
-                    //     ref
-                    //         .watch(
-                    //           currentBuildStepsPriceProvider,
-                    //         )
-                    //         .toString(),
-                    //   ),
-                    // ),
-                    _buildStepsCustomization(foodItem),
-                    const SliverToBoxAdapter(
-                      child: SizedBox(height: AppSize.padding4XL),
-                    )
-                  ],
+                Padding(
+                  padding:EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: FoodDetailImageWithAppbar(foodItem: foodItem),
+                      ),
+                      _foodDescription(foodItem, context),
+                      // SliverToBoxAdapter(
+                      //   child: AppText(
+                      //     ref
+                      //         .watch(
+                      //           isBuildStepsValidProvider,
+                      //         )
+                      //         .toString(),
+                      //   ),
+                      // ),
+                      // SliverToBoxAdapter(
+                      //   child: AppText(
+                      //     ref
+                      //         .watch(
+                      //           currentBuildStepsPriceProvider,
+                      //         )
+                      //         .toString(),
+                      //   ),
+                      // ),
+                      _buildStepsCustomization(foodItem),
+                      const SliverToBoxAdapter(
+                        child: SizedBox(height: AppSize.padding4XL),
+                      )
+                    ],
+                  ),
                 ),
                 Positioned(
                   bottom: 0,
@@ -77,6 +81,11 @@ class FoodDetailScreen extends HookConsumerWidget {
                   right: 0,
                   child: _cartButton(foodItem, context),
                 ),
+                Positioned(child: Container(
+                  color: AppColors.primaryRed,
+                  width: context.screenWidth,
+                  height: MediaQuery.of(context).padding.top,
+                ))
               ],
             );
           },
@@ -168,7 +177,7 @@ class FoodDetailScreen extends HookConsumerWidget {
               color: AppColors.white,
             ),
             AppText(
-              foodItem.description.toString(),
+               foodItem.ingredients.join(","),
               style: Theme.of(context).textTheme.bodyLarge,
               color: Colors.grey,
             ),

@@ -142,8 +142,9 @@ class OrderRepositoryImpl implements OrderRepository {
       //         //is either delivered, cancelled or pending
       'status',
       whereIn: [
-        OrderStatus.delivered.status,
-        OrderStatus.cancelled.status,
+        OrderStatus.pending.status,
+        OrderStatus.done.status,  
+        OrderStatus.accepted.status,
       ],
     ).get();
 
@@ -161,7 +162,8 @@ class OrderRepositoryImpl implements OrderRepository {
         .snapshots()
         .map((event) {
       print("is taking order: ${event.data()?['takingOrder']}");
-      return event.data()!['takingOrder'];
+      final bool isTaking = event.data()?['takingOrder'] ?? false;
+      return isTaking;
     });
 
     // .catchError((error) => throw error);

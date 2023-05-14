@@ -91,20 +91,26 @@ class ProfileScreen extends HookConsumerWidget {
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.phone,
-                        color: AppColors.white,
-                        size: 14,
-                      ),
-                      AppText(
-                        "${user.phone}",
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                    ],
-                  ),
+
+                  user.phone == null
+                      ? Container()
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.phone,
+                              color: AppColors.white,
+                              size: 14,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: AppText(
+                                "${user.phone}",
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                            ),
+                          ],
+                        ),
                   const SizedBox(
                     height: 30,
                   ),
@@ -154,10 +160,12 @@ class ProfileScreen extends HookConsumerWidget {
                     data: (data) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: AppText("v $data"),
-                        )],
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: AppText("v $data"),
+                          )
+                        ],
                       );
                     },
                     error: (error, stackTrace) =>Container(),
@@ -175,7 +183,8 @@ class ProfileScreen extends HookConsumerWidget {
                     );
               },
             )),
-        error: (error) => const Center(child: AppText('Error', style: TextStyle(color: AppColors.white))));
+        error: (error) => const Center(
+            child: AppText('Error', style: TextStyle(color: AppColors.white))));
   }
 }
 
