@@ -11,7 +11,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:upgrader/upgrader.dart';
 
 class BottomTabScreen extends HookConsumerWidget {

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan/features/favorite/domain/models/favorite_dto.dart';
 import 'package:elvan_shared/domain_models/index.dart';
-import 'package:elvan_shared/dtos/food/food_item_dto.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

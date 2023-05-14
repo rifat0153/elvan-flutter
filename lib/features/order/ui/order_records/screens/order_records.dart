@@ -33,7 +33,7 @@ class OrdersRecordsScreen extends HookConsumerWidget {
                     padding: const EdgeInsets.all(AppSize.paddingMD),
                     child: AppText(
                       'Your last orders',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                   ListView.builder(
@@ -160,7 +160,7 @@ class CartCard extends StatelessWidget {
               flex: 3,
               child: AppText(
                 '${cartItem.foodItem.title} x${cartItem.quantity}',
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyLarge,
                 maxLines: 3,
               ),
 
@@ -181,7 +181,7 @@ class CartCard extends StatelessWidget {
             const Spacer(),
             AppText(
               "\$${cartItem.foodItem.price}",
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(
               width: AppSize.paddingMD,

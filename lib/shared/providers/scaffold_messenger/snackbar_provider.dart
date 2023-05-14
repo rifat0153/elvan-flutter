@@ -74,7 +74,7 @@ class SnackbarNotifier extends Notifier<void> {
           TextButton(
             //red color
             style: TextButton.styleFrom(
-              primary: AppColors.primaryRed,
+              foregroundColor: AppColors.primaryRed,
             ),
             onPressed: onCancel ?? () => Navigator.of(context).pop(),
             child:  Text(AppLocalizations.of(context)?.cancel ??'Cancel'),

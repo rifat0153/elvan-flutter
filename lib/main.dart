@@ -23,6 +23,3 @@ void main() async {
     ),
   );
 }
-
-// q: how to ignore git line endings
-// a: git config --global core.autocrlf false

@@ -3,7 +3,6 @@ import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.da
 import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
@@ -14,7 +13,6 @@ import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
 import 'package:elvan/features/food/ui/notifier/current_build_step_price_notifier.dart';
 import 'package:elvan/features/food/ui/notifier/is_build_step_valid_provider.dart';
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
-import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/buttons/elvan_button.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';

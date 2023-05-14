@@ -22,13 +22,13 @@ import 'package:elvan/features/tabs/ui/screens/bottom_tab_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
-   final user = ref.read(currentUserProvider);
-   final isLoggedIn = user != null;
+  final user = ref.read(currentUserProvider);
+  final isLoggedIn = user != null;
   // print('appRouterProvider: isLoggedIn: $isLoggedIn');
 
   return AppRouter(
-      // authGuard: AuthGuard(isLoggedIn),
-      );
+    authGuard: AuthGuard(isLoggedIn),
+  );
 });
 
 @MaterialAutoRouter(
