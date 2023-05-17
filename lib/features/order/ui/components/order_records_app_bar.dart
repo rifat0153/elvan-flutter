@@ -5,7 +5,7 @@ import 'package:elvan/app/router/navigator_provider.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 
-class OrderRecordsAppBar extends HookConsumerWidget with PreferredSizeWidget {
+class OrderRecordsAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   const OrderRecordsAppBar({
     Key? key,
   }) : super(key: key);

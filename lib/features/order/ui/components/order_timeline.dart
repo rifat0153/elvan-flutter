@@ -74,7 +74,7 @@ class OrderTimeLine extends StatelessWidget {
             title,
             color: isCompleted ? AppColors.white : Colors.grey,
             textAlign: TextAlign.left,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
       ),

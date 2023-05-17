@@ -6,10 +6,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elvan/app/router/navigator_provider.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
 import 'package:elvan/shared/components/badge/elvan_icon_badge.dart';
-import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 
-class FoodListAppBar extends HookConsumerWidget with PreferredSizeWidget {
+class FoodListAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   const FoodListAppBar({
     Key? key,
   }) : super(key: key);

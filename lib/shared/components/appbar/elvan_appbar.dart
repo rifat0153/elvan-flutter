@@ -4,7 +4,7 @@ import 'package:elvan/app/router/navigator_provider.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 
-class ElvanAppBar extends HookConsumerWidget with PreferredSizeWidget {
+class ElvanAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   final String title;
   final PreferredSizeWidget? bottom;
   final bool showBackButton;

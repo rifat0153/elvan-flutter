@@ -138,7 +138,7 @@ class OrderTimeline extends StatelessWidget {
         children: [
           AppText(
             AppLocalizations.of(context)!.orderStatus,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           OrderTimeLine(
             isCompleted: order.status.index >= 0,
@@ -168,7 +168,7 @@ class OrderTimeline extends StatelessWidget {
             ),
           AppText(
             AppLocalizations.of(context)!.orderItems,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           OrderCard(order: order),
         ],

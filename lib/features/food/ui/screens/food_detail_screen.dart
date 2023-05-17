@@ -14,7 +14,6 @@ import 'package:elvan/features/food/ui/notifier/build_steps_notifier.dart';
 import 'package:elvan/features/food/ui/notifier/current_build_step_price_notifier.dart';
 import 'package:elvan/features/food/ui/notifier/is_build_step_valid_provider.dart';
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
-import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/buttons/elvan_button.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';

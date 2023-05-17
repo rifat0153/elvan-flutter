@@ -1,8 +1,6 @@
 import 'package:elvan/app/router/navigator_provider.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
-import 'package:elvan/features/order/data/repository/order_repository_impl.dart';
 import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
-import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/badge/elvan_icon_badge.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
@@ -77,7 +75,7 @@ class HomeScreen extends HookConsumerWidget {
                           );
                   },
                   error: (e, s) => AppText(e.toString()),
-                  loading: () => CircularProgressIndicator())),
+                  loading: () => const CircularProgressIndicator())),
           const SliverToBoxAdapter(
             child: CategoryListWidget(),
           ),

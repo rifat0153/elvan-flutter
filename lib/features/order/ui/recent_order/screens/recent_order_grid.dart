@@ -68,12 +68,12 @@ class RecentOrdersRow extends StatelessWidget {
         const SizedBox(width: AppSize.paddingMD),
         AppText(
           AppLocalizations.of(context)!.recentOrdersListTitle,
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const Spacer(),
         AppText(
           AppLocalizations.of(context)!.viewAll,
-          style: Theme.of(context).textTheme.subtitle2,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         const SizedBox(width: AppSize.paddingMD),
       ],

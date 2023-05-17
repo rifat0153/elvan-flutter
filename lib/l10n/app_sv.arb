@@ -64,7 +64,12 @@
     "passwordEmpty":"Skriv in lösenord",
     "yourCart":"Din vagn",
     "sorry":"Förlåt!",
-    "cartEmpty":"din vagn är tom"
+    "cartEmpty":"din vagn är tom",
+    "addFavorite":"Lägg till din favorit",
+    "favorite":"Favorit",
+    "profile":"Profil"
+
+
 
     
 }
