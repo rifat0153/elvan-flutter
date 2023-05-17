@@ -11,6 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:upgrader/upgrader.dart';
 
 class BottomTabScreen extends HookConsumerWidget {
@@ -19,7 +20,7 @@ class BottomTabScreen extends HookConsumerWidget {
   @override
   Widget build(context, ref) {
     ref.watch(androidUpdateProvider);
-    ref.watch(statusBarColorProvider(AppColors.primaryRed));
+    // ref.watch(statusBarColorProvider(AppColors.primaryRed));
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
@@ -41,7 +42,8 @@ class BottomTabScreen extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                 Positioned(child: Column(
+                 Positioned(
+                  child: Column(
                   children: [
                     Container(
                       color: AppColors.primaryRed,
@@ -68,13 +70,13 @@ class BottomTabScreen extends HookConsumerWidget {
                   icon: const Icon(Icons.home),
                   label: AppLocalizations.of(context)!.home,
                 ),
-                const NavigationDestination(
-                  icon: Icon(Icons.favorite),
-                  label: 'Favorite',
+                 NavigationDestination(
+                  icon: const Icon(Icons.favorite),
+                  label: AppLocalizations.of(context)?.favorite ??'Favorite',
                 ),
-                const NavigationDestination(
-                  icon: Icon(Icons.person),
-                  label: 'Profile',
+                 NavigationDestination(
+                  icon: const Icon(Icons.person),
+                  label: AppLocalizations.of(context)?.profile ?? 'Profile',
                 ),
               ],
             );

@@ -3,6 +3,7 @@ import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.da
 import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';

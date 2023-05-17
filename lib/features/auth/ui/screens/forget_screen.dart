@@ -3,6 +3,7 @@ import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.dart';
+import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';

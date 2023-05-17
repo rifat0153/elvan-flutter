@@ -22,13 +22,11 @@ import 'package:elvan/features/tabs/ui/screens/bottom_tab_screen.dart';
 import 'package:elvan/features/tabs/ui/screens/home_screen.dart';
 
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
-  final user = ref.read(currentUserProvider);
-  final isLoggedIn = user != null;
+  //final user = ref.read(currentUserProvider);
+  //final isLoggedIn = user != null;
   // print('appRouterProvider: isLoggedIn: $isLoggedIn');
 
-  return AppRouter(
-    authGuard: AuthGuard(isLoggedIn),
-  );
+  return AppRouter();
 });
 
 @MaterialAutoRouter(
@@ -53,7 +51,6 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
     AutoRoute(
       path: '/tabs',
       name: 'BottomTabRouter',
-      guards: [AuthGuard],
       page: BottomTabScreen,
       children: [
         // create home, profile and favorites routes

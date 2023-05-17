@@ -83,5 +83,8 @@
     "passwordEmpty":"Enter password",
     "yourCart":"Your Cart",
     "sorry":"Sorry!",
-    "cartEmpty":"Your cart is empty"
+    "cartEmpty":"Your cart is empty",
+    "addFavorite":"Add your favorite",
+    "favorite":"Favorite",
+    "profile":"Profile"
 }

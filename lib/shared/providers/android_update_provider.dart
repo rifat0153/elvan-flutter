@@ -12,8 +12,6 @@ final androidUpdateProvider = FutureProvider<void>((ref) async {
   if (appUpdate.updateAvailability == UpdateAvailability.updateAvailable) {
     InAppUpdate.performImmediateUpdate().catchError((e) {
       ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(e);
-
-      return AppUpdateResult.inAppUpdateFailed;
     });
   }
 });
