@@ -20,4 +20,5 @@ class AppAsset {
   static const String emptyCart = 'assets/images/empty_cart.png';
 
   static const String logoSvg = 'assets/svgs/logo.svg';
+  static const String heart = 'assets/images/heart.png';
 }

@@ -1,59 +1,58 @@
 PODS:
-  - app_links (0.0.1):
-    - Flutter
   - cloud_firestore (4.5.0):
-    - Firebase/Firestore (= 10.7.0)
+    - Firebase/Firestore (= 10.9.0)
     - firebase_core
     - Flutter
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - device_info_plus (0.0.1):
     - Flutter
-  - Firebase/Auth (10.7.0):
+  - Firebase/Auth (10.9.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 10.7.0)
-  - Firebase/CoreOnly (10.7.0):
-    - FirebaseCore (= 10.7.0)
-  - Firebase/Firestore (10.7.0):
+    - FirebaseAuth (~> 10.9.0)
+  - Firebase/CoreOnly (10.9.0):
+    - FirebaseCore (= 10.9.0)
+  - Firebase/Firestore (10.9.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 10.7.0)
-  - Firebase/Storage (10.7.0):
+    - FirebaseFirestore (~> 10.9.0)
+  - Firebase/Storage (10.9.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (~> 10.7.0)
+    - FirebaseStorage (~> 10.9.0)
   - firebase_auth (4.4.0):
-    - Firebase/Auth (= 10.7.0)
+    - Firebase/Auth (= 10.9.0)
     - firebase_core
     - Flutter
-  - firebase_core (2.10.0):
-    - Firebase/CoreOnly (= 10.7.0)
+  - firebase_core (2.13.0):
+    - Firebase/CoreOnly (= 10.9.0)
     - Flutter
   - firebase_storage (11.1.0):
-    - Firebase/Storage (= 10.7.0)
+    - Firebase/Storage (= 10.9.0)
     - firebase_core
     - Flutter
-  - FirebaseAppCheckInterop (10.7.0)
-  - FirebaseAuth (10.7.0):
+  - FirebaseAppCheckInterop (10.9.0)
+  - FirebaseAuth (10.9.0):
+    - FirebaseAppCheckInterop (~> 10.0)
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
-  - FirebaseAuthInterop (10.8.0)
-  - FirebaseCore (10.7.0):
+  - FirebaseAuthInterop (10.9.0)
+  - FirebaseCore (10.9.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreExtension (10.8.0):
+  - FirebaseCoreExtension (10.9.0):
     - FirebaseCore (~> 10.0)
-  - FirebaseCoreInternal (10.8.0):
+  - FirebaseCoreInternal (10.9.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseFirestore (10.7.0):
-    - FirebaseFirestore/AutodetectLeveldb (= 10.7.0)
-  - FirebaseFirestore/AutodetectLeveldb (10.7.0):
+  - FirebaseFirestore (10.9.0):
+    - FirebaseFirestore/AutodetectLeveldb (= 10.9.0)
+  - FirebaseFirestore/AutodetectLeveldb (10.9.0):
     - FirebaseFirestore/Base
     - FirebaseFirestore/WithLeveldb
-  - FirebaseFirestore/Base (10.7.0)
-  - FirebaseFirestore/WithLeveldb (10.7.0):
+  - FirebaseFirestore/Base (10.9.0)
+  - FirebaseFirestore/WithLeveldb (10.9.0):
     - FirebaseFirestore/Base
-  - FirebaseStorage (10.7.0):
+  - FirebaseStorage (10.9.0):
     - FirebaseAppCheckInterop (~> 10.0)
     - FirebaseAuthInterop (~> 10.0)
     - FirebaseCore (~> 10.0)
@@ -95,33 +94,26 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sign_in_with_apple (0.0.1):
-    - Flutter
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
   - url_launcher_ios (0.0.1):
     - Flutter
-  - webview_flutter_wkwebview (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
-  - app_links (from `.symlinks/plugins/app_links/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
-  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `10.7.0`)
+  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `10.9.0`)
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
-  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
-  - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
-  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   trunk:
@@ -140,8 +132,6 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
-  app_links:
-    :path: ".symlinks/plugins/app_links/ios"
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
   device_info_plus:
@@ -154,7 +144,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_storage/ios"
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 10.7.0
+    :tag: 10.9.0
   Flutter:
     :path: Flutter
   flutter_native_splash:
@@ -162,39 +152,34 @@ EXTERNAL SOURCES:
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/ios"
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   shared_preferences_foundation:
-    :path: ".symlinks/plugins/shared_preferences_foundation/ios"
-  sign_in_with_apple:
-    :path: ".symlinks/plugins/sign_in_with_apple/ios"
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
-  webview_flutter_wkwebview:
-    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 CHECKOUT OPTIONS:
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 10.7.0
+    :tag: 10.9.0
 
 SPEC CHECKSUMS:
-  app_links: ab4ba54d10a13d45825336bc9707b5eadee81191
-  cloud_firestore: 84f58b426bd8d21a22c4b19d9d18028fc4ff3eb1
+  cloud_firestore: ec0aaa17f7f3f205c3f128c8c203d1afcbcb020f
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
-  Firebase: 0219acf760880eeec8ce479895bd7767466d9f81
-  firebase_auth: 5984ebaf5463319e304ab1c0966b06994bd1c69a
-  firebase_core: 18d44f087248303a4a8f05d0099a000c46e3c77a
-  firebase_storage: 3419feab3ca832a07bdff5307477e0b9d20eb5f8
-  FirebaseAppCheckInterop: 8e907eea79958960a8bd2058e067f31e03a7914b
-  FirebaseAuth: dd64c01631df724b09f33e584625775c52f7d71f
-  FirebaseAuthInterop: 5ea2a68b83f5222f6d8688ffc3a49a9e92bb3eba
-  FirebaseCore: e317665b9d744727a97e623edbbed009320afdd7
-  FirebaseCoreExtension: d815fd6fec8bb3a0940bc02dd5e3e641ea7229d8
-  FirebaseCoreInternal: fa2899eb1f340054858d289e5a0fb935a0a74e52
-  FirebaseFirestore: 712ff268d746fc65efb361e9ce2cfeb458f10643
-  FirebaseStorage: 4841efa304543e1f9e4ca116c559c7a1ea2a9d0f
+  Firebase: bd152f0f3d278c4060c5c71359db08ebcfd5a3e2
+  firebase_auth: 785778cdebb592626216222577a545abba1e09fe
+  firebase_core: fc68c0f9eec4e800b9418deff14a7e0a504016f3
+  firebase_storage: 9c3127b42f292404064dab2e3ae25ae34ece7bda
+  FirebaseAppCheckInterop: e69dde5cd51b88ee1b4339d6766b691272256f9b
+  FirebaseAuth: 21d5e902fcea44d0d961540fc4742966ae6118cc
+  FirebaseAuthInterop: e53c08e60a02de17d1ab77c5032db8ae22d3a799
+  FirebaseCore: b68d3616526ec02e4d155166bbafb8eca64af557
+  FirebaseCoreExtension: d3e9bba2930a8033042112397cd9f006a1bb203d
+  FirebaseCoreInternal: d2b4acb827908e72eca47a9fd896767c3053921e
+  FirebaseFirestore: 8418f3a8d5892bf386b05d5f988b6e7e253a2ea6
+  FirebaseStorage: 075a0c10ec43f24193018c539d65e991db65d9ef
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -205,11 +190,9 @@ SPEC CHECKSUMS:
   path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
-  sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
-  webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
-PODFILE CHECKSUM: 2e647503706fcb571dd03f61ac0a86a7a962696a
+PODFILE CHECKSUM: 3c9301c015eba9ba8f77367bdc9d5e99d4a822f5
 
 COCOAPODS: 1.12.0

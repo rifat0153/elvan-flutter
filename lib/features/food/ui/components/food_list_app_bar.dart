@@ -9,7 +9,7 @@ import 'package:elvan/shared/components/badge/elvan_icon_badge.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 
-class FoodListAppBar extends HookConsumerWidget with PreferredSizeWidget {
+class FoodListAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   const FoodListAppBar({
     Key? key,
   }) : super(key: key);
