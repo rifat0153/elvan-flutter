@@ -5,8 +5,7 @@ import 'package:elvan/features/profile/ui/state/profile_screen_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final profileNotifierProvider =
-    NotifierProvider<ProfileNotifier, ProfileScreenState>(ProfileNotifier.new);
+final profileNotifierProvider = NotifierProvider<ProfileNotifier, ProfileScreenState>(ProfileNotifier.new);
 
 class ProfileNotifier extends Notifier<ProfileScreenState> {
   late final AuthUseCases authUseCase;

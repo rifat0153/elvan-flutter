@@ -31,8 +31,7 @@ class RegistrationScreen extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ElvanAppBar(
-                title: AppLocalizations.of(context)?.signup ?? "Registration"),
+            ElvanAppBar(title: AppLocalizations.of(context)?.signup ?? "Registration"),
             //asset image
             Image.asset(
               AppAsset.redLogo,
@@ -42,11 +41,8 @@ class RegistrationScreen extends HookConsumerWidget {
             Stack(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(
-                      left: 20, right: 20, top: 16, bottom: 30),
-                  decoration: BoxDecoration(
-                      color: AppColors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(AppSize.radiusSM)),
+                  margin: const EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 30),
+                  decoration: BoxDecoration(color: AppColors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(AppSize.radiusSM)),
                   child: Padding(
                     padding: const EdgeInsets.all(AppSize.paddingLG),
                     child: Column(
@@ -56,12 +52,9 @@ class RegistrationScreen extends HookConsumerWidget {
                           controller: usernameTextController,
                           decoration: InputDecoration(
                             // icon: Icon(Icons.email),
-                            prefixIcon:
-                                const Icon(Icons.person, color: AppColors.grey),
-                            hintText: AppLocalizations.of(context)?.username ??
-                                'Username',
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 15.0),
+                            prefixIcon: const Icon(Icons.person, color: AppColors.grey),
+                            hintText: AppLocalizations.of(context)?.username ?? 'Username',
+                            contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                             //rounded white border
 
                             border: const OutlineInputBorder(
@@ -80,12 +73,9 @@ class RegistrationScreen extends HookConsumerWidget {
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             // icon: Icon(Icons.email),
-                            prefixIcon:
-                                const Icon(Icons.email, color: AppColors.grey),
-                            hintText:
-                                AppLocalizations.of(context)?.email ?? 'Email',
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 15.0),
+                            prefixIcon: const Icon(Icons.email, color: AppColors.grey),
+                            hintText: AppLocalizations.of(context)?.email ?? 'Email',
+                            contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                             //rounded white border
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
@@ -103,12 +93,9 @@ class RegistrationScreen extends HookConsumerWidget {
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             // icon: Icon(Icons.email),
-                            prefixIcon:
-                                const Icon(Icons.phone, color: AppColors.grey),
-                            hintText:
-                                AppLocalizations.of(context)?.phone ?? 'Phone',
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 15.0),
+                            prefixIcon: const Icon(Icons.phone, color: AppColors.grey),
+                            hintText: AppLocalizations.of(context)?.phone ?? 'Phone',
+                            contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                             //rounded white border
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
@@ -129,15 +116,10 @@ class RegistrationScreen extends HookConsumerWidget {
                                 onPressed: () {
                                   isShowPassword.value = !isShowPassword.value;
                                 },
-                                icon: isShowPassword.value
-                                    ? const Icon(Icons.remove_red_eye)
-                                    : const Icon(Icons.visibility_off)),
-                            prefixIcon:
-                                const Icon(Icons.lock, color: AppColors.grey),
-                            hintText: AppLocalizations.of(context)?.password ??
-                                'Password',
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 15.0),
+                                icon: isShowPassword.value ? const Icon(Icons.remove_red_eye) : const Icon(Icons.visibility_off)),
+                            prefixIcon: const Icon(Icons.lock, color: AppColors.grey),
+                            hintText: AppLocalizations.of(context)?.password ?? 'Password',
+                            contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5.0),
@@ -163,26 +145,20 @@ class RegistrationScreen extends HookConsumerWidget {
                           fixedSize: Size(0.7.sw, 34),
                           backgroundColor: AppColors.primaryRed,
                           shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(AppSize.radiusLG),
+                            borderRadius: BorderRadius.circular(AppSize.radiusLG),
                           ),
                         ),
                         onPressed: () async {
                           authNotifier.onEvent(
                             AuthEvent.registerWithEmailAndPassword(
-                                context: context,
-                                email: emailTextController.text,
-                                password: passwordTextController.text,
-                                phone: phoneTextController.text,
-                                username: usernameTextController.text),
+                                context: context, email: emailTextController.text, password: passwordTextController.text, phone: phoneTextController.text, username: usernameTextController.text),
                           );
                         },
                         child: authState.loading
                             ? const SizedBox(
                                 height: 20,
                                 width: 20,
-                                child: CircularProgressIndicator(
-                                    color: AppColors.white),
+                                child: CircularProgressIndicator(color: AppColors.white),
                               )
                             : const AppText('Sign Up'),
                       ),

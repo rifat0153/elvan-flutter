@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart' as fs;
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
@@ -44,10 +43,7 @@ class OrderNotifier extends Notifier<void> {
     );
 
     await useCase.createOrder(order);
-    
+
     return order.id;
   }
-
-
-  
 }

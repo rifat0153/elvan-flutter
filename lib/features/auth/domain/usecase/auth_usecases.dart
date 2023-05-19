@@ -42,8 +42,7 @@ class AuthUseCases {
     required String password,
   }) async {
     if (email.isEmpty || password.isEmpty) {
-      return const Result.failure(
-          Failure(message: 'Email or password is empty'));
+      return const Result.failure(Failure(message: 'Email or password is empty'));
     }
 
     final user = await authRepository.singInWithEmailAndPassword(
@@ -94,8 +93,7 @@ class AuthUseCases {
     required String phone,
   }) async {
     if (email.isEmpty || password.isEmpty) {
-      return const Result.failure(
-          Failure(message: 'Email or password is empty'));
+      return const Result.failure(Failure(message: 'Email or password is empty'));
     }
 
     final user = await authRepository.signUpWithEmailAndPassword(

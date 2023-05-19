@@ -9,8 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 final favoriteUseCaseProvider = Provider((ref) => FavoriteUseCase());
 
 class FavoriteUseCase {
-  List<FoodItem> addFavorite(FoodItem foodItem, List<FoodItem> foodList,
-      {bool save = true}) {
+  List<FoodItem> addFavorite(FoodItem foodItem, List<FoodItem> foodList, {bool save = true}) {
     var state = [...foodList, foodItem];
 
     return state;
@@ -40,8 +39,7 @@ class FavoriteUseCase {
     }).toList();
   }
 
-  List<FoodItem> removeFavorite(FoodItem foodItem, List<FoodItem> foodList,
-      {bool save = true}) {
+  List<FoodItem> removeFavorite(FoodItem foodItem, List<FoodItem> foodList, {bool save = true}) {
     foodList.removeWhere((element) => element.id == foodItem.id);
     saveFavoriteToLocal(foodList);
     return [...foodList];
@@ -67,8 +65,7 @@ class FavoriteUseCase {
       categoryTitle: dto.categoryTitle,
       allergens: dto.allergens,
       buildStepsOverrides: dto.buildStepsOverrides,
-      createdAt: Timestamp.fromDate(
-          DateTime.parse(dto.createdAt ?? DateTime.now().toString())),
+      createdAt: Timestamp.fromDate(DateTime.parse(dto.createdAt ?? DateTime.now().toString())),
       description: dto.description,
       discount: dto.discount,
       id: dto.id,

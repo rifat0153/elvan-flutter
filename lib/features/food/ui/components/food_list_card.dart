@@ -27,8 +27,7 @@ class FoodListCard extends HookConsumerWidget {
     final imageTopOffset = -35.w;
     final imageLeftOffset = -35.w;
     final imageRadius = 50.w;
-    final selectedFoodItemNotifier =
-        ref.read(selectedFoodItemNotifierProvider.notifier);
+    final selectedFoodItemNotifier = ref.read(selectedFoodItemNotifierProvider.notifier);
 
     return BaseCard(
       key: key,
@@ -111,11 +110,9 @@ class FoodListCard extends HookConsumerWidget {
               child: Column(
                 children: [
                   Consumer(
-                    builder:
-                        (BuildContext context, WidgetRef ref, Widget? child) {
+                    builder: (BuildContext context, WidgetRef ref, Widget? child) {
                       final _ = ref.watch(favoriteProvider);
-                      final favProviderNotifier =
-                          ref.read(favoriteProvider.notifier);
+                      final favProviderNotifier = ref.read(favoriteProvider.notifier);
                       return FavoriteButton(
                         isFavorite: favProviderNotifier.isFavorite(foodItem),
                         foodItem: foodItem,

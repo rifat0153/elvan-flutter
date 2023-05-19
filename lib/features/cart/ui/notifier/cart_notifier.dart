@@ -111,8 +111,7 @@ class CartNotifier extends Notifier<CartUiState> {
     }
 
     final cartItemListUseCase = ref.read(cartItemListUseCaseProvider);
-    final updatingCartItem =
-        ref.read(cartItemUpdateProvider.notifier).updatingCartItem;
+    final updatingCartItem = ref.read(cartItemUpdateProvider.notifier).updatingCartItem;
 
     if (updatingCartItem == null) {
       state = const CartUiState.error('Cart item id is null');
@@ -138,9 +137,7 @@ class CartNotifier extends Notifier<CartUiState> {
     );
 
     // show snackbar with message
-    ref
-        .read(snackbarNotifierProvider.notifier)
-        .showSnackbarWithMessage('Cart item updated');
+    ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage('Cart item updated');
   }
 
   void removeFromCart(CartItem cartItem) {

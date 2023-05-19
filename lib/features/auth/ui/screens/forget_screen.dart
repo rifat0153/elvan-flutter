@@ -30,17 +30,12 @@ class ForgetScreen extends HookConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          ElvanAppBar(
-              title: AppLocalizations.of(context)?.passwordReset ??
-                  "Password reset"),
+          ElvanAppBar(title: AppLocalizations.of(context)?.passwordReset ?? "Password reset"),
           Stack(
             children: [
               Container(
-                margin: const EdgeInsets.only(
-                    left: 20, right: 20, top: 16, bottom: 30),
-                decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(AppSize.radiusSM)),
+                margin: const EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 30),
+                decoration: BoxDecoration(color: AppColors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(AppSize.radiusSM)),
                 child: Padding(
                   padding: const EdgeInsets.all(AppSize.paddingLG),
                   child: Column(
@@ -49,8 +44,7 @@ class ForgetScreen extends HookConsumerWidget {
                       TextField(
                         controller: emailTextController,
                         decoration: InputDecoration(
-                          hintText: AppLocalizations.of(context)?.emailHint ??
-                              'Enter your email',
+                          hintText: AppLocalizations.of(context)?.emailHint ?? 'Enter your email',
                           //rounded white border
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
@@ -82,18 +76,15 @@ class ForgetScreen extends HookConsumerWidget {
                         ),
                       ),
                       onPressed: () async {
-                        authNotifier.onEvent(AuthEvent.resetPassword(
-                            email: emailTextController.text, context: context));
+                        authNotifier.onEvent(AuthEvent.resetPassword(email: emailTextController.text, context: context));
                       },
                       child: authState.loading
                           ? const SizedBox(
                               height: 20,
                               width: 20,
-                              child: CircularProgressIndicator(
-                                  color: AppColors.white),
+                              child: CircularProgressIndicator(color: AppColors.white),
                             )
-                          : AppText(AppLocalizations.of(context)?.getCode ??
-                              'Get Code'),
+                          : AppText(AppLocalizations.of(context)?.getCode ?? 'Get Code'),
                     ),
                   ),
                 ),

@@ -36,7 +36,6 @@ class AppText extends StatelessWidget {
             color: color,
             letterSpacing: letterSpacing,
           ),
-          
     );
   }
 }

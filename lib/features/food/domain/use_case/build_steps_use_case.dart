@@ -1,8 +1,6 @@
-
 import 'package:elvan_shared/dtos/category/add_on/add_on.dart';
 import 'package:elvan_shared/dtos/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 
 final buildStepsUseCaseProvider = Provider<BuildStepsUseCase>(
   (ref) => BuildStepsUseCase(),
@@ -38,8 +36,7 @@ class BuildStepsUseCase {
     // update addOn
     final updatedAddOn = addOn.copyWith(
       isSelected: !addOn.isSelected,
-      includeInPrice:
-          isRemovingAddOn ? false : buildStep.shouldNextAddOnBeIncludedInPrice,
+      includeInPrice: isRemovingAddOn ? false : buildStep.shouldNextAddOnBeIncludedInPrice,
     );
 
     final updatedAddOns = buildStep.addOns.map((e) {

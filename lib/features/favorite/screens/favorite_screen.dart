@@ -25,12 +25,8 @@ class FavoriteScreen extends ConsumerWidget {
                 Padding(
                   padding: EdgeInsets.only(top: context.screenHeight / 3.2),
                   child: Text(
-                    AppLocalizations.of(context)?.addFavorite ??
-                        "Add your favorite",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: AppColors.white),
+                    AppLocalizations.of(context)?.addFavorite ?? "Add your favorite",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.white),
                   ),
                 ),
               ],

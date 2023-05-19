@@ -24,8 +24,7 @@ class TopPickCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedFoodItemNotifier =
-        ref.read(selectedFoodItemNotifierProvider.notifier);
+    final selectedFoodItemNotifier = ref.read(selectedFoodItemNotifierProvider.notifier);
     return InkWell(
       onTap: () {
         selectedFoodItemNotifier.setFoodItemAndBuildSteps(foodItem);
@@ -63,22 +62,18 @@ class TopPickCard extends ConsumerWidget {
 
                       child: CircleAvatar(
                         radius: imageRadius,
-                        backgroundImage:
-                            CachedNetworkImageProvider(foodItem.imageUrl!),
+                        backgroundImage: CachedNetworkImageProvider(foodItem.imageUrl!),
                       ),
                     ),
                     Positioned(
                       top: 0,
                       right: 0,
                       child: Consumer(
-                        builder: (BuildContext context, WidgetRef ref,
-                            Widget? child) {
+                        builder: (BuildContext context, WidgetRef ref, Widget? child) {
                           final _ = ref.watch(favoriteProvider);
-                          final favProviderNotifier =
-                              ref.read(favoriteProvider.notifier);
+                          final favProviderNotifier = ref.read(favoriteProvider.notifier);
                           return FavoriteButton(
-                            isFavorite:
-                                favProviderNotifier.isFavorite(foodItem),
+                            isFavorite: favProviderNotifier.isFavorite(foodItem),
                             foodItem: foodItem,
                             onPressed: () {
                               favProviderNotifier.toggle(foodItem);
@@ -91,16 +86,14 @@ class TopPickCard extends ConsumerWidget {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
+                padding: const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
                 child: AppText(
                   foodItem.title,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
+                padding: const EdgeInsets.symmetric(horizontal: AppSize.paddingSM),
                 child: AppText(
                   foodItem.description ?? '',
                   style: Theme.of(context).textTheme.titleSmall,
@@ -120,8 +113,7 @@ class TopPickCard extends ConsumerWidget {
                     icon: Icons.add,
                     color: AppColors.primaryRed,
                     onPressed: () {
-                      selectedFoodItemNotifier
-                          .setFoodItemAndBuildSteps(foodItem);
+                      selectedFoodItemNotifier.setFoodItemAndBuildSteps(foodItem);
                       context.pushRoute(
                         const FoodRouter(children: [
                           FoodDetailRoute(),

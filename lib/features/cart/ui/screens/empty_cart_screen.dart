@@ -26,13 +26,9 @@ class EmptyCartScreen extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(AppAsset.emptyCart, height: 300),
-                AppText(AppLocalizations.of(context)?.sorry ?? "Sorry!",
-                    style: Theme.of(context).textTheme.headlineLarge),
+                AppText(AppLocalizations.of(context)?.sorry ?? "Sorry!", style: Theme.of(context).textTheme.headlineLarge),
                 const SizedBox(height: AppSize.kPadding),
-                AppText(
-                    AppLocalizations.of(context)?.cartEmpty ??
-                        "Your cart is empty",
-                    style: Theme.of(context).textTheme.headlineSmall),
+                AppText(AppLocalizations.of(context)?.cartEmpty ?? "Your cart is empty", style: Theme.of(context).textTheme.headlineSmall),
               ],
             ),
           ),

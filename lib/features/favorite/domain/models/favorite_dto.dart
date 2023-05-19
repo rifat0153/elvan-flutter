@@ -28,8 +28,7 @@ class FavoriteDto with _$FavoriteDto {
     String? createdAt,
   }) = _FavoriteDto;
 
-  factory FavoriteDto.fromJson(Map<String, dynamic> json) =>
-      _$FavoriteDtoFromJson(json);
+  factory FavoriteDto.fromJson(Map<String, dynamic> json) => _$FavoriteDtoFromJson(json);
 
   factory FavoriteDto.formFoodItem(FoodItem item) {
     return FavoriteDto(
@@ -53,6 +52,4 @@ class FavoriteDto with _$FavoriteDto {
       timeToPrepareInMinutes: item.timeToPrepareInMinutes,
     );
   }
-
-  
 }

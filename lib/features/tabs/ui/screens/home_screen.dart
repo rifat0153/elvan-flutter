@@ -57,8 +57,7 @@ class HomeScreen extends HookConsumerWidget {
                               children: [
                                 AppText(
                                   "Sorry!",
-                                  style:
-                                      Theme.of(context).textTheme.headlineLarge,
+                                  style: Theme.of(context).textTheme.headlineLarge,
                                 ),
                                 AppText(
                                   "We are not taking order right now.\nThank you for being with us.",

@@ -8,8 +8,7 @@ class DeleteDialog extends AlertDialogModel<bool> {
     required String titleOfObjectToDelete,
   }) : super(
           title: '${Strings.delete} $titleOfObjectToDelete?',
-          message:
-              '${Strings.areYouSureYouWantToDeleteThis} $titleOfObjectToDelete?',
+          message: '${Strings.areYouSureYouWantToDeleteThis} $titleOfObjectToDelete?',
           buttons: const {
             Strings.cancel: false,
             Strings.delete: true,

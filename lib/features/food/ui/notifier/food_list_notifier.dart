@@ -9,15 +9,13 @@ import 'package:elvan/features/food/domain/use_case/food_use_case.dart';
 part 'food_list_notifier.g.dart';
 
 @riverpod
-FutureOr<List<FoodCategoryMap>> foodListFilteredMap(
-    FoodListFilteredMapRef ref) {
+FutureOr<List<FoodCategoryMap>> foodListFilteredMap(FoodListFilteredMapRef ref) {
   final foodCategoryMapUseCase = ref.read(foodCategoryMapUseCaseProvider);
 
   final foodListAsync = ref.watch(foodListNotifierProvider);
 
   final categoriesAsync = ref.watch(categoryNotifierProvider);
-  final selectedCategoriesNotifier =
-      ref.watch(categoryNotifierProvider.notifier);
+  final selectedCategoriesNotifier = ref.watch(categoryNotifierProvider.notifier);
   final selectedCategories = selectedCategoriesNotifier.selectedCategories;
 
   final foodList = foodListAsync.valueOrNull ?? [];

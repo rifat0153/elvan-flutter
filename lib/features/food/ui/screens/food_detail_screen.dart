@@ -39,8 +39,7 @@ class FoodDetailScreen extends HookConsumerWidget {
             return Stack(
               children: [
                 Padding(
-                  padding:
-                      EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                  padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
                   child: CustomScrollView(
                     slivers: [
                       SliverToBoxAdapter(
@@ -88,13 +87,10 @@ class FoodDetailScreen extends HookConsumerWidget {
           final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
           final cartUpdateNotifier = ref.watch(cartItemUpdateProvider.notifier);
           final isCartUpdating = cartUpdateNotifier.isUpdating;
-          final currentBuildStepsPrice =
-              ref.watch(currentBuildStepsPriceProvider);
+          final currentBuildStepsPrice = ref.watch(currentBuildStepsPriceProvider);
           final totalPrice = foodItem.price + currentBuildStepsPrice;
 
-          final String cartText = isCartUpdating
-              ? AppLocalizations.of(context)!.updateCart
-              : AppLocalizations.of(context)!.addToCart;
+          final String cartText = isCartUpdating ? AppLocalizations.of(context)!.updateCart : AppLocalizations.of(context)!.addToCart;
           final String cartButtonText = '$cartText - \$ $totalPrice';
 
           return ElvanButton(

@@ -73,7 +73,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
         );
 
         try {
-          final result = await authUseCase.resetPasswordUseCase(email: email);
+          final _ = await authUseCase.resetPasswordUseCase(email: email);
           state = state.copyWith(
             elvanUser: state.elvanUser,
             loading: false,
@@ -85,14 +85,15 @@ class AuthNotifier extends Notifier<AuthScreenState> {
               // ignore: use_build_context_synchronously
               title: AppLocalizations.of(context)?.emailSent ?? 'Email Sent',
               // ignore: use_build_context_synchronously
-              content: AppLocalizations.of(context)?.resetPasswordMsg ??
-                  'Reset Password Email has been sent to your email address',
+              content: AppLocalizations.of(context)?.resetPasswordMsg ?? 'Reset Password Email has been sent to your email address',
               onOk: () {
                 snakbar.closeAlartDialog();
               },
               context: context);
           //show toast
-        } catch (e) {}
+        } catch (e) {
+          // TODO: NEXT DO
+        }
       },
 
       goToRegisterScreen: () {
@@ -123,9 +124,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
           elvanUser: state.elvanUser,
           loading: false,
         );
-        ref
-            .read(snackbarNotifierProvider.notifier)
-            .showSnackbarWithMessage(failure.message ?? '');
+        ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(failure.message ?? '');
       },
     );
   }
@@ -133,8 +132,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
   Future loginAndGetUserData(String email, String password) async {
     state = state.copyWith(elvanUser: null, loading: true);
 
-    final result =
-        await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
+    final result = await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
       email: email,
       password: password,
     );
@@ -148,23 +146,17 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       },
       failure: (message) {
         // state = AuthScreenState.error(message.toString());
-        state = state.copyWith(
-          elvanUser: null,
-          loading: false,
-        );
-        ref
-            .read(snackbarNotifierProvider.notifier)
-            .showSnackbarWithMessage(message.message ?? '');
+        state = state.copyWith(elvanUser: null, loading: false);
+        ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
+              message.message ?? '',
+            );
       },
     );
   }
 
   //set user data
   Future<void> setElvanUserData(String userID, String email) async {
-    state = state.copyWith(
-      elvanUser: state.elvanUser,
-      loading: true,
-    );
+    state = state.copyWith(elvanUser: state.elvanUser, loading: true);
 
     final result = await authUseCase.setUserUseCase(
       userId: "userId",
@@ -185,9 +177,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
           elvanUser: state.elvanUser,
           loading: false,
         );
-        ref
-            .read(snackbarNotifierProvider.notifier)
-            .showSnackbarWithMessage(failure.message ?? '');
+        ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(failure.message ?? '');
       },
     );
   }
@@ -214,8 +204,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
       return;
     }
 
-    final result =
-        await authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
+    final result = await authUseCase.signUpWithEmailAndPasswordAndGetElvanUserUseCase(
       email: email,
       password: password,
       phone: phone,
@@ -234,9 +223,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
           elvanUser: state.elvanUser,
           loading: false,
         );
-        ref
-            .read(snackbarNotifierProvider.notifier)
-            .showSnackbarWithMessage(failure.message ?? '');
+        ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(failure.message ?? '');
       },
     );
   }
@@ -255,8 +242,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
         elvanUser: state.elvanUser,
         loading: false,
       );
-      ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
-          AppLocalizations.of(context)?.usernameEmpty ?? '');
+      ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(AppLocalizations.of(context)?.usernameEmpty ?? '');
       return false;
     } else if (email.isEmpty) {
       state = state.copyWith(
@@ -264,8 +250,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
         loading: false,
       );
 
-      ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
-          AppLocalizations.of(context)?.emailEmpty ?? '');
+      ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(AppLocalizations.of(context)?.emailEmpty ?? '');
       return false;
     } else if (!emailRegExp.hasMatch(email)) {
       state = state.copyWith(
@@ -273,8 +258,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
         loading: false,
       );
 
-      ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
-          AppLocalizations.of(context)?.emailEmpty ?? '');
+      ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(AppLocalizations.of(context)?.emailEmpty ?? '');
       return false;
     } else if (phone.isEmpty) {
       state = state.copyWith(
@@ -282,8 +266,7 @@ class AuthNotifier extends Notifier<AuthScreenState> {
         loading: false,
       );
 
-      ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(
-          AppLocalizations.of(context)?.phoneEmpty ?? '');
+      ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage(AppLocalizations.of(context)?.phoneEmpty ?? '');
       return false;
     } else if (password.isEmpty) {
       state = state.copyWith(

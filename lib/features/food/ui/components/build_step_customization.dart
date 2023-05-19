@@ -54,16 +54,14 @@ class BuildStepCustomization extends HookConsumerWidget {
     );
   }
 
-  Widget _buildSalad(BuildContext context, BuildStep buildStep,
-      List<AddOn> addOns, BuildStepsNotifier buildStepsNotifier) {
+  Widget _buildSalad(BuildContext context, BuildStep buildStep, List<AddOn> addOns, BuildStepsNotifier buildStepsNotifier) {
     return LayoutGrid(
       columnSizes: [
         1.fr,
         1.fr,
         1.fr,
       ],
-      rowSizes: List.generate(((addOns.length - 1) ~/ 2 + 1), (index) => auto)
-          .toList(),
+      rowSizes: List.generate(((addOns.length - 1) ~/ 2 + 1), (index) => auto).toList(),
       rowGap: AppSize.paddingMD,
       children: addOns
           .map(
@@ -148,12 +146,8 @@ class BuildStepCustomization extends HookConsumerWidget {
                       color: AppColors.green,
                     ),
                     ElvanIconButton(
-                      icon: addOn.isSelected
-                          ? Icons.remove_circle_outline
-                          : Icons.add_circle,
-                      color: !addOn.isSelected
-                          ? AppColors.green
-                          : AppColors.primaryRed,
+                      icon: addOn.isSelected ? Icons.remove_circle_outline : Icons.add_circle,
+                      color: !addOn.isSelected ? AppColors.green : AppColors.primaryRed,
                       onPressed: onPressed,
                     ),
                   ],
@@ -183,9 +177,7 @@ class BuildStepCustomization extends HookConsumerWidget {
         );
   }
 
-  Widget _buildAddOnTile(
-      BuildContext context, AddOn addOn, Function() onPressed,
-      {bool isSaladBar = false}) {
+  Widget _buildAddOnTile(BuildContext context, AddOn addOn, Function() onPressed, {bool isSaladBar = false}) {
     if (isSaladBar) {
       return _buildSaladAddon(
         context,
@@ -219,9 +211,7 @@ class BuildStepCustomization extends HookConsumerWidget {
   }
 
   AppText _itemPrice(AddOn addOn, BuildContext context) {
-    final priceText = !addOn.includeInPrice && addOn.isSelected
-        ? 'Included'
-        : '\$${addOn.price}';
+    final priceText = !addOn.includeInPrice && addOn.isSelected ? 'Included' : '\$${addOn.price}';
 
     return AppText(
       priceText,
@@ -233,8 +223,7 @@ class BuildStepCustomization extends HookConsumerWidget {
   }
 
   Widget _buildSectionTitle(BuildContext context, BuildStep buildStep) {
-    final itemsIncludedInPrice =
-        max(buildStep.noOfItemIncludedInPrice, buildStep.minSelectedAddOns);
+    final itemsIncludedInPrice = max(buildStep.noOfItemIncludedInPrice, buildStep.minSelectedAddOns);
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -251,23 +240,15 @@ class BuildStepCustomization extends HookConsumerWidget {
               Expanded(
                 child: AppText(
                   buildStep.title.toUpperCase(),
-                  style: isSaladBar
-                      ? Theme.of(context).textTheme.titleSmall
-                      : Theme.of(context).textTheme.titleMedium,
+                  style: isSaladBar ? Theme.of(context).textTheme.titleSmall : Theme.of(context).textTheme.titleMedium,
                   maxLines: 2,
                   color: AppColors.white,
                 ),
               ),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: AppColors.white.withOpacity(0.3)),
-                child: AppText(
-                    buildStep.isRequired
-                        ? AppLocalizations.of(context)?.required ?? 'Required'
-                        : AppLocalizations.of(context)?.optional ?? 'Optional',
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: AppColors.white.withOpacity(0.3)),
+                child: AppText(buildStep.isRequired ? AppLocalizations.of(context)?.required ?? 'Required' : AppLocalizations.of(context)?.optional ?? 'Optional',
                     style: Theme.of(context).textTheme.labelMedium),
               )
             ],

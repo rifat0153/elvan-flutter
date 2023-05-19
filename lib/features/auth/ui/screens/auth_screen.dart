@@ -56,11 +56,9 @@ class AuthScreen extends HookConsumerWidget {
                   TextField(
                     controller: emailTextController,
                     decoration: InputDecoration(
-                      contentPadding:
-                          const EdgeInsets.symmetric(vertical: 15.0),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
 
-                      prefixIcon: const Icon(Icons.person,
-                          color: AppColors.grey, size: 20),
+                      prefixIcon: const Icon(Icons.person, color: AppColors.grey, size: 20),
                       hintText: AppLocalizations.of(context)?.email ?? 'Email',
                       //rounded white border
                       border: const OutlineInputBorder(
@@ -79,23 +77,19 @@ class AuthScreen extends HookConsumerWidget {
                     controller: passwordTextController,
                     obscureText: isShowPassword.value,
                     decoration: InputDecoration(
-                      contentPadding:
-                          const EdgeInsets.symmetric(vertical: 15.0),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
 
                       suffixIcon: IconButton(
                           onPressed: () {
                             isShowPassword.value = !isShowPassword.value;
                           },
-                          icon: isShowPassword.value
-                              ? const Icon(Icons.remove_red_eye)
-                              : const Icon(Icons.visibility_off)),
+                          icon: isShowPassword.value ? const Icon(Icons.remove_red_eye) : const Icon(Icons.visibility_off)),
                       prefixIcon: const Icon(
                         Icons.lock,
                         color: AppColors.grey,
                         size: 20,
                       ),
-                      hintText:
-                          AppLocalizations.of(context)?.password ?? 'Password',
+                      hintText: AppLocalizations.of(context)?.password ?? 'Password',
                       border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(5.0),
@@ -113,10 +107,7 @@ class AuthScreen extends HookConsumerWidget {
                       onTap: () {
                         context.pushRoute(const ForgetRouter());
                       },
-                      child: AppText(
-                          AppLocalizations.of(context)?.forgotPassword ??
-                              'Forgot Password?',
-                          color: AppColors.grey),
+                      child: AppText(AppLocalizations.of(context)?.forgotPassword ?? 'Forgot Password?', color: AppColors.grey),
                     ),
                   ),
                   const SizedBox(height: AppSize.kPadding * 2),
@@ -142,18 +133,15 @@ class AuthScreen extends HookConsumerWidget {
                         ? const SizedBox(
                             height: 20,
                             width: 20,
-                            child: CircularProgressIndicator(
-                                color: AppColors.white),
+                            child: CircularProgressIndicator(color: AppColors.white),
                           )
-                        : AppText(
-                            AppLocalizations.of(context)?.login ?? 'Login'),
+                        : AppText(AppLocalizations.of(context)?.login ?? 'Login'),
                   ),
                   //dont have an account button
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AppText(AppLocalizations.of(context)?.donthaveAccount ??
-                          'Don\'t have an account?'),
+                      AppText(AppLocalizations.of(context)?.donthaveAccount ?? 'Don\'t have an account?'),
                       TextButton(
                         onPressed: () {
                           // authNotifier.onEvent(const AuthEvent.register());
@@ -161,8 +149,7 @@ class AuthScreen extends HookConsumerWidget {
                           //auto route
                           context.pushRoute(const RegRouter());
                         },
-                        child: AppText(AppLocalizations.of(context)?.register ??
-                            'Register'),
+                        child: AppText(AppLocalizations.of(context)?.register ?? 'Register'),
                       ),
                     ],
                   ),

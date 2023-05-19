@@ -105,9 +105,7 @@ class OrderCard extends StatelessWidget {
                   for (var item in order.items)
                     AppText(
                       '${item.foodItem.title} x${item.quantity}',
-                      style: item == order.items.first
-                          ? Theme.of(context).textTheme.titleMedium
-                          : Theme.of(context).textTheme.bodyMedium,
+                      style: item == order.items.first ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.bodyMedium,
                       maxLines: 3,
                     ),
                 ],

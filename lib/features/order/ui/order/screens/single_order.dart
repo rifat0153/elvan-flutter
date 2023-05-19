@@ -65,8 +65,7 @@ class SingleOrderScreen extends HookConsumerWidget {
     );
   }
 
-  SizedBox cancleBtn(
-      BuildContext context, SnackbarNotifier snakbar, WidgetRef ref) {
+  SizedBox cancleBtn(BuildContext context, SnackbarNotifier snakbar, WidgetRef ref) {
     return SizedBox(
       width: context.screenWidth,
       child: Center(
@@ -88,9 +87,7 @@ class SingleOrderScreen extends HookConsumerWidget {
               },
               onOk: () async {
                 ref.read(appRouterProvider).pop();
-                await ref
-                    .read(orderRecordsNotifierProvider.notifier)
-                    .cancleOrder(
+                await ref.read(orderRecordsNotifierProvider.notifier).cancleOrder(
                       order.id,
                     );
 

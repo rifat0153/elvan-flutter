@@ -5,6 +5,5 @@ part 'auth_screen_state.freezed.dart';
 
 @freezed
 class AuthScreenState with _$AuthScreenState {
-  const factory AuthScreenState(
-      {@Default(false) bool loading, ElvanUser? elvanUser}) = _AuthScreenState;
+  const factory AuthScreenState({@Default(false) bool loading, ElvanUser? elvanUser}) = _AuthScreenState;
 }

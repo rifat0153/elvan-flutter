@@ -33,8 +33,7 @@ class AuthRepositoryImpl implements AuthRepository {
             Constants.firebaseElvanUserCollectionName,
           )
           .withConverter(
-            fromFirestore: (snapshot, _) =>
-                ElvanUserDto.fromJson(snapshot.data()!),
+            fromFirestore: (snapshot, _) => ElvanUserDto.fromJson(snapshot.data()!),
             toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
           )
           .doc(userId)
@@ -91,15 +90,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> setElvanUser(
-      {required String userId, required ElvanUserDto elvanUserDto}) async {
+  Future<void> setElvanUser({required String userId, required ElvanUserDto elvanUserDto}) async {
     await firebaseFirestore
         .collection(
           Constants.firebaseElvanUserCollectionName,
         )
         .withConverter(
-          fromFirestore: (snapshot, _) =>
-              ElvanUserDto.fromJson(snapshot.data()!),
+          fromFirestore: (snapshot, _) => ElvanUserDto.fromJson(snapshot.data()!),
           toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
         )
         .doc(userId)
@@ -107,11 +104,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<User?> signUpWithEmailAndPassword(
-      {required String email, required String password}) async {
+  Future<User?> signUpWithEmailAndPassword({required String email, required String password}) async {
     //sign up
-    await firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
+    await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
     //sign in
     final userCredential = await firebaseAuth.signInWithEmailAndPassword(
       email: email,

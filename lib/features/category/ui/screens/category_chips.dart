@@ -13,8 +13,7 @@ class CategoryChips extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final categoriesState = ref.watch(categoryNotifierProvider);
     final categoriesNotifier = ref.watch(categoryNotifierProvider.notifier);
-    final sortedCategories =
-        categoriesNotifier.categoriesSortedBySelected ?? [];
+    final sortedCategories = categoriesNotifier.categoriesSortedBySelected ?? [];
     final selectedCategories = categoriesNotifier.selectedCategories ?? [];
 
     return categoriesState.when(

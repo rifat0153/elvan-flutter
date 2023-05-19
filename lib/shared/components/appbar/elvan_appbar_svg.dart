@@ -9,7 +9,7 @@ class ElvanAppBarSvg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Container(
+    return Container(
       width: context.screenWidth,
       height: kToolbarHeight,
       color: AppColors.primaryRed,

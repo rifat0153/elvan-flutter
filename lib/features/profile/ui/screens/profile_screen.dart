@@ -22,9 +22,7 @@ class ProfileScreen extends HookConsumerWidget {
     final version = ref.watch(versionProvider);
 
     return auth.when(
-        loading: () => const Center(
-            child: SizedBox(
-                height: 40, width: 40, child: CircularProgressIndicator())),
+        loading: () => const Center(child: SizedBox(height: 40, width: 40, child: CircularProgressIndicator())),
         unKnown: () => const Center(child: Text('Unknown')),
         authenticated: (user) => Center(
               child: Column(
@@ -120,19 +118,10 @@ class ProfileScreen extends HookConsumerWidget {
                       onTap: () {
                         context.pushRoute(const OrderRouter());
                       }),
-                  ProfileRow(
-                      icon: Icons.notifications,
-                      text: AppLocalizations.of(context)!.notifications,
-                      onTap: () {}),
+                  ProfileRow(icon: Icons.notifications, text: AppLocalizations.of(context)!.notifications, onTap: () {}),
                   ProfileRow(icon: Icons.phone, text: "Contacts", onTap: () {}),
-                  ProfileRow(
-                      icon: Icons.info,
-                      text: AppLocalizations.of(context)!.termsAndConditions,
-                      onTap: () {}),
-                  ProfileRow(
-                      icon: Icons.question_mark_rounded,
-                      text: AppLocalizations.of(context)!.faqAndSupport,
-                      onTap: () {}),
+                  ProfileRow(icon: Icons.info, text: AppLocalizations.of(context)!.termsAndConditions, onTap: () {}),
+                  ProfileRow(icon: Icons.question_mark_rounded, text: AppLocalizations.of(context)!.faqAndSupport, onTap: () {}),
                   ProfileRow(
                       icon: Icons.exit_to_app_outlined,
                       text: AppLocalizations.of(context)!.signOut,
@@ -168,7 +157,7 @@ class ProfileScreen extends HookConsumerWidget {
                         ],
                       );
                     },
-                    error: (error, stackTrace) =>Container(),
+                    error: (error, stackTrace) => Container(),
                     loading: () => Container(),
                   )
                 ],
@@ -183,8 +172,7 @@ class ProfileScreen extends HookConsumerWidget {
                     );
               },
             )),
-        error: (error) => const Center(
-            child: AppText('Error', style: TextStyle(color: AppColors.white))));
+        error: (error) => const Center(child: AppText('Error', style: TextStyle(color: AppColors.white))));
   }
 }
 

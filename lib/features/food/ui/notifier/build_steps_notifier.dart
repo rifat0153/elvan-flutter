@@ -7,8 +7,7 @@ import 'package:elvan/features/food/domain/use_case/build_steps_use_case.dart';
 
 enum AddOnQuantityAction { increment, decrement, toggleIsSelected }
 
-final buildStepsNotifierProvider =
-    AsyncNotifierProvider<BuildStepsNotifier, List<BuildStep>>(
+final buildStepsNotifierProvider = AsyncNotifierProvider<BuildStepsNotifier, List<BuildStep>>(
   BuildStepsNotifier.new,
 );
 
