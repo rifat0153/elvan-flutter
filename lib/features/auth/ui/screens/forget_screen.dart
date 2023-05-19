@@ -3,7 +3,6 @@ import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.dart';
-import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
@@ -13,8 +12,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-
 
 class ForgetScreen extends HookConsumerWidget {
   const ForgetScreen({super.key});
@@ -86,9 +83,7 @@ class ForgetScreen extends HookConsumerWidget {
                       ),
                       onPressed: () async {
                         authNotifier.onEvent(AuthEvent.resetPassword(
-                          email: emailTextController.text,
-                          context: context
-                        ));
+                            email: emailTextController.text, context: context));
                       },
                       child: authState.loading
                           ? const SizedBox(

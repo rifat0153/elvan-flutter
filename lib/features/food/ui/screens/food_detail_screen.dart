@@ -1,9 +1,8 @@
 import 'package:elvan/core/extensions/build_context/screen_size_ext.dart';
 import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.dart';
-import 'package:elvan/shared/providers/statusbar_color_provider.dart';
+import 'package:elvan/shared/providers/statusbar_color_helper.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/features/cart/ui/notifier/cart_notifier.dart';
@@ -19,54 +18,35 @@ import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class FoodDetailScreen extends HookConsumerWidget {
   const FoodDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(statusBarColorProvider(AppColors.grey_70));
+    useEffect(() {
+      statusBarColorProvider(AppColors.grey_70);
+      return;
+    }, const []);
 
     final foodItemState = ref.watch(selectedFoodItemNotifierProvider);
 
     return ElvanSafeRemoveScaffold(
-        // appBar: AppBar(
-        //   leading: IconButton(
-        //     icon: const Icon(Icons.arrow_back),
-        //     onPressed: () => context.navigateBack(),
-        //   ),
-        // ),
         imagePath: AppAsset.homeBackgroundPng,
         child: foodItemState.when(
           data: (foodItem) {
             return Stack(
               children: [
                 Padding(
-                  padding:EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                  padding:
+                      EdgeInsets.only(top: MediaQuery.of(context).padding.top),
                   child: CustomScrollView(
                     slivers: [
                       SliverToBoxAdapter(
                         child: FoodDetailImageWithAppbar(foodItem: foodItem),
                       ),
                       _foodDescription(foodItem, context),
-                      // SliverToBoxAdapter(
-                      //   child: AppText(
-                      //     ref
-                      //         .watch(
-                      //           isBuildStepsValidProvider,
-                      //         )
-                      //         .toString(),
-                      //   ),
-                      // ),
-                      // SliverToBoxAdapter(
-                      //   child: AppText(
-                      //     ref
-                      //         .watch(
-                      //           currentBuildStepsPriceProvider,
-                      //         )
-                      //         .toString(),
-                      //   ),
-                      // ),
                       _buildStepsCustomization(foodItem),
                       const SliverToBoxAdapter(
                         child: SizedBox(height: AppSize.padding4XL),
@@ -80,7 +60,8 @@ class FoodDetailScreen extends HookConsumerWidget {
                   right: 0,
                   child: _cartButton(foodItem, context),
                 ),
-                Positioned(child: Container(
+                Positioned(
+                    child: Container(
                   color: AppColors.primaryRed,
                   width: context.screenWidth,
                   height: MediaQuery.of(context).padding.top,
@@ -107,10 +88,13 @@ class FoodDetailScreen extends HookConsumerWidget {
           final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
           final cartUpdateNotifier = ref.watch(cartItemUpdateProvider.notifier);
           final isCartUpdating = cartUpdateNotifier.isUpdating;
-          final currentBuildStepsPrice = ref.watch(currentBuildStepsPriceProvider);
+          final currentBuildStepsPrice =
+              ref.watch(currentBuildStepsPriceProvider);
           final totalPrice = foodItem.price + currentBuildStepsPrice;
 
-          final String cartText = isCartUpdating ? AppLocalizations.of(context)!.updateCart : AppLocalizations.of(context)!.addToCart;
+          final String cartText = isCartUpdating
+              ? AppLocalizations.of(context)!.updateCart
+              : AppLocalizations.of(context)!.addToCart;
           final String cartButtonText = '$cartText - \$ $totalPrice';
 
           return ElvanButton(
@@ -176,9 +160,10 @@ class FoodDetailScreen extends HookConsumerWidget {
               color: AppColors.white,
             ),
             AppText(
-               foodItem.ingredients.join(","),
+              foodItem.ingredients.join(","),
               style: Theme.of(context).textTheme.bodyLarge,
               color: Colors.grey,
+              maxLines: 10,
             ),
           ],
         ),

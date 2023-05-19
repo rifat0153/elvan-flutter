@@ -16,7 +16,7 @@ class ElvanAppBarSvg extends StatelessWidget {
       child: Center(
         child: SvgPicture.asset(
           AppAsset.logoSvg,
-          height: 28,
+          height: 20,
           width: 103,
           fit: BoxFit.scaleDown,
         ),

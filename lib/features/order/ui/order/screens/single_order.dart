@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:elvan/app/router/app_router.dart';
 import 'package:elvan/core/extensions/build_context/screen_size_ext.dart';
-import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/features/order/ui/components/order_summery.dart';
 import 'package:elvan/features/order/ui/components/order_timeline.dart';
@@ -26,10 +25,7 @@ class SingleOrderScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final orderRecordsNotifier = ref.watch(orderRecordsNotifierProvider);
-
     final currentOrder = ref.watch(singleOrderProvider(order.id));
-
-    var snakbar = ref.read(snackbarNotifierProvider.notifier);
 
     return orderRecordsNotifier.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -60,14 +56,6 @@ class SingleOrderScreen extends HookConsumerWidget {
                 child: CircularProgressIndicator(),
               ),
             ),
-            // if (order.status.status == OrderStatus.delivered.status ||
-            //     order.status.status == OrderStatus.cancelled.status)
-            //   Container()
-            // else
-            //   Positioned(
-            //     bottom: 10,
-            //     child: cancleBtn(context, snakbar, ref),
-            //   ),
           ],
         ),
       ),

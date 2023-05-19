@@ -5,14 +5,12 @@ import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 import 'package:elvan/shared/components/buttons/favorite_button.dart';
 import 'package:elvan/shared/components/cards/base_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
-
 import 'package:elvan/app/router/app_router.gr.dart';
 
 class FoodListCard extends HookConsumerWidget {
@@ -26,14 +24,11 @@ class FoodListCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tileHeight = 100.w;
-
     final imageTopOffset = -35.w;
     final imageLeftOffset = -35.w;
     final imageRadius = 50.w;
-
-    final selectedFoodItemNotifier = ref.read(selectedFoodItemNotifierProvider.notifier);
-
-    FavoriteProvider favProvider = ref.watch(favoriteProvider.notifier);
+    final selectedFoodItemNotifier =
+        ref.read(selectedFoodItemNotifierProvider.notifier);
 
     return BaseCard(
       key: key,
@@ -115,16 +110,12 @@ class FoodListCard extends HookConsumerWidget {
               flex: 2,
               child: Column(
                 children: [
-                  // ElvanIconButton(
-                  //   icon: Icons.add,
-                  //   color: AppColors.primaryRed,
-                  //   // TODO: Add to cart
-                  //   onPressed: () {},
-                  // ),
                   Consumer(
-                    builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                    builder:
+                        (BuildContext context, WidgetRef ref, Widget? child) {
                       final _ = ref.watch(favoriteProvider);
-                      final favProviderNotifier = ref.read(favoriteProvider.notifier);
+                      final favProviderNotifier =
+                          ref.read(favoriteProvider.notifier);
                       return FavoriteButton(
                         isFavorite: favProviderNotifier.isFavorite(foodItem),
                         foodItem: foodItem,

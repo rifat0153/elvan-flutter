@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
-import 'package:elvan/app/router/route_guards.dart';
-import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/app/router/app_router.gr.dart';

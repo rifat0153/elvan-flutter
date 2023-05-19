@@ -14,16 +14,18 @@ class FoodDetailAppBar extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: AppColors.white,
+            icon: const CircleAvatar(
+              backgroundColor: AppColors.black_10,
+              child: Icon(
+                Icons.arrow_back,
+                color: AppColors.white,
+              ),
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
           const Spacer(),
           IconButton(
             icon: const Icon(Icons.shopping_cart),
-            // TODO: Add go to cart functionality
             onPressed: () {
               context.pushRoute(const CartRoute());
             },

@@ -155,13 +155,6 @@ class SaladBarScreen extends HookConsumerWidget {
               foodItem.title.toUpperCase(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-
-            //show rating
-            // AppText(
-            //   foodItem.rating.toString(),
-            //   style: Theme.of(context).textTheme.headlineSmall,
-            //   color: Colors.grey,
-            // ),
             AppText(
               "\$${foodItem.price}",
               style: Theme.of(context).textTheme.headlineSmall,

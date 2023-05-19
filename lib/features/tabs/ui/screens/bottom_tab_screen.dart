@@ -4,14 +4,12 @@ import 'package:elvan/core/extensions/build_context/screen_size_ext.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar_svg.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/providers/android_update_provider.dart';
-import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:elvan/shared/components/background/screen_background.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:upgrader/upgrader.dart';
 
 class BottomTabScreen extends HookConsumerWidget {
@@ -20,7 +18,6 @@ class BottomTabScreen extends HookConsumerWidget {
   @override
   Widget build(context, ref) {
     ref.watch(androidUpdateProvider);
-    // ref.watch(statusBarColorProvider(AppColors.primaryRed));
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
@@ -42,8 +39,8 @@ class BottomTabScreen extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                 Positioned(
-                  child: Column(
+                Positioned(
+                    child: Column(
                   children: [
                     Container(
                       color: AppColors.primaryRed,
@@ -70,11 +67,11 @@ class BottomTabScreen extends HookConsumerWidget {
                   icon: const Icon(Icons.home),
                   label: AppLocalizations.of(context)!.home,
                 ),
-                 NavigationDestination(
+                NavigationDestination(
                   icon: const Icon(Icons.favorite),
-                  label: AppLocalizations.of(context)?.favorite ??'Favorite',
+                  label: AppLocalizations.of(context)?.favorite ?? 'Favorite',
                 ),
-                 NavigationDestination(
+                NavigationDestination(
                   icon: const Icon(Icons.person),
                   label: AppLocalizations.of(context)?.profile ?? 'Profile',
                 ),

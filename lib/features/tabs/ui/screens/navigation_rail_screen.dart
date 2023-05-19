@@ -15,8 +15,13 @@ class NavigationRailScreen extends HookConsumerWidget {
       body: Row(
         children: [
           NavigationRail(
-            onDestinationSelected: (val) => _onItemTapped(val, context),
-            selectedIndex: _calculateSelectedIndex(context),
+            onDestinationSelected: (val) => _onItemTapped(
+              val,
+              context,
+            ),
+            selectedIndex: _calculateSelectedIndex(
+              context,
+            ),
             destinations: const [
               NavigationRailDestination(
                 label: Text('Home'),

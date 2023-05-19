@@ -1,9 +1,7 @@
 import 'package:elvan/core/extensions/build_context/screen_size_ext.dart';
-import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:elvan/shared/constants/app_size.dart';
 import 'package:elvan/features/favorite/notifer/favorite_provider.dart';
 import 'package:elvan/features/food/ui/components/food_list_card.dart';
@@ -18,9 +16,6 @@ class FavoriteScreen extends ConsumerWidget {
 
     return Column(
       children: [
-        // ElvanAppBar(
-        //     title: AppLocalizations.of(context)!.favorite,
-        //     showBackButton: false),
         Builder(builder: (context) {
           if (favorite.isEmpty) {
             return Column(

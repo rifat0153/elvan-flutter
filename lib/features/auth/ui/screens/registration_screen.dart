@@ -6,7 +6,6 @@ import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
-import 'package:elvan/shared/providers/statusbar_color_provider.dart';
 import 'package:elvan_shared/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -18,8 +17,6 @@ class RegistrationScreen extends HookConsumerWidget {
   const RegistrationScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final statusBarColor =
-        ref.watch(statusBarColorProvider(AppColors.primaryRed));
     final authState = ref.watch(authNotifierProvider);
     final authNotifier = ref.read(authNotifierProvider.notifier);
     final emailTextController = useTextEditingController();

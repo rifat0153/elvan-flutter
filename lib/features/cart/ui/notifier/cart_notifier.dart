@@ -6,7 +6,6 @@ import 'package:elvan/shared/providers/dialogs/isOrder_dialog_provider.dart';
 import 'package:elvan/shared/providers/dialogs/not_takeing_order_provider.dart';
 import 'package:elvan_shared/domain_models/cart/cart.dart';
 import 'package:elvan_shared/domain_models/index.dart';
-import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/dtos/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
