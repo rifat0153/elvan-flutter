@@ -20,11 +20,9 @@ class MyApp extends HookConsumerWidget {
       debugPrint('currentUserProvider listen:  next: ${next.value?.uid}');
 
       debugPrint('OnChange: -> Root key -> ${ref.read(appRouterProvider).key}');
-      debugPrint(
-          'OnChange: ->  Curr key -> ${ref.read(appRouterProvider).current.key}');
+      debugPrint('OnChange: ->  Curr key -> ${ref.read(appRouterProvider).current.key}');
 
-      debugPrint(
-          'OnChange: -> Current router path -> ${ref.read(appRouterProvider).current.path}');
+      debugPrint('OnChange: -> Current router path -> ${ref.read(appRouterProvider).current.path}');
 
       final currrentPath = ref.read(appRouterProvider).current.path;
       logWarning('OnChange: Auth State Changed -> curr path -> $currrentPath');
@@ -67,8 +65,7 @@ class MyApp extends HookConsumerWidget {
           debugShowCheckedModeBanner: false,
           title: 'Elvan',
           routerDelegate: appRouter.delegate(),
-          routeInformationParser:
-              appRouter.defaultRouteParser(includePrefixMatches: true),
+          routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

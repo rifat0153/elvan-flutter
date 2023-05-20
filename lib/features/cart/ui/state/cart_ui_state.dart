@@ -11,8 +11,7 @@ class CartUiState with _$CartUiState {
   const factory CartUiState.loading() = _CartState_Loading;
   const factory CartUiState.empty() = _CartState_Empty;
   const factory CartUiState.data(Cart cart) = _CartState_Loaded;
-  const factory CartUiState.error(String message, {StackTrace? st}) =
-      _CartState_Error;
+  const factory CartUiState.error(String message, {StackTrace? st}) = _CartState_Error;
 
   bool get isEmpty => maybeWhen(
         empty: () => true,

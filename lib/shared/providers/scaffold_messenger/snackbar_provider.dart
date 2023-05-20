@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                            import 'package:elvan/shared/constants/app_colors.dart';
+import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -54,13 +54,7 @@ class SnackbarNotifier extends Notifier<void> {
     return true;
   }
 
-  Future<Future> alartDialog({
-    required String title,
-    required String content,
-    required VoidCallback onOk,
-    VoidCallback? onCancel,
-    required BuildContext context
-  }) async {
+  Future<Future> alartDialog({required String title, required String content, required VoidCallback onOk, VoidCallback? onCancel, required BuildContext context}) async {
     return showDialog(
       context: context,
       builder: (_) => AlertDialog(
@@ -77,11 +71,11 @@ class SnackbarNotifier extends Notifier<void> {
               foregroundColor: AppColors.primaryRed,
             ),
             onPressed: onCancel ?? () => Navigator.of(context).pop(),
-            child:  Text(AppLocalizations.of(context)?.cancel ??'Cancel'),
+            child: Text(AppLocalizations.of(context)?.cancel ?? 'Cancel'),
           ),
           TextButton(
             onPressed: onOk,
-            child:  Text(AppLocalizations.of(context)?.yes ?? 'Yes'),
+            child: Text(AppLocalizations.of(context)?.yes ?? 'Yes'),
           ),
         ],
       ),

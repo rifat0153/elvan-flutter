@@ -12,7 +12,6 @@ class TopPicksWidget extends HookConsumerWidget {
     return topPicksState.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       data: (topPicks) => TopPicksGrid(foodItems: topPicks),
-      // data: (topPicks) => TopPicksGridOld(foodItems: topPicks),
       error: (message, st) => Center(
         child: Text(message.toString()),
       ),

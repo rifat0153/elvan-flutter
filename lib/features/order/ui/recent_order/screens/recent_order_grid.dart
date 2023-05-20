@@ -46,8 +46,7 @@ class RecentOrdersRow extends StatelessWidget {
               1.fr,
             ],
             // each row is taking as much space as its content
-            rowSizes: List.generate(
-                ((cartItems.length - 1) ~/ 2) + 1, (index) => auto).toList(),
+            rowSizes: List.generate(((cartItems.length - 1) ~/ 2) + 1, (index) => auto).toList(),
             columnGap: AppSize.paddingMD,
             rowGap: AppSize.paddingMD,
             children: [

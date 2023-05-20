@@ -3,8 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:elvan/features/auth/providers/auth_providers.dart';
 import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
 
-final orderRecordsNotifierProvider =
-    AsyncNotifierProvider<OrderRecordsNotifier, List<Order>>(
+final orderRecordsNotifierProvider = AsyncNotifierProvider<OrderRecordsNotifier, List<Order>>(
   () => OrderRecordsNotifier(),
 );
 

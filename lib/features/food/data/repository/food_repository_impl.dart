@@ -24,8 +24,7 @@ class FoodRepositoryImpl implements FoodRepository {
     return firebaseFirestore
         .collection(Constants.foodItemsCollection)
         .withConverter(
-          fromFirestore: (snapshot, _) =>
-              FoodItemDto.fromJson(snapshot.data()!),
+          fromFirestore: (snapshot, _) => FoodItemDto.fromJson(snapshot.data()!),
           toFirestore: (foodItemDto, _) => foodItemDto.toJson(),
         )
         .snapshots()
@@ -43,8 +42,7 @@ class FoodRepositoryImpl implements FoodRepository {
     return firebaseFirestore
         .collection(Constants.foodItemsCollection)
         .withConverter(
-          fromFirestore: (snapshot, _) =>
-              FoodItemDto.fromJson(snapshot.data()!),
+          fromFirestore: (snapshot, _) => FoodItemDto.fromJson(snapshot.data()!),
           toFirestore: (foodItemDto, _) => foodItemDto.toJson(),
         )
         .get()
@@ -59,8 +57,7 @@ class FoodRepositoryImpl implements FoodRepository {
         .collection(Constants.foodItemsCollection)
         .where('isTopPick', isEqualTo: true)
         .withConverter(
-          fromFirestore: (snapshot, _) =>
-              FoodItemDto.fromJson(snapshot.data()!),
+          fromFirestore: (snapshot, _) => FoodItemDto.fromJson(snapshot.data()!),
           toFirestore: (foodItemDto, _) => foodItemDto.toJson(),
         )
         .get()

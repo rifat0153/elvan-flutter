@@ -29,8 +29,7 @@ class CartItemList extends ConsumerWidget {
             ref.read(snackbarNotifierProvider.notifier).showSnackbarWithAction(
                   'Removed from cart',
                   actionLabel: 'Undo',
-                  onAction: () =>
-                      ref.read(cartProvider.notifier).addToCart(item),
+                  onAction: () => ref.read(cartProvider.notifier).addToCart(item),
                 );
           },
         );

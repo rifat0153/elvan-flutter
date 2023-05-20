@@ -2,8 +2,7 @@ import 'package:elvan/features/favorite/usecase/favorite_use_case.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final favoriteProvider =
-    NotifierProvider<FavoriteProvider, List<FoodItem>>(FavoriteProvider.new);
+final favoriteProvider = NotifierProvider<FavoriteProvider, List<FoodItem>>(FavoriteProvider.new);
 
 class FavoriteProvider extends Notifier<List<FoodItem>> {
   FavoriteUseCase favoriteUseCase = FavoriteUseCase();

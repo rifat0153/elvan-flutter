@@ -25,7 +25,9 @@ class OrderSummery extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AppText(AppLocalizations.of(context)!.estimatedTime),
+                  AppText(
+                    AppLocalizations.of(context)!.estimatedTime,
+                  ),
                   AppText(
                     "${estimatedTime.toInt()} Min",
                     style: Theme.of(context).textTheme.headlineSmall,

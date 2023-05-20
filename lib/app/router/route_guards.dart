@@ -27,7 +27,7 @@ class AuthGuard extends AutoRouteGuard {
     } else {
       // router.push(const NotFoundRoute());
 
-       router.popUntilRouteWithName(AuthRouter.name);
+      router.popUntilRouteWithName(AuthRouter.name);
     }
   }
 }

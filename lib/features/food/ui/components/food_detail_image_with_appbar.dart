@@ -6,8 +6,7 @@ import 'package:elvan/features/food/ui/components/food_detail_appbar.dart';
 import 'package:elvan/features/food/ui/components/food_detail_image.dart';
 
 class FoodDetailImageWithAppbar extends StatelessWidget {
-  const FoodDetailImageWithAppbar(
-      {super.key, required this.foodItem, this.isSaladBar = false});
+  const FoodDetailImageWithAppbar({super.key, required this.foodItem, this.isSaladBar = false});
 
   final FoodItem foodItem;
   final bool isSaladBar;

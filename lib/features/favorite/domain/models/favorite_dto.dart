@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:elvan_shared/dtos/category/build_step/build_step.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -29,8 +28,7 @@ class FavoriteDto with _$FavoriteDto {
     String? createdAt,
   }) = _FavoriteDto;
 
-  factory FavoriteDto.fromJson(Map<String, dynamic> json) =>
-      _$FavoriteDtoFromJson(json);
+  factory FavoriteDto.fromJson(Map<String, dynamic> json) => _$FavoriteDtoFromJson(json);
 
   factory FavoriteDto.formFoodItem(FoodItem item) {
     return FavoriteDto(
@@ -54,6 +52,4 @@ class FavoriteDto with _$FavoriteDto {
       timeToPrepareInMinutes: item.timeToPrepareInMinutes,
     );
   }
-
-  
 }

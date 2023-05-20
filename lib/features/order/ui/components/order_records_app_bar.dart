@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:elvan/app/router/navigator_provider.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
@@ -19,7 +18,11 @@ class OrderRecordsAppBar extends HookConsumerWidget implements PreferredSizeWidg
       backgroundColor: AppColors.primaryRed,
       centerTitle: true,
       leading: IconButton(
-        onPressed: () => ref.read(navigatorProvider.notifier).pop(),
+        onPressed: () => ref
+            .read(
+              navigatorProvider.notifier,
+            )
+            .pop(),
         icon: const Icon(
           Icons.arrow_back,
           color: AppColors.white,

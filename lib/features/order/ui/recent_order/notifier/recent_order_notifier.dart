@@ -7,8 +7,7 @@ import 'package:elvan/features/order/domain/usecases/order_use_case.dart';
 
 final recentOrderNotifierProvider = FutureProvider<List<CartItem>>((ref) async {
   final orderUseCase = ref.read(orderUseCaseProvider);
-  final userId =
-      ref.watch(currentUserIdProvider);
+  final userId = ref.watch(currentUserIdProvider);
 
   logInfo('getRecentOrders: userId: $userId');
 
@@ -21,7 +20,6 @@ final recentOrderNotifierProvider = FutureProvider<List<CartItem>>((ref) async {
 
   return cartItems;
 });
-
 
 //* same as above but using AsyncNotifierProvider
 

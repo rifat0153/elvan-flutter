@@ -5,14 +5,12 @@ import 'package:elvan_shared/domain_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:elvan/shared/components/buttons/elvan_icon_button.dart';
 import 'package:elvan/shared/components/buttons/favorite_button.dart';
 import 'package:elvan/shared/components/cards/base_card.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:elvan/shared/constants/app_size.dart';
-
 import 'package:elvan/app/router/app_router.gr.dart';
 import 'package:elvan/features/food/ui/notifier/selected_food_provider.dart';
 

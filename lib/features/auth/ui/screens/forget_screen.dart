@@ -3,7 +3,6 @@ import 'package:elvan/features/auth/ui/notifier/auth_notifier.dart';
 import 'package:elvan/features/auth/ui/state/auth_event.dart';
 import 'package:elvan/shared/components/appbar/elvan_appbar.dart';
 import 'package:elvan/shared/components/background/elvan_safe_remove_scaffold.dart';
-import 'package:elvan/shared/components/background/elvan_scaffold.dart';
 import 'package:elvan/shared/components/text/app_text_widget.dart';
 import 'package:elvan/shared/constants/app_asset.dart';
 import 'package:elvan/shared/constants/app_colors.dart';
@@ -13,8 +12,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-
 
 class ForgetScreen extends HookConsumerWidget {
   const ForgetScreen({super.key});
@@ -33,17 +30,12 @@ class ForgetScreen extends HookConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          ElvanAppBar(
-              title: AppLocalizations.of(context)?.passwordReset ??
-                  "Password reset"),
+          ElvanAppBar(title: AppLocalizations.of(context)?.passwordReset ?? "Password reset"),
           Stack(
             children: [
               Container(
-                margin: const EdgeInsets.only(
-                    left: 20, right: 20, top: 16, bottom: 30),
-                decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(AppSize.radiusSM)),
+                margin: const EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 30),
+                decoration: BoxDecoration(color: AppColors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(AppSize.radiusSM)),
                 child: Padding(
                   padding: const EdgeInsets.all(AppSize.paddingLG),
                   child: Column(
@@ -52,8 +44,7 @@ class ForgetScreen extends HookConsumerWidget {
                       TextField(
                         controller: emailTextController,
                         decoration: InputDecoration(
-                          hintText: AppLocalizations.of(context)?.emailHint ??
-                              'Enter your email',
+                          hintText: AppLocalizations.of(context)?.emailHint ?? 'Enter your email',
                           //rounded white border
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
@@ -85,20 +76,15 @@ class ForgetScreen extends HookConsumerWidget {
                         ),
                       ),
                       onPressed: () async {
-                        authNotifier.onEvent(AuthEvent.resetPassword(
-                          email: emailTextController.text,
-                          context: context
-                        ));
+                        authNotifier.onEvent(AuthEvent.resetPassword(email: emailTextController.text, context: context));
                       },
                       child: authState.loading
                           ? const SizedBox(
                               height: 20,
                               width: 20,
-                              child: CircularProgressIndicator(
-                                  color: AppColors.white),
+                              child: CircularProgressIndicator(color: AppColors.white),
                             )
-                          : AppText(AppLocalizations.of(context)?.getCode ??
-                              'Get Code'),
+                          : AppText(AppLocalizations.of(context)?.getCode ?? 'Get Code'),
                     ),
                   ),
                 ),

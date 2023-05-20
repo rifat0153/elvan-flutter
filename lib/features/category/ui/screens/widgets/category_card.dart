@@ -20,9 +20,7 @@ class CategoryCard extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
-        ref
-            .read(categoryNotifierProvider.notifier)
-            .resetSelectedAndNew(category);
+        ref.read(categoryNotifierProvider.notifier).resetSelectedAndNew(category);
         context.pushRoute(const FoodRouter());
       },
       child: BaseCard(

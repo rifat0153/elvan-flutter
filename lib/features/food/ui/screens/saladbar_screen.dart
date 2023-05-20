@@ -33,8 +33,7 @@ class SaladBarScreen extends HookConsumerWidget {
                 CustomScrollView(
                   slivers: [
                     SliverToBoxAdapter(
-                      child: FoodDetailImageWithAppbar(
-                          foodItem: foodItem, isSaladBar: true),
+                      child: FoodDetailImageWithAppbar(foodItem: foodItem, isSaladBar: true),
                     ),
                     _foodDescription(foodItem, context),
                     SliverToBoxAdapter(
@@ -86,13 +85,10 @@ class SaladBarScreen extends HookConsumerWidget {
           final isBuildStepsValid = ref.watch(isBuildStepsValidProvider);
           final cartUpdateNotifier = ref.watch(cartItemUpdateProvider.notifier);
           final isCartUpdating = cartUpdateNotifier.isUpdating;
-          final currentBuildStepsPrice =
-              ref.watch(currentBuildStepsPriceProvider);
+          final currentBuildStepsPrice = ref.watch(currentBuildStepsPriceProvider);
           final totalPrice = foodItem.price + currentBuildStepsPrice;
 
-          final String cartText = isCartUpdating
-              ? AppLocalizations.of(context)!.updateCart
-              : AppLocalizations.of(context)!.addToCart;
+          final String cartText = isCartUpdating ? AppLocalizations.of(context)!.updateCart : AppLocalizations.of(context)!.addToCart;
           final String cartButtonText = '$cartText - \$ $totalPrice';
 
           return ElvanButton(
@@ -155,13 +151,6 @@ class SaladBarScreen extends HookConsumerWidget {
               foodItem.title.toUpperCase(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-
-            //show rating
-            // AppText(
-            //   foodItem.rating.toString(),
-            //   style: Theme.of(context).textTheme.headlineSmall,
-            //   color: Colors.grey,
-            // ),
             AppText(
               "\$${foodItem.price}",
               style: Theme.of(context).textTheme.headlineSmall,

@@ -23,9 +23,7 @@ class CartItemCard extends HookConsumerWidget {
         ),
         child: InkWell(
             onTap: () {
-              ref
-                  .read(cartItemUpdateProvider.notifier)
-                  .setUpdatingCartItem(cartItem);
+              ref.read(cartItemUpdateProvider.notifier).setUpdatingCartItem(cartItem);
 
               context.navigateTo(
                 const FoodRouter(children: [

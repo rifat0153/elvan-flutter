@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
@@ -62,8 +61,7 @@ class OrderRepositoryImpl implements OrderRepository {
         .limit(limit)
         .get();
 
-    final orderDtos =
-        orders.docs.map((e) => OrderDto.fromJson(e.data())).toList();
+    final orderDtos = orders.docs.map((e) => OrderDto.fromJson(e.data())).toList();
 
     return orderDtos;
   }
@@ -142,7 +140,7 @@ class OrderRepositoryImpl implements OrderRepository {
       'status',
       whereIn: [
         OrderStatus.pending.status,
-        OrderStatus.done.status,  
+        OrderStatus.done.status,
         OrderStatus.accepted.status,
       ],
     ).get();
@@ -155,11 +153,7 @@ class OrderRepositoryImpl implements OrderRepository {
 
   @override
   Stream<bool> isTakingOrder() {
-    return firebaseFirestore
-        .collection('settings')
-        .doc('default-001')
-        .snapshots()
-        .map((event) {
+    return firebaseFirestore.collection('settings').doc('default-001').snapshots().map((event) {
       print("is taking order: ${event.data()?['takingOrder']}");
       final bool isTaking = event.data()?['takingOrder'] ?? false;
       return isTaking;

@@ -79,12 +79,10 @@ class CategoryNotifier extends _$CategoryNotifier {
         category.copyWith(isSelected: !isCategorySelected),
       );
     } else {
-      modifiedCategories
-          .add(category.copyWith(isSelected: !isCategorySelected));
+      modifiedCategories.add(category.copyWith(isSelected: !isCategorySelected));
     }
 
-    logError(
-        'Selected Titles: ${modifiedCategories.where((e) => e.isSelected).map((e) => e.title).toList()} ');
+    logError('Selected Titles: ${modifiedCategories.where((e) => e.isSelected).map((e) => e.title).toList()} ');
 
     state = AsyncValue.data(modifiedCategories);
   }

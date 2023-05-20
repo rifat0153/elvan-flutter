@@ -1,6 +1,4 @@
-import 'package:elvan/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:elvan/features/category/ui/screens/category_chips.dart';
@@ -29,12 +27,12 @@ class FoodListScreen extends HookConsumerWidget {
               const SliverToBoxAdapter(
                 child: SizedBox(height: AppSize.paddingMD),
               ),
-    
+
               // category chips
               const SliverToBoxAdapter(
                 child: CategoryChips(),
               ),
-    
+
               for (final foodMap in foodMapList) ...[
                 SliverToBoxAdapter(
                   child: Padding(

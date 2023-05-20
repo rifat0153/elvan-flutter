@@ -22,8 +22,12 @@ class OrderTimeLine extends StatelessWidget {
     return TimelineTile(
       isFirst: isFirst,
       isLast: isLast,
-      afterLineStyle: const LineStyle(color: AppColors.primaryRed),
-      beforeLineStyle: const LineStyle(color: AppColors.primaryRed),
+      afterLineStyle: const LineStyle(
+        color: AppColors.primaryRed,
+      ),
+      beforeLineStyle: const LineStyle(
+        color: AppColors.primaryRed,
+      ),
       indicatorStyle: IndicatorStyle(
         width: 25,
         color: AppColors.primaryRed,

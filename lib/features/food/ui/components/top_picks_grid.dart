@@ -26,8 +26,7 @@ class TopPicksGrid extends StatelessWidget {
               1.fr,
             ],
             // rowSizes: [auto],
-            rowSizes: List.generate(
-                ((foodItems.length - 1) ~/ 2 + 1), (index) => auto).toList(),
+            rowSizes: List.generate(((foodItems.length - 1) ~/ 2 + 1), (index) => auto).toList(),
             columnGap: AppSize.paddingMD,
             rowGap: AppSize.paddingMD,
             children: [

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class ElvanNetworkImage extends StatelessWidget {
   const ElvanNetworkImage(
-    this.imageUrl, this.foodId, {
+    this.imageUrl,
+    this.foodId, {
     super.key,
     this.height,
     this.width,

@@ -6,7 +6,6 @@ import 'package:elvan/shared/providers/dialogs/isOrder_dialog_provider.dart';
 import 'package:elvan/shared/providers/dialogs/not_takeing_order_provider.dart';
 import 'package:elvan_shared/domain_models/cart/cart.dart';
 import 'package:elvan_shared/domain_models/index.dart';
-import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/dtos/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -112,8 +111,7 @@ class CartNotifier extends Notifier<CartUiState> {
     }
 
     final cartItemListUseCase = ref.read(cartItemListUseCaseProvider);
-    final updatingCartItem =
-        ref.read(cartItemUpdateProvider.notifier).updatingCartItem;
+    final updatingCartItem = ref.read(cartItemUpdateProvider.notifier).updatingCartItem;
 
     if (updatingCartItem == null) {
       state = const CartUiState.error('Cart item id is null');
@@ -139,9 +137,7 @@ class CartNotifier extends Notifier<CartUiState> {
     );
 
     // show snackbar with message
-    ref
-        .read(snackbarNotifierProvider.notifier)
-        .showSnackbarWithMessage('Cart item updated');
+    ref.read(snackbarNotifierProvider.notifier).showSnackbarWithMessage('Cart item updated');
   }
 
   void removeFromCart(CartItem cartItem) {
